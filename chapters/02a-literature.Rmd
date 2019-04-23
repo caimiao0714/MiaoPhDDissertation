@@ -1,0 +1,39 @@
+# LITERATURE REVIEW
+
+## Truck crashes
+
+
+
+## Precursors to crashes
+
+
+## Risk factors
+
+### Fatigue
+
+
+
+
+
+### Traffic
+
+
+
+
+
+
+### Weather
+
+
+
+
+
+
+
+
+
+## Hierarchical Bayesian models
+
+
+
+

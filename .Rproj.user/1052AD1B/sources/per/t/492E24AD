@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1555998397872.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1774519667",
+    "id" : "492E24AD",
+    "lastKnownWriteTime" : 1556007042,
+    "last_content_update" : 1556007042164,
+    "path" : "C:/Users/miaocai/Dropbox/MiaoPhDDissertation/Miao_Dissertation/chapters/01-intro.Rmd",
+    "project_path" : "chapters/01-intro.Rmd",
+    "properties" : {
+        "cursorPosition" : "4,129",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
