@@ -53,6 +53,8 @@
   \renewcommand{\contentsname}%
     {TABLE OF CONTENTS}%
 }
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
 \renewcommand{\headrulewidth}{0pt}

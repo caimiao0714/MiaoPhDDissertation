@@ -22,3 +22,4 @@ I want to thank my PhD mentor and committee chair Dr. Steven E. Rigdon.
 
 \mainmatter
 
+\doublespacing
