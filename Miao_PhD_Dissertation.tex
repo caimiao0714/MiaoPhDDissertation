@@ -131,13 +131,13 @@ Assistant Professor Fadel Megahed, Ph.D.
 \chapter*{Dedication}\label{dedication}}
 \addcontentsline{toc}{chapter}{Dedication}
 
-To my parents.
+I dedicate this dissertation to my parents, Zhimin Cai and Guizhen Xu, who believe in the power of higher education, hard work, and always support me.
 
 \hypertarget{acknowledgement}{%
 \chapter*{Acknowledgement}\label{acknowledgement}}
 \addcontentsline{toc}{chapter}{Acknowledgement}
 
-I want to thank my PhD mentor and committee chair Dr.~Steven E. Rigdon.
+I want to thank my PhD mentor and committee chair Dr.~Steven E. Rigdon, committee members Dr.~Hong Xian and Dr.~Fadel Megahed.
 
 \cleardoublepage
 \tableofcontents
@@ -152,15 +152,24 @@ I want to thank my PhD mentor and committee chair Dr.~Steven E. Rigdon.
 \hypertarget{introduction}{%
 \chapter{INTRODUCTION}\label{introduction}}
 
-I used the \textbf{knitr}\index{knitr} package and the \textbf{bookdown}\index{bookdown} package to compile my book. My R session information is shown below:
-
-Package names are in bold text (e.g., \textbf{rmarkdown}), and inline code and filenames are formatted in a typewriter font (e.g., \texttt{knitr::knit(\textquotesingle{}foo.Rmd\textquotesingle{})}). Function names are followed by parentheses (e.g., \texttt{bookdown::render\_book()}).
-
 \hypertarget{traffic-safety}{%
 \section{Traffic safety}\label{traffic-safety}}
 
+Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States. As reported by the World Health Organization (WHO \protect\hyperlink{ref-who2018}{2018}\protect\hyperlink{ref-who2018}{b}), road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5\% of all deaths in the world. If no sustained action is taken, road injuries were predicted to be the seventh leading cause of death across the world by 2030 (WHO \protect\hyperlink{ref-who2018b}{2018}\protect\hyperlink{ref-who2018b}{a}). In the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40\% of all fatal occupational injuries in 2017 (The United States, Bureau of Labor Statistics \protect\hyperlink{ref-bols}{2017}). Traffic safety could also influence the economic growth of a country. Developing countries such as China and India could have suffered from 7-22\% loss of per capita Gross Domestic Product over a 24-year period (Fumagalli et al. \protect\hyperlink{ref-fumagalli2017high}{2017}).
+
 \hypertarget{truck-driver}{%
 \section{Truck driver}\label{truck-driver}}
+
+Among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27\% fatal crashes in work zones involved large trucks (FMCSA \protect\hyperlink{ref-fmcsareport2016}{2018}). Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents (FMCSA \protect\hyperlink{ref-fmcsafacts2016}{2016}). The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash (Zaloshnja, Miller, and others \protect\hyperlink{ref-zaloshnja2008unit}{2008}). The high risk of large trucks is attributed to two aspects of reasons (Huang et al. \protect\hyperlink{ref-huang2013development}{2013}). First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes.
+
+\hypertarget{crashes-and-critical-events}{%
+\section{Crashes and critical events}\label{crashes-and-critical-events}}
+
+To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes or predict the crashes. The most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes (Braver et al. \protect\hyperlink{ref-braver1997tractor}{1997}; Chen and Xie \protect\hyperlink{ref-chen2014modeling}{2014}; Meuleners et al. \protect\hyperlink{ref-meuleners2015obstructive}{2015}; Née et al. \protect\hyperlink{ref-nee2019road}{2019}). This widespread case-control design is due to the fact that large truck crashes are very rare compared to the amount of time on road. However, a case-control study is limited in estimating the incidence data and may be contentious in selecting the control groups (Grimes and Schulz \protect\hyperlink{ref-grimes2005compared}{2005}; Sedgwick \protect\hyperlink{ref-sedgwick2014case}{2014}).
+
+Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor \index{precursor}, or critical event \index{critical event}, is a pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes (Dingus et al. \protect\hyperlink{ref-dingus2006development}{2006}). Although critcal events do not always result in an accident, they could be used as an early warning system to mitigate or prevent truck crashes (Kusano and Gabler \protect\hyperlink{ref-kusano2012safety}{2012}).
+
+This prospectus proposal focuses on statistical methods in truck safety prediction.
 
 \hypertarget{literature-review}{%
 \chapter{LITERATURE REVIEW}\label{literature-review}}
@@ -174,18 +183,18 @@ Package names are in bold text (e.g., \textbf{rmarkdown}), and inline code and f
 \hypertarget{fatigue}{%
 \subsection{Fatigue}\label{fatigue}}
 
-In a recent study, \citet{stern2018Data} reviewed the research related to fatigue of commercial motor vehicle drivers. Because of the difficulty of running a controlled experiment by imposing treatments, most research designs are observational studies, that is, they compare the effects of variables that are observed, not imposed. One exception to this is a \emph{randomized encouragement design} where drivers are randomized to receive some sort of incentive to apply some treatment, but are not forced to do so. If an effect is observed, we would conclude that it is due to the incentive, not necessarily to the actual treatment. Many studies use a cohort design or a case-control study. In a cohort design, a number of drivers is identified and studied across time. In a case-control study, a number of cases (e.g., crashes, or some other safety measure) are identified and are matched with controls; focus is then placed on the differences between the cases and controls. Both cohort studies and case-control studies can be useful in assessing safety.
+Among all driver-related safety critical events, fatigue has become the most pressing problem of traffic accidents. It is estimated by National Sleep Foundation that approximately 32\% of drivers in U.S drive with fatigue over twice a month (National Sleep Foundation \protect\hyperlink{ref-nsleepf}{2008}). Another statistic provided by American Automobile Association Foundation for Traffic Safety in 2010 said that 16.5\% of fatal traffic accidents and 12.5\% of collisions related to injuries in U.S were associated with driving with fatigue (American Automobile Association Foundation for Traffic Safety \protect\hyperlink{ref-aaafoundation}{2010}). Drowsy driving is an especially common practice in less-developed countries because of cost control and tight schedule. Surveys of commercial and public road transportation companies in less-developed countries showed that employers were frequently forcing their employees to drive for longer hours and keep working even when they were exhausted (Zhang et al. \protect\hyperlink{ref-zhang2016traffic}{2016}; Odero, Khayesi, and Heda \protect\hyperlink{ref-odero2003road}{2003}; Nantulya and Reich \protect\hyperlink{ref-nantulya2002neglected}{2002}). High proportions of drowsy driving have been found among Brazilian (22\%) (Canani et al. \protect\hyperlink{ref-canani2005prevalence}{2005}), Argentinean (44\%) (Pérez-Chada et al. \protect\hyperlink{ref-perez2005sleep}{2005}), Pakistani (54\%) (Azam et al. \protect\hyperlink{ref-azam2014comparison}{2014}), and Thai (75\%) (Leechawengwongs et al. \protect\hyperlink{ref-leechawengwongs2006role}{2006}) truck or bus drivers. The mechanism of fatigue leading to safety critical events is that a driver's capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation (Zhang et al. \protect\hyperlink{ref-zhang2014study}{2014}). It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05\% (MacLean, Davies, and Thiele \protect\hyperlink{ref-maclean2003hazards}{2003}). What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour (Knipling and Wang \protect\hyperlink{ref-knipling1994crashes}{1994}). This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
 
-Among all driver-related safety critical events, fatigue has become the most pressing problem of traffic accidents. It is estimated by National Sleep Foundation that approximately 32\% of drivers in U.S drive with fatigue over twice a month {[}8{]}. Another statistic provided by American Automobile Association Foundation for Traffic Safety in 2010 said that 16.5\% of fatal traffic accidents and 12.5\% of collisions related to injuries in U.S were associated with driving with fatigue {[}9{]}. Drowsy driving is an especially common practice in less-developed countries because of cost control and tight schedule. Surveys of commercial and public road transportation companies in less-developed countries showed that employers were frequently forcing their employees to drive for longer hours and keep working even when they were exhausted {[}6, 10, 11{]}. High proportions of drowsy driving have been found in Brazilian (22\%) {[}12{]}, Argentinean (44\%) {[}13{]}, Pakistani (54\%) {[}14{]}, and Thai (75\%) {[}15{]} truck or bus drivers. The mechanism of fatigue leading to safety critical events is that a driver's capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation {[}16{]}. It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05\% {[}17{]}. What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour {[}18{]}. This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
+Stern et al. (\protect\hyperlink{ref-stern2018data}{2018}) reviewed the research related to fatigue of commercial motor vehicle drivers. Because of the difficulty of running a controlled experiment by imposing treatments, most research designs are observational studies, that is, they compare the effects of variables that are observed, not imposed. One exception to this is a \emph{randomized encouragement design} where drivers are randomized to receive some sort of incentive to apply some treatment, but are not forced to do so. If an effect is observed, we would conclude that it is due to the incentive, not necessarily to the actual treatment. Many studies use a cohort design or a case-control study. In a cohort design, a number of drivers is identified and studied across time. In a case-control study, a number of cases (e.g., crashes, or some other safety measure) are identified and are matched with controls; focus is then placed on the differences between the cases and controls. Both cohort studies and case-control studies can be useful in assessing safety.
 
 \hypertarget{driver-characteristics}{%
 \subsection{Driver characteristics}\label{driver-characteristics}}
 
-Another driver-related risk factor of driving safety critical events is drivers' age. In many developing countries, to meet the huge demand services and supply chain management, it is very common to extend the retirement age or reemploy retired workers {[}19{]}. Aging drivers increase the chance of the safety critical events in three aspects: impaired eyesight, prolonged reaction time to exogenous stimuli, and vulnerability to fatigue {[}20{]}. Aged drivers are associated with eyesight diseases or functionality impairment, such as cataracts, narrowed peripheral vision and decreasing visual acuity {[}20{]}. In addition, working for truck companies often means irregular shifts and taking the night schedules, which disrupt the circadian time-keeping systems, especially for the aged workers {[}21{]}.
+Another driver-related risk factor of driving safety critical events is drivers' age. In many developing countries, to meet the huge demand services and supply chain management, it is very common to extend the retirement age or reemploy retired workers (Popkin et al. \protect\hyperlink{ref-popkin2008age}{2008}). Aging drivers increase the chance of the safety critical events in three aspects: impaired eyesight, prolonged reaction time to exogenous stimuli, and vulnerability to fatigue (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). Aged drivers are associated with eyesight diseases or functionality impairment, such as cataracts, narrowed peripheral vision and decreasing visual acuity (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). In addition, working for truck companies often means irregular shifts and taking the night schedules, which disrupt the circadian time-keeping systems, especially for the aged workers (Moneta et al. \protect\hyperlink{ref-moneta1996time}{1996}).
 
-Aged drivers may find it much more difficult to adjust for the sleep-wake cycle to keep pace with the schedule required by the employer company. Therefore, this disruption of the circadian systems, in turn, increases the chances to feel sleepy or fatigue for workers. It is indicated by research that the ``critical age'' of shiftwork intolerance is about 45 to 50 years, at which sleep disorder, persisting fatigue and digestive problems become the most obvious {[}20{]}. Young drivers are much better in the sense of physical health and resistance to fatigue compared with aged drivers, however, they are more vulnerable regarding the experience of driving. A study conducted by Clarke suggested that young drivers (17 -- 19 years old), especially males, have significantly more accidents than other drivers during the hours of darkness, on rural curves, and rear-end shunts compared with male drivers aged 20 -25 years {[}22{]}. The reasons for these young driver accidents were not fully explained, but could largely be attributed to inexperience.
+Aged drivers may find it much more difficult to adjust for the sleep-wake cycle to keep pace with the schedule required by the employer company. Therefore, this disruption of the circadian systems, in turn, increases the chances to feel sleepy or fatigue for workers. It is indicated by research that the ``critical age'' of shiftwork intolerance is about 45 to 50 years, at which sleep disorder, persisting fatigue and digestive problems become the most obvious (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). Young drivers are much better in the sense of physical health and resistance to fatigue compared with aged drivers, however, they are more vulnerable regarding the experience of driving. A study conducted by Clarke suggested that young drivers (17 -- 19 years old), especially males, have significantly more accidents than other drivers during the hours of darkness, on rural curves, and rear-end shunts compared with male drivers aged 20 -25 years (Clarke et al. \protect\hyperlink{ref-clarke2006young}{2006}). The reasons for these young driver accidents were not fully explained, but could largely be attributed to inexperience.
 
-One more risk factor that could explain driving safety critical events is drivers' gender. Gender has been suggested to be related with outcomes in medical treatment, education, sports and other fields, and there is no exception for truck drivers' safety. In the first place, women are more likely to suffer from fatigue compared with men. A study found that women in general have 1.4 times higher chance of complaining of fatigue than men {[}23{]}. However, females are found to have longer sleeping hours than their male counterparts of the same race {[}24{]}. In that study, it was found that the mean sleep hours for white females was 6.7 hours compared with 6.1 hours for white males, and 5.9 hours for black female compared with 5.1 hours for black males even after adjusting for socioeconomic status, lifestyle and sleep apnea {[}24{]}. Gender differences are huge in terms of working conditions. Females had significantly fewer working hours per week, with 47 hours versus 52 hours per week {[}25{]}. In general, women tend to work fewer hours within a week but are more prone to feel fatigue and have a higher risk of traffic incidences.
+One more risk factor that could explain driving safety critical events is drivers' gender. Gender has been suggested to be related with outcomes in medical treatment, education, sports and other fields, and there is no exception for truck drivers' safety. In the first place, women are more likely to suffer from fatigue compared with men. A study found that women in general have 1.4 times higher chance of complaining of fatigue than men (Fjell et al. \protect\hyperlink{ref-fjell2008perceived}{2008}). However, females are found to have longer sleeping hours than their male counterparts of the same race (Lauderdale et al. \protect\hyperlink{ref-lauderdale2006objectively}{2006}). In that study, it was found that the mean sleep hours for white females was 6.7 hours compared with 6.1 hours for white males, and 5.9 hours for black female compared with 5.1 hours for black males even after adjusting for socioeconomic status, lifestyle and sleep apnea (Lauderdale et al. \protect\hyperlink{ref-lauderdale2006objectively}{2006}). Gender differences are huge in terms of working conditions. Females had significantly fewer working hours per week, with 47 hours versus 52 hours per week (Rotenberg et al. \protect\hyperlink{ref-rotenberg2008gender}{2008}). In general, women tend to work fewer hours within a week but are more prone to feel fatigue and have a higher risk of traffic incidences.
 
 \hypertarget{traffic}{%
 \subsection{Traffic}\label{traffic}}
@@ -193,7 +202,7 @@ One more risk factor that could explain driving safety critical events is driver
 \hypertarget{weather}{%
 \subsection{Weather}\label{weather}}
 
-Weather has both direct and indirect effects on drivers' safety critical events. On one hand, the increase of ambient temperature places risks on drivers' occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather {[}26, 27{]}. Leard and Roth found that for a day with temperature above 80◦F there is a 9.5\% increase in fatality rates compared with a day at 50-60◦F {[}28{]}. A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures {[}29{]}. On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver's visual capability or reduce the safety of driving on the road {[}30 - 32{]}. It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents {[}31, 33{]}. Abdel-Aty et al.~used detector and sensor data to successfully predict more than 70\% of accidents with low visibility conditions {[}34{]}. The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
+Weather has both direct and indirect effects on drivers' safety critical events. On one hand, the increase of ambient temperature places risks on drivers' occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather (Kjellstrom et al. \protect\hyperlink{ref-kjellstrom2009direct}{2009}; Basagaña et al. \protect\hyperlink{ref-basagana2015high}{2015}). Leard and Roth found that for a day with temperature above 80◦F there is a 9.5\% increase in fatality rates compared with a day at 50-60 F (Leard, Roth, and others \protect\hyperlink{ref-leard2015weather}{2015}). A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures (Kampe, Kovats, and Hajat \protect\hyperlink{ref-im2016impact}{2016}). On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver's visual capability or reduce the safety of driving on the road (Chang and Chen \protect\hyperlink{ref-chang2005data}{2005}; Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Baker and Reynolds \protect\hyperlink{ref-baker1992wind}{1992}). It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents (Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Graham and Glaister \protect\hyperlink{ref-graham2003spatial}{2003}). Abdel-Aty et al.~used detector and sensor data to successfully predict more than 70\% of accidents with low visibility conditions (Abdel-Aty et al. \protect\hyperlink{ref-abdel2012real}{2012}). The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
 \hypertarget{hierarchical-models}{%
 \section{Hierarchical models}\label{hierarchical-models}}
@@ -206,9 +215,9 @@ Weather has both direct and indirect effects on drivers' safety critical events.
 \hypertarget{conceptual-framework}{%
 \section{Conceptual framework}\label{conceptual-framework}}
 
-\citet{cantor2010driver} suggested three factors that cause truck crashes: driver factors, vehicle factors (type and condition), and environmental factors.
+Cantor et al. (\protect\hyperlink{ref-cantor2010driver}{2010}) suggested three factors that cause truck crashes: driver factors, vehicle factors (type and condition), and environmental factors.
 
-\citet{roshandel2015impact} proposed five factors that affect traffic safety: (a) behavioral characteristics of the driver, e.g., impairment, fatigue, distractions; (b) vehicle --- the condition of the vehicle; (c) traffic --- the traffic conditions; (d) geometry --- geometric characteristics of the road, e.g.~curve, hill, ramps, etc.; and (e) environmental --- characteristics of the surrounding environment, such as weather conditions (rain, snow, night-time driving, etc.). Traffic conditions are the most studied of these and we focus on discussing them in this subsection.
+Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{2015}) proposed five factors that affect traffic safety: (a) behavioral characteristics of the driver, e.g., impairment, fatigue, distractions; (b) vehicle --- the condition of the vehicle; (c) traffic --- the traffic conditions; (d) geometry --- geometric characteristics of the road, e.g.~curve, hill, ramps, etc.; and (e) environmental --- characteristics of the surrounding environment, such as weather conditions (rain, snow, night-time driving, etc.). Traffic conditions are the most studied of these and we focus on discussing them in this subsection.
 
 \hypertarget{gaps-in-literature}{%
 \section{Gaps in literature}\label{gaps-in-literature}}
@@ -278,6 +287,157 @@ Weather has both direct and indirect effects on drivers' safety critical events.
 
 \hypertarget{this-is-two}{%
 \chapter{This is two}\label{this-is-two}}
+
+\hypertarget{references}{%
+\chapter{References}\label{references}}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-abdel2012real}{}%
+Abdel-Aty, Mohamed A, Hany M Hassan, Mohamed Ahmed, and Ali S Al-Ghamdi. 2012. ``Real-Time Prediction of Visibility Related Crashes.'' \emph{Transportation Research Part C: Emerging Technologies} 24: 288--98.
+
+\leavevmode\hypertarget{ref-al2007experimental}{}%
+Al-Ghamdi, Ali S. 2007. ``Experimental Evaluation of Fog Warning System.'' \emph{Accident Analysis \& Prevention} 39 (6): 1065--72.
+
+\leavevmode\hypertarget{ref-aaafoundation}{}%
+American Automobile Association Foundation for Traffic Safety. 2010. ``Asleep at the Wheel: The Prevalence and Impact of Drowsy Driving.'' \url{https://www.aaafoundation.org/sites/default/files/2010DrowsyDrivingReport_1.pdf}.
+
+\leavevmode\hypertarget{ref-azam2014comparison}{}%
+Azam, Khizar, Abdul Shakoor, Riaz Akbar Shah, Afzal Khan, Shaukat Ali Shah, and Muhammad Shahid Khalil. 2014. ``Comparison of Fatigue Related Road Traffic Crashes on the National Highways and Motorways in Pakistan.'' \emph{Journal of Engineering and Applied Sciences} 33 (2).
+
+\leavevmode\hypertarget{ref-baker1992wind}{}%
+Baker, CJ, and Sheila Reynolds. 1992. ``Wind-Induced Accidents of Road Vehicles.'' \emph{Accident Analysis \& Prevention} 24 (6): 559--75.
+
+\leavevmode\hypertarget{ref-basagana2015high}{}%
+Basagaña, Xavier, Juan Pablo Escalera-Antezana, Payam Dadvand, Òscar Llatje, Jose Barrera-Gómez, Jordi Cunillera, Mercedes Medina-Ramón, and Katherine Pérez. 2015. ``High Ambient Temperatures and Risk of Motor Vehicle Crashes in Catalonia, Spain (2000--2011): A Time-Series Analysis.'' \emph{Environmental Health Perspectives} 123 (12): 1309--16.
+
+\leavevmode\hypertarget{ref-braver1997tractor}{}%
+Braver, Elisa R, Paul L Zador, Denise Thum, Eric L Mitter, Herbert M Baum, and Frank J Vilardo. 1997. ``Tractor-Trailer Crashes in Indiana: A Case-Control Study of the Role of Truck Configuration.'' \emph{Accident Analysis \& Prevention} 29 (1): 79--96.
+
+\leavevmode\hypertarget{ref-canani2005prevalence}{}%
+Canani, SF, AB John, MG Raymundi, S Schönwald, and SS Menna Barreto. 2005. ``Prevalence of Sleepiness in a Group of Brazilian Lorry Drivers.'' \emph{Public Health} 119 (10): 925--29.
+
+\leavevmode\hypertarget{ref-cantor2010driver}{}%
+Cantor, David E, Thomas M Corsi, Curtis M Grimm, and Koray Özpolat. 2010. ``A Driver Focused Truck Crash Prediction Model.'' \emph{Transportation Research Part E: Logistics and Transportation Review} 46 (5): 683--92.
+
+\leavevmode\hypertarget{ref-chang2005data}{}%
+Chang, Li-Yen, and Wen-Chieh Chen. 2005. ``Data Mining of Tree-Based Models to Analyze Freeway Accident Frequency.'' \emph{Journal of Safety Research} 36 (4): 365--75.
+
+\leavevmode\hypertarget{ref-chen2014modeling}{}%
+Chen, Chen, and Yuanchang Xie. 2014. ``Modeling the Safety Impacts of Driving Hours and Rest Breaks on Truck Drivers Considering Time-Dependent Covariates.'' \emph{Journal of Safety Research} 51: 57--63.
+
+\leavevmode\hypertarget{ref-clarke2006young}{}%
+Clarke, David D, Patrick Ward, Craig Bartle, and Wendy Truman. 2006. ``Young Driver Accidents in the Uk: The Influence of Age, Experience, and Time of Day.'' \emph{Accident Analysis \& Prevention} 38 (5): 871--78.
+
+\leavevmode\hypertarget{ref-di2011demographic}{}%
+Di Milia, Lee, Michael H Smolensky, Giovanni Costa, Heidi D Howarth, Maurice M Ohayon, and Pierre Philip. 2011. ``Demographic Factors, Fatigue, and Driving Accidents: An Examination of the Published Literature.'' \emph{Accident Analysis \& Prevention} 43 (2): 516--32.
+
+\leavevmode\hypertarget{ref-dingus2006development}{}%
+Dingus, Thomas A, Vicki L Neale, Sheila G Klauer, Andrew D Petersen, and Robert J Carroll. 2006. ``The Development of a Naturalistic Data Collection System to Perform Critical Incident Analysis: An Investigation of Safety and Fatigue Issues in Long-Haul Trucking.'' \emph{Accident Analysis \& Prevention} 38 (6): 1127--36.
+
+\leavevmode\hypertarget{ref-fjell2008perceived}{}%
+Fjell, Ylva, Kristina Alexanderson, Mikael Nordenmark, and Carina Bildt. 2008. ``Perceived Physical Strain in Paid and Unpaid Work and the Work-Home Interface: The Associations with Musculoskeletal Pain and Fatigue Among Public Employees.'' \emph{Women \& Health} 47 (1): 21--44.
+
+\leavevmode\hypertarget{ref-fmcsafacts2016}{}%
+FMCSA. 2016. ``Fatal occupational injuries by event, 2016.'' \url{https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/docs/safety/data-and-statistics/84856/cmvtrafficsafetyfactsheet2016-2017.pdf}.
+
+\leavevmode\hypertarget{ref-fmcsareport2016}{}%
+---------. 2018. ``Large Truck and Bus Crash Facts 2016.'' \url{https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/docs/safety/data-and-statistics/398686/ltbcf-2016-final-508c-may-2018.pdf}.
+
+\leavevmode\hypertarget{ref-fumagalli2017high}{}%
+Fumagalli, E, Dipan Bose, Patricio Marquez, Lorenzo Rocco, Andrew Mirelman, Marc Suhrcke, and Alexander Irvin. 2017. ``The High Toll of Traffic Injuries: Unacceptable and Preventable.'' World Bank.
+
+\leavevmode\hypertarget{ref-graham2003spatial}{}%
+Graham, Daniel J, and Stephen Glaister. 2003. ``Spatial Variation in Road Pedestrian Casualties: The Role of Urban Scale, Density and Land-Use Mix.'' \emph{Urban Studies} 40 (8): 1591--1607.
+
+\leavevmode\hypertarget{ref-grimes2005compared}{}%
+Grimes, David A, and Kenneth F Schulz. 2005. ``Compared to What? Finding Controls for Case-Control Studies.'' \emph{The Lancet} 365 (9468): 1429--33.
+
+\leavevmode\hypertarget{ref-huang2013development}{}%
+Huang, Yueng-hsiang, Dov Zohar, Michelle M Robertson, Angela Garabet, Jin Lee, and Lauren A Murphy. 2013. ``Development and Validation of Safety Climate Scales for Lone Workers Using Truck Drivers as Exemplar.'' \emph{Transportation Research Part F: Traffic Psychology and Behaviour} 17: 5--19.
+
+\leavevmode\hypertarget{ref-janakiraman2016discovery}{}%
+Janakiraman, Vijay Manikandan, Bryan Matthews, and Nikunj Oza. 2016. ``Discovery of Precursors to Adverse Events Using Time Series Data.'' In \emph{Proceedings of the 2016 Siam International Conference on Data Mining}, 639--47. SIAM.
+
+\leavevmode\hypertarget{ref-im2016impact}{}%
+Kampe, Eveline Otte im, Sari Kovats, and Shakoor Hajat. 2016. ``Impact of High Ambient Temperature on Unintentional Injuries in High-Income Countries: A Narrative Systematic Literature Review.'' \emph{BMJ Open} 6 (2): e010399.
+
+\leavevmode\hypertarget{ref-kjellstrom2009direct}{}%
+Kjellstrom, Tord, R Sari Kovats, Simon J Lloyd, Tom Holt, and Richard SJ Tol. 2009. ``The Direct Impact of Climate Change on Regional Labor Productivity.'' \emph{Archives of Environmental \& Occupational Health} 64 (4): 217--27.
+
+\leavevmode\hypertarget{ref-knipling1994crashes}{}%
+Knipling, Ronald R, and Jing-Shiarn Wang. 1994. \emph{Crashes and Fatalities Related to Driver Drowsiness/Fatigue}. National Highway Traffic Safety Administration Washington, DC.
+
+\leavevmode\hypertarget{ref-kusano2012safety}{}%
+Kusano, Kristofer D, and Hampton C Gabler. 2012. ``Safety Benefits of Forward Collision Warning, Brake Assist, and Autonomous Braking Systems in Rear-End Collisions.'' \emph{IEEE Transactions on Intelligent Transportation Systems} 13 (4): 1546--55.
+
+\leavevmode\hypertarget{ref-lauderdale2006objectively}{}%
+Lauderdale, Diane S, Kristen L Knutson, Lijing L Yan, Paul J Rathouz, Stephen B Hulley, Steve Sidney, and Kiang Liu. 2006. ``Objectively Measured Sleep Characteristics Among Early-Middle-Aged Adults: The Cardia Study.'' \emph{American Journal of Epidemiology} 164 (1): 5--16.
+
+\leavevmode\hypertarget{ref-leard2015weather}{}%
+Leard, Benjamin, Kevin Roth, and others. 2015. ``Weather, Traffic Accidents, and Climate Change.'' \emph{Resources for the Future Discussion Paper}, 15--19.
+
+\leavevmode\hypertarget{ref-leechawengwongs2006role}{}%
+Leechawengwongs, Manoon, Evelyn Leechawengwongs, Chakrit Sukying, and Umaporn Udomsubpayakul. 2006. ``Role of Drowsy Driving in Traffic Accidents: A Questionnaire Survey of Thai Commercial Bus/Truck Drivers.'' \emph{JOURNAL-MEDICAL ASSOCIATION OF THAILAND} 89 (11): 1845.
+
+\leavevmode\hypertarget{ref-maclean2003hazards}{}%
+MacLean, Alistair W, David RT Davies, and Kris Thiele. 2003. ``The Hazards and Prevention of Driving While Sleepy.'' \emph{Sleep Medicine Reviews} 7 (6): 507--21.
+
+\leavevmode\hypertarget{ref-meuleners2015obstructive}{}%
+Meuleners, Lynn, Michelle L Fraser, Matthew H Govorko, and Mark R Stevenson. 2015. ``Obstructive Sleep Apnea, Health-Related Factors, and Long Distance Heavy Vehicle Crashes in Western Australia: A Case Control Study.'' \emph{Journal of Clinical Sleep Medicine} 11 (04): 413--18.
+
+\leavevmode\hypertarget{ref-moneta1996time}{}%
+Moneta, Giovanni B, Annette Leclerc, Jean-François Chastang, Patrick Dang Tran, and Marcel Goldberg. 1996. ``Time-Trend of Sleep Disorder in Relation to Night Work: A Study of Sequential 1-Year Prevalences Within the Gazel Cohort.'' \emph{Journal of Clinical Epidemiology} 49 (10): 1133--41.
+
+\leavevmode\hypertarget{ref-nantulya2002neglected}{}%
+Nantulya, Vinand M, and Michael R Reich. 2002. ``The Neglected Epidemic: Road Traffic Injuries in Developing Countries.'' \emph{Bmj} 324 (7346): 1139--41.
+
+\leavevmode\hypertarget{ref-nsleepf}{}%
+National Sleep Foundation. 2008. ``2008 State of the States Report on Drowsy Driving.'' \url{http://drowsydriving.org/resources/2008-state-of-the-states-report-on-drowsy-driving/}.
+
+\leavevmode\hypertarget{ref-nee2019road}{}%
+Née, Mélanie, Benjamin Contrand, Ludivine Orriols, Cédric Gil-Jardiné, Cedric Galéra, and Emmanuel Lagarde. 2019. ``Road Safety and Distraction, Results from a Responsibility Case-Control Study Among a Sample of Road Users Interviewed at the Emergency Room.'' \emph{Accident Analysis \& Prevention} 122: 19--24.
+
+\leavevmode\hypertarget{ref-odero2003road}{}%
+Odero, Wilson, Meleckidzedeck Khayesi, and PM Heda. 2003. ``Road Traffic Injuries in Kenya: Magnitude, Causes and Status of Intervention.'' \emph{Injury Control and Safety Promotion} 10 (1-2): 53--61.
+
+\leavevmode\hypertarget{ref-perez2005sleep}{}%
+Pérez-Chada, Daniel, Alejandro J Videla, Martin E O'flaherty, Patricia Palermo, Jorgelina Meoni, Maria I Sarchi, Marina Khoury, and Joaquı́n Durán-Cantolla. 2005. ``Sleep Habits and Accident Risk Among Truck Drivers: A Cross-Sectional Study in Argentina.'' \emph{Sleep} 28 (9): 1103--8.
+
+\leavevmode\hypertarget{ref-popkin2008age}{}%
+Popkin, Stephen M, Stephanie L Morrow, Tara E Di Domenico, and Heidi D Howarth. 2008. ``Age Is More Than Just a Number: Implications for an Aging Workforce in the Us Transportation Sector.'' \emph{Applied Ergonomics} 39 (5): 542--49.
+
+\leavevmode\hypertarget{ref-roshandel2015impact}{}%
+Roshandel, Saman, Zuduo Zheng, and Simon Washington. 2015. ``Impact of Real-Time Traffic Characteristics on Freeway Crash Occurrence: Systematic Review and Meta-Analysis.'' \emph{Accident Analysis \& Prevention} 79: 198--211.
+
+\leavevmode\hypertarget{ref-rotenberg2008gender}{}%
+Rotenberg, Lúcia, Luciana Fernandes Portela, Bahby Banks, Rosane Harter Griep, Frida Marina Fischer, and Paul Landsbergis. 2008. ``A Gender Approach to Work Ability and Its Relationship to Professional and Domestic Work Hours Among Nursing Personnel.'' \emph{Applied Ergonomics} 39 (5): 646--52.
+
+\leavevmode\hypertarget{ref-saleh2013accident}{}%
+Saleh, Joseph H, Elizabeth A Saltmarsh, Francesca M Favaro, and Loic Brevault. 2013. ``Accident Precursors, Near Misses, and Warning Signs: Critical Review and Formal Definitions Within the Framework of Discrete Event Systems.'' \emph{Reliability Engineering \& System Safety} 114: 148--54.
+
+\leavevmode\hypertarget{ref-sedgwick2014case}{}%
+Sedgwick, Philip. 2014. ``Case-Control Studies: Advantages and Disadvantages.'' \emph{Bmj} 348: f7707.
+
+\leavevmode\hypertarget{ref-stern2018data}{}%
+Stern, Hal S, Daniel Blower, Michael L Cohen, Charles A Czeisler, David F Dinges, Joel B Greenhouse, Feng Guo, et al. 2018. ``Data and Methods for Studying Commercial Motor Vehicle Driver Fatigue, Highway Safety and Long-Term Driver Health.'' \emph{Accident Analysis \& Prevention}.
+
+\leavevmode\hypertarget{ref-bols}{}%
+The United States, Bureau of Labor Statistics. 2017. ``Fatal occupational injuries by event, 2017.'' \url{https://www.bls.gov/charts/census-of-fatal-occupational-injuries/fatal-occupational-injuries-by-event-drilldown.htm}.
+
+\leavevmode\hypertarget{ref-who2018b}{}%
+WHO. 2018a. ``Road traffic injuries.'' \url{http://www.who.int/mediacentre/factsheets/fs358/en/}.
+
+\leavevmode\hypertarget{ref-who2018}{}%
+---------. 2018b. ``The Top 10 Causes of Death.'' \url{http://www.who.int/news-room/fact-sheets/detail/the-top-10-causes-of-death}.
+
+\leavevmode\hypertarget{ref-zaloshnja2008unit}{}%
+Zaloshnja, Eduard, Ted Miller, and others. 2008. ``Unit Costs of Medium and Heavy Truck Crashes.'' The United States. Federal Motor Carrier Safety Administration.
+
+\leavevmode\hypertarget{ref-zhang2016traffic}{}%
+Zhang, Guangnan, Kelvin KW Yau, Xun Zhang, and Yanyan Li. 2016. ``Traffic Accidents Involving Fatigue Driving and Their Extent of Casualties.'' \emph{Accident Analysis \& Prevention} 87: 34--42.
+
+\leavevmode\hypertarget{ref-zhang2014study}{}%
+Zhang, Xingjian, Xiaohua Zhao, Hongji Du, and Jian Rong. 2014. ``A Study on the Effects of Fatigue Driving and Drunk Driving on Drivers' Physical Characteristics.'' \emph{Traffic Injury Prevention} 15 (8): 801--8.
 
 
 

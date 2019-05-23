@@ -1,6 +1,6 @@
 book_filename: Miao_PhD_Dissertation
 rmd_subdir: ["chapters/"]
-output_dir: ["."]
+output_dir: ["./"]
 delete_merged_file: true
 language:
   label:

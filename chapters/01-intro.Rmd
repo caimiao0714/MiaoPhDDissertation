@@ -1,16 +1,28 @@
 # INTRODUCTION
 
-I used the **knitr**\index{knitr} package and the **bookdown**\index{bookdown} package  to compile my book. My R session information is shown below:
-
-
-Package names are in bold text (e.g., **rmarkdown**), and inline code and filenames are formatted in a typewriter font (e.g., `knitr::knit('foo.Rmd')`). Function names are followed by parentheses (e.g., `bookdown::render_book()`).
 
 ## Traffic safety
 
-
+Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States. As reported by the World Health Organization [@who2018], road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5% of all deaths in the world. If no sustained action is taken, road injuries were predicted to be the seventh leading cause of death across the world by 2030 [@who2018b]. In the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40% of all fatal occupational injuries in 2017 [@bols]. Traffic safety could also influence the economic growth of a country. Developing countries such as China and India could have suffered from 7-22% loss of per capita Gross Domestic Product over a 24-year period [@fumagalli2017high].
 
 
 ## Truck driver
 
+Among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents [@fmcsafacts2016]. The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes.
 
 
+
+
+## Crashes and critical events
+
+To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes or predict the crashes. The most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes [@braver1997tractor; @chen2014modeling; @meuleners2015obstructive; @nee2019road]. This widespread case-control design is due to the fact that large truck crashes are very rare compared to the amount of time on road. However, a case-control study is limited in estimating the incidence data and may be contentious in selecting the control groups [@grimes2005compared; @sedgwick2014case]. 
+
+Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor \index{precursor}, or critical event \index{critical event}, is a pattern or signature associated with an increasing chance of truck crash [@saleh2013accident; @janakiraman2016discovery]. Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes [@dingus2006development]. Although critcal events do not always result in an accident, they could be used as an early warning system to mitigate or prevent truck crashes [@kusano2012safety].
+
+
+## Predictive models
+
+
+
+
+This prospectus proposal focuses on statistical methods in truck safety prediction.

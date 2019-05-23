@@ -2,17 +2,17 @@
 title: "Predicting Truck Drivers' Critical Events: Efficient Bayesian Hierarchical Models"
 author: "Miao Cai"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
 output: 
   bookdown::pdf_book:
     template: tex/template_yihui_demo.tex
     latex_engine: xelatex
-    citation_package: natbib
+#    citation_package: natbib
     keep_tex: yes
 bibliography: [bib/bib.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+site: bookdown::bookdown_site
+github-repo: caimiao0714/MiaoPhDDissertation
+description: "This is Miao Cai's dissertation."
 ---
 
