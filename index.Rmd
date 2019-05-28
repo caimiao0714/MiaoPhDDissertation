@@ -9,7 +9,7 @@ output:
 #    citation_package: natbib
     keep_tex: yes
 bibliography: [bib/bib.bib]
-biblio-style: apalike
+#csl: apa6.csl
 link-citations: yes
 site: bookdown::bookdown_site
 github-repo: caimiao0714/MiaoPhDDissertation

@@ -1,0 +1,95 @@
+# The Probable Content
+
+This dissertation will be completed according to the three-paper model. The expected chapter headings are as follows:
+
+Chapter 1: Introduction: The problem
+
+A.	Epidemiology of head and neck squamous cell carcinoma and its association with second primary malignancies
+
+  1.	Cancer
+  2.	Head and neck squamous cell carcinoma
+  3.	Definition of second primary malignancies
+  4.	second primary malignancies and Head and neck squamous cell carcinoma
+
+B.	Risk factors for second primary malignancies
+
+  1.	Tobacco use
+  2.	Excessive alcohol use
+  3.	Human papillomavirus infection
+
+C.	Existing literature and gaps that exist in the area of second primary malignancies in patients with head and neck squamous cell carcinoma
+
+Chapter 2: Literature review
+
+A.	Introduction
+
+B.	Methods
+
+  1.	Source of data and eligibility/exclusion criteria
+  2.	Definitions of primary and secondary outcomes and covariates
+  3.	Statistical analysis
+
+C.	Results
+
+  1.	Description of studies included in the study
+  2.	Primary outcome results
+  3.	Secondary outcome results
+  4.	Publication bias and study quality assessment
+
+D.	Discussion/Conclusions
+
+  1.	Implications
+  2.	Strengths and limitations
+  3.	Future research
+
+Chapter 3: Aim 1 - Truck crashes and critical events
+
+A.	Introduction
+B.	Methods
+
+  1.	Source of data and eligibility/exclusion criteria
+  2.	Definitions of primary and secondary outcomes and covariates
+  3.	Statistical analysis
+
+C.	Results
+
+  1.	Demographics of study population
+  2.	Primary outcome results
+  3.	Secondary outcome results
+
+D.	Discussion/Conclusions
+
+  1.	Implications
+  2.	Strengths and limitations
+  3.	Future research
+
+Chapter 4: Aim 2 - Statistical models predicting truck critical events
+
+A.	Introduction
+B.	Methods
+
+1.	Source of data and eligibility/exclusion criteria
+2.	Definitions of primary and secondary outcomes and covariates
+3.	Statistical analysis
+
+C.	Results
+
+1.	Demographics of study population
+2.	Primary outcome results
+3.	Secondary outcome results
+
+D.	Discussion/Conclusions
+
+1.	Implications
+2.	Strengths and limitations
+3.	Future research
+
+Chapter 5: Aim 3 - Subsampling Markov Chain Monte Carlo methods
+
+
+
+Chapter 6: DISCUSSION
+
+A.	Conclusion
+B.	Strengths and limitation
+C.	Future research

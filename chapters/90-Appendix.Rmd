@@ -1,16 +1,13 @@
 \cleardoublepage 
 
-\bibliographystyle{plainnat}
-\bibliography{bib/bib}
 
 
-\cleardoublepage 
 
-# (APPENDIX) APPENDIX {-}
+# APPENDIX {-}
 
-# This is one
+## R code {-}
 
-# This is two
+## Another appendix {-}
 
 
 

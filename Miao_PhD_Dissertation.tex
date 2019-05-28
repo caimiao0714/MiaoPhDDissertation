@@ -1,6 +1,4 @@
-% Preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt]{book}
-% \makeindex
 
 \usepackage[nottoc]{tocbibind}
 \usepackage{xspace}
@@ -29,7 +27,8 @@
 \usepackage{setspace}
 \usepackage{subfigure}
 \usepackage{titleref}
-\usepackage[round,authoryear]{natbib}
+\usepackage[sort&compress]{natbib}
+%\usepackage[round,authoryear]{natbib}
 \numberwithin{equation}{chapter}
 \usepackage[bf]{caption}
 \usepackage{multirow}
@@ -59,7 +58,7 @@
 
 \renewcommand{\headrulewidth}{0pt}
 \pagestyle{fancy}
-
+\setlength\bibindent{4em}
 
 \begin{document}
 
@@ -152,10 +151,19 @@ I want to thank my PhD mentor and committee chair Dr.~Steven E. Rigdon, committe
 \hypertarget{introduction}{%
 \chapter{INTRODUCTION}\label{introduction}}
 
-\hypertarget{traffic-safety}{%
-\section{Traffic safety}\label{traffic-safety}}
+\hypertarget{transportation-safety}{%
+\section{Transportation safety}\label{transportation-safety}}
 
-Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States. As reported by the World Health Organization (WHO \protect\hyperlink{ref-who2018}{2018}\protect\hyperlink{ref-who2018}{b}), road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5\% of all deaths in the world. If no sustained action is taken, road injuries were predicted to be the seventh leading cause of death across the world by 2030 (WHO \protect\hyperlink{ref-who2018b}{2018}\protect\hyperlink{ref-who2018b}{a}). In the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40\% of all fatal occupational injuries in 2017 (The United States, Bureau of Labor Statistics \protect\hyperlink{ref-bols}{2017}). Traffic safety could also influence the economic growth of a country. Developing countries such as China and India could have suffered from 7-22\% loss of per capita Gross Domestic Product over a 24-year period (Fumagalli et al. \protect\hyperlink{ref-fumagalli2017high}{2017}).
+Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States.
+As reported by the World Health Organization (WHO \protect\hyperlink{ref-who2018}{2018}\protect\hyperlink{ref-who2018}{b}), road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5\% of all deaths in the world.
+If no sustained action is taken, road injuries are predicted to be the seventh leading cause of death across the world by 2030 (WHO \protect\hyperlink{ref-who2018b}{2018}\protect\hyperlink{ref-who2018b}{a}).
+Apart from fatal life losses, traffic safety is also reported to be the cause of 50 million non-fatal life injuries and approximately 75.5 milion disability-adjusted life years (Staton et al. \protect\hyperlink{ref-staton2016road}{2016}).
+
+In the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40\% of all fatal occupational injuries in 2017 (The United States, Bureau of Labor Statistics \protect\hyperlink{ref-bols}{2017}). The National Safety Council reported that the number of deaths attributable to car crashes will be at least 40,000 in 2018, which is the third straight year that this number is over 40,000 (The National Safety Council \protect\hyperlink{ref-nsc2018}{2018}).
+
+On the other hand, transportation safety also cause a major economic burden. The global economic losses attributable to transportation safety were estimated to be 518 billion the United States Dollars (USD), which accounted for 1\% to 3\% of their gross domestic product (GDP) (Peden et al. \protect\hyperlink{ref-peden2004world}{2004}; Dalal et al. \protect\hyperlink{ref-dalal2013economics}{2013}). Developing countries such as China and India could have suffered from 7-22\% loss of per capita Gross Domestic Product over a 24-year period (Fumagalli et al. \protect\hyperlink{ref-fumagalli2017high}{2017}).
+
+Litman (\protect\hyperlink{ref-litman2013transportation}{2013})
 
 \hypertarget{truck-driver}{%
 \section{Truck driver}\label{truck-driver}}
@@ -165,9 +173,12 @@ Among all vehicles, large trucks are the primary concern of traffic safety since
 \hypertarget{crashes-and-critical-events}{%
 \section{Crashes and critical events}\label{crashes-and-critical-events}}
 
-To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes or predict the crashes. The most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes (Braver et al. \protect\hyperlink{ref-braver1997tractor}{1997}; Chen and Xie \protect\hyperlink{ref-chen2014modeling}{2014}; Meuleners et al. \protect\hyperlink{ref-meuleners2015obstructive}{2015}; Née et al. \protect\hyperlink{ref-nee2019road}{2019}). This widespread case-control design is due to the fact that large truck crashes are very rare compared to the amount of time on road. However, a case-control study is limited in estimating the incidence data and may be contentious in selecting the control groups (Grimes and Schulz \protect\hyperlink{ref-grimes2005compared}{2005}; Sedgwick \protect\hyperlink{ref-sedgwick2014case}{2014}).
+To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes or predict the crashes. The most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes (Braver et al. \protect\hyperlink{ref-braver1997tractor}{1997}; C. Chen and Xie \protect\hyperlink{ref-chen2014modeling}{2014}; Meuleners et al. \protect\hyperlink{ref-meuleners2015obstructive}{2015}; Née et al. \protect\hyperlink{ref-nee2019road}{2019}). This widespread case-control design is due to the fact that large truck crashes are very rare compared to the amount of time on road. However, a case-control study is limited in estimating the incidence data and may be contentious in selecting the control groups (Grimes and Schulz \protect\hyperlink{ref-grimes2005compared}{2005}; Sedgwick \protect\hyperlink{ref-sedgwick2014case}{2014}).
 
 Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor \index{precursor}, or critical event \index{critical event}, is a pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes (Dingus et al. \protect\hyperlink{ref-dingus2006development}{2006}). Although critcal events do not always result in an accident, they could be used as an early warning system to mitigate or prevent truck crashes (Kusano and Gabler \protect\hyperlink{ref-kusano2012safety}{2012}).
+
+\hypertarget{predictive-models}{%
+\section{Predictive models}\label{predictive-models}}
 
 This prospectus proposal focuses on statistical methods in truck safety prediction.
 
@@ -204,13 +215,38 @@ One more risk factor that could explain driving safety critical events is driver
 
 Weather has both direct and indirect effects on drivers' safety critical events. On one hand, the increase of ambient temperature places risks on drivers' occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather (Kjellstrom et al. \protect\hyperlink{ref-kjellstrom2009direct}{2009}; Basagaña et al. \protect\hyperlink{ref-basagana2015high}{2015}). Leard and Roth found that for a day with temperature above 80◦F there is a 9.5\% increase in fatality rates compared with a day at 50-60 F (Leard, Roth, and others \protect\hyperlink{ref-leard2015weather}{2015}). A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures (Kampe, Kovats, and Hajat \protect\hyperlink{ref-im2016impact}{2016}). On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver's visual capability or reduce the safety of driving on the road (Chang and Chen \protect\hyperlink{ref-chang2005data}{2005}; Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Baker and Reynolds \protect\hyperlink{ref-baker1992wind}{1992}). It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents (Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Graham and Glaister \protect\hyperlink{ref-graham2003spatial}{2003}). Abdel-Aty et al.~used detector and sensor data to successfully predict more than 70\% of accidents with low visibility conditions (Abdel-Aty et al. \protect\hyperlink{ref-abdel2012real}{2012}). The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
-\hypertarget{hierarchical-models}{%
-\section{Hierarchical models}\label{hierarchical-models}}
+\hypertarget{predictive-models-1}{%
+\section{Predictive models}\label{predictive-models-1}}
 
 \hypertarget{bayesian-models}{%
-\section{Bayesian models}\label{bayesian-models}}
+\subsection{Bayesian models}\label{bayesian-models}}
+
+\hypertarget{hierarchical-models}{%
+\subsection{Hierarchical models}\label{hierarchical-models}}
+
+\hypertarget{scalable-bayesian-models}{%
+\section{Scalable Bayesian models}\label{scalable-bayesian-models}}
+
+An introduction to MCMC methods (Metropolis-Hasting Algorithm, Gibbs sampler), limitation of these traditional methods. (Quiroz \protect\hyperlink{ref-quiroz2015bayesian}{2015})
+
+\hypertarget{hamiltonian-monte-carlo}{%
+\subsection{Hamiltonian Monte Carlo}\label{hamiltonian-monte-carlo}}
+
+(Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}; Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011})
+
+\hypertarget{integrated-laplace-approximation-inla}{%
+\subsection{Integrated Laplace Approximation (INLA)}\label{integrated-laplace-approximation-inla}}
+
+(Rue, Martino, and Chopin \protect\hyperlink{ref-Havard2009}{2009}; Lindgren, Rue, and Lindström \protect\hyperlink{ref-Lindgren2011}{2011}; Martins et al. \protect\hyperlink{ref-Thiago2013}{2013}; De Coninck et al. \protect\hyperlink{ref-Coninck2016}{2016}; Rue et al. \protect\hyperlink{ref-Rue2017}{2017}; Verbosio et al. \protect\hyperlink{ref-Verbosio2017}{2017}; Kourounis, Fuchs, and Schenk \protect\hyperlink{ref-Kourounis2018}{2018})
+
+\hypertarget{subsampling-mcmc}{%
+\subsection{Subsampling MCMC}\label{subsampling-mcmc}}
 
 \href{https://blog.csdn.net/u013841458/article/details/82495450}{Stochastic Gradient HMC}
+
+(Quiroz et al., \protect\hyperlink{ref-quirozsubsampling}{n.d.}, \protect\hyperlink{ref-quiroz2016block}{2016}; Gunawan et al. \protect\hyperlink{ref-gunawan2018subsampling}{2018}; Quiroz, Tran, et al. \protect\hyperlink{ref-quiroz2018speeding}{2018}; Quiroz, Kohn, et al. \protect\hyperlink{ref-quiroz2018speeding1}{2018}; Dang et al. \protect\hyperlink{ref-dang2017hamiltonian}{2017}; Quiroz \protect\hyperlink{ref-quiroz2015bayesian}{2015})
+
+T. Chen, Fox, and Guestrin (\protect\hyperlink{ref-chen2014stochastic}{2014})
 
 \hypertarget{conceptual-framework}{%
 \section{Conceptual framework}\label{conceptual-framework}}
@@ -235,17 +271,19 @@ Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{20
 \hypertarget{research-aims}{%
 \section{Research aims}\label{research-aims}}
 
-\textbf{Aim1}:
+\textbf{Aim1}: Explore the association between truck crashes and critical events.
 
-\textbf{Aim2}:
+\textbf{Aim2}: Predict critical events using hierarchical statistical models.
 
-\textbf{Aim3}:
+\textbf{Aim3}: scalable hierarchical Bayesian models using subsampling MCMC.
 
 \hypertarget{methods}{%
 \chapter{METHODS}\label{methods}}
 
 \hypertarget{data-source}{%
 \section{Data source}\label{data-source}}
+
+The 496 over-the-road drivers
 
 \hypertarget{study-design}{%
 \section{Study design}\label{study-design}}
@@ -259,37 +297,346 @@ Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{20
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
 
-\hypertarget{aim-1}{%
-\chapter{AIM 1}\label{aim-1}}
+\hypertarget{the-probable-content}{%
+\chapter{The Probable Content}\label{the-probable-content}}
 
-\hypertarget{aim-2}{%
-\chapter{AIM 2}\label{aim-2}}
+This dissertation will be completed according to the three-paper model. The expected chapter headings are as follows:
 
-\hypertarget{aim-3}{%
-\chapter{AIM 3}\label{aim-3}}
+Chapter 1: Introduction: The problem
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\tightlist
+\item
+  Epidemiology of head and neck squamous cell carcinoma and its association with second primary malignancies
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cancer
+\item
+  Head and neck squamous cell carcinoma
+\item
+  Definition of second primary malignancies
+\item
+  second primary malignancies and Head and neck squamous cell carcinoma
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Risk factors for second primary malignancies
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tobacco use
+\item
+  Excessive alcohol use
+\item
+  Human papillomavirus infection
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Existing literature and gaps that exist in the area of second primary malignancies in patients with head and neck squamous cell carcinoma
+\end{enumerate}
+
+Chapter 2: Literature review
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\item
+  Introduction
+\item
+  Methods
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Source of data and eligibility/exclusion criteria
+\item
+  Definitions of primary and secondary outcomes and covariates
+\item
+  Statistical analysis
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Results
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Description of studies included in the study
+\item
+  Primary outcome results
+\item
+  Secondary outcome results
+\item
+  Publication bias and study quality assessment
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Discussion/Conclusions
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implications
+\item
+  Strengths and limitations
+\item
+  Future research
+\end{enumerate}
+
+Chapter 3: Aim 1 - Truck crashes and critical events
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\tightlist
+\item
+  Introduction
+\item
+  Methods
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Source of data and eligibility/exclusion criteria
+\item
+  Definitions of primary and secondary outcomes and covariates
+\item
+  Statistical analysis
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Results
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Demographics of study population
+\item
+  Primary outcome results
+\item
+  Secondary outcome results
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Discussion/Conclusions
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implications
+\item
+  Strengths and limitations
+\item
+  Future research
+\end{enumerate}
+
+Chapter 4: Aim 2 - Statistical models predicting truck critical events
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\tightlist
+\item
+  Introduction
+\item
+  Methods
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Source of data and eligibility/exclusion criteria
+\item
+  Definitions of primary and secondary outcomes and covariates
+\item
+  Statistical analysis
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Results
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Demographics of study population
+\item
+  Primary outcome results
+\item
+  Secondary outcome results
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Discussion/Conclusions
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implications
+\item
+  Strengths and limitations
+\item
+  Future research
+\end{enumerate}
+
+Chapter 5: Aim 3 - Subsampling Markov Chain Monte Carlo methods
+
+Chapter 6: DISCUSSION
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi}.}
+\tightlist
+\item
+  Conclusion
+\item
+  Strengths and limitation
+\item
+  Future research
+\end{enumerate}
+
+\hypertarget{truck-crashes-and-critical-events}{%
+\chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events}}
+
+\hypertarget{three-statistical-models-predicting-truck-critical-events}{%
+\chapter{THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}\label{three-statistical-models-predicting-truck-critical-events}}
+
+\hypertarget{hierarchical-logistic-model}{%
+\section{Hierarchical logistic model}\label{hierarchical-logistic-model}}
+
+\hypertarget{model-set-up}{%
+\subsection{Model set up}\label{model-set-up}}
+
+\hypertarget{bayesian-estimation-based-on-simulated-data}{%
+\subsection{Bayesian estimation based on simulated data}\label{bayesian-estimation-based-on-simulated-data}}
+
+\hypertarget{hierarchical-poisson-model}{%
+\section{Hierarchical Poisson model}\label{hierarchical-poisson-model}}
+
+\hypertarget{hierarchical-power-law-process}{%
+\section{Hierarchical power law process}\label{hierarchical-power-law-process}}
+
+*Mean function of a point process**:
+
+\[\Lambda(t) = E(N(t))\]
+
+\(\Lambda(t)\) is the expected number of failures through time \(t\).
+
+\textbf{Rate of Occurence of Failures (ROCOF)}: When \(\Lambda\) is differentiable, the ROCOF is:
+
+\[\mu(t) = \frac{d}{dt}\Lambda(t)\]
+The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
+
+\textbf{Intensity function}: The intensity function of a point process is
+
+\[\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\]
+
+When there is no simultaneous events, ROCOF is the same as intensity function.
+
+\textbf{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant.
+
+\textbf{Power law process (PLP)}: When the intensity function of a NHPP is:
+
+\[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\]
+Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP).
+
+Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function:
+
+\[\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\]
+
+\hypertarget{section}{%
+\subsection{}\label{section}}
+
+\hypertarget{bayesian-estimation-based-on-simulated-data-1}{%
+\subsection{Bayesian estimation based on simulated data}\label{bayesian-estimation-based-on-simulated-data-1}}
+
+\hypertarget{hierarchical-bayesian-models-using-subsampling-markove-chain-monte-carlo-methods}{%
+\chapter{HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}\label{hierarchical-bayesian-models-using-subsampling-markove-chain-monte-carlo-methods}}
+
+\begin{itemize}
+\tightlist
+\item
+  Comparison with results given by frequentist models using REML (\texttt{lmer4})
+\item
+  Comparison with results given by Bayesian models using HMC (\texttt{rstan})
+\item
+  Comparison with results given Bayesian models using INLA (\texttt{INLA})
+\end{itemize}
 
 \hypertarget{discussion}{%
 \chapter{DISCUSSION}\label{discussion}}
 
 \cleardoublepage
 
-\bibliographystyle{plainnat}
-\bibliography{bib/bib}
+\hypertarget{appendix}{%
+\chapter*{APPENDIX}\label{appendix}}
+\addcontentsline{toc}{chapter}{APPENDIX}
+
+\hypertarget{r-code}{%
+\section*{R code}\label{r-code}}
+\addcontentsline{toc}{section}{R code}
+
+\hypertarget{another-appendix}{%
+\section*{Another appendix}\label{another-appendix}}
+\addcontentsline{toc}{section}{Another appendix}
 
 \cleardoublepage
 
-\hypertarget{appendix-appendix}{%
-\appendix}
-
-
-\hypertarget{this-is-one}{%
-\chapter{This is one}\label{this-is-one}}
-
-\hypertarget{this-is-two}{%
-\chapter{This is two}\label{this-is-two}}
-
-\hypertarget{references}{%
-\chapter{References}\label{references}}
+\hypertarget{bibliography}{%
+\chapter*{Bibliography}\label{bibliography}}
+\addcontentsline{toc}{chapter}{Bibliography}
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-abdel2012real}{}%
@@ -310,6 +657,9 @@ Baker, CJ, and Sheila Reynolds. 1992. ``Wind-Induced Accidents of Road Vehicles.
 \leavevmode\hypertarget{ref-basagana2015high}{}%
 Basagaña, Xavier, Juan Pablo Escalera-Antezana, Payam Dadvand, Òscar Llatje, Jose Barrera-Gómez, Jordi Cunillera, Mercedes Medina-Ramón, and Katherine Pérez. 2015. ``High Ambient Temperatures and Risk of Motor Vehicle Crashes in Catalonia, Spain (2000--2011): A Time-Series Analysis.'' \emph{Environmental Health Perspectives} 123 (12): 1309--16.
 
+\leavevmode\hypertarget{ref-betancourt2017conceptual}{}%
+Betancourt, Michael. 2017. ``A Conceptual Introduction to Hamiltonian Monte Carlo.'' \emph{arXiv Preprint arXiv:1701.02434}.
+
 \leavevmode\hypertarget{ref-braver1997tractor}{}%
 Braver, Elisa R, Paul L Zador, Denise Thum, Eric L Mitter, Herbert M Baum, and Frank J Vilardo. 1997. ``Tractor-Trailer Crashes in Indiana: A Case-Control Study of the Role of Truck Configuration.'' \emph{Accident Analysis \& Prevention} 29 (1): 79--96.
 
@@ -325,8 +675,20 @@ Chang, Li-Yen, and Wen-Chieh Chen. 2005. ``Data Mining of Tree-Based Models to A
 \leavevmode\hypertarget{ref-chen2014modeling}{}%
 Chen, Chen, and Yuanchang Xie. 2014. ``Modeling the Safety Impacts of Driving Hours and Rest Breaks on Truck Drivers Considering Time-Dependent Covariates.'' \emph{Journal of Safety Research} 51: 57--63.
 
+\leavevmode\hypertarget{ref-chen2014stochastic}{}%
+Chen, Tianqi, Emily Fox, and Carlos Guestrin. 2014. ``Stochastic Gradient Hamiltonian Monte Carlo.'' In \emph{International Conference on Machine Learning}, 1683--91.
+
 \leavevmode\hypertarget{ref-clarke2006young}{}%
 Clarke, David D, Patrick Ward, Craig Bartle, and Wendy Truman. 2006. ``Young Driver Accidents in the Uk: The Influence of Age, Experience, and Time of Day.'' \emph{Accident Analysis \& Prevention} 38 (5): 871--78.
+
+\leavevmode\hypertarget{ref-dalal2013economics}{}%
+Dalal, Koustuv, Zhiquin Lin, Mervyn Gifford, and Leif Svanström. 2013. ``Economics of Global Burden of Road Traffic Injuries and Their Relationship with Health System Variables.'' \emph{International Journal of Preventive Medicine} 4 (12): 1442.
+
+\leavevmode\hypertarget{ref-dang2017hamiltonian}{}%
+Dang, Khue-Dung, Matias Quiroz, Robert Kohn, Minh-Ngoc Tran, and Mattias Villani. 2017. ``Hamiltonian Monte Carlo with Energy Conserving Subsampling.'' \emph{arXiv Preprint arXiv:1708.00955}.
+
+\leavevmode\hypertarget{ref-Coninck2016}{}%
+De Coninck, Arne, Bernard De Baets, Drosos Kourounis, Fabio Verbosio, Olaf Schenk, Steven Maenhout, and Jan Fostier. 2016. ``Needles: Toward Large-Scale Genomic Prediction with Marker-by-Environment Interaction.'' \emph{Genetics} 203 (1): 543--55. \url{https://doi.org/10.1534/genetics.115.179887}.
 
 \leavevmode\hypertarget{ref-di2011demographic}{}%
 Di Milia, Lee, Michael H Smolensky, Giovanni Costa, Heidi D Howarth, Maurice M Ohayon, and Pierre Philip. 2011. ``Demographic Factors, Fatigue, and Driving Accidents: An Examination of the Published Literature.'' \emph{Accident Analysis \& Prevention} 43 (2): 516--32.
@@ -352,6 +714,9 @@ Graham, Daniel J, and Stephen Glaister. 2003. ``Spatial Variation in Road Pedest
 \leavevmode\hypertarget{ref-grimes2005compared}{}%
 Grimes, David A, and Kenneth F Schulz. 2005. ``Compared to What? Finding Controls for Case-Control Studies.'' \emph{The Lancet} 365 (9468): 1429--33.
 
+\leavevmode\hypertarget{ref-gunawan2018subsampling}{}%
+Gunawan, David, Khue-Dung Dang, Matias Quiroz, Robert Kohn, and Minh-Ngoc Tran. 2018. ``Subsampling Sequential Monte Carlo for Static Bayesian Models.'' \emph{arXiv Preprint arXiv:1805.03317}.
+
 \leavevmode\hypertarget{ref-huang2013development}{}%
 Huang, Yueng-hsiang, Dov Zohar, Michelle M Robertson, Angela Garabet, Jin Lee, and Lauren A Murphy. 2013. ``Development and Validation of Safety Climate Scales for Lone Workers Using Truck Drivers as Exemplar.'' \emph{Transportation Research Part F: Traffic Psychology and Behaviour} 17: 5--19.
 
@@ -367,6 +732,9 @@ Kjellstrom, Tord, R Sari Kovats, Simon J Lloyd, Tom Holt, and Richard SJ Tol. 20
 \leavevmode\hypertarget{ref-knipling1994crashes}{}%
 Knipling, Ronald R, and Jing-Shiarn Wang. 1994. \emph{Crashes and Fatalities Related to Driver Drowsiness/Fatigue}. National Highway Traffic Safety Administration Washington, DC.
 
+\leavevmode\hypertarget{ref-Kourounis2018}{}%
+Kourounis, D., A. Fuchs, and O. Schenk. 2018. ``Towards the Next Generation of Multiperiod Optimal Power Flow Solvers.'' \emph{IEEE Transactions on Power Systems} PP (99): 1--10. \url{https://doi.org/10.1109/TPWRS.2017.2789187}.
+
 \leavevmode\hypertarget{ref-kusano2012safety}{}%
 Kusano, Kristofer D, and Hampton C Gabler. 2012. ``Safety Benefits of Forward Collision Warning, Brake Assist, and Autonomous Braking Systems in Rear-End Collisions.'' \emph{IEEE Transactions on Intelligent Transportation Systems} 13 (4): 1546--55.
 
@@ -379,8 +747,17 @@ Leard, Benjamin, Kevin Roth, and others. 2015. ``Weather, Traffic Accidents, and
 \leavevmode\hypertarget{ref-leechawengwongs2006role}{}%
 Leechawengwongs, Manoon, Evelyn Leechawengwongs, Chakrit Sukying, and Umaporn Udomsubpayakul. 2006. ``Role of Drowsy Driving in Traffic Accidents: A Questionnaire Survey of Thai Commercial Bus/Truck Drivers.'' \emph{JOURNAL-MEDICAL ASSOCIATION OF THAILAND} 89 (11): 1845.
 
+\leavevmode\hypertarget{ref-Lindgren2011}{}%
+Lindgren, Finn, Håvard Rue, and Johan Lindström. 2011. ``An Explicit Link Between Gaussian Fields and Gaussian Markov Random Fields: The Stochastic Partial Differential Equation Approach (with Discussion).'' \emph{Journal of the Royal Statistical Society B} 73 (4): 423--98.
+
+\leavevmode\hypertarget{ref-litman2013transportation}{}%
+Litman, Todd. 2013. ``Transportation and Public Health.'' \emph{Annual Review of Public Health} 34: 217--33.
+
 \leavevmode\hypertarget{ref-maclean2003hazards}{}%
 MacLean, Alistair W, David RT Davies, and Kris Thiele. 2003. ``The Hazards and Prevention of Driving While Sleepy.'' \emph{Sleep Medicine Reviews} 7 (6): 507--21.
+
+\leavevmode\hypertarget{ref-Thiago2013}{}%
+Martins, Thiago G., Daniel Simpson, Finn Lindgren, and Håvard Rue. 2013. ``Bayesian Computing with INLA: New Features.'' \emph{Computational Statistics and Data Analysis} 67: 68--83.
 
 \leavevmode\hypertarget{ref-meuleners2015obstructive}{}%
 Meuleners, Lynn, Michelle L Fraser, Matthew H Govorko, and Mark R Stevenson. 2015. ``Obstructive Sleep Apnea, Health-Related Factors, and Long Distance Heavy Vehicle Crashes in Western Australia: A Case Control Study.'' \emph{Journal of Clinical Sleep Medicine} 11 (04): 413--18.
@@ -394,11 +771,17 @@ Nantulya, Vinand M, and Michael R Reich. 2002. ``The Neglected Epidemic: Road Tr
 \leavevmode\hypertarget{ref-nsleepf}{}%
 National Sleep Foundation. 2008. ``2008 State of the States Report on Drowsy Driving.'' \url{http://drowsydriving.org/resources/2008-state-of-the-states-report-on-drowsy-driving/}.
 
+\leavevmode\hypertarget{ref-neal2011mcmc}{}%
+Neal, Radford M, and others. 2011. ``MCMC Using Hamiltonian Dynamics.'' \emph{Handbook of Markov Chain Monte Carlo} 2 (11): 2.
+
 \leavevmode\hypertarget{ref-nee2019road}{}%
 Née, Mélanie, Benjamin Contrand, Ludivine Orriols, Cédric Gil-Jardiné, Cedric Galéra, and Emmanuel Lagarde. 2019. ``Road Safety and Distraction, Results from a Responsibility Case-Control Study Among a Sample of Road Users Interviewed at the Emergency Room.'' \emph{Accident Analysis \& Prevention} 122: 19--24.
 
 \leavevmode\hypertarget{ref-odero2003road}{}%
 Odero, Wilson, Meleckidzedeck Khayesi, and PM Heda. 2003. ``Road Traffic Injuries in Kenya: Magnitude, Causes and Status of Intervention.'' \emph{Injury Control and Safety Promotion} 10 (1-2): 53--61.
+
+\leavevmode\hypertarget{ref-peden2004world}{}%
+Peden, Margie, Richard Scurfield, David Sleet, Dinesh Mohan, Adnan A Hyder, Eva Jarawan, Colin D Mathers, and others. 2004. ``World Report on Road Traffic Injury Prevention.'' World Health Organization Geneva.
 
 \leavevmode\hypertarget{ref-perez2005sleep}{}%
 Pérez-Chada, Daniel, Alejandro J Videla, Martin E O'flaherty, Patricia Palermo, Jorgelina Meoni, Maria I Sarchi, Marina Khoury, and Joaquı́n Durán-Cantolla. 2005. ``Sleep Habits and Accident Risk Among Truck Drivers: A Cross-Sectional Study in Argentina.'' \emph{Sleep} 28 (9): 1103--8.
@@ -406,11 +789,32 @@ Pérez-Chada, Daniel, Alejandro J Videla, Martin E O'flaherty, Patricia Palermo,
 \leavevmode\hypertarget{ref-popkin2008age}{}%
 Popkin, Stephen M, Stephanie L Morrow, Tara E Di Domenico, and Heidi D Howarth. 2008. ``Age Is More Than Just a Number: Implications for an Aging Workforce in the Us Transportation Sector.'' \emph{Applied Ergonomics} 39 (5): 542--49.
 
+\leavevmode\hypertarget{ref-quiroz2015bayesian}{}%
+Quiroz, Matias. 2015. ``Bayesian Inference in Large Data Problems.'' PhD thesis, Department of Statistics, Stockholm University.
+
+\leavevmode\hypertarget{ref-quiroz2018speeding1}{}%
+Quiroz, Matias, Robert Kohn, Mattias Villani, and Minh-Ngoc Tran. 2018. ``Speeding up Mcmc by Efficient Data Subsampling.'' \emph{Journal of the American Statistical Association}, 1--13.
+
+\leavevmode\hypertarget{ref-quiroz2018speeding}{}%
+Quiroz, Matias, Minh-Ngoc Tran, Mattias Villani, and Robert Kohn. 2018. ``Speeding up Mcmc by Delayed Acceptance and Data Subsampling.'' \emph{Journal of Computational and Graphical Statistics} 27 (1): 12--22.
+
+\leavevmode\hypertarget{ref-quiroz2016block}{}%
+Quiroz, Matias, Minh-Ngoc Tran, Mattias Villani, Robert Kohn, and Khue-Dung Dang. 2016. ``The Block-Poisson Estimator for Optimally Tuned Exact Subsampling Mcmc.'' \emph{arXiv Preprint arXiv:1603.08232}.
+
+\leavevmode\hypertarget{ref-quirozsubsampling}{}%
+Quiroz, Matias, Mattias Villani, Robert Kohn, Minh-Ngoc Tran, and Khue-Dung Dang. n.d. ``Subsampling Mcmc-an Introduction for the Survey Statistician.'' \emph{Sankhya A}, 1--37.
+
 \leavevmode\hypertarget{ref-roshandel2015impact}{}%
 Roshandel, Saman, Zuduo Zheng, and Simon Washington. 2015. ``Impact of Real-Time Traffic Characteristics on Freeway Crash Occurrence: Systematic Review and Meta-Analysis.'' \emph{Accident Analysis \& Prevention} 79: 198--211.
 
 \leavevmode\hypertarget{ref-rotenberg2008gender}{}%
 Rotenberg, Lúcia, Luciana Fernandes Portela, Bahby Banks, Rosane Harter Griep, Frida Marina Fischer, and Paul Landsbergis. 2008. ``A Gender Approach to Work Ability and Its Relationship to Professional and Domestic Work Hours Among Nursing Personnel.'' \emph{Applied Ergonomics} 39 (5): 646--52.
+
+\leavevmode\hypertarget{ref-Havard2009}{}%
+Rue, Håvard, Sara Martino, and Nicholas Chopin. 2009. ``Approximate Bayesian Inference for Latent Gaussian Models Using Integrated Nested Laplace Approximations (with Discussion).'' \emph{Journal of the Royal Statistical Society B} 71: 319--92.
+
+\leavevmode\hypertarget{ref-Rue2017}{}%
+Rue, Håvard, Andrea I. Riebler, Sigrunn H. Sørbye, Janine B. Illian, Daniel P. Simpson, and Finn K. Lindgren. 2017. ``Bayesian Computing with INLA: A Review.'' \emph{Annual Reviews of Statistics and Its Applications} 4 (March): 395--421. \url{http://arxiv.org/abs/1604.00860}.
 
 \leavevmode\hypertarget{ref-saleh2013accident}{}%
 Saleh, Joseph H, Elizabeth A Saltmarsh, Francesca M Favaro, and Loic Brevault. 2013. ``Accident Precursors, Near Misses, and Warning Signs: Critical Review and Formal Definitions Within the Framework of Discrete Event Systems.'' \emph{Reliability Engineering \& System Safety} 114: 148--54.
@@ -418,11 +822,20 @@ Saleh, Joseph H, Elizabeth A Saltmarsh, Francesca M Favaro, and Loic Brevault. 2
 \leavevmode\hypertarget{ref-sedgwick2014case}{}%
 Sedgwick, Philip. 2014. ``Case-Control Studies: Advantages and Disadvantages.'' \emph{Bmj} 348: f7707.
 
+\leavevmode\hypertarget{ref-staton2016road}{}%
+Staton, Catherine, Joao Vissoci, Enying Gong, Nicole Toomey, Rebeccah Wafula, Jihad Abdelgadir, Yi Zhou, et al. 2016. ``Road Traffic Injury Prevention Initiatives: A Systematic Review and Metasummary of Effectiveness in Low and Middle Income Countries.'' \emph{PLoS One} 11 (1): e0144971.
+
 \leavevmode\hypertarget{ref-stern2018data}{}%
 Stern, Hal S, Daniel Blower, Michael L Cohen, Charles A Czeisler, David F Dinges, Joel B Greenhouse, Feng Guo, et al. 2018. ``Data and Methods for Studying Commercial Motor Vehicle Driver Fatigue, Highway Safety and Long-Term Driver Health.'' \emph{Accident Analysis \& Prevention}.
 
+\leavevmode\hypertarget{ref-nsc2018}{}%
+The National Safety Council. 2018. ``Vehicle Deaths Estimated at 40,000 for Third Straight Year.'' \url{https://www.nsc.org/road-safety/safety-topics/fatality-estimates}.
+
 \leavevmode\hypertarget{ref-bols}{}%
 The United States, Bureau of Labor Statistics. 2017. ``Fatal occupational injuries by event, 2017.'' \url{https://www.bls.gov/charts/census-of-fatal-occupational-injuries/fatal-occupational-injuries-by-event-drilldown.htm}.
+
+\leavevmode\hypertarget{ref-Verbosio2017}{}%
+Verbosio, Fabio, Arne De Coninck, Drosos Kourounis, and Olaf Schenk. 2017. ``Enhancing the Scalability of Selected Inversion Factorization Algorithms in Genomic Prediction.'' \emph{Journal of Computational Science} 22 (Supplement C): 99--108. \url{https://doi.org/10.1016/j.jocs.2017.08.013}.
 
 \leavevmode\hypertarget{ref-who2018b}{}%
 WHO. 2018a. ``Road traffic injuries.'' \url{http://www.who.int/mediacentre/factsheets/fs358/en/}.
@@ -438,6 +851,12 @@ Zhang, Guangnan, Kelvin KW Yau, Xun Zhang, and Yanyan Li. 2016. ``Traffic Accide
 
 \leavevmode\hypertarget{ref-zhang2014study}{}%
 Zhang, Xingjian, Xiaohua Zhao, Hongji Du, and Jian Rong. 2014. ``A Study on the Effects of Fatigue Driving and Drunk Driving on Drivers' Physical Characteristics.'' \emph{Traffic Injury Prevention} 15 (8): 801--8.
+
+\hypertarget{vita-auctoris}{%
+\chapter*{Vita Auctoris}\label{vita-auctoris}}
+\addcontentsline{toc}{chapter}{Vita Auctoris}
+
+Miao Cai was born and raised in Xinzhou district, Wuhan, Hubei Province, China.
 
 
 

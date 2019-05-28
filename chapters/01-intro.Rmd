@@ -1,10 +1,19 @@
 # INTRODUCTION
 
 
-## Traffic safety
+## Transportation safety
 
-Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States. As reported by the World Health Organization [@who2018], road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5% of all deaths in the world. If no sustained action is taken, road injuries were predicted to be the seventh leading cause of death across the world by 2030 [@who2018b]. In the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40% of all fatal occupational injuries in 2017 [@bols]. Traffic safety could also influence the economic growth of a country. Developing countries such as China and India could have suffered from 7-22% loss of per capita Gross Domestic Product over a 24-year period [@fumagalli2017high].
+Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States. 
+As reported by the World Health Organization [@who2018], road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5% of all deaths in the world. 
+If no sustained action is taken, road injuries are predicted to be the seventh leading cause of death across the world by 2030 [@who2018b]. 
+Apart from fatal life losses, traffic safety is also reported to be the cause of 50 million non-fatal life injuries and approximately 75.5 milion disability-adjusted life years [@staton2016road]. 
 
+
+In the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40% of all fatal occupational injuries in 2017 [@bols]. The National Safety Council reported that the number of deaths attributable to car crashes will be at least 40,000 in 2018, which is the third straight year that this number is over 40,000 [@nsc2018]. 
+
+On the other hand, transportation safety also cause a major economic burden. The global economic losses attributable to transportation safety were estimated to be 518 billion the United States Dollars (USD), which accounted for 1% to 3% of their gross domestic product (GDP) [@peden2004world; @dalal2013economics]. Developing countries such as China and India could have suffered from 7-22% loss of per capita Gross Domestic Product over a 24-year period [@fumagalli2017high].
+
+@litman2013transportation
 
 ## Truck driver
 

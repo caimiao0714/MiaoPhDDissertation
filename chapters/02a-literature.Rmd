@@ -1,11 +1,14 @@
-# LITERATURE REVIEW
+LITERATURE REVIEW
+=================
+
+
+Precursors to crashes
+---------------------
 
 
 
-## Precursors to crashes
-
-
-## Risk factors
+Risk factors
+------------
 
 ### Fatigue
 
@@ -38,11 +41,36 @@ Weather has both direct and indirect effects on drivers’ safety critical event
 
 
 
+Predictive models
+-----------------
 
-## Hierarchical models
+### Bayesian models
+
+### Hierarchical models
 
 
-## Bayesian models
+
+
+Scalable Bayesian models
+------------------------
+
+An introduction to MCMC methods (Metropolis-Hasting Algorithm, Gibbs sampler), limitation of these traditional methods. [@quiroz2015bayesian]
+
+### Hamiltonian Monte Carlo
+
+[@betancourt2017conceptual; @neal2011mcmc]
+
+
+### Integrated Laplace Approximation (INLA)
+
+[@Havard2009; @Lindgren2011; @Thiago2013; @Coninck2016; @Rue2017; @Verbosio2017; @Kourounis2018]
+
+
+### Subsampling MCMC
+
 
 [Stochastic Gradient HMC](https://blog.csdn.net/u013841458/article/details/82495450)
 
+[@quirozsubsampling; @gunawan2018subsampling; @quiroz2016block; @quiroz2018speeding; @quiroz2018speeding1; @dang2017hamiltonian; @quiroz2015bayesian]
+
+@chen2014stochastic

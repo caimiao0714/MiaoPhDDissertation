@@ -15,14 +15,14 @@
 
 ## Research aims
 
-**Aim1**: 
+**Aim1**: Explore the association between truck crashes and critical events.
 
 
 
-**Aim2**: 
+**Aim2**: Predict critical events using hierarchical statistical models.
 
 
 
-**Aim3**: 
+**Aim3**: scalable hierarchical Bayesian models using subsampling MCMC.
 
 

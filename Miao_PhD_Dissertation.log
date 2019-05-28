@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  6 MAY 2019 00:35
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  28 MAY 2019 00:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -552,30 +552,30 @@ Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
 ) (./Miao_PhD_Dissertation.aux)
 \openout1 = `Miao_PhD_Dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 63.
 (c:/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
 \AtBeginShipoutBox=\box64
 (c:/texlive/2018/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
@@ -584,7 +584,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: xetex.def on input line 147.
 )
-Package hyperref Info: Link coloring ON on input line 64.
+Package hyperref Info: Link coloring ON on input line 63.
 (c:/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (c:/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -592,9 +592,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count146
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
-LaTeX Info: Redefining \nameref on input line 64.
+LaTeX Info: Redefining \ref on input line 63.
+LaTeX Info: Redefining \pageref on input line 63.
+LaTeX Info: Redefining \nameref on input line 63.
 (./Miao_PhD_Dissertation.out) (./Miao_PhD_Dissertation.out)
 \@outlinefile=\write3
 \openout3 = `Miao_PhD_Dissertation.out'.
@@ -656,8 +656,7 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 100.
-
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 99.
 (c:/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -670,11 +669,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 110.
+LaTeX Font Info:    Try loading font information for U+msa on input line 109.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 110.
+LaTeX Font Info:    Try loading font information for U+msb on input line 109.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2
@@ -687,7 +686,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] (./Miao_PhD_Dissertation.toc [7
 
-])
+]
+Overfull \hbox (33.37675pt too wide) in paragraph at lines 44--44
+ [] [][][]\T1/lmr/bx/n/12 HIERARCHICAL BAYESIAN MOD-ELS US-ING SUB-SAM-PLING MA
+RKOVE 
+ []
+
+)
 \tf@toc=\write4
 \openout4 = `Miao_PhD_Dissertation.toc'.
 
@@ -729,63 +734,67 @@ Chapter 3.
 
 ]
 Chapter 4.
-[13] [14
+[13] [14] [15] [16
 
 ]
 Chapter 5.
-[15] [16
-
-]
-Chapter 6.
 [17] [18
 
 ]
-Chapter 7.
-[19] [20
+Chapter 6.
+[19]
 
-]
-No file Miao_PhD_Dissertation.bbl.
-[21
+Package Fancyhdr Warning: \headheight is too small (14.49998pt): 
+ Make it at least 27.11652pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[20]
+Chapter 7.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 611.
+
+(c:/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [21
 
 ] [22
 
 ]
-Appendix A.
+Chapter 8.
 [23] [24
 
-]
-Appendix B.
-[25] [26
+] [25
+
+] [26
+
+] [27
 
 ]
-Appendix C.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 302.
-
-(c:/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [27]
-Underfull \vbox (badness 1681) has occurred while \output is active []
+Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [28]
-Overfull \hbox (165.48007pt too wide) in paragraph at lines 340--342
+Overfull \hbox (165.48007pt too wide) in paragraph at lines 702--704
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data-
 []and-[]statistics / 84856 / cmvtrafficsafetyfactsheet2016-[]2017 .
  []
 
 
-Overfull \hbox (124.24104pt too wide) in paragraph at lines 343--345
+Overfull \hbox (124.24104pt too wide) in paragraph at lines 705--707
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data-[]and-
 []statistics / 398686 / ltbcf-[]2016-[]final-[]508c-[]may-[]2018 .
  []
 
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
+Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [29]
 Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [30]
-Overfull \hbox (60.10802pt too wide) in paragraph at lines 394--396
+Underfull \vbox (badness 1681) has occurred while \output is active []
+
+[31]
+Overfull \hbox (60.10802pt too wide) in paragraph at lines 771--773
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008-[]state-
 []of-[]the-[]states-[]report-[]on-[]drowsy-[]driving/$[][]\T1/lmr/m/n/12 . 
  []
@@ -793,35 +802,49 @@ Overfull \hbox (60.10802pt too wide) in paragraph at lines 394--396
 Missing character: There is no ı in font ec-lmr12!
 Missing character: There is no ́ in font ec-lmr12!
 
-Overfull \hbox (0.43573pt too wide) in paragraph at lines 403--405
+Overfull \hbox (0.43573pt too wide) in paragraph at lines 786--788
 [][]\T1/lmr/m/n/12 Pérez-Chada, Daniel, Ale-jan-dro J Videla, Mar-tin E O'flahe
 rty, Pa-tri-cia Palermo, Jorgelina
  []
 
 
-Underfull \vbox (badness 1057) has occurred while \output is active []
+Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[31] [32]
-No file Miao_PhD_Dissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 452.
-[33
+[32]
+Underfull \vbox (badness 1308) has occurred while \output is active []
+
+[33]
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 831--833
+\T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
+g / road-[]safety / safety-[]topics / fatality-[]estimates$[][]\T1/lmr/m/n/12 .
+ 
+ []
+
+
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[34] [35] [36
+
+] [37] [38
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 452.
+No file Miao_PhD_Dissertation.ind.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 871.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 871.
 (./Miao_PhD_Dissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 452.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 452.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 871.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 871.
 Package rerunfilecheck Info: File `Miao_PhD_Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: BC8DC0642B8ADBD6BF737E8C2F07168F.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 452.
+(rerunfilecheck)             Checksum: F8ACC797D45913BA30BF41044563D77C.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 871.
  ) 
 Here is how much of TeX's memory you used:
- 13217 strings out of 492956
- 187788 string characters out of 6136893
- 290206 words of memory out of 5000000
- 17041 multiletter control sequences out of 15000+600000
+ 13238 strings out of 492956
+ 188422 string characters out of 6136893
+ 293873 words of memory out of 5000000
+ 17063 multiletter control sequences out of 15000+600000
  40971 words of font info for 47 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 36i,12n,47p,2619b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,47p,2619b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Miao_PhD_Dissertation.pdf (46 pages).
+Output written on Miao_PhD_Dissertation.pdf (51 pages).
