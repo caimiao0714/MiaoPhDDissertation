@@ -7,7 +7,7 @@ Transportation safety
 Traffic safety \index{traffic safety} is a pressing public health issue that involves huge lives losses and financial burden across the world and in the United States (US). 
 As reported by the World Health Organization [@who2018], road injury was the eighth cause of death globally in 2016, killing approximately 1.4 million people, which consisted of about 2.5% of all deaths in the world. 
 If no sustained action is taken, road injuries are predicted to be the seventh leading cause of death across the world by 2030 [@who2018b]. 
-Compared to the victims who were claimed lives by diseases, people killed in traffic are mostly   early- or middle-aged, particularly those aged 4 to 44 years old [@litman2013transportation； @evans2014traffic].
+Compared to the victims who were claimed lives by diseases, people killed in traffic are mostly   early- or middle-aged, particularly those aged 4 to 44 years old [@litman2013transportation; @evans2014traffic].
 Without traffic accidents, these victims could have much longer lives with normal health.
 
 
@@ -38,7 +38,13 @@ In comparison, 148,707 lives were claimed by road collisions in India in 2015, w
 Trucking safety
 ---------------
 
-Among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents [@fmcsafacts2016]. The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes. 
+In the US, large commercial trucks . approximately 70% of freight is delivered via a truck at some point of their transporation [@olson2016weight]. \hl{Illustrate the importance of trucks}
+
+However, among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents [@fmcsafacts2016]. The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. 
+
+The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. \hl{the severe outcomes of fatigue driving.} 
+
+On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes. 
 
 
 

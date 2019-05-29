@@ -20,7 +20,13 @@ Drowsy driving is an especially common practice in less-developed countries beca
 
 @stern2018data reviewed the research related to fatigue of commercial motor vehicle drivers.  Because of the difficulty of running a controlled experiment by imposing treatments, most research designs are observational studies, that is, they compare the effects of variables that are observed, not imposed.  One exception to this is a \emph{randomized encouragement design} where drivers are randomized to receive some sort of incentive to apply  some treatment, but are not forced to do so.  If an effect is observed, we would conclude that it is due to the incentive, not necessarily to the actual treatment.  Many studies use a cohort design or a case-control study.  In a cohort design, a number of drivers is identified and studied across time.  In a case-control study, a number of cases (e.g., crashes, or some other safety measure) are identified and are matched with controls; focus is then placed on the differences between the cases and controls.  Both cohort studies and case-control studies can be useful in assessing safety.
 
+### Fatigue measurement
+
+The reason why little has been done about drowsy driving is there is no simple way to objectively measure fatigue driving [@dement1997perils].
+
 ### Driver characteristics
+
+A study by @pack1995characteristics revealed that the drivers were 25 years of age or younger in over a half of the 5,000 highway crashes in which they fell asleep whiling driving.
 
 Another driver-related risk factor of driving safety critical events is drivers’ age. In many developing countries, to meet the huge demand services and supply chain management, it is very common to extend the retirement age or reemploy retired workers [@popkin2008age]. Aging drivers increase the chance of the safety critical events in three aspects: impaired eyesight, prolonged reaction time to exogenous stimuli, and vulnerability to fatigue [@di2011demographic]. Aged drivers are associated with eyesight diseases or functionality impairment, such as cataracts, narrowed peripheral vision and decreasing visual acuity [@di2011demographic]. In addition, working for truck companies often means irregular shifts and taking the night schedules, which disrupt the circadian time-keeping systems, especially for the aged workers [@moneta1996time]. 
 
@@ -41,7 +47,9 @@ One more risk factor that could explain driving safety critical events is driver
 
 Weather has both direct and indirect effects on drivers’ safety critical events. On one hand, the increase of ambient temperature places risks on drivers’ occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather [@kjellstrom2009direct; @basagana2015high]. Leard and Roth found that for a day with temperature above 80◦F there is a 9.5% increase in fatality rates compared with a day at 50-60 F [@leard2015weather]. A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures [@im2016impact]. On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver’s visual capability or reduce the safety of driving on the road [@chang2005data; @al2007experimental; @baker1992wind]. It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents [@al2007experimental; @graham2003spatial]. Abdel-Aty et al. used detector and sensor data to successfully predict more than 70% of accidents with low visibility conditions [@abdel2012real]. The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
+### Time of the day
 
+@pack1995characteristics's analysis reported the crashes in which the drivers fell asleep occurred primarily from mid-night to 7 a.m. and from 2 p.m. to 4 p.m.
 
 
 

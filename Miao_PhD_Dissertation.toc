@@ -12,19 +12,21 @@
 \contentsline {section}{\numberline {2.1}Precursors to crashes}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Risk factors}{5}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Fatigue}{5}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Driver characteristics}{7}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Traffic}{8}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Weather}{8}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Predictive models}{9}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Bayesian models}{9}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Hierarchical models}{9}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Scalable Bayesian models}{9}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo}{9}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{9}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.2.2}Fatigue measurement}{7}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Driver characteristics}{7}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Traffic}{8}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Weather}{8}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}Time of the day}{9}{subsection.2.2.6}
+\contentsline {section}{\numberline {2.3}Predictive models}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Bayesian models}{10}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Hierarchical models}{10}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Scalable Bayesian models}{10}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo}{10}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{10}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{10}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Conceptual framework}{10}{section.2.5}
-\contentsline {section}{\numberline {2.6}Gaps in literature}{10}{section.2.6}
-\contentsline {section}{\numberline {2.7}Research aims}{10}{section.2.7}
+\contentsline {section}{\numberline {2.5}Conceptual framework}{11}{section.2.5}
+\contentsline {section}{\numberline {2.6}Gaps in literature}{11}{section.2.6}
+\contentsline {section}{\numberline {2.7}Research aims}{11}{section.2.7}
 \contentsline {chapter}{\numberline {3}METHODS}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data source}{13}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Real-time ping data}{13}{subsection.3.1.1}
