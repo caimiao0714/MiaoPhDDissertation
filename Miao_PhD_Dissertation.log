@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  28 MAY 2019 00:22
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  28 MAY 2019 19:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,16 +712,17 @@ RKOVE
 
 ]
 Chapter 1.
+Missing character: There is no ； in font ec-lmr12!
 [1
 
-] [2] [3] [4
-
-]
+] [2] [3] [4]
 Chapter 2.
 
 Underfull \vbox (badness 1281) has occurred while \output is active []
 
-[5] [6]
+[5
+
+] [6]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [7]
@@ -751,7 +752,7 @@ Package Fancyhdr Warning: \headheight is too small (14.49998pt):
 
 [20]
 Chapter 7.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 611.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 624.
 
 (c:/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -773,28 +774,34 @@ Chapter 8.
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [28]
-Overfull \hbox (165.48007pt too wide) in paragraph at lines 702--704
+Overfull \hbox (165.48007pt too wide) in paragraph at lines 721--723
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data-
 []and-[]statistics / 84856 / cmvtrafficsafetyfactsheet2016-[]2017 .
  []
 
 
-Overfull \hbox (124.24104pt too wide) in paragraph at lines 705--707
+Overfull \hbox (124.24104pt too wide) in paragraph at lines 724--726
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data-[]and-
 []statistics / 398686 / ltbcf-[]2016-[]final-[]508c-[]may-[]2018 .
  []
 
 
-Underfull \vbox (badness 1681) has occurred while \output is active []
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 727--729
+[][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
+rgeant, and Gamini Punchi-
+ []
+
+
+Underfull \vbox (badness 2512) has occurred while \output is active []
 
 [29]
-Underfull \vbox (badness 1681) has occurred while \output is active []
+Underfull \vbox (badness 1057) has occurred while \output is active []
 
 [30]
-Underfull \vbox (badness 1681) has occurred while \output is active []
+Underfull \vbox (badness 1057) has occurred while \output is active []
 
 [31]
-Overfull \hbox (60.10802pt too wide) in paragraph at lines 771--773
+Overfull \hbox (60.10802pt too wide) in paragraph at lines 793--795
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008-[]state-
 []of-[]the-[]states-[]report-[]on-[]drowsy-[]driving/$[][]\T1/lmr/m/n/12 . 
  []
@@ -802,7 +809,7 @@ Overfull \hbox (60.10802pt too wide) in paragraph at lines 771--773
 Missing character: There is no ı in font ec-lmr12!
 Missing character: There is no ́ in font ec-lmr12!
 
-Overfull \hbox (0.43573pt too wide) in paragraph at lines 786--788
+Overfull \hbox (0.43573pt too wide) in paragraph at lines 808--810
 [][]\T1/lmr/m/n/12 Pérez-Chada, Daniel, Ale-jan-dro J Videla, Mar-tin E O'flahe
 rty, Pa-tri-cia Palermo, Jorgelina
  []
@@ -811,17 +818,17 @@ rty, Pa-tri-cia Palermo, Jorgelina
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [32]
-Underfull \vbox (badness 1308) has occurred while \output is active []
+Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [33]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 831--833
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 856--858
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road-[]safety / safety-[]topics / fatality-[]estimates$[][]\T1/lmr/m/n/12 .
  
  []
 
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
+Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [34] [35] [36
 
@@ -829,19 +836,19 @@ Underfull \vbox (badness 1178) has occurred while \output is active []
 
 ]
 No file Miao_PhD_Dissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 871.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 871.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 896.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 896.
 (./Miao_PhD_Dissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 871.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 871.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 896.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 896.
 Package rerunfilecheck Info: File `Miao_PhD_Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: F8ACC797D45913BA30BF41044563D77C.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 871.
+(rerunfilecheck)             Checksum: CD2E55E30C8CAE56DA20CD872DF88D0B.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 896.
  ) 
 Here is how much of TeX's memory you used:
  13238 strings out of 492956
- 188422 string characters out of 6136893
- 293873 words of memory out of 5000000
+ 188425 string characters out of 6136893
+ 293879 words of memory out of 5000000
  17063 multiletter control sequences out of 15000+600000
  40971 words of font info for 47 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
