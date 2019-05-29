@@ -5,14 +5,14 @@
 \contentsline {chapter}{List of Tables}{xi}{chapter*.5}
 \contentsline {chapter}{\numberline {1}INTRODUCTION}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Transportation safety}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Trucking safety}{2}{section.1.2}
+\contentsline {section}{\numberline {1.2}Trucking safety}{3}{section.1.2}
 \contentsline {section}{\numberline {1.3}Crashes and critical events}{3}{section.1.3}
-\contentsline {section}{\numberline {1.4}Predictive models}{4}{section.1.4}
+\contentsline {section}{\numberline {1.4}Proposal}{4}{section.1.4}
 \contentsline {chapter}{\numberline {2}LITERATURE REVIEW}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Precursors to crashes}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Risk factors}{5}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Fatigue}{5}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Driver characteristics}{6}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.2}Driver characteristics}{7}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Traffic}{8}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}Weather}{8}{subsection.2.2.4}
 \contentsline {section}{\numberline {2.3}Predictive models}{9}{section.2.3}
@@ -21,30 +21,32 @@
 \contentsline {section}{\numberline {2.4}Scalable Bayesian models}{9}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo}{9}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{9}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{9}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{10}{subsection.2.4.3}
 \contentsline {section}{\numberline {2.5}Conceptual framework}{10}{section.2.5}
 \contentsline {section}{\numberline {2.6}Gaps in literature}{10}{section.2.6}
 \contentsline {section}{\numberline {2.7}Research aims}{10}{section.2.7}
-\contentsline {chapter}{\numberline {3}METHODS}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Data source}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Study design}{11}{section.3.2}
-\contentsline {section}{\numberline {3.3}Analytical Plan for Aim 1}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Analytical Plan for Aim 2}{11}{section.3.4}
-\contentsline {section}{\numberline {3.5}Analytical Plan for Aim 3}{11}{section.3.5}
-\contentsline {chapter}{\numberline {4}The Probable Content}{13}{chapter.4}
-\contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{17}{chapter.5}
-\contentsline {chapter}{\numberline {6}THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}{19}{chapter.6}
-\contentsline {section}{\numberline {6.1}Hierarchical logistic model}{19}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Model set up}{19}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Bayesian estimation based on simulated data}{19}{subsection.6.1.2}
-\contentsline {section}{\numberline {6.2}Hierarchical Poisson model}{19}{section.6.2}
-\contentsline {section}{\numberline {6.3}Hierarchical power law process}{19}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}}{20}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}Bayesian estimation based on simulated data}{20}{subsection.6.3.2}
-\contentsline {chapter}{\numberline {7}HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}{21}{chapter.7}
-\contentsline {chapter}{\numberline {8}DISCUSSION}{23}{chapter.8}
-\contentsline {chapter}{APPENDIX}{25}{chapter*.6}
-\contentsline {section}{R code}{25}{section*.7}
-\contentsline {section}{Another appendix}{25}{section*.8}
-\contentsline {chapter}{Bibliography}{27}{chapter*.9}
-\contentsline {chapter}{Vita Auctoris}{37}{chapter*.10}
+\contentsline {chapter}{\numberline {3}METHODS}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Data source}{13}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Real-time ping data}{13}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Weather data}{13}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Study design}{13}{section.3.2}
+\contentsline {section}{\numberline {3.3}Analytical Plan for Aim 1}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}Analytical Plan for Aim 2}{13}{section.3.4}
+\contentsline {section}{\numberline {3.5}Analytical Plan for Aim 3}{13}{section.3.5}
+\contentsline {chapter}{\numberline {4}The Probable Content}{15}{chapter.4}
+\contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{19}{chapter.5}
+\contentsline {chapter}{\numberline {6}THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}{21}{chapter.6}
+\contentsline {section}{\numberline {6.1}Hierarchical logistic model}{21}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Model set up}{21}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Bayesian estimation based on simulated data}{21}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Hierarchical Poisson model}{21}{section.6.2}
+\contentsline {section}{\numberline {6.3}Hierarchical power law process}{21}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}}{22}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Bayesian estimation based on simulated data}{22}{subsection.6.3.2}
+\contentsline {chapter}{\numberline {7}HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}{23}{chapter.7}
+\contentsline {chapter}{\numberline {8}DISCUSSION}{25}{chapter.8}
+\contentsline {chapter}{APPENDIX}{27}{chapter*.6}
+\contentsline {section}{R code}{27}{section*.7}
+\contentsline {section}{Another appendix}{27}{section*.8}
+\contentsline {chapter}{Bibliography}{29}{chapter*.9}
+\contentsline {chapter}{Vita Auctoris}{39}{chapter*.10}

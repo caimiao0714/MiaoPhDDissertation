@@ -175,6 +175,8 @@ If the change of traffic fatality rates match those in other unremarkable countr
 The impact of road injuries are even more impactful in developing countries than in developed countries (Goonewardene et al. \protect\hyperlink{ref-goonewardene2010road}{2010}).
 Although low- and middle-income countries own only 48\% of the registered vehicles in the world, 90\% of road traffic fatalities and injuries were estimated to occur in these countries, which continue to be escalating due to rapid urbanization and motorization (Dalal et al. \protect\hyperlink{ref-dalal2013economics}{2013}; Staton et al. \protect\hyperlink{ref-staton2016road}{2016}).
 Ten developing countries, including Brazil, Cambodia, China, Egypt, India, Kenya, Mexico, Russia, Turkey, and Vietnam, account for almost half of all the road traffic in the world (Hyder et al. \protect\hyperlink{ref-hyder2012addressing}{2012}).
+For example, China has around 100,000 traffic-related fatalities each year (Zhang et al. \protect\hyperlink{ref-zhang2010road}{2010}), accounting for around 80\% of all accidental deaths, with 87\% of them were caused by motor vehicles in 2015 (Jiang et al. \protect\hyperlink{ref-jiang2017transport}{2017}).
+In comparison, 148,707 lives were claimed by road collisions in India in 2015, with the road fatality rate similar to the global average level of 17.4 deaths per 100,000 people (National Crime Records Bureau, Government of India \protect\hyperlink{ref-india2015}{2015}).
 
 \hypertarget{trucking-safety}{%
 \section{Trucking safety}\label{trucking-safety}}
@@ -190,10 +192,23 @@ Past truck safety literature almost exclusively focused on crashes, while ignori
 
 Rome et al. (\protect\hyperlink{ref-de2018near}{2018})
 
-\hypertarget{predictive-models}{%
-\section{Predictive models}\label{predictive-models}}
+\hypertarget{proposal}{%
+\section{Proposal}\label{proposal}}
 
-This prospectus proposal focuses on statistical methods in truck safety prediction.
+I propose using real-time truck ping data provided by the J.B. Hunt to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \textbf{quantify the association between truck crashes and critical events};
+\item
+  \textbf{construct predictive models for truck critical events};
+\item
+  \textbf{establish scalable Bayesian hierarchical models for large truck data}.
+\end{enumerate}
+
+I believe that this work will contribute to statistical theories in constructing scalable Bayesian hierarchical statistical and reliability models using modern Markov Chain Monte Carlo methods. Realistically, these predictive models will inform policy-makers the functional relationship between driver characteristics, traffic, weather, and other real-time driving environment. These predictive models can be further used to provide data-driven justification to optimize trucking routes and minimize unsafe driving behaviors.
 
 \hypertarget{literature-review}{%
 \chapter{LITERATURE REVIEW}\label{literature-review}}
@@ -207,7 +222,9 @@ This prospectus proposal focuses on statistical methods in truck safety predicti
 \hypertarget{fatigue}{%
 \subsection{Fatigue}\label{fatigue}}
 
-Among all driver-related safety critical events, fatigue has become the most pressing problem of traffic accidents. It is estimated by National Sleep Foundation that approximately 32\% of drivers in U.S drive with fatigue over twice a month (National Sleep Foundation \protect\hyperlink{ref-nsleepf}{2008}). Another statistic provided by American Automobile Association Foundation for Traffic Safety in 2010 said that 16.5\% of fatal traffic accidents and 12.5\% of collisions related to injuries in U.S were associated with driving with fatigue (American Automobile Association Foundation for Traffic Safety \protect\hyperlink{ref-aaafoundation}{2010}). Drowsy driving is an especially common practice in less-developed countries because of cost control and tight schedule. Surveys of commercial and public road transportation companies in less-developed countries showed that employers were frequently forcing their employees to drive for longer hours and keep working even when they were exhausted (Zhang et al. \protect\hyperlink{ref-zhang2016traffic}{2016}; Odero, Khayesi, and Heda \protect\hyperlink{ref-odero2003road}{2003}; Nantulya and Reich \protect\hyperlink{ref-nantulya2002neglected}{2002}). High proportions of drowsy driving have been found among Brazilian (22\%) (Canani et al. \protect\hyperlink{ref-canani2005prevalence}{2005}), Argentinean (44\%) (Pérez-Chada et al. \protect\hyperlink{ref-perez2005sleep}{2005}), Pakistani (54\%) (Azam et al. \protect\hyperlink{ref-azam2014comparison}{2014}), and Thai (75\%) (Leechawengwongs et al. \protect\hyperlink{ref-leechawengwongs2006role}{2006}) truck or bus drivers. The mechanism of fatigue leading to safety critical events is that a driver's capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation (Zhang et al. \protect\hyperlink{ref-zhang2014study}{2014}). It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05\% (MacLean, Davies, and Thiele \protect\hyperlink{ref-maclean2003hazards}{2003}). What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour (Knipling and Wang \protect\hyperlink{ref-knipling1994crashes}{1994}). This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
+Among all driver-related safety critical events, fatigue has become the most pressing problem of traffic accidents. It is estimated by National Sleep Foundation that approximately 32\% of drivers in U.S drive with fatigue over twice a month (National Sleep Foundation \protect\hyperlink{ref-nsleepf}{2008}). The American Automobile Association Foundation for Traffic Safety claimed that 16.5\% of fatal traffic accidents and 12.5\% of collisions related to injuries in the US in 2010 were associated with driving with fatigue (American Automobile Association Foundation for Traffic Safety \protect\hyperlink{ref-aaafoundation}{2010}).
+
+Drowsy driving is an especially common practice in less-developed countries because of cost control and tight schedule. Surveys of commercial and public road transportation companies in less-developed countries showed that employers were frequently forcing their employees to drive for longer hours and keep working even when they were exhausted (Zhang et al. \protect\hyperlink{ref-zhang2016traffic}{2016}; Odero, Khayesi, and Heda \protect\hyperlink{ref-odero2003road}{2003}; Nantulya and Reich \protect\hyperlink{ref-nantulya2002neglected}{2002}). High proportions of drowsy driving have been found among Brazilian (22\%) (Canani et al. \protect\hyperlink{ref-canani2005prevalence}{2005}), Argentinean (44\%) (Pérez-Chada et al. \protect\hyperlink{ref-perez2005sleep}{2005}), Pakistani (54\%) (Azam et al. \protect\hyperlink{ref-azam2014comparison}{2014}), and Thai (75\%) (Leechawengwongs et al. \protect\hyperlink{ref-leechawengwongs2006role}{2006}) truck or bus drivers. The mechanism of fatigue leading to safety critical events is that a driver's capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation (Zhang et al. \protect\hyperlink{ref-zhang2014study}{2014}). It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05\% (MacLean, Davies, and Thiele \protect\hyperlink{ref-maclean2003hazards}{2003}). What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour (Knipling and Wang \protect\hyperlink{ref-knipling1994crashes}{1994}). This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
 
 Stern et al. (\protect\hyperlink{ref-stern2018data}{2018}) reviewed the research related to fatigue of commercial motor vehicle drivers. Because of the difficulty of running a controlled experiment by imposing treatments, most research designs are observational studies, that is, they compare the effects of variables that are observed, not imposed. One exception to this is a \emph{randomized encouragement design} where drivers are randomized to receive some sort of incentive to apply some treatment, but are not forced to do so. If an effect is observed, we would conclude that it is due to the incentive, not necessarily to the actual treatment. Many studies use a cohort design or a case-control study. In a cohort design, a number of drivers is identified and studied across time. In a case-control study, a number of cases (e.g., crashes, or some other safety measure) are identified and are matched with controls; focus is then placed on the differences between the cases and controls. Both cohort studies and case-control studies can be useful in assessing safety.
 
@@ -228,8 +245,8 @@ One more risk factor that could explain driving safety critical events is driver
 
 Weather has both direct and indirect effects on drivers' safety critical events. On one hand, the increase of ambient temperature places risks on drivers' occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather (Kjellstrom et al. \protect\hyperlink{ref-kjellstrom2009direct}{2009}; Basagaña et al. \protect\hyperlink{ref-basagana2015high}{2015}). Leard and Roth found that for a day with temperature above 80◦F there is a 9.5\% increase in fatality rates compared with a day at 50-60 F (Leard, Roth, and others \protect\hyperlink{ref-leard2015weather}{2015}). A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures (Kampe, Kovats, and Hajat \protect\hyperlink{ref-im2016impact}{2016}). On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver's visual capability or reduce the safety of driving on the road (Chang and Chen \protect\hyperlink{ref-chang2005data}{2005}; Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Baker and Reynolds \protect\hyperlink{ref-baker1992wind}{1992}). It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents (Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Graham and Glaister \protect\hyperlink{ref-graham2003spatial}{2003}). Abdel-Aty et al.~used detector and sensor data to successfully predict more than 70\% of accidents with low visibility conditions (Abdel-Aty et al. \protect\hyperlink{ref-abdel2012real}{2012}). The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
-\hypertarget{predictive-models-1}{%
-\section{Predictive models}\label{predictive-models-1}}
+\hypertarget{predictive-models}{%
+\section{Predictive models}\label{predictive-models}}
 
 \hypertarget{bayesian-models}{%
 \subsection{Bayesian models}\label{bayesian-models}}
@@ -296,7 +313,15 @@ Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{20
 \hypertarget{data-source}{%
 \section{Data source}\label{data-source}}
 
+\hypertarget{real-time-ping-data}{%
+\subsection{Real-time ping data}\label{real-time-ping-data}}
+
 The 496 over-the-road drivers
+
+\hypertarget{weather-data}{%
+\subsection{Weather data}\label{weather-data}}
+
+The DarkSky API.
 
 \hypertarget{study-design}{%
 \section{Study design}\label{study-design}}
@@ -745,6 +770,9 @@ Hyder, Adnan A, Katharine A Allen, Gayle Di Pietro, Claudia A Adriazola, Rochell
 \leavevmode\hypertarget{ref-janakiraman2016discovery}{}%
 Janakiraman, Vijay Manikandan, Bryan Matthews, and Nikunj Oza. 2016. ``Discovery of Precursors to Adverse Events Using Time Series Data.'' In \emph{Proceedings of the 2016 Siam International Conference on Data Mining}, 639--47. SIAM.
 
+\leavevmode\hypertarget{ref-jiang2017transport}{}%
+Jiang, Baoguo, Song Liang, Zhong-Ren Peng, Haozhe Cong, Morgan Levy, Qu Cheng, Tianbing Wang, and Justin V Remais. 2017. ``Transport and Public Health in China: The Road to a Healthy Future.'' \emph{The Lancet} 390 (10104): 1781--91.
+
 \leavevmode\hypertarget{ref-im2016impact}{}%
 Kampe, Eveline Otte im, Sari Kovats, and Shakoor Hajat. 2016. ``Impact of High Ambient Temperature on Unintentional Injuries in High-Income Countries: A Narrative Systematic Literature Review.'' \emph{BMJ Open} 6 (2): e010399.
 
@@ -789,6 +817,9 @@ Moneta, Giovanni B, Annette Leclerc, Jean-François Chastang, Patrick Dang Tran,
 
 \leavevmode\hypertarget{ref-nantulya2002neglected}{}%
 Nantulya, Vinand M, and Michael R Reich. 2002. ``The Neglected Epidemic: Road Traffic Injuries in Developing Countries.'' \emph{Bmj} 324 (7346): 1139--41.
+
+\leavevmode\hypertarget{ref-india2015}{}%
+National Crime Records Bureau, Government of India. 2015. ``NCRB 2016 Report, Chapter 1A: Traffic Accidents.'' \url{http://ncrb.gov.in/StatPublications/ADSI/ADSI2015/chapter-1A\%20traffic\%20accidents.pdf}.
 
 \leavevmode\hypertarget{ref-nsleepf}{}%
 National Sleep Foundation. 2008. ``2008 State of the States Report on Drowsy Driving.'' \url{http://drowsydriving.org/resources/2008-state-of-the-states-report-on-drowsy-driving/}.
@@ -873,6 +904,9 @@ Zaloshnja, Eduard, Ted Miller, and others. 2008. ``Unit Costs of Medium and Heav
 
 \leavevmode\hypertarget{ref-zhang2016traffic}{}%
 Zhang, Guangnan, Kelvin KW Yau, Xun Zhang, and Yanyan Li. 2016. ``Traffic Accidents Involving Fatigue Driving and Their Extent of Casualties.'' \emph{Accident Analysis \& Prevention} 87: 34--42.
+
+\leavevmode\hypertarget{ref-zhang2010road}{}%
+Zhang, Wei, Omer Tsimhoni, Michael Sivak, and Michael J Flannagan. 2010. ``Road Safety in China: Analysis of Current Challenges.'' \emph{Journal of Safety Research} 41 (1): 25--30.
 
 \leavevmode\hypertarget{ref-zhang2014study}{}%
 Zhang, Xingjian, Xiaohua Zhao, Hongji Du, and Jian Rong. 2014. ``A Study on the Effects of Fatigue Driving and Drunk Driving on Drivers' Physical Characteristics.'' \emph{Traffic Injury Prevention} 15 (8): 801--8.

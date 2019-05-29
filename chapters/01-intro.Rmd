@@ -28,6 +28,9 @@ If the change of traffic fatality rates match those in other unremarkable countr
 The impact of road injuries are even more impactful in developing countries than in developed countries [@goonewardene2010road].
 Although low- and middle-income countries own only 48% of the registered vehicles in the world, 90% of road traffic fatalities and injuries were estimated to occur in these countries, which continue to be escalating due to rapid urbanization and motorization [@dalal2013economics; @staton2016road].
 Ten developing countries, including Brazil, Cambodia, China, Egypt, India, Kenya, Mexico, Russia, Turkey, and Vietnam, account for almost half of all the road traffic in the world [@hyder2012addressing]. 
+For example, China has around 100,000 traffic-related fatalities each year [@zhang2010road], accounting for around 80% of all accidental deaths, with 87% of them were caused by motor vehicles in 2015 [@jiang2017transport]. 
+In comparison, 148,707 lives were claimed by road collisions in India in 2015, with the road fatality rate similar to the global average level of 17.4 deaths per 100,000 people [@india2015].
+
 
 
 
@@ -35,12 +38,15 @@ Ten developing countries, including Brazil, Cambodia, China, Egypt, India, Kenya
 Trucking safety
 ---------------
 
-Among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents [@fmcsafacts2016]. The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes.
+Among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents [@fmcsafacts2016]. The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes. 
 
 
 
 
-## Crashes and critical events
+
+
+Crashes and critical events
+---------------------------
 
 To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes or predict the crashes. The most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes [@braver1997tractor; @chen2014modeling; @meuleners2015obstructive; @nee2019road]. This widespread case-control design is due to the fact that large truck crashes are very rare compared to the amount of time on road. However, a case-control study is limited in estimating the incidence data and may be contentious in selecting the control groups [@grimes2005compared; @sedgwick2014case]. 
 
@@ -49,9 +55,16 @@ Past truck safety literature almost exclusively focused on crashes, while ignori
 
 @de2018near
 
-## Predictive models
 
 
+## Proposal
+
+I propose using real-time truck ping data provided by the J.B. Hunt to
 
 
-This prospectus proposal focuses on statistical methods in truck safety prediction.
+1) **quantify the association between truck crashes and critical events**;
+2) **construct predictive models for truck critical events**;
+3) **establish scalable Bayesian hierarchical models for large truck data**.
+
+
+I believe that this work will contribute to statistical theories in constructing scalable Bayesian hierarchical statistical and reliability models using modern Markov Chain Monte Carlo methods. Realistically, these predictive models will inform policy-makers the functional relationship between driver characteristics, traffic, weather, and other real-time driving environment. These predictive models can be further used to provide data-driven justification to optimize trucking routes and minimize unsafe driving behaviors.
