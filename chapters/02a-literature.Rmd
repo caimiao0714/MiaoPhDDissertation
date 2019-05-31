@@ -49,6 +49,7 @@ Although it is generally believed that lower **speed limits** can reduce the cha
 
 ### Weather
 
+[@naik2016weather]
 
 Weather has both direct and indirect effects on drivers’ safety critical events. On one hand, the increase of ambient temperature places risks on drivers’ occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather [@kjellstrom2009direct; @basagana2015high]. Leard and Roth found that for a day with temperature above 80◦F there is a 9.5% increase in fatality rates compared with a day at 50-60 F [@leard2015weather]. A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures [@im2016impact]. On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver’s visual capability or reduce the safety of driving on the road [@chang2005data; @al2007experimental; @baker1992wind]. It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents [@al2007experimental; @graham2003spatial]. Abdel-Aty et al. used detector and sensor data to successfully predict more than 70% of accidents with low visibility conditions [@abdel2012real]. The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
@@ -65,7 +66,7 @@ Predictive models
 
 ### Hierarchical models
 
-
+Driver-focused statistical models [@cantor2010driver].
 
 
 Scalable Bayesian models
