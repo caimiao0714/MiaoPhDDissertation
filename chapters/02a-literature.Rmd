@@ -14,6 +14,9 @@ Risk factors
 
 Among all driver-related safety critical events, fatigue has become the most pressing problem of traffic accidents. It is estimated by National Sleep Foundation that approximately 32% of drivers in U.S drive with fatigue over twice a month [@nsleepf]. The American Automobile Association Foundation for Traffic Safety claimed that 16.5% of fatal traffic accidents and 12.5% of collisions related to injuries in the US in 2010 were associated with driving with fatigue [@aaafoundation].  
 
+[@anderson2017exploratory]
+
+@hos2017 demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time.
 
 
 Drowsy driving is an especially common practice in less-developed countries because of cost control and tight schedule. Surveys of commercial and public road transportation companies in less-developed countries showed that employers were frequently forcing their employees to drive for longer hours and keep working even when they were exhausted [@zhang2016traffic; @odero2003road; @nantulya2002neglected]. High proportions of drowsy driving have been found among Brazilian (22%) [@canani2005prevalence], Argentinean (44%) [@perez2005sleep], Pakistani (54%) [@azam2014comparison], and Thai (75%) [@leechawengwongs2006role] truck or bus drivers. The mechanism of fatigue leading to safety critical events is that a driver’s capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation [@zhang2014study]. It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05% [@maclean2003hazards]. What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour [@knipling1994crashes]. This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
@@ -37,7 +40,7 @@ One more risk factor that could explain driving safety critical events is driver
 
 ### Traffic
 
-
+Although it is generally believed that lower **speed limits** can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results [@neeley2009effect; @korkut2010freeway; @zhu2011comprehensive; @davis2015longitudinal]. 
 
 
 

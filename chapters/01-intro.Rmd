@@ -17,7 +17,6 @@ Besides non-fatal injuries, traffic safety is a major economic burden.
 The global economic losses attributable to transportation safety were estimated to be 518 billion the United States Dollars (USD), which accounted for 1% the gross domestic product (GDP) in low-income countries, 1.5% in middle-income countries, and 2% in high-income countries [@peden2004world; @dalal2013economics]. 
 
 
-
 Specifically in the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40% of all fatal occupational injuries in 2017 [@bols]. 
 The National Safety Council reported that the number of deaths attributable to car crashes will be at least 40,000 in 2018, which is the third straight year that this number is over 40,000 [@nsc2018]. 
 A comparison study of 26 developed countries revealed that 20 to 60 traffic deaths per billion kilometers were reducted from 2011 [@evans2014traffic]. 
@@ -38,11 +37,10 @@ In comparison, 148,707 lives were claimed by road collisions in India in 2015, w
 Trucking safety
 ---------------
 
-In the US, large commercial trucks . approximately 70% of freight is delivered via a truck at some point of their transporation [@olson2016weight]. \hl{Illustrate the importance of trucks}
+In the US, the large commercial truck industry is the backbone of the economy. Approximately 70% of freight is delivered via a truck at some point of their transporation, which account for 73.1% of value and 71.3% of volume of the domestic goods [@olson2016weight; @anderson2017exploratory]. 
+However, among all vehicles, large trucks are associated with more catastrophic accidents and therefore are the primary concern of traffic safety. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 people (1.12 people per crash) were killed in the accidents [@fmcsafacts2016]. Large truck crashes approximately claim 5,000 lives and cause 120,000 injuries each year, but only 15% of these fatalities occur in the trucks, with a predominate 78% occurred in the other vehicles [@neeley2009effect]. Besides, the economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. 
 
-However, among all vehicles, large trucks are the primary concern of traffic safety since they are associated with more catastrophic accidents. In 2016, the Federal Motor Carrier Safety Administration (FMCSA) reported that 27% fatal crashes in work zones involved large trucks [@fmcsareport2016]. Among all 4,079 crashes involving large trucks or buses in 2016, 4,564 lives (1.12 lives per crash) were claimed in the accidents [@fmcsafacts2016]. The economic losses associated with large truck crashes are also higher than those with passenger vehicles, with an estimated average cost of 91,000 US dollars per crash [@zaloshnja2008unit]. 
-
-The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. \hl{the severe outcomes of fatigue driving.} 
+The high risk of large trucks is attributed to two aspects of reasons [@huang2013development]. First, large truck drivers generally need to drive alone for long routes, under on-time demands, challenging weather and traffic conditions. 
 
 On the other hand, trucks are huge weighted and potentially carrying hazardous cargoes. 
 
@@ -61,6 +59,7 @@ Past truck safety literature almost exclusively focused on crashes, while ignori
 
 @de2018near
 
+With modern technology, critical events are recorded more and more by truck companies. 
 
 
 ## Proposal
