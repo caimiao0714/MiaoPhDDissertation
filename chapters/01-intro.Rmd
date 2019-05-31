@@ -48,19 +48,14 @@ On the other hand, trucks have huge weights, large physical dimensions, and pote
 Crashes and critical events
 ---------------------------
 
-To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes or predict the crashes. The most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes [@braver1997tractor; @chen2014modeling; @meuleners2015obstructive; @nee2019road]. This widespread case-control design is due to the fact that large truck crashes are very rare compared to the amount of time on road. However, a case-control study is limited in estimating the incidence data and may be contentious in selecting the control groups [@grimes2005compared; @sedgwick2014case]. 
+To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes and make accurate prediction. Data used in these studies are characterized by rare events (dozens to thousands of times fewer crashes than non-crashes) [@theofilatos2016predicting; @theofilatos2018impact]. Therefore, the most common study design is a case-control study, matching a crash with one to up to ten non-crashes, and use statistical models such as logistic regressions to explain the causes or predict the crashes [@braver1997tractor; @chen2014modeling; @meuleners2015obstructive; @nee2019road]. However, a case-control study is limited in estimating the incidence data. It may be contentious in selecting the ratio of controls to cases and how to select these controls [@grimes2005compared; @sedgwick2014case]. Due to the retrospective nature of crash data, it is also unrealistic to trace back to the real-time traffic, weather, and other environmental factors that were associated with the crashes.
 
-Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor \index{precursor}, or critical event \index{critical event}, is a pattern or signature associated with an increasing chance of truck crash [@saleh2013accident; @janakiraman2016discovery]. Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes [@dingus2006development]. Although critical events do not always result in an accident, they could be used as an early warning system to mitigate or prevent truck crashes [@kusano2012safety].
-
-
-@de2018near
-
-With modern technology, critical events are recorded more and more by truck companies. 
+Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as a critical events, adverse events, or near-miss crashes, is a pattern or signature associated with an increasing chance of truck crash [@saleh2013accident; @janakiraman2016discovery]. Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes [@dingus2006development]. With the rapid development of modern technology, real-time driving and critical events data are recorded more and more by truck companies [@janakiraman2016discovery]. Although critical events do not always result in an accident, they could potentially be used as an early warning system to mitigate or prevent truck crashes [@kusano2012safety; @de2018near].
 
 
 ## Proposal
 
-I propose using real-time truck ping data provided by the J.B. Hunt to
+I propose using real-time truck ping data provided by the J.B. Hunt, real-time weather and traffic data to
 
 
 1) **quantify the association between truck crashes and critical events**;
