@@ -1,0 +1,75 @@
+
+Predictive models
+-----------------
+
+### Bayesian models
+
+In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions [@gelman2013bayesian].
+
+\begin{equation}
+\begin{split}
+p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \\
+ & = \frac{p(\theta)p(\mathbf{X}|\theta )}{\int p(\theta)p(\mathbf{X}|\theta)d\theta}
+(\#eq:bayes)
+\end{split}
+\end{equation}
+
+Where $p(\theta | \mathbf{X})$ is the posterior distribution of the parameters, $p(\theta)$ is the prior distribution of the parameters, $p(\mathbf{X}|\theta)$ is the likelihood function, and $\int p(\theta)p(\mathbf{X}|\theta)d\theta$ is a normalizing constant.
+
+The prior distribution reflects the researcher's subjective belief on the parameters before observing any data. The likelihood function reflects the data generating process that gives rise to the data observed. The posterior distribution is an unconditional distribution that includes the researcher's belief on the parameters after observing the data. The prior and likelihood function are straightforward since they both have analytical forms. The most tricky part of Bayesian inference is the normalizing constant in the denominator [@gelman2013bayesian]. 
+
+The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods, to calculate or approximate this constant.
+
+
+**Advantages of Bayesian inference**
+
+**Posterior predictive distribution**.
+
+### Hierarchical models
+
+Driver-focused statistical models [@cantor2010driver].
+
+
+Scalable Bayesian models
+------------------------
+
+In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \@ref(eq:bayes)). MCMC can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution [@van2018simple]. MCMC has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science [@craiu2014bayesian].  The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals). 
+
+The first proposal of using MCMC dates back to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. They defined a proposal probability  $a(q, q')$.
+
+$$
+a(q, q') = \min\bigg(1, \frac{\pi(q')}{\pi(q)}\bigg)
+$$
+
+After decades of successful empirical trials in physics [@betancourt2019convergence], @hastings1970monte later proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, with a modified acceptance probability $a^\star(q, q')$:
+
+$$
+a^\star(q, q') = \min\bigg(1, \frac{Q(q|q')\pi(q')}{Q(q'|q)\pi(q)}\bigg)
+$$
+
+A few years later, Gibbs sampler was proposed with the idea that each parameter is updated one at a time by generating samples from the conditional distirbution [@geman1987stochastic; @gelfand1990sampling]. It decomposes a multivariate probability distribution into univariate conditional distributions [@betancourt2019convergence], which boosted applied Bayesian statistical models at that time. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses by supporting a variety of statistical distributions and automatically applying Gibbs Sampler.
+
+The limitation of these traditional methods. [@quiroz2015bayesian]
+
+
+### Hamiltonian Monte Carlo
+
+
+[@betancourt2017conceptual; @neal2011mcmc; @betancourt2019convergence]
+
+
+
+
+### Integrated Laplace Approximation (INLA)
+
+[@Havard2009; @Lindgren2011; @Thiago2013; @Coninck2016; @Rue2017; @Verbosio2017; @Kourounis2018]
+
+
+### Subsampling MCMC
+
+
+[Stochastic Gradient HMC](https://blog.csdn.net/u013841458/article/details/82495450)
+
+[@quirozsubsampling; @gunawan2018subsampling; @quiroz2016block; @quiroz2018speeding; @quiroz2018speeding1; @dang2017hamiltonian; @quiroz2015bayesian]
+
+@chen2014stochastic
