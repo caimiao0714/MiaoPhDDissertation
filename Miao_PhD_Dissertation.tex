@@ -308,23 +308,34 @@ Driver-focused statistical models (Cantor et al. \protect\hyperlink{ref-cantor20
 \hypertarget{markov-chain-monte-carlo-mcmc}{%
 \subsection{Markov chain Monte Carlo (MCMC)}\label{markov-chain-monte-carlo-mcmc}}
 
-In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \eqref{eq:bayes}). MCMC can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution (Van Ravenzwaaij, Cassey, and Brown \protect\hyperlink{ref-van2018simple}{2018}). MCMC has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science (Craiu and Rosenthal \protect\hyperlink{ref-craiu2014bayesian}{2014}). The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals).
+In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \eqref{eq:bayes}). A \textbf{Monte Carlo simulation} is a technique to understand a target distribution by generating a large amount of random values from that distribution (Kruschke \protect\hyperlink{ref-kruschke2014doing}{2014}). A \textbf{Markov chain} has the property that the probability distribution of the observation \(i\) only depends on the previous observation \(i-1\), not on any one prior to observation \(i-1\), as demonstrated in Equation \eqref{eq:markovchain}.
 
-The first proposal of using MCMC dates back to the paper by Metropolis et al. (\protect\hyperlink{ref-metropolis1953equation}{1953}), in which they tried to solve an intractable integral with a random walk MCMC. They defined a proposal probability \(a(q, q')\).
+\begin{equation}
+P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right)=P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
+\label{eq:markovchain}
+\end{equation}
 
-\[
-a(q, q') = \min\bigg(1, \frac{\pi(q')}{\pi(q)}\bigg)
-\]
+Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution (Van Ravenzwaaij, Cassey, and Brown \protect\hyperlink{ref-van2018simple}{2018}). It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science (Craiu and Rosenthal \protect\hyperlink{ref-craiu2014bayesian}{2014}). The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals).
 
-After decades of successful empirical trials in physics (Betancourt \protect\hyperlink{ref-betancourt2019convergence}{2019}), Hastings (\protect\hyperlink{ref-hastings1970monte}{1970}) later proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, with a modified acceptance probability \(a^\star(q, q')\):
+The first proposal of using MCMC dates back to the paper by Metropolis et al. (\protect\hyperlink{ref-metropolis1953equation}{1953}), in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter \(\theta\). From a pre-defined symmetric proposal probability distribution \(p(\theta | \mathbf{x})\), it then draw a proposal parameter value \(\theta^{(\text{prop})}\), which only depends on the current parameter value \(\theta^{(t)}\). This proposal value will be accepted with the probability of \(\alpha\) defined in Equation \eqref{eq:metropolisalpha}.
 
-\[
-a^\star(q, q') = \min\bigg(1, \frac{Q(q|q')\pi(q')}{Q(q'|q)\pi(q)}\bigg)
-\]
+\begin{equation}
+\alpha = \min\bigg(1, \frac{p(\theta^{(\text{prop})}|\mathbf{x})}{p(\theta^{(t)}|\mathbf{x})}\bigg)
+\label{eq:metropolisalpha}
+\end{equation}
 
-A few years later, Gibbs sampler was proposed with the idea that each parameter is updated one at a time by generating samples from the conditional distirbution (Geman and Geman \protect\hyperlink{ref-geman1987stochastic}{1987}; Gelfand and Smith \protect\hyperlink{ref-gelfand1990sampling}{1990}). It decomposes a multivariate probability distribution into univariate conditional distributions (Betancourt \protect\hyperlink{ref-betancourt2019convergence}{2019}), which boosted applied Bayesian statistical models at that time. The development of the software \emph{Bayesian inference Using Gibbs Sampler (BUGS)} (Lunn et al. \protect\hyperlink{ref-lunn2000winbugs}{2000}, \protect\hyperlink{ref-lunn2009bugs}{2009}) was critical in increasing the popularity of applied Bayesian analyses by supporting a variety of statistical distributions and automatically applying Gibbs Sampler.
+This proposal and acceptance with probability steps will be iterated for a pre-define number of times. When the Metropolis algorithm reaches a steady state, these proposal values are random values drawn from the posterior distribution of parameter \(\theta\), which can be used to describe and characterize the posterior distribution.
 
-The limitation of these traditional methods. (Quiroz \protect\hyperlink{ref-quiroz2015bayesian}{2015})
+After decades of successful empirical trials in physics (Betancourt \protect\hyperlink{ref-betancourt2019convergence}{2019}), Hastings (\protect\hyperlink{ref-hastings1970monte}{1970}) proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, but the acceptance probability \(\alpha^\star\) is modified as shown in Equation \eqref{eq:MHalpha}. This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC method.
+
+\begin{equation}
+\alpha^\star = \min\bigg(1, \frac{p\left(\theta^{(\text { prop })} | \boldsymbol{x}\right)}{p\left(\theta^{(t)} | \boldsymbol{x}\right)} \frac{q\left(\theta^{(t)} | \theta^{(\text { prop })}\right)}{q\left(\theta^{(\text { prop })} | \theta^{(t)}\right)}\bigg)
+\label{eq:MHalpha}
+\end{equation}
+
+Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions (Geman and Geman \protect\hyperlink{ref-geman1987stochastic}{1987}; Gelfand and Smith \protect\hyperlink{ref-gelfand1990sampling}{1990}; Lambert \protect\hyperlink{ref-lambert2018student}{2018}). The development of the software \emph{Bayesian inference Using Gibbs Sampler (BUGS)} (Lunn et al. \protect\hyperlink{ref-lunn2000winbugs}{2000}, \protect\hyperlink{ref-lunn2009bugs}{2009}) was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
+
+The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in \texttt{R} or \texttt{BUGS} help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized (Betancourt \protect\hyperlink{ref-betancourt2019convergence}{2019}). The performance of the M-H algorithm crucially depends on the proposal distribution. A efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space (Quiroz \protect\hyperlink{ref-quiroz2015bayesian}{2015}). On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler (Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
 \hypertarget{scalable-bayesian-models}{%
 \section{Scalable Bayesian models}\label{scalable-bayesian-models}}
@@ -913,8 +924,14 @@ Korkut, Murat, Sherif Ishak, and Brian Wolshon. 2010. ``Freeway Truck Lane Restr
 \leavevmode\hypertarget{ref-Kourounis2018}{}%
 Kourounis, D., A. Fuchs, and O. Schenk. 2018. ``Towards the Next Generation of Multiperiod Optimal Power Flow Solvers.'' \emph{IEEE Transactions on Power Systems} PP (99): 1--10. \url{https://doi.org/10.1109/TPWRS.2017.2789187}.
 
+\leavevmode\hypertarget{ref-kruschke2014doing}{}%
+Kruschke, John. 2014. \emph{Doing Bayesian Data Analysis: A Tutorial with R, Jags, and Stan}. Academic Press.
+
 \leavevmode\hypertarget{ref-kusano2012safety}{}%
 Kusano, Kristofer D, and Hampton C Gabler. 2012. ``Safety Benefits of Forward Collision Warning, Brake Assist, and Autonomous Braking Systems in Rear-End Collisions.'' \emph{IEEE Transactions on Intelligent Transportation Systems} 13 (4): 1546--55.
+
+\leavevmode\hypertarget{ref-lambert2018student}{}%
+Lambert, Ben. 2018. \emph{A Student's Guide to Bayesian Statistics}. Sage.
 
 \leavevmode\hypertarget{ref-lauderdale2006objectively}{}%
 Lauderdale, Diane S, Kristen L Knutson, Lijing L Yan, Paul J Rathouz, Stephen B Hulley, Steve Sidney, and Kiang Liu. 2006. ``Objectively Measured Sleep Characteristics Among Early-Middle-Aged Adults: The Cardia Study.'' \emph{American Journal of Epidemiology} 164 (1): 5--16.

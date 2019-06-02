@@ -32,23 +32,35 @@ Driver-focused statistical models [@cantor2010driver].
 
 ### Markov chain Monte Carlo (MCMC)
 
-In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \@ref(eq:bayes)). MCMC can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution [@van2018simple]. MCMC has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science [@craiu2014bayesian].  The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals). 
+In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \@ref(eq:bayes)). A **Monte Carlo simulation** is a technique to understand a target distribution by generating a large amount of random values from that distribution [@kruschke2014doing]. A **Markov chain** has the property that the probability distribution of the observation $i$ only depends on the previous observation $i-1$, not on any one prior to observation $i-1$, as demonstrated in Equation \@ref(eq:markovchain). 
 
-The first proposal of using MCMC dates back to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. They defined a proposal probability  $a(q, q')$.
+\begin{equation}
+P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right)=P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
+(\#eq:markovchain)
+\end{equation}
 
-$$
-a(q, q') = \min\bigg(1, \frac{\pi(q')}{\pi(q)}\bigg)
-$$
+Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution [@van2018simple]. It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science [@craiu2014bayesian].  The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals). 
 
-After decades of successful empirical trials in physics [@betancourt2019convergence], @hastings1970monte later proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, with a modified acceptance probability $a^\star(q, q')$:
+The first proposal of using MCMC dates back to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter $\theta$. From a pre-defined symmetric proposal probability distribution  $p(\theta | \mathbf{x})$, it then draw a proposal parameter value $\theta^{(\text{prop})}$, which only depends on the current parameter value $\theta^{(t)}$. This proposal value will be accepted with the probability of $\alpha$ defined in Equation \@ref(eq:metropolisalpha).
 
-$$
-a^\star(q, q') = \min\bigg(1, \frac{Q(q|q')\pi(q')}{Q(q'|q)\pi(q)}\bigg)
-$$
+\begin{equation}
+\alpha = \min\bigg(1, \frac{p(\theta^{(\text{prop})}|\mathbf{x})}{p(\theta^{(t)}|\mathbf{x})}\bigg)
+(\#eq:metropolisalpha)
+\end{equation}
 
-A few years later, Gibbs sampler was proposed with the idea that each parameter is updated one at a time by generating samples from the conditional distirbution [@geman1987stochastic; @gelfand1990sampling]. It decomposes a multivariate probability distribution into univariate conditional distributions [@betancourt2019convergence], which boosted applied Bayesian statistical models at that time. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses by supporting a variety of statistical distributions and automatically applying Gibbs Sampler.
+This proposal and acceptance with probability steps will be iterated for a pre-define number of times. When the Metropolis algorithm reaches a steady state, these proposal values are random values drawn from the posterior distribution of parameter $\theta$, which can be used to describe and characterize the posterior distribution.
 
-The limitation of these traditional methods. [@quiroz2015bayesian]
+
+After decades of successful empirical trials in physics [@betancourt2019convergence], @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC method.
+
+\begin{equation}
+\alpha^\star = \min\bigg(1, \frac{p\left(\theta^{(\text { prop })} | \boldsymbol{x}\right)}{p\left(\theta^{(t)} | \boldsymbol{x}\right)} \frac{q\left(\theta^{(t)} | \theta^{(\text { prop })}\right)}{q\left(\theta^{(\text { prop })} | \theta^{(t)}\right)}\bigg)
+(\#eq:MHalpha)
+\end{equation}
+
+Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
+
+The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in `R` or `BUGS` help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized [@betancourt2019convergence]. The performance of the M-H algorithm crucially depends on the proposal distribution. A efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space [@quiroz2015bayesian]. On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler [@lambert2018student].
 
 
 Scalable Bayesian models
