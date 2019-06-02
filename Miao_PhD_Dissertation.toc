@@ -20,21 +20,23 @@
 \contentsline {section}{\numberline {2.3}Predictive models}{12}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Bayesian models}{12}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Hierarchical models}{13}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Scalable Bayesian models}{13}{section.2.4}
+\contentsline {subsection}{\numberline {2.3.3}Markov chain Monte Carlo (MCMC)}{13}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Scalable Bayesian models}{14}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo}{14}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{14}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{14}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{15}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{15}{subsection.2.4.3}
 \contentsline {section}{\numberline {2.5}Conceptual framework}{15}{section.2.5}
 \contentsline {section}{\numberline {2.6}Gaps in literature}{15}{section.2.6}
-\contentsline {section}{\numberline {2.7}Research aims}{15}{section.2.7}
+\contentsline {section}{\numberline {2.7}Research aims}{16}{section.2.7}
 \contentsline {chapter}{\numberline {3}METHODS}{17}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data source}{17}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Real-time ping data}{17}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Weather data}{17}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Study design}{17}{section.3.2}
-\contentsline {section}{\numberline {3.3}Analytical Plan for Aim 1}{17}{section.3.3}
-\contentsline {section}{\numberline {3.4}Analytical Plan for Aim 2}{17}{section.3.4}
-\contentsline {section}{\numberline {3.5}Analytical Plan for Aim 3}{17}{section.3.5}
+\contentsline {subsection}{\numberline {3.1.2}Weather data}{18}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Road geometry data}{18}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Study design}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}Analytical Plan for Aim 1}{18}{section.3.3}
+\contentsline {section}{\numberline {3.4}Analytical Plan for Aim 2}{18}{section.3.4}
+\contentsline {section}{\numberline {3.5}Analytical Plan for Aim 3}{18}{section.3.5}
 \contentsline {chapter}{\numberline {4}The Probable Content}{19}{chapter.4}
 \contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{23}{chapter.5}
 \contentsline {chapter}{\numberline {6}THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}{25}{chapter.6}
@@ -51,4 +53,4 @@
 \contentsline {section}{R code}{31}{section*.7}
 \contentsline {section}{Another appendix}{31}{section*.8}
 \contentsline {chapter}{Bibliography}{33}{chapter*.9}
-\contentsline {chapter}{Vita Auctoris}{47}{chapter*.10}
+\contentsline {chapter}{Vita Auctoris}{45}{chapter*.10}

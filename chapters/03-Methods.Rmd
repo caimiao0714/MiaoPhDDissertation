@@ -3,13 +3,26 @@ METHODS
 
 Data source
 -----------
+
 ### Real-time ping data
 
-The 496 over-the-road drivers
+The J.B. Hunt Transport Services, a trucking and transportation company in the United States, provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016. A small device was installed in each truck in the company, which will ping irregularly (typically every 5-30 minutes). Each ping will collect data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second. In total, 13,187,289 pings were provided to the research team. Besides, the company also regularly collected real-time GPS location and time-stamped critical events data for all their trucks. There were 12,458 critical events occurred to these 498 truck drivers during the study period. Four types of critical events were recorded in this critical events data.
+
+
+To shrink the large size of over 10 million ping data, we rounded the GPS coordinates to the second decimal places, which are worth up to 1.1 kilometers, and we also round the time to the nearest hour. We then queried weather variables from the DarkSky API using the approximated latitudes, longitudes, date and hour. The weather variables used in this study include precipitation probability, precipitation intensity, and visibility.
+
+For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips. These ping data were then aggregated into different trips. A **trip** is therefore defined as a continuous period of driving without stop. The average length of a trip in this study is 2.31 hours with the standard deviation of 1.8 hours.
+
+After the ping data were aggregated into trips, these trips data were then further divded into different shifts according to an eight-hour rest time for each driver. A **shift** is defined as a long period of driving with potentially less than 8 hours' stops. The Shift_ID column in Table \@ref(tab:tripsdata) shows different shifts, separated by an eight-hour threshold. The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
 
 ### Weather data
 
 The DarkSky API.
+
+
+### Road geometry data
+
+OpenStreetMap API, which can be accessed from the `osmar` package in R.
 
 
 Study design
