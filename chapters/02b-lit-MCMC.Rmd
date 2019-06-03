@@ -33,7 +33,6 @@ Driver-focused statistical models [@cantor2010driver].
 ### Markov chain Monte Carlo (MCMC)
 
 In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \@ref(eq:bayes)). A **Monte Carlo simulation** is a technique to understand a target distribution by generating a large amount of random values from that distribution [@kruschke2014doing]. A **Markov chain** has the property that the probability distribution of the observation $i$ only depends on the previous observation $i-1$, not on any one prior to observation $i-1$, as demonstrated in Equation \@ref(eq:markovchain). 
-
 \begin{equation}
 P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right)=P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
 (\#eq:markovchain)
@@ -42,7 +41,6 @@ P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right)=P\
 Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution [@van2018simple]. It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science [@craiu2014bayesian].  The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals). 
 
 The first proposal of using MCMC dates back to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter $\theta$. From a pre-defined symmetric proposal probability distribution  $p(\theta | \mathbf{x})$, it then draw a proposal parameter value $\theta^{(\text{prop})}$, which only depends on the current parameter value $\theta^{(t)}$. This proposal value will be accepted with the probability of $\alpha$ defined in Equation \@ref(eq:metropolisalpha).
-
 \begin{equation}
 \alpha = \min\bigg(1, \frac{p(\theta^{(\text{prop})}|\mathbf{x})}{p(\theta^{(t)}|\mathbf{x})}\bigg)
 (\#eq:metropolisalpha)
@@ -52,7 +50,6 @@ This proposal and acceptance with probability steps will be iterated for a pre-d
 
 
 After decades of successful empirical trials in physics [@betancourt2019convergence], @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC method.
-
 \begin{equation}
 \alpha^\star = \min\bigg(1, \frac{p\left(\theta^{(\text { prop })} | \boldsymbol{x}\right)}{p\left(\theta^{(t)} | \boldsymbol{x}\right)} \frac{q\left(\theta^{(t)} | \theta^{(\text { prop })}\right)}{q\left(\theta^{(\text { prop })} | \theta^{(t)}\right)}\bigg)
 (\#eq:MHalpha)
@@ -68,7 +65,7 @@ Scalable Bayesian models
 
 Recent ten years witnessed an explosive growth of data size with regard to both the the number of rows and columns.  This poses a major challenge to Bayesian methods using MCMC, which requires the algorithm to evaluate the entire data at each step of iteration [@bardenet2017markov]. In applied analysis, researchers often need to set  thousands of iterations to reach stable posterior distribution, which takes hours or days to implement a single model. On the other hand, when there is high correlation between different parameters that often occur in the case of many parameters, neither the M-H algorithm or Gibbs sampler can efficiently generate samples from the posterior distribtion. 
 
-### Hamiltonian Monte Carlo
+### Hamiltonian Markov Chain simulation
 
 
 [@betancourt2017conceptual; @neal2011mcmc; @betancourt2019convergence]

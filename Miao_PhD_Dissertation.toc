@@ -22,7 +22,7 @@
 \contentsline {subsection}{\numberline {2.3.2}Hierarchical models}{13}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Markov chain Monte Carlo (MCMC)}{13}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}Scalable Bayesian models}{15}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo}{16}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.1}Hamiltonian Markov Chain simulation}{16}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{16}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{16}{subsection.2.4.3}
 \contentsline {section}{\numberline {2.5}Conceptual framework}{16}{section.2.5}
