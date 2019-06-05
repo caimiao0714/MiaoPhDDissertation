@@ -22,11 +22,11 @@
 \contentsline {subsection}{\numberline {2.3.2}Hierarchical models}{13}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Markov chain Monte Carlo (MCMC)}{13}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}Scalable Bayesian models}{16}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Hamiltonian Markov Chain simulation}{16}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo}{17}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{17}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{17}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Conceptual framework}{17}{section.2.5}
-\contentsline {section}{\numberline {2.6}Gaps in literature}{17}{section.2.6}
+\contentsline {section}{\numberline {2.5}Conceptual framework}{18}{section.2.5}
+\contentsline {section}{\numberline {2.6}Gaps in literature}{18}{section.2.6}
 \contentsline {section}{\numberline {2.7}Research aims}{18}{section.2.7}
 \contentsline {chapter}{\numberline {3}METHODS}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data source}{19}{section.3.1}

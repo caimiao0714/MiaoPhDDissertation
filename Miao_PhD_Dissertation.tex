@@ -321,6 +321,8 @@ The normalizing constant need to make the posterior distribution integrate to on
 
 Driver-focused statistical models (Cantor et al. \protect\hyperlink{ref-cantor2010driver}{2010}).
 
+partial pooling
+
 \hypertarget{markov-chain-monte-carlo-mcmc}{%
 \subsection{Markov chain Monte Carlo (MCMC)}\label{markov-chain-monte-carlo-mcmc}}
 
@@ -397,8 +399,24 @@ The generality of the M-H algorithm and Gibbs sampler and the simplicity in soft
 
 Recent ten years witnessed an explosive growth of data size with regard to both the the number of rows and columns. This poses a major challenge to Bayesian methods using MCMC, which requires the algorithm to evaluate the entire data at each step of iteration (Bardenet, Doucet, and Holmes \protect\hyperlink{ref-bardenet2017markov}{2017}). In applied analysis, researchers often need to set thousands of iterations to reach stable posterior distribution, which takes hours or days to implement a single model. On the other hand, when there is high correlation between different parameters that often occur in the case of many parameters, neither the M-H algorithm or Gibbs sampler can efficiently generate samples from the posterior distribtion.
 
-\hypertarget{hamiltonian-markov-chain-simulation}{%
-\subsection{Hamiltonian Markov Chain simulation}\label{hamiltonian-markov-chain-simulation}}
+\hypertarget{hamiltonian-monte-carlo}{%
+\subsection{Hamiltonian Monte Carlo}\label{hamiltonian-monte-carlo}}
+
+Random walk M-H algorithm can have very low acceptance rates and thus be very inefficient when there is correlation between parameters or the parameter space has high curvature. The Hamiltonian Monte Carlo changes the random-walk behavior into a non-random-walk one by adding auxiliary momentum parameters \(p_n\) (Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}).
+
+\BeginKnitrBlock{theorem}[Himiltonian mechanics]
+\protect\hypertarget{thm:hamiltoninamechanics}{}{\label{thm:hamiltoninamechanics} \iffalse (Himiltonian mechanics) \fi{} }Let \(\mathbf{q}\) denote the position vector and \(\mathbf{p}\) denote the momentum vector in the conservative dynamics physics system. The combination \((\mathbf{q}, \mathbf{p})\) then defines a position-momentum phase space. The evolution of this system is then governed by the \emph{Hamiltonian equations}:
+\begin{equation}
+\begin{aligned}
+\frac{d \mathbf{q}}{dt} &= \frac{\partial H}{\mathbf{p}} = \frac{\partial K}{\mathbf{p}}\\
+\frac{d \mathbf{p}}{dt} &= -\frac{\partial H}{\mathbf{q}} = -\frac{\partial K}{\mathbf{q}} - \frac{\partial V}{\mathbf{q}}
+\end{aligned}
+\end{equation}
+
+Where \(H = H(\mathbf{q}, \mathbf{p})\) is the \emph{Hamiltonian} that is the total energy of the system.
+\EndKnitrBlock{theorem}
+
+The Hamiltonian can be decomposed into two components \(H(\mathbf{q}, \mathbf{p}) = K(p, q) + V(q)\). \(K(p, q)\) is the kinetic energy that is unconstrained and need to be decided during implementation, and \(V(q)\) is the potential energy that only depends on the target posterior distribution (Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}).
 
 (Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}, \protect\hyperlink{ref-betancourt2019convergence}{2019}; Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011})
 
