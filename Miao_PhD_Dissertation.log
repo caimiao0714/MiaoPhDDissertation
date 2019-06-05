@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  5 JUN 2019 01:09
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  5 JUN 2019 01:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -754,26 +754,23 @@ Missing character: There is no ◦ in font ec-lmr12!
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [11] [12] [13]
-Underfull \vbox (badness 8056) has occurred while \output is active []
+Underfull \vbox (badness 4416) has occurred while \output is active []
 
-[14]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 374.
+[14] [15]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 393.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [15]
-Underfull \vbox (badness 2351) has occurred while \output is active []
-
-[16] [17] [18
-
-]
+) [16] [17] [18]
 Chapter 3.
 
 Underfull \vbox (badness 1917) has occurred while \output is active []
 
-[19]
+[19
 
-LaTeX Warning: Reference `tab:tripsdata' on page 20 undefined on input line 444
+]
+
+LaTeX Warning: Reference `tab:tripsdata' on page 20 undefined on input line 463
 .
 
 [20]
@@ -818,20 +815,20 @@ Underfull \vbox (badness 1057) has occurred while \output is active []
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [37]
-Overfull \hbox (104.0759pt too wide) in paragraph at lines 900--902
+Overfull \hbox (104.0759pt too wide) in paragraph at lines 919--921
 \T1/lmr/m/n/12 la-tions.'' [][]$\T1/lmtt/m/n/12 https : / / www . fmcsa . dot .
  gov / regulations / hours-[]service / summary-[]hours-[]service-[]regulations$
 [][]\T1/lmr/m/n/12 . 
  []
 
 
-Overfull \hbox (165.48007pt too wide) in paragraph at lines 906--908
+Overfull \hbox (165.48007pt too wide) in paragraph at lines 925--927
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data-
 []and-[]statistics / 84856 / cmvtrafficsafetyfactsheet2016-[]2017 .
  []
 
 
-Overfull \hbox (124.24104pt too wide) in paragraph at lines 909--911
+Overfull \hbox (124.24104pt too wide) in paragraph at lines 928--930
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data-[]and-
 []statistics / 398686 / ltbcf-[]2016-[]final-[]508c-[]may-[]2018 .
  []
@@ -840,7 +837,7 @@ Overfull \hbox (124.24104pt too wide) in paragraph at lines 909--911
 Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [38]
-Overfull \hbox (1.98053pt too wide) in paragraph at lines 921--923
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 940--942
 [][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
 rgeant, and Gamini Punchi-
  []
@@ -858,7 +855,7 @@ Underfull \vbox (badness 1178) has occurred while \output is active []
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [42]
-Overfull \hbox (60.10802pt too wide) in paragraph at lines 1023--1025
+Overfull \hbox (60.10802pt too wide) in paragraph at lines 1042--1044
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008-[]state-
 []of-[]the-[]states-[]report-[]on-[]drowsy-[]driving/$[][]\T1/lmr/m/n/12 . 
  []
@@ -869,7 +866,7 @@ Underfull \vbox (badness 1178) has occurred while \output is active []
 [43]
 Missing character: There is no ı in font ec-lmr12!
 
-Overfull \hbox (0.43573pt too wide) in paragraph at lines 1050--1052
+Overfull \hbox (0.43573pt too wide) in paragraph at lines 1069--1071
 [][]\T1/lmr/m/n/12 Pérez-Chada, Daniel, Ale-jan-dro J Videla, Mar-tin E O'flahe
 rty, Pa-tri-cia Palermo, Jorgelina
  []
@@ -881,7 +878,7 @@ Underfull \vbox (badness 1178) has occurred while \output is active []
 Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [45]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 1107--1109
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 1126--1128
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road-[]safety / safety-[]topics / fatality-[]estimates$[][]\T1/lmr/m/n/12 .
  
@@ -896,26 +893,26 @@ Underfull \vbox (badness 1308) has occurred while \output is active []
 
 ]
 No file Miao_PhD_Dissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1162.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1162.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1181.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1181.
 (./Miao_PhD_Dissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1162.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1162.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1181.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1181.
 
 Package rerunfilecheck Info: File `Miao_PhD_Dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 3A3C20CE695488D2BAE906B44AFCE654.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1162.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1181.
  ) 
 Here is how much of TeX's memory you used:
- 13314 strings out of 492970
- 190511 string characters out of 6133938
- 293906 words of memory out of 5000000
- 17116 multiletter control sequences out of 15000+600000
- 49720 words of font info for 58 fonts, out of 8000000 for 9000
+ 13319 strings out of 492970
+ 190570 string characters out of 6133938
+ 293967 words of memory out of 5000000
+ 17119 multiletter control sequences out of 15000+600000
+ 58252 words of font info for 60 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 36i,16n,47p,2445b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,16n,47p,2445b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Miao_PhD_Dissertation.pdf (63 pages).

@@ -49,13 +49,24 @@ The first proposal of using MCMC dates back to the paper by @metropolis1953equat
 This proposal and acceptance with probability steps will be iterated for a pre-define number of times. When the Metropolis algorithm reaches a steady state, these proposal values are random values drawn from the posterior distribution of parameter $\theta$, which can be used to describe and characterize the posterior distribution.
 
 
-After decades of successful empirical trials in physics [@betancourt2019convergence], @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC method.
+After decades of successful empirical trials in physics, @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary (Theorem \@ref(thm:MHalgorithm)), but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC algorithm used in multiple fields.
+
+```{theorem, name="The Metropolis-Hasting Algorithm", label="MHalgorithm"}
+Let $p(\mathbf{\theta|X})$ be the posterior distribution we want to know, then the Metropolis-Hasting algorithm is:
+  
+1. Let $\theta^{(1)}$ denote an initial value for the continuous state Markov chain,
+2. Set $t = 1$,
+3. Let $q$ be the proposal density which can depend on the current state $\theta^{(t)}$. Simulate one observation $\theta^{(\text { prop })}$ from $q(\theta^{(\text { prop })} | \theta^{(t)})$,
+4. Compute the following probability:
 \begin{equation}
 \alpha^\star = \min\bigg(1, \frac{p\left(\theta^{(\text { prop })} | \boldsymbol{x}\right)}{p\left(\theta^{(t)} | \boldsymbol{x}\right)} \frac{q\left(\theta^{(t)} | \theta^{(\text { prop })}\right)}{q\left(\theta^{(\text { prop })} | \theta^{(t)}\right)}\bigg)
 (\#eq:MHalpha)
 \end{equation}
+5. Set $\theta^{(t+1)} = \theta^{(\text { prop })}$ with the probability of $\alpha^\star$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$ and return to 3 until the desired number of iterations is reached.
 
-Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
+```
+
+Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler (Theorem \@ref(thm:gibbs)) was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
 
 
 ```{theorem, name="Gibbs Sampler", label="gibbs"}
@@ -82,7 +93,7 @@ Recent ten years witnessed an explosive growth of data size with regard to both 
 
 ### Hamiltonian Markov Chain simulation
 
-
+Random walk M-H algorithm can have very low acceptance rates and thus be very inefficient when there is correlation between parameters or the parameter space has high curvature.
 [@betancourt2017conceptual; @neal2011mcmc; @betancourt2019convergence]
 
 
