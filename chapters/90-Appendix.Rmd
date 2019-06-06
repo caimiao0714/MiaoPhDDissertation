@@ -5,10 +5,57 @@
 
 # APPENDIX {-}
 
-## R code {-}
+## Data query {-}
 
-## Another appendix {-}
+### Weather data {-}
+
+```{r}
+
+```
 
 
+### Road geometry data {-}
 
+```{r eval=FALSE}
+pacman::p_load(osmar, stringr)
+src <- osmsource_api(url = "https://api.openstreetmap.org/api/0.6/")
+road_data = function(i = 5, width = 100, data = df3){
+  bb <- center_bbox(data$lon_short[i], data$lat_short[i], 
+                    width, width)
+  ua = get_osm(bb, source = src)
+  ua
+  road_inf <- data.frame(ua$ways$tags)
+  colnames(road_inf) <- c("ID", "Key", "Value")
+  road_inf$Key <- as.character(road_inf$Key)
+  road_inf$Value <- as.character(road_inf$Value)
+  row_speed <-  which(road_inf$Key == "maxspeed", arr.ind=TRUE)
+  row_lane <- which(road_inf$Key == "lanes", arr.ind=TRUE)
+  
+  max_speed <- as.numeric(str_extract(road_inf[row_speed,"Value"], 
+                                      "[[:digit:]]+"))
+  num_lanes <- as.numeric(str_extract(road_inf[row_lane,"Value"], 
+                                      "[[:digit:]]+"))
+  return(c(mean(max_speed), mean(num_lanes)))
+}
+
+loop_data = function(start_index = 1, loop_length = 100000){
+  end_index = start_index + loop_length
+  out_data = data.frame(matrix(0, ncol = 2, nrow = loop_length))
+  df_index_diff = start_index-1
+  
+  for (i in start_index:end_index) {
+    out_data[i-df_index_diff,] = road_data(i, data = df)
+    print(paste0(end_index - i, " remained (", 
+                 round((end_index - i)*100/
+                         (end_index-df_index_diff), 3), "%)"))
+  }
+  
+  return(out_data)
+}
+```
+
+```{r eval=FALSE}
+df = data.table::fread("data/20190605_ping_compressed_3digits.csv")
+dfcontainer12 = loop_data(start_index = 1)
+```
 

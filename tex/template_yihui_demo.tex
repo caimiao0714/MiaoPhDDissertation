@@ -1,5 +1,7 @@
 \documentclass[12pt]{book}
-
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
 \usepackage[nottoc]{tocbibind}
 \usepackage{xspace}
 \usepackage[utf8]{inputenc}
@@ -11,7 +13,10 @@
 %\usepackage[automark]{scrpage2}
 \usepackage{textcomp}
 \usepackage{verbatim}
-\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true, linkcolor=blue, citecolor=red, urlcolor=blue]{hyperref}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 \usepackage{fancyhdr}
 \usepackage{soul}
 \usepackage{makeidx}

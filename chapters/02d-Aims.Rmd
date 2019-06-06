@@ -1,0 +1,19 @@
+Gaps in literature
+------------------
+
+- A focus on crashes instead of precursors of crashes
+- A focus on road segments rather than drivers
+- A focus on case-control comparison given the rareness of truck crashes rather than rates
+
+Research aims
+-------------
+
+1. **Aim1**: Explore the association between truck crashes and critical events.
+
+
+2. **Aim2**: Predict critical events using hierarchical statistical models.
+
+
+3. **Aim3**: scalable hierarchical Bayesian models using subsampling MCMC.
+
+
