@@ -17,14 +17,19 @@ After the ping data were aggregated into trips, these trips data were then furth
 
 ### Weather data from the `DarkSky API`
 
-We retrieved weather variables from the DarkSky API.
+We retrieved weather variables from the Dark Sky API: *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*. The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe [@darksky]. According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. Among several different weather data providers we tested, the Dark Sky API provides the most accurate and complete weather variables.
 
+To reduce the cost of querying weather data for the 13 million historic ping data, we rounded the latitudes and longitudes to two decimal places, rounded the time to the nearest hour, and ignore those stopping pings. 
+This scaled the original 13 million ping data down to 4.9 million unique latitude-longitude-date-time combinations. 
+We used the R package `darksky` to obtain weather variables for these reduced 4.9 million unique  combinations [@hrbrmstr]. 
+The weather data for these combinations were then merged back to the origin data.
+A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat).
 
 ### Road geometry data from the `OpenStreetMap`
 
 We queried two road geometry variables from the `OpenStreetMap` (OSM) project: *speed limit* and *the number of lanes*. The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources [@wikiOSM]. The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License. 
 
-We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. We used real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. If the $100\times100$ meters box is too small to have any road geometry data, we expanded the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values. 
+We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. We used real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. If the $100\times100$ meters box is too small to have any road geometry data, we expanded the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values. The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).
 
 
 

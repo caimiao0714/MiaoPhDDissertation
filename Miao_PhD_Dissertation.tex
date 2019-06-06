@@ -529,14 +529,20 @@ After the ping data were aggregated into trips, these trips data were then furth
 \hypertarget{weather-data-from-the-darksky-api}{%
 \subsection{\texorpdfstring{Weather data from the \texttt{DarkSky\ API}}{Weather data from the DarkSky API}}\label{weather-data-from-the-darksky-api}}
 
-We retrieved weather variables from the DarkSky API.
+We retrieved weather variables from the Dark Sky API: \emph{precipitation intensity}, \emph{precipitation probability}, \emph{wind speed}, and \emph{visibility}. The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe (The Dark Sky Company, LLC \protect\hyperlink{ref-darksky}{2019}). According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location (The Dark Sky API \protect\hyperlink{ref-darkskyds}{2019}). Among several different weather data providers we tested, the Dark Sky API provides the most accurate and complete weather variables.
+
+To reduce the cost of querying weather data for the 13 million historic ping data, we rounded the latitudes and longitudes to two decimal places, rounded the time to the nearest hour, and ignore those stopping pings.
+This scaled the original 13 million ping data down to 4.9 million unique latitude-longitude-date-time combinations.
+We used the R package \texttt{darksky} to obtain weather variables for these reduced 4.9 million unique combinations (Rudis \protect\hyperlink{ref-hrbrmstr}{2018}).
+The weather data for these combinations were then merged back to the origin data.
+A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \ref{weatherdat}.
 
 \hypertarget{road-geometry-data-from-the-openstreetmap}{%
 \subsection{\texorpdfstring{Road geometry data from the \texttt{OpenStreetMap}}{Road geometry data from the OpenStreetMap}}\label{road-geometry-data-from-the-openstreetmap}}
 
 We queried two road geometry variables from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limit} and \emph{the number of lanes}. The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors \protect\hyperlink{ref-wikiOSM}{2019}). The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
 
-We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}). We used real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables. If the \(100\times100\) meters box is too small to have any road geometry data, we expanded the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values.
+We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}). We used real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables. If the \(100\times100\) meters box is too small to have any road geometry data, we expanded the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values. The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
 
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
@@ -868,18 +874,18 @@ Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity fun
 \hypertarget{discussion}{%
 \chapter{DISCUSSION}\label{discussion}}
 
-\cleardoublepage
+\singlespacing
 
 \hypertarget{appendix}{%
 \chapter*{APPENDIX}\label{appendix}}
 \addcontentsline{toc}{chapter}{APPENDIX}
 
-\hypertarget{data-query}{%
-\section*{Data query}\label{data-query}}
+\hypertarget{dataquery}{%
+\section*{Data query}\label{dataquery}}
 \addcontentsline{toc}{section}{Data query}
 
-\hypertarget{weather-data}{%
-\subsection*{Weather data}\label{weather-data}}
+\hypertarget{weatherdat}{%
+\subsection*{Weather data}\label{weatherdat}}
 \addcontentsline{toc}{subsection}{Weather data}
 
 \begin{Shaded}
@@ -913,10 +919,10 @@ Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity fun
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(darksky)}
 \NormalTok{add_var =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dat)\{}
-\NormalTok{  dat[,}\KeywordTok{c}\NormalTok{(}\StringTok{"time"}\NormalTok{, }\StringTok{'summary'}\NormalTok{, }\StringTok{'icon'}\NormalTok{, }\StringTok{'precipIntensity'}\NormalTok{, }
-         \StringTok{'precipProbability'}\NormalTok{, }\StringTok{'temperature'}\NormalTok{, }\StringTok{'apparentTemperature'}\NormalTok{, }
-         \StringTok{'dewPoint'}\NormalTok{, }\StringTok{'humidity'}\NormalTok{, }\StringTok{'pressure'}\NormalTok{, }\StringTok{'windSpeed'}\NormalTok{, }\StringTok{'windGust'}\NormalTok{, }
-         \StringTok{'windBearing'}\NormalTok{, }\StringTok{'cloudCover'}\NormalTok{, }\StringTok{'visibility'}\NormalTok{)] =}\StringTok{ }\OtherTok{NA}
+\NormalTok{  dat[,}\KeywordTok{c}\NormalTok{(}\StringTok{"time"}\NormalTok{, }\StringTok{"summary"}\NormalTok{, }\StringTok{"icon"}\NormalTok{, }\StringTok{"precipIntensity"}\NormalTok{, }
+         \StringTok{"precipProbability"}\NormalTok{, }\StringTok{"temperature"}\NormalTok{, }\StringTok{"apparentTemperature"}\NormalTok{, }
+         \StringTok{"dewPoint"}\NormalTok{, }\StringTok{"humidity"}\NormalTok{, }\StringTok{"pressure"}\NormalTok{, }\StringTok{"windSpeed"}\NormalTok{, }\StringTok{"windGust"}\NormalTok{, }
+         \StringTok{"windBearing"}\NormalTok{, }\StringTok{"cloudCover"}\NormalTok{, }\StringTok{"visibility"}\NormalTok{)] =}\StringTok{ }\OtherTok{NA}
   \KeywordTok{return}\NormalTok{(dat)}
 \NormalTok{\}}
 
@@ -954,8 +960,8 @@ Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity fun
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{road-geometry-data}{%
-\subsection*{Road geometry data}\label{road-geometry-data}}
+\hypertarget{roadgeometry}{%
+\subsection*{Road geometry data}\label{roadgeometry}}
 \addcontentsline{toc}{subsection}{Road geometry data}
 
 \begin{Shaded}
@@ -1004,6 +1010,8 @@ Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity fun
 \NormalTok{dfcontainer12 =}\StringTok{ }\KeywordTok{loop_data}\NormalTok{(}\DataTypeTok{start_index =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\doublespacing
 
 \cleardoublepage
 
@@ -1294,6 +1302,9 @@ Roshandel, Saman, Zuduo Zheng, and Simon Washington. 2015. ``Impact of Real-Time
 \leavevmode\hypertarget{ref-rotenberg2008gender}{}%
 Rotenberg, Lúcia, Luciana Fernandes Portela, Bahby Banks, Rosane Harter Griep, Frida Marina Fischer, and Paul Landsbergis. 2008. ``A Gender Approach to Work Ability and Its Relationship to Professional and Domestic Work Hours Among Nursing Personnel.'' \emph{Applied Ergonomics} 39 (5): 646--52.
 
+\leavevmode\hypertarget{ref-hrbrmstr}{}%
+Rudis, Bob. 2018. ``darksky: An R interface to the Dark Sky API.'' GitHub. \url{https://github.com/hrbrmstr/darksky}.
+
 \leavevmode\hypertarget{ref-Havard2009}{}%
 Rue, Håvard, Sara Martino, and Nicholas Chopin. 2009. ``Approximate Bayesian Inference for Latent Gaussian Models Using Integrated Nested Laplace Approximations (with Discussion).'' \emph{Journal of the Royal Statistical Society B} 71: 319--92.
 
@@ -1317,6 +1328,12 @@ Staton, Catherine, Joao Vissoci, Enying Gong, Nicole Toomey, Rebeccah Wafula, Ji
 
 \leavevmode\hypertarget{ref-stern2018data}{}%
 Stern, Hal S, Daniel Blower, Michael L Cohen, Charles A Czeisler, David F Dinges, Joel B Greenhouse, Feng Guo, et al. 2018. ``Data and Methods for Studying Commercial Motor Vehicle Driver Fatigue, Highway Safety and Long-Term Driver Health.'' \emph{Accident Analysis \& Prevention}.
+
+\leavevmode\hypertarget{ref-darkskyds}{}%
+The Dark Sky API. 2019. ``Data Sources.'' \url{https://darksky.net/dev/docs/sources}.
+
+\leavevmode\hypertarget{ref-darksky}{}%
+The Dark Sky Company, LLC. 2019. ``Dark Sky API --- Overview.'' \url{https://darksky.net/dev/docs}.
 
 \leavevmode\hypertarget{ref-nsc2018}{}%
 The National Safety Council. 2018. ``Vehicle Deaths Estimated at 40,000 for Third Straight Year.'' \url{https://www.nsc.org/road-safety/safety-topics/fatality-estimates}.

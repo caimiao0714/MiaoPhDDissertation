@@ -1,13 +1,13 @@
-\cleardoublepage 
 
 
 
+\singlespacing
 
-# APPENDIX {-}
+# APPENDIX {#appendix .unnumbered}
 
-## Data query {-}
+## Data query {#dataquery .unnumbered}
 
-### Weather data {-}
+### Weather data {#weatherdat .unnumbered}
 
 ```{r eval=FALSE}
 gps_sample = 
@@ -37,10 +37,10 @@ gps_sample
 ```{r eval=FALSE}
 library(darksky)
 add_var = function(dat){
-  dat[,c("time", 'summary', 'icon', 'precipIntensity', 
-         'precipProbability', 'temperature', 'apparentTemperature', 
-         'dewPoint', 'humidity', 'pressure', 'windSpeed', 'windGust', 
-         'windBearing', 'cloudCover', 'visibility')] = NA
+  dat[,c("time", "summary", "icon", "precipIntensity", 
+         "precipProbability", "temperature", "apparentTemperature", 
+         "dewPoint", "humidity", "pressure", "windSpeed", "windGust", 
+         "windBearing", "cloudCover", "visibility")] = NA
   return(dat)
 }
 
@@ -78,7 +78,7 @@ for(i in 1:nrow(gps_sample)){
 ```
 
 
-### Road geometry data {-}
+### Road geometry data {#roadgeometry .unnumbered}
 
 ```{r eval=FALSE}
 pacman::p_load(osmar, stringr)
@@ -123,3 +123,4 @@ df = data.table::fread("data/20190605_ping_compressed_3digits.csv")
 dfcontainer12 = loop_data(start_index = 1)
 ```
 
+\doublespacing
