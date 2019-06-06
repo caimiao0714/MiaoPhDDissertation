@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  5 JUN 2019 19:38
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  5 JUN 2019 19:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -730,7 +730,7 @@ LaTeX Font Info:    Try loading font information for T1+lmtt on input line 34.
 (c:/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (33.37675pt too wide) in paragraph at lines 50--50
+Overfull \hbox (33.37675pt too wide) in paragraph at lines 49--49
  [] [][][]\T1/lmr/bx/n/12 HIERARCHICAL BAYESIAN MOD-ELS US-ING SUB-SAM-PLING MA
 RKOVE 
  []
@@ -820,27 +820,41 @@ Chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 894.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 888.
 [37
 
-] [38] [39
+]
+Underfull \vbox (badness 10000) detected at line 955
+ []
 
-] [40
 
-] [41] [42] [43]
-Overfull \hbox (32.88687pt too wide) in paragraph at lines 1045--1047
+Underfull \vbox (badness 5189) has occurred while \output is active []
+
+[38] [39]
+Underfull \vbox (badness 10000) detected at line 999
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[40] [41] [42
+
+] [43
+
+] [44] [45]
+Overfull \hbox (32.88687pt too wide) in paragraph at lines 1114--1116
 \T1/lmr/m/n/12 la-tions.'' [][]$\T1/lmtt/m/n/12 https : / / www . fmcsa . dot .
  gov / regulations / hours -[] service / summary -[] hours -[] service -[]
  []
 
 
-Overfull \hbox (134.60506pt too wide) in paragraph at lines 1051--1053
+Overfull \hbox (134.60506pt too wide) in paragraph at lines 1120--1122
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data 
 -[] and -[] statistics / 84856 / cmvtrafficsafetyfactsheet2016 -[]
  []
 
 
-Overfull \hbox (36.791pt too wide) in paragraph at lines 1054--1056
+Overfull \hbox (36.791pt too wide) in paragraph at lines 1123--1125
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data -[] an
 d -[] statistics / 398686 / ltbcf -[] 2016 -[] final -[]
  []
@@ -848,17 +862,17 @@ d -[] statistics / 398686 / ltbcf -[] 2016 -[] final -[]
 
 Underfull \vbox (badness 1057) has occurred while \output is active []
 
-[44]
-Overfull \hbox (1.98053pt too wide) in paragraph at lines 1066--1068
+[46]
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 1135--1137
 [][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
 rgeant, and Gamini Punchi-
  []
 
-[45]
+[47]
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[46] [47]
-Overfull \hbox (7.444pt too wide) in paragraph at lines 1168--1170
+[48] [49]
+Overfull \hbox (7.444pt too wide) in paragraph at lines 1237--1239
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008 -[] stat
 e -[] of -[] the -[] states -[] report -[] on -[] drowsy -[]
  []
@@ -866,11 +880,11 @@ e -[] of -[] the -[] states -[] report -[] on -[] drowsy -[]
 
 Underfull \vbox (badness 1057) has occurred while \output is active []
 
-[48]
+[50]
 Missing character: There is no ı in font ec-lmr12!
 Missing character: There is no ́ in font ec-lmr12!
 
-Overfull \hbox (0.43573pt too wide) in paragraph at lines 1195--1197
+Overfull \hbox (0.43573pt too wide) in paragraph at lines 1264--1266
 [][]\T1/lmr/m/n/12 Pérez-Chada, Daniel, Ale-jan-dro J Videla, Mar-tin E O'flahe
 rty, Pa-tri-cia Palermo, Jorgelina
  []
@@ -878,45 +892,45 @@ rty, Pa-tri-cia Palermo, Jorgelina
 
 Underfull \vbox (badness 1184) has occurred while \output is active []
 
-[49]
+[51]
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[50]
+[52]
 Underfull \vbox (badness 1681) has occurred while \output is active []
 
-[51]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 1252--1254
+[53]
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 1321--1323
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road -[] safety / safety -[] topics / fatality -[] estimates$[][]\T1/lmr/m/
 n/12 . 
  []
 
-[52] [53] [54
+[54] [55] [56
 
-] [55] [56
+] [57] [58
 
 ]
 No file Miao_PhD_Dissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1313.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1313.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1382.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1382.
 (./Miao_PhD_Dissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1313.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1313.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1382.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1382.
 
 Package rerunfilecheck Info: File `Miao_PhD_Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 9499CE217ACEDB1CDA585721ABD03D8F.
+(rerunfilecheck)             Checksum: 44045EED75DD83FCFAB98669BE943691.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1313.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1382.
  ) 
 Here is how much of TeX's memory you used:
- 13856 strings out of 492956
- 197222 string characters out of 6136893
- 307571 words of memory out of 5000000
- 17654 multiletter control sequences out of 15000+600000
+ 13855 strings out of 492956
+ 197208 string characters out of 6136893
+ 307458 words of memory out of 5000000
+ 17653 multiletter control sequences out of 15000+600000
  58888 words of font info for 62 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  36i,16n,47p,2445b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Miao_PhD_Dissertation.pdf (69 pages).
+Output written on Miao_PhD_Dissertation.pdf (71 pages).

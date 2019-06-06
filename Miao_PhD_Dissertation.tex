@@ -529,7 +529,7 @@ After the ping data were aggregated into trips, these trips data were then furth
 \hypertarget{weather-data-from-the-darksky-api}{%
 \subsection{\texorpdfstring{Weather data from the \texttt{DarkSky\ API}}{Weather data from the DarkSky API}}\label{weather-data-from-the-darksky-api}}
 
-The DarkSky API.
+We retrieved weather variables from the DarkSky API.
 
 \hypertarget{road-geometry-data-from-the-openstreetmap}{%
 \subsection{\texorpdfstring{Road geometry data from the \texttt{OpenStreetMap}}{Road geometry data from the OpenStreetMap}}\label{road-geometry-data-from-the-openstreetmap}}
@@ -537,9 +537,6 @@ The DarkSky API.
 We queried two road geometry variables from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limit} and \emph{the number of lanes}. The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors \protect\hyperlink{ref-wikiOSM}{2019}). The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
 
 We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}). We used real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables. If the \(100\times100\) meters box is too small to have any road geometry data, we expanded the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values.
-
-\hypertarget{study-design}{%
-\section{Study design}\label{study-design}}
 
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
@@ -884,6 +881,78 @@ Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity fun
 \hypertarget{weather-data}{%
 \subsection*{Weather data}\label{weather-data}}
 \addcontentsline{toc}{subsection}{Weather data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gps_sample =}\StringTok{ }
+\StringTok{  }\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}
+    \DataTypeTok{from_lat =} \KeywordTok{c}\NormalTok{(}\FloatTok{41.3473127}\NormalTok{, }\FloatTok{41.8189037}\NormalTok{, }\FloatTok{32.8258477}\NormalTok{, }\FloatTok{40.6776808}\NormalTok{, }
+                 \FloatTok{40.2366043}\NormalTok{, }\FloatTok{41.3945561}\NormalTok{, }\FloatTok{32.6320605}\NormalTok{, }\FloatTok{40.5413856}\NormalTok{, }
+                 \FloatTok{33.6287422}\NormalTok{, }\FloatTok{40.0692742}\NormalTok{, }\FloatTok{41.347986}\NormalTok{, }\FloatTok{37.7781459}\NormalTok{, }
+                 \FloatTok{43.0843081}\NormalTok{, }\FloatTok{41.48026}\NormalTok{, }\FloatTok{43.495149}\NormalTok{, }\FloatTok{41.5228684}\NormalTok{, }
+                 \FloatTok{41.5763081}\NormalTok{, }\FloatTok{47.6728665}\NormalTok{, }\FloatTok{41.0918361}\NormalTok{, }\FloatTok{41.1537819}\NormalTok{),}
+    \DataTypeTok{from_lon =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{74.2850908}\NormalTok{, }\FloatTok{-73.0835104}\NormalTok{, }\FloatTok{-97.0306677}\NormalTok{, }\FloatTok{-75.1450753}\NormalTok{,}
+                 \FloatTok{-76.9367494}\NormalTok{, }\FloatTok{-72.8589916}\NormalTok{, }\FloatTok{-96.8538145}\NormalTok{, }\FloatTok{-74.8547061}\NormalTok{, }
+                 \FloatTok{-113.7671634}\NormalTok{, }\FloatTok{-76.762612}\NormalTok{, }\FloatTok{-74.284785}\NormalTok{, }\FloatTok{-77.4615586}\NormalTok{, }
+                 \FloatTok{-76.0977384}\NormalTok{, }\FloatTok{-73.2107541}\NormalTok{, }\FloatTok{-73.7727896}\NormalTok{, }\FloatTok{-74.0739204}\NormalTok{, }
+                 \FloatTok{-88.1529175}\NormalTok{, }\FloatTok{-117.3224667}\NormalTok{, }\FloatTok{-74.1554972}\NormalTok{, }\FloatTok{-74.1887031}\NormalTok{), }
+    \DataTypeTok{beg_time =} \KeywordTok{structure}\NormalTok{(}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{1453101738}\NormalTok{, }\DecValTok{1437508088}\NormalTok{, }\DecValTok{1436195038}\NormalTok{, }\DecValTok{1435243088}\NormalTok{, }\DecValTok{1454270680}\NormalTok{, }
+        \DecValTok{1432210106}\NormalTok{, }\DecValTok{1438937772}\NormalTok{, }\DecValTok{1446486480}\NormalTok{, }\DecValTok{1450191622}\NormalTok{, }\DecValTok{1449848630}\NormalTok{, }
+        \DecValTok{1457597084}\NormalTok{, }\DecValTok{1432870446}\NormalTok{, }\DecValTok{1457968284}\NormalTok{, }\DecValTok{1451298724}\NormalTok{, }\DecValTok{1431503502}\NormalTok{, }
+        \DecValTok{1443416864}\NormalTok{, }\DecValTok{1438306368}\NormalTok{, }\DecValTok{1445540454}\NormalTok{, }\DecValTok{1452619392}\NormalTok{, }\DecValTok{1436091072}\NormalTok{), }
+      \DataTypeTok{class =} \KeywordTok{c}\NormalTok{(}\StringTok{"POSIXct"}\NormalTok{, }\StringTok{"POSIXt"}\NormalTok{), }\DataTypeTok{tzone =} \StringTok{"UTC"}\NormalTok{)), }
+    \DataTypeTok{.Names =} \KeywordTok{c}\NormalTok{(}\StringTok{"from_lat"}\NormalTok{, }\StringTok{"from_lon"}\NormalTok{, }\StringTok{"beg_time"}\NormalTok{), }
+    \DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, 20L), }
+    \DataTypeTok{class =} \KeywordTok{c}\NormalTok{(}\StringTok{"tbl_df"}\NormalTok{, }\StringTok{"tbl"}\NormalTok{, }\StringTok{"data.frame"}\NormalTok{))}
+\NormalTok{gps_sample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(darksky)}
+\NormalTok{add_var =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dat)\{}
+\NormalTok{  dat[,}\KeywordTok{c}\NormalTok{(}\StringTok{"time"}\NormalTok{, }\StringTok{'summary'}\NormalTok{, }\StringTok{'icon'}\NormalTok{, }\StringTok{'precipIntensity'}\NormalTok{, }
+         \StringTok{'precipProbability'}\NormalTok{, }\StringTok{'temperature'}\NormalTok{, }\StringTok{'apparentTemperature'}\NormalTok{, }
+         \StringTok{'dewPoint'}\NormalTok{, }\StringTok{'humidity'}\NormalTok{, }\StringTok{'pressure'}\NormalTok{, }\StringTok{'windSpeed'}\NormalTok{, }\StringTok{'windGust'}\NormalTok{, }
+         \StringTok{'windBearing'}\NormalTok{, }\StringTok{'cloudCover'}\NormalTok{, }\StringTok{'visibility'}\NormalTok{)] =}\StringTok{ }\OtherTok{NA}
+  \KeywordTok{return}\NormalTok{(dat)}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(gps_sample))\{}
+\NormalTok{  t =}\StringTok{ }\KeywordTok{get_forecast_for}\NormalTok{(gps_sample}\OperatorTok{$}\NormalTok{from_lat[i], gps_sample}\OperatorTok{$}\NormalTok{from_lon[i], }
+\NormalTok{                       gps_sample}\OperatorTok{$}\NormalTok{beg_time[i])}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{summary[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{summary), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                 t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{summary)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{icon[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{icon), }\OtherTok{NA}\NormalTok{, t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{icon)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{precipIntensity[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{precipIntensity), }
+                                         \OtherTok{NA}\NormalTok{, t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{precipIntensity)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{precipProbability[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{precipProbability), }
+                                           \OtherTok{NA}\NormalTok{, t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{precipProbability)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{temperature[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{temperature), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                     t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{temperature)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{apparentTemperature[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(}
+\NormalTok{    t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{apparentTemperature), }\OtherTok{NA}\NormalTok{, t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{apparentTemperature)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{dewPoint[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{dewPoint), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                  t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{dewPoint)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{humidity[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{humidity), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                  t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{humidity)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{pressure[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{pressure), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                  t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{pressure)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{windSpeed[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{windSpeed), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                   t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{windSpeed)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{windGust[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{windGust), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                  t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{windGust)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{windBearing[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{windBearing), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                     t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{windBearing)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{cloudCover[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{cloudCover), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                    t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{cloudCover)}
+\NormalTok{  gps_sample}\OperatorTok{$}\NormalTok{visibility[i] =}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.null}\NormalTok{(t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{visibility), }\OtherTok{NA}\NormalTok{, }
+\NormalTok{                                    t[[}\DecValTok{3}\NormalTok{]]}\OperatorTok{$}\NormalTok{visibility)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{road-geometry-data}{%
 \subsection*{Road geometry data}\label{road-geometry-data}}

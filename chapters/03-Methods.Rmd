@@ -17,7 +17,7 @@ After the ping data were aggregated into trips, these trips data were then furth
 
 ### Weather data from the `DarkSky API`
 
-The DarkSky API.
+We retrieved weather variables from the DarkSky API.
 
 
 ### Road geometry data from the `OpenStreetMap`
@@ -27,8 +27,7 @@ We queried two road geometry variables from the `OpenStreetMap` (OSM) project: *
 We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. We used real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. If the $100\times100$ meters box is too small to have any road geometry data, we expanded the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values. 
 
 
-Study design
-------------
+
 
 
 
