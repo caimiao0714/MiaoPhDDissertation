@@ -515,23 +515,61 @@ Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{20
 \hypertarget{data-source}{%
 \section{Data source}\label{data-source}}
 
-\hypertarget{real-time-ping-data}{%
-\subsection{Real-time ping data}\label{real-time-ping-data}}
+\hypertarget{real-time-ping}{%
+\subsection{Real-time ping}\label{real-time-ping}}
 
-The J.B. Hunt Transport Services, a trucking and transportation company in the United States, provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016. A small device was installed in each truck in the company, which will ping irregularly (typically every 5-30 minutes). Each ping will collect data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second. In total, 13,187,289 pings were provided to the research team. Besides, the company also regularly collected real-time GPS location and time-stamped critical events data for all their trucks. There were 12,458 critical events occurred to these 498 truck drivers during the study period. Four types of critical events were recorded in this critical events data.
+The J.B. Hunt Transport Services, a trucking and transportation company in the United States,
+provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016.
+A small device was installed in each truck in the company, which will ping irregularly (typically every 5-30 minutes).
+Each \textbf{ping} will collect data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second.
+In total, 13,187,289 pings were provided to the research team.
+Besides, the company also regularly collected real-time GPS location and time-stamped critical events data for all their trucks.
+There were 12,458 critical events occurred to these 498 truck drivers during the study period.
+Four types of critical events were recorded in this critical events data.
 
-To shrink the large size of over 10 million ping data, we rounded the GPS coordinates to the second decimal places, which are worth up to 1.1 kilometers, and we also round the time to the nearest hour. We then queried weather variables from the DarkSky API using the approximated latitudes, longitudes, date and hour. The weather variables used in this study include precipitation probability, precipitation intensity, and visibility.
+For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips.
+These ping data were then aggregated into different trips.
+A \textbf{trip} is therefore defined as a continuous period of driving without stop.
+The average length of a trip in this study is 2.31 hours with the standard deviation of 1.8 hours.
 
-For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips. These ping data were then aggregated into different trips. A \textbf{trip} is therefore defined as a continuous period of driving without stop. The average length of a trip in this study is 2.31 hours with the standard deviation of 1.8 hours.
+After the ping data were aggregated into trips, these trips data were then further divded into different shifts according to an eight-hour rest time for each driver.
+A \textbf{shift} is defined as a long period of driving with potentially less than 8 hours' stops.
+The Shift\_ID column in Table \ref{tab:tripsdata} shows different shifts, separated by an eight-hour threshold.
+The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
 
-After the ping data were aggregated into trips, these trips data were then further divded into different shifts according to an eight-hour rest time for each driver. A \textbf{shift} is defined as a long period of driving with potentially less than 8 hours' stops. The Shift\_ID column in Table \ref{tab:tripsdata} shows different shifts, separated by an eight-hour threshold. The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
+\hypertarget{truck-crashes-and-critical-events}{%
+\subsection{Truck crashes and critical events}\label{truck-crashes-and-critical-events}}
+
+There are four types of critical events provided by the J.B. Hunt:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hard brake
+\item
+  Headway
+\item
+  Rolling stability
+\item
+  Collision mitigation
+\end{enumerate}
+
+\hypertarget{driver-demographic}{%
+\subsection{Driver demographic}\label{driver-demographic}}
+
+These variables can be linked to the trips and crashes table via a common unique identifier.
 
 \hypertarget{weather-data-from-the-darksky-api}{%
 \subsection{\texorpdfstring{Weather data from the \texttt{DarkSky\ API}}{Weather data from the DarkSky API}}\label{weather-data-from-the-darksky-api}}
 
-We retrieved weather variables from the Dark Sky API: \emph{precipitation intensity}, \emph{precipitation probability}, \emph{wind speed}, and \emph{visibility}. The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe (The Dark Sky Company, LLC \protect\hyperlink{ref-darksky}{2019}). According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location (The Dark Sky API \protect\hyperlink{ref-darkskyds}{2019}). Among several different weather data providers we tested, the Dark Sky API provides the most accurate and complete weather variables.
+We retrieved weather variables from the Dark Sky API: \emph{precipitation intensity}, \emph{precipitation probability}, \emph{wind speed}, and \emph{visibility}.
+The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe (The Dark Sky Company, LLC \protect\hyperlink{ref-darksky}{2019}).
+According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location (The Dark Sky API \protect\hyperlink{ref-darkskyds}{2019}).
+Among several different weather data providers we tested, the Dark Sky API provides the most accurate and complete weather variables.
 
-To reduce the cost of querying weather data for the 13 million historic ping data, we rounded the latitudes and longitudes to two decimal places, rounded the time to the nearest hour, and ignore those stopping pings.
+To reduce the cost of querying weather data for the 13 million historic ping data, we rounded the latitudes and longitudes coordinates to two decimal places, which were worth up to 1.1 kilometers
+We also rounded the time to the nearest hour and ignore those stopping pings.
 This scaled the original 13 million ping data down to 4.9 million unique latitude-longitude-date-time combinations.
 We used the R package \texttt{darksky} to obtain weather variables for these reduced 4.9 million unique combinations (Rudis \protect\hyperlink{ref-hrbrmstr}{2018}).
 The weather data for these combinations were then merged back to the origin data.
@@ -540,15 +578,160 @@ A minimal example of R code to retrieve weather data from the DarkSky API can be
 \hypertarget{road-geometry-data-from-the-openstreetmap}{%
 \subsection{\texorpdfstring{Road geometry data from the \texttt{OpenStreetMap}}{Road geometry data from the OpenStreetMap}}\label{road-geometry-data-from-the-openstreetmap}}
 
-We queried two road geometry variables from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limit} and \emph{the number of lanes}. The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors \protect\hyperlink{ref-wikiOSM}{2019}). The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
+We queried two road geometry variables from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limit} and \emph{the number of lanes}.
+The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors \protect\hyperlink{ref-wikiOSM}{2019}).
+The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
 
-We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}). We used real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables. If the \(100\times100\) meters box is too small to have any road geometry data, we expanded the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data. If the OSM API returned data from multiple geometry structures, we took the mean as the returned values. The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
+We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}).
+We used real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables.
+If the \(100\times100\) meters box is too small to have any road geometry data, we expanded the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data.
+If the OSM API returned data from multiple geometry structures, we took the mean as the returned values.
+The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
 
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
 
+This part will be based on truck driver's trips data and crashes data.
+
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
+
+\hypertarget{logistic-regression}{%
+\subsection{Logistic regression}\label{logistic-regression}}
+
+\hypertarget{poisson-regression}{%
+\subsection{Poisson regression}\label{poisson-regression}}
+
+\hypertarget{non-homogeneous-poisson-process}{%
+\subsection{Non-homogeneous Poisson process}\label{non-homogeneous-poisson-process}}
+
+\textbf{Mean function of a point process}:
+
+\[\Lambda(t) = E(N(t))\]
+
+\(\Lambda(t)\) is the expected number of failures through time \(t\).
+
+\textbf{Rate of Occurence of Failures (ROCOF)}: When \(\Lambda\) is differentiable, the ROCOF is:
+
+\[\mu(t) = \frac{d}{dt}\Lambda(t)\]
+The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
+
+\textbf{Intensity function}: The intensity function of a point process is
+
+\[\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\]
+
+When there is no simultaneous events, ROCOF is the same as intensity function.
+
+\textbf{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant.
+
+\textbf{Power law process (PLP)}: When the intensity function of a NHPP is:
+
+\[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\]
+
+Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP).
+
+Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function:
+
+\[\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\]
+
+There are two forms of truncation in a NHPP:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Failure truncation}: When testing stops after a predetermined number of failures, the data are said to be failure truncated.
+\item
+  \textbf{Time truncation}: Data are said to be time truncated when testing stops at a predetermined time \(t\).
+\end{enumerate}
+
+\textbf{The first event}
+
+The cumulative density function (cdf) of time to the first event is \(F(t_1)\): \(F_1(t_1) = P(T_1 \leq t_1) = 1 - S(t_1)\).
+
+The survival function for the first event \(S_1(t_1)\) is:
+\begin{align*}
+S_1(t_1) & = P(T_1 > t_1) \\
+ & = P(N(0, t_1) = 0) \quad N \text{is the number of events}\\
+ & = e^{-\int_{0}^{t_1}\lambda_{u}du}(e^{-\int_{0}^{t_1}\lambda_{u}du})^0/0!\\
+ & = e^{-\int_{0}^{t_1}\lambda_{u}du}
+\end{align*}
+
+The probability density function (pdf) of time to the first event can be calculated by taking the first order derivative of the cdf \(F_1(t_1)\):
+\begin{align*}
+f_1(t_1) & = \frac{d}{dt_1}F_1(t_1)\\
+& = \frac{d}{dt_1}[1 - S_1(t_1)] \\
+& = - \frac{d}{dt_1}S_1(t_1)\\
+& = - \frac{d}{dt_1}e^{-\int_{0}^{t_1}\lambda (u)du}\\
+& = -(-\lambda_{t_1})e^{-\int_{0}^{t_1}\lambda (u)du}\\
+& = \lambda (t_1)e^{-\int_{0}^{t_1}\lambda (u)du}
+\end{align*}
+
+If this NHPP is a PLL, we plug in the intensity function \(\lambda(t) = (\beta / \theta)(t/\theta)^{\beta - 1}\), then we have:
+
+\[f_1(t_1) = \frac{\beta}{\theta}(\frac{t_1}{\theta})^{\beta - 1}e^{-(\frac{t_1}{\theta})^\beta}, \quad t_1 > 0\]
+
+This pdf is identical with the pdf of Weibull distribution, so we have:
+\[T_1 \sim \text{Weibull}(\beta, \theta)\]
+
+\textbf{The second event}
+
+The Survival function of the second event given the first event occurred at \(t_2\) is:
+
+\begin{align*}
+S_2(t_2 | t_1) & = P(T_2 > t_2 | T_1 = t)\\
+& = P(N(t_1, t_2) = 0|T_1 = t_1) \\
+& = e^{-\int_{t_1}^{t_2}\lambda_{u}du}[\int_{t_1}^{t_2}\lambda_{u}du]^0/0!\\
+& = e^{-\int_{t_1}^{t_2}\lambda_{u}du}
+\end{align*}
+
+The we can derive the pdf of \(t_2\) conditioned on \(t_1\)
+\begin{equation}\label{t2}
+\begin{aligned}
+f(t_2|t_1) & = - \frac{d}{dt_2}S_2(t_2)\\
+& = - \frac{d}{dt_2}e^{-\int_{t_1}^{t_2}\lambda(u)du}\\
+& = \lambda(t_2)e^{-\int_{t_1}^{t_2}\lambda(u)du}\\
+& = \frac{\beta}{\theta}(\frac{t_2}{\theta})^{\beta - 1}e^{-[(\frac{t_2}{\theta})^\beta - (\frac{t_1}{\theta})^\beta]}\\
+& = \frac{\frac{\beta}{\theta}(\frac{t_2}{\theta})^{\beta - 1}e^{-(t_2/\theta)^\beta }}{e^{- (t_1/\theta)^\beta}}, \quad t_2 > t_1
+\end{aligned}
+\end{equation}
+
+In the \emph{failure truncated case}, we know the total number of events \(n\) before the experiment starts. We can get the joint likelihood function for \(t_1 < t_2 < \cdots < t_n\) in the failure truncated case based on Equation \ref{t2}.
+\begin{equation}\label{pdfn}
+\begin{aligned}
+f(t_1, t_2, \cdots, t_n) & = f(t_1)f(t_2|t_1)f(t_3|t_1, t_2) \cdots f(t_n|t_1, t_2, \dots, t_{n - 1}) \\
+& = \lambda (t_1)e^{-\int_{0}^{t_1} \dot \lambda (u)du}\lambda (t_2)e^{-\int_{t_1}^{t_2} \dot \lambda (u)du}\cdots\lambda (t_n)e^{-\int_{t_{n-1}}^{t_n}\lambda (u)du}\\
+& = \Big(\prod_{i=1}^n\lambda(t_i)\Big)e^{-\int_0^t\lambda(u)du}\\
+& = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(t_n/\theta)^\beta}, \quad t_1 < t_2 < \cdots < t_n
+\end{aligned}
+\end{equation}
+
+The log-likelihood function in the failure truncated case is therefore:
+\[\log \ell = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{t_n}{\theta}\Big)^\beta\]
+
+In the \emph{time truncated case}, we assume that the truncated time is \(\tau\). The derivation of \(f(t_1, t_2, \cdots, t_n|n)\) is messy in math, we directly give the conclusion here:
+
+\[f(t_1, t_2, \cdots, t_n|n) = n!\prod_{i=1}^n\frac{\lambda(t_i)}{\Lambda(\tau)}\]
+
+Therefore, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is:
+\begin{equation}\label{pdftau}
+\begin{aligned}
+f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
+& = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
+& = \Big(\prod_{i=1}^n\lambda(t_i) \Big)e^{-\int_0^\tau \lambda(u)du}\\
+& = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1} \Big)e^{-(\tau/\theta)^\beta},\\ 
+n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
+\end{aligned}
+\end{equation}
+
+The log likelihood function \(l\) is then:
+\begin{equation}\label{logtau}
+\begin{aligned}
+l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(\tau/\theta)^\beta}\Bigg)\\
+& = \sum_{i=1}^n\log\Big(\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big) - (\frac{\tau}{\theta})^\beta\\
+& = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{\tau}{\theta}\Big)^\beta
+\end{aligned}
+\end{equation}
 
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
@@ -803,8 +986,8 @@ Chapter 6: DISCUSSION
   Future research
 \end{enumerate}
 
-\hypertarget{truck-crashes-and-critical-events}{%
-\chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events}}
+\hypertarget{truck-crashes-and-critical-events-1}{%
+\chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events-1}}
 
 \hypertarget{three-statistical-models-predicting-truck-critical-events}{%
 \chapter{THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}\label{three-statistical-models-predicting-truck-critical-events}}

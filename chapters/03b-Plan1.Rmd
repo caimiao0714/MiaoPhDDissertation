@@ -1,0 +1,5 @@
+Analytical Plan for Aim 1
+-------------------------
+
+This part will be based on truck driver's trips data and crashes data.
+
