@@ -50,10 +50,9 @@ The first proposal of using MCMC dates back to the paper by @metropolis1953equat
 This proposal and acceptance with probability steps will be iterated for a pre-define number of times. When the Metropolis algorithm reaches a steady state, these proposal values are random values drawn from the posterior distribution of parameter $\theta$, which can be used to describe and characterize the posterior distribution.
 
 
-After decades of successful empirical trials in physics, @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary (Theorem \@ref(thm:MHalgorithm)), but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC algorithm used in multiple fields.
+After decades of successful empirical trials in physics, @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC algorithm used in multiple fields.
 
-```{theorem, name="The Metropolis-Hasting Algorithm", label="MHalgorithm"}
-Let $p(\mathbf{\theta|X})$ be the posterior distribution we want to know, then the Metropolis-Hasting algorithm is:
+Let $p(\mathbf{\theta|X})$ be the posterior distribution we want to know, then the *Metropolis-Hasting algorithm* is:
   
 1. Let $\theta^{(1)}$ denote an initial value for the continuous state Markov chain,
 2. Set $t = 1$,
@@ -65,13 +64,12 @@ Let $p(\mathbf{\theta|X})$ be the posterior distribution we want to know, then t
 \end{equation}
 5. Set $\theta^{(t+1)} = \theta^{(\text { prop })}$ with the probability of $\alpha^\star$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$ and return to 3 until the desired number of iterations is reached.
 
-```
 
-Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler (Theorem \@ref(thm:gibbs)) was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
+Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
 
+[An attempt to explain the Gibbs sampler](https://jcahoon.netlify.com/gibbs-for-dummies-like-me/)
 
-```{theorem, name="Gibbs Sampler", label="gibbs"}
-Suppose $\mathbf{\theta} = [\theta_1, \theta_2, \cdots, \theta_k]$ is a $k$-dimensional parameter. Let $\mathbf{X}$ denote the data. The Gibss sampling algorithm is then:
+Suppose $\mathbf{\theta} = [\theta_1, \theta_2, \cdots, \theta_k]$ is a $k$-dimensional parameter. Let $\mathbf{X}$ denote the data. The *Gibss sampling* algorithm is then:
   
 1. Begin with an estimate $\mathbf{\theta}^{(0)} = [\theta_1^{(0)}, \theta_2^{(0)}, \cdots , \theta_k^{(0)}]$ in the parameter space,
 2. Set $t = 1$,
@@ -80,8 +78,6 @@ Suppose $\mathbf{\theta} = [\theta_1, \theta_2, \cdots, \theta_k]$ is a $k$-dime
 5. $\cdots$,
 6. Simulate $\theta_k^{(t)}$ from $p(\theta_k|\theta_1^{(t)}, \theta_3^{(t)},\cdots , \theta_{k-1}^{(t)}, \mathbf{X})$,
 7. Set $t \leftarrow t + 1$ and repeat steps $3-6$ for a pre-specified number of iterations and make sure the Gibbs sampler reaches the steady state for a sufficient number of iterations.
-
-```
 
 
 The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in `R` or `BUGS` help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized [@betancourt2019convergence]. The performance of the M-H algorithm crucially depends on the proposal distribution. A efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space [@quiroz2015bayesian]. On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler [@lambert2018student].
@@ -94,22 +90,26 @@ Recent ten years witnessed an explosive growth of data size and dimensionality. 
 
 ### Hamiltonian Monte Carlo (HMC)
 
-The M-H algorithm can be very inefficient in big data settings as a consequence of sparse high-density parameter space, the cost of evaluating the entire data at each step, and high correlation between parameters. Originally proposed by @duane1987hybrid with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) changes the random-walk behavior into a deterministic one by adding auxiliary momentum parameters $p_n$, thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler [@betancourt2017conceptual; @wang2019hamiltonian]. 
+The M-H algorithm can be very inefficient in big data settings as a consequence of sparse high-density parameter space, the cost of evaluating the entire data at each step, and high correlation between parameters. Originally proposed by @duane1987hybrid with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) changes the random-walk behavior into a deterministic one by adding auxiliary momentum parameters $p_n$, thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler [@betancourt2017conceptual; @wang2019hamiltonian]. Although HMC was proposed in 1987 [@duane1987hybrid], it is only adopted by both theoretical and applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler and statistical programming language `Stan`.
 
-```{theorem, name="Himiltonian mechanics", label="hamiltoninamechanics"}
 Let $\mathbf{q}$ denote the position vector and $\mathbf{p}$ denote the momentum vector in the conservative dynamics physics system. The combination $(\mathbf{q}, \mathbf{p})$ then defines a position-momentum phase space. The evolution of this system is then governed by the *Hamiltonian equations*:
 \begin{equation}
 \begin{aligned}
 \frac{d \mathbf{q}}{dt} &= \frac{\partial H}{\mathbf{p}} = \frac{\partial K}{\mathbf{p}}\\
 \frac{d \mathbf{p}}{dt} &= -\frac{\partial H}{\mathbf{q}} = -\frac{\partial K}{\mathbf{q}} - \frac{\partial V}{\mathbf{q}}
+(\#eq:hamiltonian)
 \end{aligned}
 \end{equation}
 
 Where $H = H(\mathbf{q}, \mathbf{p})$ is the *Hamiltonian* that is the total energy of the system.
-```
 
-The Hamiltonian can be decomposed into two components $H(\mathbf{q}, \mathbf{p}) = K(p, q) + V(q)$. $K(p, q)$ is the kinetic energy that is unconstrained and need to be decided during implementation, and $V(q)$ is the potential energy that only depends on the target posterior distribution [@betancourt2017conceptual].
 
+As shown in Equation \@ref(eq:hamiltonian), the Hamiltonian can be decomposed into two components $H(\mathbf{q}, \mathbf{p}) = K(\mathbf{p}, \mathbf{q}) + V(\mathbf{q})$. 
+$K(p, q)$ is the *kinetic energy* that is unconstrained and need to be decided during implementation, 
+and $V(q)$ is the *potential energy* that only depends on the target posterior distribution (precisely, it is the negative log of the posterior density) [@betancourt2017conceptual; @monnahan2017faster].
+The total energy (the Hamiltonian) remains constant over time.
+
+[Markov Chains: Why Walk When You Can Flow?](http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/)
 
 [@betancourt2017conceptual; @neal2011mcmc; @betancourt2019convergence]
 

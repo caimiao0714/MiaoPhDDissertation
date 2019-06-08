@@ -7,13 +7,11 @@ Data source
 ### Real-time ping
 
 The J.B. Hunt Transport Services, a trucking and transportation company in the United States,
-provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016. 
-A small device was installed in each truck in the company, which will ping irregularly (typically every 5-30 minutes). 
-Each **ping** will collect data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second. 
-In total, 13,187,289 pings were provided to the research team. 
-Besides, the company also regularly collected real-time GPS location and time-stamped critical events data for all their trucks. 
-There were 12,458 critical events occurred to these 498 truck drivers during the study period. 
-Four types of critical events were recorded in this critical events data.
+provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016 to the research team. 
+A small device was installed in each of their truck, which will ping irregularly (typically every 5-30 minutes). 
+Each **ping** will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second. 
+In total, 13,187,289 pings were collected and provided to the research team. 
+
 
 For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips. 
 These ping data were then aggregated into different trips. 
@@ -27,12 +25,18 @@ The average length of a shift in this study is 8.42 hours with the standard devi
 
 ### Truck crashes and critical events
 
-There are four types of critical events provided by the J.B. Hunt:
+
+
+The company regularly collected real-time GPS location and time-stamped critical events data for all their trucks. 
+Four types of critical events were recorded in the critical events data:
 
 1.	Hard brake
 2.	Headway
 3.	Rolling stability
 4.	Collision mitigation
+
+Once some thresholds with regard to the driver's operation were met, the sensor will be triggered and critical events will be recorded in their database.
+There were 12,458 critical events created by the 496 truck drivers during the study period. 
 
 ### Driver demographic
 
