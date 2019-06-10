@@ -132,6 +132,10 @@ It turns out that we can randomly generate high density proposals in the paramet
 
 The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \@ref(hmc)).
 
+Two parameters need to be tuned when implementing the HMC: step size $\epsilon$ and the optimal trajectory length $T$. The optimal trajectory length is the product of the number of steps $L$ and step size $\epsilon$ [@neal2011mcmc; @monnahan2017faster]. The step size $\epsilon$ decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If $\epsilon$ is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If $\epsilon$ is too big, the leapfrog algorithm will loop around and return back to close to its original place. The trajectory length $T = \epsilon L$, which need to be tuned in similar style with $\epsilon$: if $L$ is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if $L$ is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
+
+The No-U-Turn Sampler (NUTS) proposed by @hoffman2014no solved the difficulty of hand tuning $\epsilon$ and $T$ in static HMC. NUTS calculates the optimal step size $\epsilon$ and number of steps $L$ through a tree building algorithm [@monnahan2017faster]. The tree depth $k$ is defined as the number of doublings, resulting in $2^k$ leapfrog steps to build the trajectory. This $k$ is then decided by repeating the doubling iterations until the trajectory 'makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune $\epsilon$ and $T$.
+
 
 ### Integrated Laplace Approximation (INLA)
 

@@ -477,7 +477,11 @@ It turns out that we can randomly generate high density proposals in the paramet
   Set \(\theta^{(t+1)} = \theta^{(\text{prop})}\) with the probability of \(\alpha^H\); otherwise set \(\theta^{(t+1)} = \theta^{(t)}\). Set \(t \leftarrow t + 1\) and return to 3 until the desired number of iterations is reached.
 \end{enumerate}
 
-The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability.
+The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \ref{hmc}).
+
+Two parameters need to be tuned when implementing the HMC: step size \(\epsilon\) and the optimal trajectory length \(T\). The optimal trajectory length is the product of the number of steps \(L\) and step size \(\epsilon\) (Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011}; Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The step size \(\epsilon\) decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If \(\epsilon\) is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If \(\epsilon\) is too big, the leapfrog algorithm will loop around and return back to close to its original place. The trajectory length \(T = \epsilon L\), which need to be tuned in similar style with \(\epsilon\): if \(L\) is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if \(L\) is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
+
+The No-U-Turn Sampler (NUTS) proposed by Hoffman and Gelman (\protect\hyperlink{ref-hoffman2014no}{2014}) solved the difficulty of hand tuning \(\epsilon\) and \(T\) in static HMC. NUTS calculates the optimal step size \(\epsilon\) and number of steps \(L\) through a tree building algorithm (Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The tree depth \(k\) is defined as the number of doublings, resulting in \(2^k\) leapfrog steps to build the trajectory. This \(k\) is then decided by repeating the doubling iterations until the trajectory `makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune \(\epsilon\) and \(T\).
 
 \hypertarget{integrated-laplace-approximation-inla}{%
 \subsection{Integrated Laplace Approximation (INLA)}\label{integrated-laplace-approximation-inla}}
@@ -1439,6 +1443,9 @@ Mitler, Merrill M, James C Miller, Jeffrey J Lipsitz, James K Walsh, and C Denni
 
 \leavevmode\hypertarget{ref-moneta1996time}{}%
 Moneta, Giovanni B, Annette Leclerc, Jean-François Chastang, Patrick Dang Tran, and Marcel Goldberg. 1996. ``Time-Trend of Sleep Disorder in Relation to Night Work: A Study of Sequential 1-Year Prevalences Within the Gazel Cohort.'' \emph{Journal of Clinical Epidemiology} 49 (10): 1133--41.
+
+\leavevmode\hypertarget{ref-monnahan2017faster}{}%
+Monnahan, Cole C, James T Thorson, and Trevor A Branch. 2017. ``Faster Estimation of Bayesian Models in Ecology Using Hamiltonian Monte Carlo.'' \emph{Methods in Ecology and Evolution} 8 (3): 339--48.
 
 \leavevmode\hypertarget{ref-naik2016weather}{}%
 Naik, Bhaven, Li-Wei Tung, Shanshan Zhao, and Aemal J Khattak. 2016. ``Weather Impacts on Single-Vehicle Truck Crash Injury Severity.'' \emph{Journal of Safety Research} 58: 57--65.
