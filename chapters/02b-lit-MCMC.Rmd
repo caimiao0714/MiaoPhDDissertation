@@ -56,18 +56,16 @@ Let $p(\mathbf{\theta|X})$ be the posterior distribution we want to know, then t
   
 1. Let $\theta^{(1)}$ denote an initial value for the continuous state Markov chain,
 2. Set $t = 1$,
-3. Let $q$ be the proposal density which can depend on the current state $\theta^{(t)}$. Simulate one observation $\theta^{(\text { prop })}$ from $q(\theta^{(\text { prop })} | \theta^{(t)})$,
+3. Let $q$ be the proposal density which can depend on the current state $\theta^{(t)}$. Simulate one observation $\theta^{(\text{prop})}$ from $q(\theta^{(\text{prop})} | \theta^{(t)})$,
 4. Compute the following probability:
 \begin{equation}
-\alpha^\star = \min\bigg(1, \frac{p\left(\theta^{(\text { prop })} | \boldsymbol{x}\right)}{p\left(\theta^{(t)} | \boldsymbol{x}\right)} \frac{q\left(\theta^{(t)} | \theta^{(\text { prop })}\right)}{q\left(\theta^{(\text { prop })} | \theta^{(t)}\right)}\bigg)
+\alpha^\star = \min\bigg(1, \frac{p\left(\theta^{(\text{prop})} | \boldsymbol{x}\right)}{p\left(\theta^{(t)} | \boldsymbol{x}\right)} \frac{q\left(\theta^{(t)} | \theta^{(\text{prop})}\right)}{q\left(\theta^{(\text{prop})} | \theta^{(t)}\right)}\bigg)
 (\#eq:MHalpha)
 \end{equation}
-5. Set $\theta^{(t+1)} = \theta^{(\text { prop })}$ with the probability of $\alpha^\star$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$ and return to 3 until the desired number of iterations is reached.
+5. Set $\theta^{(t+1)} = \theta^{(\text{prop})}$ with the probability of $\alpha^\star$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$. Set $t \leftarrow t + 1$ and return to 3 until the desired number of iterations is reached.
 
 
-Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distirbutions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
-
-[An attempt to explain the Gibbs sampler](https://jcahoon.netlify.com/gibbs-for-dummies-like-me/)
+Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distributions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
 
 Suppose $\mathbf{\theta} = [\theta_1, \theta_2, \cdots, \theta_k]$ is a $k$-dimensional parameter. Let $\mathbf{X}$ denote the data. The *Gibss sampling* algorithm is then:
   
@@ -90,30 +88,49 @@ Recent ten years witnessed an explosive growth of data size and dimensionality. 
 
 ### Hamiltonian Monte Carlo (HMC)
 
-The M-H algorithm can be very inefficient in big data settings as a consequence of sparse high-density parameter space, the cost of evaluating the entire data at each step, and high correlation between parameters. Originally proposed by @duane1987hybrid with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) changes the random-walk behavior into a deterministic one by adding auxiliary momentum parameters $p_n$, thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler [@betancourt2017conceptual; @wang2019hamiltonian]. Although HMC was proposed in 1987 [@duane1987hybrid], it is only adopted by both theoretical and applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler and statistical programming language `Stan`.
+The M-H algorithm and Gibbs sampler can be very inefficient in big data settings as a consequence of sparse high-density parameter space, high costs of evaluating the entire data at each step, or a high correlation between parameters. Originally proposed by @duane1987hybrid with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) modifies the random-walk behavior in M-H algorithm into a deterministic one by adding auxiliary momentum parameters $p_n$, thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler [@betancourt2017conceptual; @wang2019hamiltonian]. Although HMC was originally proposed in 1987 [@duane1987hybrid], it is only widely adopted by applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler (NUTS) [@hoffman2014no] and the statistical programming language `Stan` [@carpenter2017stan].
 
-Let $\mathbf{q}$ denote the position vector and $\mathbf{p}$ denote the momentum vector in the conservative dynamics physics system. The combination $(\mathbf{q}, \mathbf{p})$ then defines a position-momentum phase space. The evolution of this system is then governed by the *Hamiltonian equations*:
+Let $\boldsymbol{q}$ denote the position vector and $\boldsymbol{p}$ denote the momentum vector in the conservative dynamics physics system. Note that $\boldsymbol{q}$ and $\boldsymbol{q}$ must have the same length. The combination $(\boldsymbol{q}, \boldsymbol{p})$ then defines a position-momentum phase space, which can be calculated using the conditional distribution [@neal2011mcmc; @betancourt2017conceptual]:
+$$\pi(\boldsymbol{p}, \boldsymbol{q}) = \pi(\boldsymbol{p}|\boldsymbol{q})\pi(\boldsymbol{q})$$
+
+This joint distribution can also be defined in terms of the *Hamiltonian*:
+$$\pi(\boldsymbol{p}, \boldsymbol{q}) = e^{-H(\boldsymbol{p}, \boldsymbol{q})}$$
+After a little bit of transformation, we have:
 \begin{equation}
 \begin{aligned}
-\frac{d \mathbf{q}}{dt} &= \frac{\partial H}{\mathbf{p}} = \frac{\partial K}{\mathbf{p}}\\
-\frac{d \mathbf{p}}{dt} &= -\frac{\partial H}{\mathbf{q}} = -\frac{\partial K}{\mathbf{q}} - \frac{\partial V}{\mathbf{q}}
+H(\boldsymbol{p}, \boldsymbol{q}) &= -\log \pi(\boldsymbol{p}, \boldsymbol{q})\\
+&= -\log\pi(\boldsymbol{p}|\boldsymbol{q}) - \log\pi(\boldsymbol{q})\\
+&= K(\boldsymbol{p}, \boldsymbol{q}) + V(\boldsymbol{q})
 (\#eq:hamiltonian)
 \end{aligned}
 \end{equation}
 
-Where $H = H(\mathbf{q}, \mathbf{p})$ is the *Hamiltonian* that is the total energy of the system.
+In the perspective of physics, the *Hamiltonian* $H(\boldsymbol{p}, \boldsymbol{q})$ is the total energy of the system, which composes of two parts: *kinetic energy* $K(\boldsymbol{p}, \boldsymbol{q})$ and *potential energy* $V(\boldsymbol{q})$. Note that the potential energy $V(\boldsymbol{q}) = -\log\pi(\boldsymbol{q})$ is essentially the negative log of the posterior distribution of the parameter posterior density $\boldsymbol{q}$.
 
+In a static system, the Hamiltonian is a constant. The evolution of this system is governed by the *Hamiltonian equations*:
+\begin{equation}
+\begin{aligned}
+\frac{d \boldsymbol{q}}{dt} &= \frac{\partial H}{\boldsymbol{p}} = \frac{\partial K}{\boldsymbol{p}}\\
+\frac{d \boldsymbol{p}}{dt} &= -\frac{\partial H}{\boldsymbol{q}} = -\frac{\partial K}{\boldsymbol{q}} - \frac{\partial V}{\boldsymbol{q}}
+(\#eq:hamiltonianequation)
+\end{aligned}
+\end{equation}
 
-As shown in Equation \@ref(eq:hamiltonian), the Hamiltonian can be decomposed into two components $H(\mathbf{q}, \mathbf{p}) = K(\mathbf{p}, \mathbf{q}) + V(\mathbf{q})$. 
-$K(p, q)$ is the *kinetic energy* that is unconstrained and need to be decided during implementation, 
-and $V(q)$ is the *potential energy* that only depends on the target posterior distribution (precisely, it is the negative log of the posterior density) [@betancourt2017conceptual; @monnahan2017faster].
-The total energy (the Hamiltonian) remains constant over time.
+It turns out that we can randomly generate high density proposals in the parameters space by taking advantage of the Hamiltonian system. Here is the general idea if the *HMC algorithm* [@lambert2018student]: 
 
-[Markov Chains: Why Walk When You Can Flow?](http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/)
+1. Let $\theta^{(0)}$ denote a random initial value from a proposal distribution,
+2. Set $t = 1$,
+3. Generate a random initial momentum $m$ from a proposal distribution (typically a multivariate normal distribution),
+4. Use the leapfrog algorithm to solve the trajectory moving over the high-density posterior parameter space under the Hamiltonian mechanism for a time period,
+5. Calculate the new momentum $m^\prime$ and new position $\theta^{(\text{prop})}$
+6. Compute the following probability:
+\begin{equation}
+\alpha^H = \min\bigg(1, \frac{p\left(\theta^{(\text{prop})} | \boldsymbol{x}\right)p(\theta^{(\text{prop})})}{p\left(\theta^{(t)} | \boldsymbol{x}\right)p(\theta^{(t)})} \frac{q(m^\prime)}{q(m)}\bigg)
+(\#eq:hmc)
+\end{equation}
+7. Set $\theta^{(t+1)} = \theta^{(\text{prop})}$ with the probability of $\alpha^H$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$. Set $t \leftarrow t + 1$ and return to 3 until the desired number of iterations is reached.
 
-[@betancourt2017conceptual; @neal2011mcmc; @betancourt2019convergence]
-
-
+The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \@ref(hmc)).
 
 
 ### Integrated Laplace Approximation (INLA)

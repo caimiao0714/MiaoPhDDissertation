@@ -23,11 +23,11 @@
 \contentsline {subsection}{\numberline {2.3.3}Markov chain Monte Carlo (MCMC)}{13}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}Scalable Bayesian models}{16}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo (HMC)}{17}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{18}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{18}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Conceptual framework}{18}{section.2.5}
-\contentsline {section}{\numberline {2.6}Gaps in literature}{19}{section.2.6}
-\contentsline {section}{\numberline {2.7}Research aims}{19}{section.2.7}
+\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{19}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{19}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Conceptual framework}{19}{section.2.5}
+\contentsline {section}{\numberline {2.6}Gaps in literature}{20}{section.2.6}
+\contentsline {section}{\numberline {2.7}Research aims}{20}{section.2.7}
 \contentsline {chapter}{\numberline {3}METHODS}{21}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data source}{21}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Real-time ping}{21}{subsection.3.1.1}
