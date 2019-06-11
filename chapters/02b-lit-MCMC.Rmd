@@ -2,17 +2,25 @@ Predictive models
 -----------------
 ### Overview
 
-**Explain or to predict** @shmueli2010explain; @breiman2001statistical
+**Explain or to predict** @shmueli2010explain; @breiman2001statistical.
 
-The most commonly used statistical models for traffic safety are logistic regression (Model \@ref(eq:logit)) and Poisson regression (Model \@ref(eq:poisson)).
+The most commonly used statistical models for traffic safety are logistic regression and Poisson regression.
+
+The parameterization of a logistic regression is shown in Model \@ref(eq:logit).
 
 \begin{equation}
 \begin{split}
 Y_i & \sim \text{Bernoulli}(p_i) \\
-\text{logit}(\frac{p_i}{1 - p_i}) & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+\log(\frac{p_i}{1 - p_i}) & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
 (\#eq:logit)
 \end{split}
 \end{equation}
+
+Where $Y_i$ is a binary variable that indicates whether an event occurred or not in the $i$-th observation. $p_i$ is the mean parameter of a Bernoulli distribution, which is constrained on $[0, 1]$. The logit transformation of $p_i$ then has the range from $-\infty$ to $+\infty$, which equals a linear combination of the predictors $x_1, x_2, \cdots, x_k$ and associated parameters $\beta_0, \beta_1, \cdots, \beta_k$.
+
+Logistic regression is commonly used to predict the crash likelihood (probability)
+
+The parameterization of a Poisson regression is shown in Model \@ref(eq:poisson).
 
 \begin{equation}
 \begin{split}
@@ -21,6 +29,10 @@ Y_i^\star & \sim \text{Poisson}(\mu_i) \\
 (\#eq:poisson)
 \end{split}
 \end{equation}
+
+Where $Y_i^\star$ is the number of events in the $i$-th observation, which must be a non-negative integer. $\mu_i$ is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of $\mu_i$ transforms $\mu_i$ into the range of $(-\infty, +\infty)$, which equals a linear combination of the predictors $x_1, x_2, \cdots, x_k$ and associated parameters $\beta_0, \beta_1, \cdots, \beta_k$.
+
+
 
 ### Bayesian models
 
@@ -41,7 +53,8 @@ The normalizing constant need to make the posterior distribution integrate to on
 
 **Advantages of Bayesian inference**
 
-**Posterior predictive distribution**.
+- Sparse data
+- Posterior predictive distribution.
 
 ### Hierarchical models
 

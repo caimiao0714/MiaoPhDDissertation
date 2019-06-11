@@ -323,17 +323,25 @@ Pack et al. (\protect\hyperlink{ref-pack1995characteristics}{1995})'s analysis r
 \hypertarget{overview}{%
 \subsection{Overview}\label{overview}}
 
-\textbf{Explain or to predict} Shmueli and others (\protect\hyperlink{ref-shmueli2010explain}{2010}); Breiman and others (\protect\hyperlink{ref-breiman2001statistical}{2001})
+\textbf{Explain or to predict} Shmueli and others (\protect\hyperlink{ref-shmueli2010explain}{2010}); Breiman and others (\protect\hyperlink{ref-breiman2001statistical}{2001}).
 
-The most commonly used statistical models for traffic safety are logistic regression (Model \eqref{eq:logit}) and Poisson regression (Model \eqref{eq:poisson}).
+The most commonly used statistical models for traffic safety are logistic regression and Poisson regression.
+
+The parameterization of a logistic regression is shown in Model \eqref{eq:logit}.
 
 \begin{equation}
 \begin{split}
 Y_i & \sim \text{Bernoulli}(p_i) \\
-\text{logit}(\frac{p_i}{1 - p_i}) & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+\log(\frac{p_i}{1 - p_i}) & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
 \label{eq:logit}
 \end{split}
 \end{equation}
+
+Where \(Y_i\) is a binary variable that indicates whether an event occurred or not in the \(i\)-th observation. \(p_i\) is the mean parameter of a Bernoulli distribution, which is constrained on \([0, 1]\). The logit transformation of \(p_i\) then has the range from \(-\infty\) to \(+\infty\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
+
+Logistic regression is commonly used to predict the crash likelihood (probability)
+
+The parameterization of a Poisson regression is shown in Model \eqref{eq:poisson}.
 
 \begin{equation}
 \begin{split}
@@ -342,6 +350,8 @@ Y_i^\star & \sim \text{Poisson}(\mu_i) \\
 \label{eq:poisson}
 \end{split}
 \end{equation}
+
+Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which must be a non-negative integer. \(\mu_i\) is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of \(\mu_i\) transforms \(\mu_i\) into the range of \((-\infty, +\infty)\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
 
 \hypertarget{bayesian-models}{%
 \subsection{Bayesian models}\label{bayesian-models}}
@@ -362,7 +372,13 @@ The normalizing constant need to make the posterior distribution integrate to on
 
 \textbf{Advantages of Bayesian inference}
 
-\textbf{Posterior predictive distribution}.
+\begin{itemize}
+\tightlist
+\item
+  Sparse data
+\item
+  Posterior predictive distribution.
+\end{itemize}
 
 \hypertarget{hierarchical-models}{%
 \subsection{Hierarchical models}\label{hierarchical-models}}
