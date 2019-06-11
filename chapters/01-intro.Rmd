@@ -61,9 +61,9 @@ With the rapid development of modern technology, real-time driving and critical 
 I propose using real-time truck ping data provided by the J.B. Hunt, real-time weather and traffic data to
 
 
-1) **quantify the association between truck crashes and critical events**;
-2) **construct predictive models for truck critical events**;
-3) **establish scalable Bayesian hierarchical models for large truck data**.
+1) quantify the association between truck crashes and critical events;
+2) construct predictive models for truck critical events;
+3) establish scalable Bayesian hierarchical models for large truck data.
 
 
 I believe that this work will contribute to statistical theories in constructing scalable Bayesian hierarchical statistical and reliability models using modern Markov chain Monte Carlo simulations. Realistically, these predictive models will inform policy-makers the functional relationship between driver characteristics, traffic, weather, and other real-time driving environment. These predictive models can be further used to provide data-driven justification to optimize trucking routes and minimize unsafe driving behaviors.

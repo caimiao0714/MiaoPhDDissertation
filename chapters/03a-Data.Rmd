@@ -38,7 +38,7 @@ Four types of critical events were recorded in the critical events data:
 Once some thresholds with regard to the driver's operation were met, the sensor will be triggered and critical events will be recorded in their database.
 There were 12,458 critical events created by the 496 truck drivers during the study period. 
 
-### Driver demographic
+### Driver demographics
 
 These variables can be linked to the trips and crashes table via a common unique identifier.
 

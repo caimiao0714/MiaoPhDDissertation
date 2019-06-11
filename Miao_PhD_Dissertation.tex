@@ -250,11 +250,11 @@ I propose using real-time truck ping data provided by the J.B. Hunt, real-time w
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  \textbf{quantify the association between truck crashes and critical events};
+  quantify the association between truck crashes and critical events;
 \item
-  \textbf{construct predictive models for truck critical events};
+  construct predictive models for truck critical events;
 \item
-  \textbf{establish scalable Bayesian hierarchical models for large truck data}.
+  establish scalable Bayesian hierarchical models for large truck data.
 \end{enumerate}
 
 I believe that this work will contribute to statistical theories in constructing scalable Bayesian hierarchical statistical and reliability models using modern Markov chain Monte Carlo simulations. Realistically, these predictive models will inform policy-makers the functional relationship between driver characteristics, traffic, weather, and other real-time driving environment. These predictive models can be further used to provide data-driven justification to optimize trucking routes and minimize unsafe driving behaviors.
@@ -281,8 +281,7 @@ Drowsy driving is an especially common practice in less-developed countries beca
 
 Stern et al. (\protect\hyperlink{ref-stern2018data}{2018}) reviewed the research related to fatigue of commercial motor vehicle drivers. Because of the difficulty of running a controlled experiment by imposing treatments, most research designs are observational studies, that is, they compare the effects of variables that are observed, not imposed. One exception to this is a \emph{randomized encouragement design} where drivers are randomized to receive some sort of incentive to apply some treatment, but are not forced to do so. If an effect is observed, we would conclude that it is due to the incentive, not necessarily to the actual treatment. Many studies use a cohort design or a case-control study. In a cohort design, a number of drivers is identified and studied across time. In a case-control study, a number of cases (e.g., crashes, or some other safety measure) are identified and are matched with controls; focus is then placed on the differences between the cases and controls. Both cohort studies and case-control studies can be useful in assessing safety.
 
-\hypertarget{fatigue-measurement}{%
-\subsection{Fatigue measurement}\label{fatigue-measurement}}
+\textbf{Fatigue measurement}
 
 The reason why little has been done about drowsy driving is there is no simple way to objectively measure fatigue driving (Dement \protect\hyperlink{ref-dement1997perils}{1997}).
 
@@ -293,7 +292,9 @@ A study by Pack et al. (\protect\hyperlink{ref-pack1995characteristics}{1995}) r
 
 (Duke, Guest, and Boggess \protect\hyperlink{ref-duke2010age}{2010}) Age-related safety.
 
-Another driver-related risk factor of driving safety critical events is drivers' age. In many developing countries, to meet the huge demand services and supply chain management, it is very common to extend the retirement age or reemploy retired workers (Popkin et al. \protect\hyperlink{ref-popkin2008age}{2008}). Aging drivers increase the chance of the safety critical events in three aspects: impaired eyesight, prolonged reaction time to exogenous stimuli, and vulnerability to fatigue (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). Aged drivers are associated with eyesight diseases or functionality impairment, such as cataracts, narrowed peripheral vision and decreasing visual acuity (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). In addition, working for truck companies often means irregular shifts and taking the night schedules, which disrupt the circadian time-keeping systems, especially for the aged workers (Moneta et al. \protect\hyperlink{ref-moneta1996time}{1996}).
+Another driver-related risk factor of driving safety critical events is drivers' age. It is reported that younger drivers will experience more crashes than older drivers (Cantor et al. \protect\hyperlink{ref-cantor2010driver}{2010}).
+
+On the other hand, older drivers can also experience an increased risk of crash. To meet the huge demand services and supply chain management, it is very common to extend the retirement age or reemploy retired workers in developing countries (Popkin et al. \protect\hyperlink{ref-popkin2008age}{2008}). Aging drivers increase the chance of the safety critical events in three aspects: impaired eyesight, prolonged reaction time to exogenous stimuli, and vulnerability to fatigue (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). Aged drivers are associated with eyesight diseases or functionality impairment, such as cataracts, narrowed peripheral vision and decreasing visual acuity (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). In addition, working for truck companies often means irregular shifts and taking the night schedules, which disrupt the circadian time-keeping systems, especially for the aged workers (Moneta et al. \protect\hyperlink{ref-moneta1996time}{1996}).
 
 Aged drivers may find it much more difficult to adjust for the sleep-wake cycle to keep pace with the schedule required by the employer company. Therefore, this disruption of the circadian systems, in turn, increases the chances to feel sleepy or fatigue for workers. It is indicated by research that the ``critical age'' of shiftwork intolerance is about 45 to 50 years, at which sleep disorder, persisting fatigue and digestive problems become the most obvious (Di Milia et al. \protect\hyperlink{ref-di2011demographic}{2011}). Young drivers are much better in the sense of physical health and resistance to fatigue compared with aged drivers, however, they are more vulnerable regarding the experience of driving. A study conducted by Clarke suggested that young drivers (17 -- 19 years old), especially males, have significantly more accidents than other drivers during the hours of darkness, on rural curves, and rear-end shunts compared with male drivers aged 20 -25 years (Clarke et al. \protect\hyperlink{ref-clarke2006young}{2006}). The reasons for these young driver accidents were not fully explained, but could largely be attributed to inexperience.
 
@@ -319,10 +320,33 @@ Pack et al. (\protect\hyperlink{ref-pack1995characteristics}{1995})'s analysis r
 \hypertarget{predictive-models}{%
 \section{Predictive models}\label{predictive-models}}
 
+\hypertarget{overview}{%
+\subsection{Overview}\label{overview}}
+
+\textbf{Explain or to predict} Shmueli and others (\protect\hyperlink{ref-shmueli2010explain}{2010}); Breiman and others (\protect\hyperlink{ref-breiman2001statistical}{2001})
+
+The most commonly used statistical models for traffic safety are logistic regression (Model \eqref{eq:logit}) and Poisson regression (Model \eqref{eq:poisson}).
+
+\begin{equation}
+\begin{split}
+Y_i & \sim \text{Bernoulli}(p_i) \\
+\text{logit}(\frac{p_i}{1 - p_i}) & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+\label{eq:logit}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+Y_i^\star & \sim \text{Poisson}(\mu_i) \\
+\log\mu_i & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+\label{eq:poisson}
+\end{split}
+\end{equation}
+
 \hypertarget{bayesian-models}{%
 \subsection{Bayesian models}\label{bayesian-models}}
 
-In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}).
+In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}). Researchers have subjective prior beliefs (a probability distribution) on these parameters \(p(\theta)\) before they collect any data. After observing the data \(\mathbf{X}\), the researchers could change their prior beliefs. Therefore, the posterior distribution \(p(\theta | \mathbf{X})\) is an an unconditional distribution that is a compromise between the prior beliefs and the data. This compromise is given analytically by the Bayes Theorem (Equation \eqref{eq:bayes}).
 
 \begin{equation}
 \begin{split}
@@ -332,11 +356,9 @@ p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \
 \end{split}
 \end{equation}
 
-Where \(p(\theta | \mathbf{X})\) is the posterior distribution of the parameters, \(p(\theta)\) is the prior distribution of the parameters, \(p(\mathbf{X}|\theta)\) is the likelihood function, and \(\int p(\theta)p(\mathbf{X}|\theta)d\theta\) is a normalizing constant.
+Where \(p(\mathbf{X}|\theta)\) is the likelihood function, which reflects the data generating process that gives rise to the data observed. The denominator \(\int p(\theta)p(\mathbf{X}|\theta)d\theta\) is a normalizing constant that makes the posterior distribution integrates to one. The prior and likelihood function are straightforward since they both have analytical forms. The trickiest part of Bayesian inference is the normalizing constant in the denominator (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}).
 
-The prior distribution reflects the researcher's subjective belief on the parameters before observing any data. The likelihood function reflects the data generating process that gives rise to the data observed. The posterior distribution is an unconditional distribution that includes the researcher's belief on the parameters after observing the data. The prior and likelihood function are straightforward since they both have analytical forms. The most tricky part of Bayesian inference is the normalizing constant in the denominator (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}).
-
-The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods, to calculate or approximate this constant.
+The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods or the integrated Laplace approximation, to directly sample from this posterior distribution or approximate this constant.
 
 \textbf{Advantages of Bayesian inference}
 
@@ -345,7 +367,18 @@ The normalizing constant need to make the posterior distribution integrate to on
 \hypertarget{hierarchical-models}{%
 \subsection{Hierarchical models}\label{hierarchical-models}}
 
-Driver-focused statistical models (Cantor et al. \protect\hyperlink{ref-cantor2010driver}{2010}).
+Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur. We must also study the non-crashes and compare them with crashes. Therefore, we argue that it is more natural to use vehicle drivers as the sampling unit. The data generating process (DGP) is to sample a certain number of drivers from a population, observe their driving trips or shifts for a specific period, then compare the crashes with the non-crashes, and make conclusions on risk factors.
+
+In this driver-centered DGP, a hierarchical model that accounts for both driver-level variation and trip- or shift-level variation is deemed more appropriate.
+
+\begin{equation}
+\begin{split}
+\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D\\
+\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d} + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k\\
+Y_{i, d} &\sim \text{Bernoulli}(p_i)
+\label{eq:hierarchicalbayes}
+\end{split}
+\end{equation}
 
 partial pooling
 
@@ -354,13 +387,13 @@ partial pooling
 
 In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \eqref{eq:bayes}). A \textbf{Monte Carlo simulation} is a technique to understand a target distribution by generating a large amount of random values from that distribution (Kruschke \protect\hyperlink{ref-kruschke2014doing}{2014}). A \textbf{Markov chain} has the property that the probability distribution of the observation \(i\) only depends on the previous observation \(i-1\), not on any one prior to observation \(i-1\), as demonstrated in Equation \eqref{eq:markovchain}.
 \begin{equation}
-P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right)=P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
+P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right) = P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
 \label{eq:markovchain}
 \end{equation}
 
 Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution (Van Ravenzwaaij, Cassey, and Brown \protect\hyperlink{ref-van2018simple}{2018}). It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science (Craiu and Rosenthal \protect\hyperlink{ref-craiu2014bayesian}{2014}). The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals).
 
-The first proposal of using MCMC dates back to the paper by Metropolis et al. (\protect\hyperlink{ref-metropolis1953equation}{1953}), in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter \(\theta\). From a pre-defined symmetric proposal probability distribution \(p(\theta | \mathbf{x})\), it then draw a proposal parameter value \(\theta^{(\text{prop})}\), which only depends on the current parameter value \(\theta^{(t)}\). This proposal value will be accepted with the probability of \(\alpha\) defined in Equation \eqref{eq:metropolisalpha}.
+The first proposal of using MCMC dates to the paper by Metropolis et al. (\protect\hyperlink{ref-metropolis1953equation}{1953}), in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter \(\theta\). From a pre-defined symmetric proposal probability distribution \(p(\theta | \mathbf{x})\), it then draw a proposal parameter value \(\theta^{(\text{prop})}\), which only depends on the current parameter value \(\theta^{(t)}\). This proposal value will be accepted with the probability of \(\alpha\) defined in Equation \eqref{eq:metropolisalpha}.
 \begin{equation}
 \alpha = \min\bigg(1, \frac{p(\theta^{(\text{prop})}|\mathbf{x})}{p(\theta^{(t)}|\mathbf{x})}\bigg)
 \label{eq:metropolisalpha}
@@ -414,17 +447,17 @@ Suppose \(\mathbf{\theta} = [\theta_1, \theta_2, \cdots, \theta_k]\) is a \(k\)-
   Set \(t \leftarrow t + 1\) and repeat steps \(3-6\) for a pre-specified number of iterations and make sure the Gibbs sampler reaches the steady state for a sufficient number of iterations.
 \end{enumerate}
 
-The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in \texttt{R} or \texttt{BUGS} help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized (Betancourt \protect\hyperlink{ref-betancourt2019convergence}{2019}). The performance of the M-H algorithm crucially depends on the proposal distribution. A efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space (Quiroz \protect\hyperlink{ref-quiroz2015bayesian}{2015}). On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler (Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
+The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in \texttt{R} or \texttt{BUGS} help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized (Betancourt \protect\hyperlink{ref-betancourt2019convergence}{2019}). The performance of the M-H algorithm crucially depends on the proposal distribution. An efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space (Quiroz \protect\hyperlink{ref-quiroz2015bayesian}{2015}). On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler (Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
 \hypertarget{scalable-bayesian-models}{%
 \section{Scalable Bayesian models}\label{scalable-bayesian-models}}
 
-Recent ten years witnessed an explosive growth of data size and dimensionality. This poses a major challenge to Bayesian methods using MCMC. Traditional MCMC algorithm need to evaluate the entire data at each step of iteration, which could be expensive for computation in the case of tall data (Bardenet, Doucet, and Holmes \protect\hyperlink{ref-bardenet2017markov}{2017}). In applied analysis, researchers often need to set thousands of iterations to reach stable posterior distribution, which takes hours or days to implement a single model. Besides, when the researchers have high dimensional data where high-probability regions are concentrated on a extremely limited region of sample space, it would very hard for random-walk MCMC to generate samples from these small regions (Barp et al. \protect\hyperlink{ref-barp2018geometry}{2018}). Hierarchical models even complicates this issue by adding random parameters for each subgroup, which further grows the dimensionality of parameter space. Furthermore, when there is high correlation between different parameters that often occur in the case of many parameters, neither the M-H algorithm or Gibbs sampler can efficiently generate samples from the posterior distribtion. All the aforementioned problems motivates researchers in different fields to develop different scalable algorithms to make Bayesian inference for big data.
+Recent ten years witnessed an explosive growth of data size and dimensionality. This poses a major challenge to Bayesian methods using MCMC. Traditional MCMC algorithm need to evaluate the entire data at each step of iteration, which could be expensive for computation in the case of tall data (Bardenet, Doucet, and Holmes \protect\hyperlink{ref-bardenet2017markov}{2017}). In applied analysis, researchers often need to set thousands of iterations to reach stable posterior distribution, which takes hours or days to implement a single model. Besides, when the researchers have high dimensional data where high-probability regions are concentrated on a extremely limited region of sample space, it would very hard for random-walk MCMC to generate samples from these small regions (Barp et al. \protect\hyperlink{ref-barp2018geometry}{2018}). Hierarchical models even complicate this issue by adding random parameters for each subgroup, which further grows the dimensionality of parameter space. Furthermore, when there is high correlation between different parameters that often occur in the case of many parameters, neither the M-H algorithm or Gibbs sampler can efficiently generate samples from the posterior distribtion. All the aforementioned problems motivate researchers in different fields to develop different scalable algorithms to make Bayesian inference for big data.
 
 \hypertarget{hamiltonian-monte-carlo-hmc}{%
 \subsection{Hamiltonian Monte Carlo (HMC)}\label{hamiltonian-monte-carlo-hmc}}
 
-The M-H algorithm and Gibbs sampler can be very inefficient in big data settings as a consequence of sparse high-density parameter space, high costs of evaluating the entire data at each step, or a high correlation between parameters. Originally proposed by Duane et al. (\protect\hyperlink{ref-duane1987hybrid}{1987}) with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) modifies the random-walk behavior in M-H algorithm into a deterministic one by adding auxiliary momentum parameters \(p_n\), thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler (Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}; Wang, Broccardo, and Song \protect\hyperlink{ref-wang2019hamiltonian}{2019}). Although HMC was originally proposed in 1987 (Duane et al. \protect\hyperlink{ref-duane1987hybrid}{1987}), it is only widely adopted by applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler (NUTS) (Hoffman and Gelman \protect\hyperlink{ref-hoffman2014no}{2014}) and the statistical programming language \texttt{Stan} (Carpenter et al. \protect\hyperlink{ref-carpenter2017stan}{2017}).
+The M-H algorithm and Gibbs sampler can be very inefficient in big data settings because of sparse high-density parameter space, high costs of evaluating the entire data at each step, or a high correlation between parameters. Originally proposed by Duane et al. (\protect\hyperlink{ref-duane1987hybrid}{1987}) with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) modifies the random-walk behavior in M-H algorithm into a deterministic one by adding auxiliary momentum parameters \(p_n\), thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler (Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}; Wang, Broccardo, and Song \protect\hyperlink{ref-wang2019hamiltonian}{2019}). Although HMC was originally proposed in 1987 (Duane et al. \protect\hyperlink{ref-duane1987hybrid}{1987}), it is only widely adopted by applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler (NUTS) (Hoffman and Gelman \protect\hyperlink{ref-hoffman2014no}{2014}) and the statistical programming language \texttt{Stan} (Carpenter et al. \protect\hyperlink{ref-carpenter2017stan}{2017}).
 
 Let \(\boldsymbol{q}\) denote the position vector and \(\boldsymbol{p}\) denote the momentum vector in the conservative dynamics physics system. Note that \(\boldsymbol{q}\) and \(\boldsymbol{q}\) must have the same length. The combination \((\boldsymbol{q}, \boldsymbol{p})\) then defines a position-momentum phase space, which can be calculated using the conditional distribution (Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011}; Betancourt \protect\hyperlink{ref-betancourt2017conceptual}{2017}):
 \[\pi(\boldsymbol{p}, \boldsymbol{q}) = \pi(\boldsymbol{p}|\boldsymbol{q})\pi(\boldsymbol{q})\]
@@ -464,7 +497,7 @@ It turns out that we can randomly generate high density proposals in the paramet
 \item
   Generate a random initial momentum \(m\) from a proposal distribution (typically a multivariate normal distribution),
 \item
-  Use the leapfrog algorithm to solve the trajectory moving over the high-density posterior parameter space under the Hamiltonian mechanism for a time period,
+  Use the leapfrog algorithm to solve the trajectory moving over the high-density posterior parameter space under the Hamiltonian mechanism for a period,
 \item
   Calculate the new momentum \(m^\prime\) and new position \(\theta^{(\text{prop})}\)
 \item
@@ -477,11 +510,11 @@ It turns out that we can randomly generate high density proposals in the paramet
   Set \(\theta^{(t+1)} = \theta^{(\text{prop})}\) with the probability of \(\alpha^H\); otherwise set \(\theta^{(t+1)} = \theta^{(t)}\). Set \(t \leftarrow t + 1\) and return to 3 until the desired number of iterations is reached.
 \end{enumerate}
 
-The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \ref{hmc}).
+The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \eqref{eq:hmc}).
 
-Two parameters need to be tuned when implementing the HMC: step size \(\epsilon\) and the optimal trajectory length \(T\). The optimal trajectory length is the product of the number of steps \(L\) and step size \(\epsilon\) (Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011}; Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The step size \(\epsilon\) decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If \(\epsilon\) is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If \(\epsilon\) is too big, the leapfrog algorithm will loop around and return back to close to its original place. The trajectory length \(T = \epsilon L\), which need to be tuned in similar style with \(\epsilon\): if \(L\) is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if \(L\) is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
+Two parameters need to be tuned when implementing the HMC: step size \(\epsilon\) and the optimal trajectory length \(T\). The optimal trajectory length is the product of the number of steps \(L\) and step size \(\epsilon\) (Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011}; Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The step size \(\epsilon\) decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If \(\epsilon\) is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If \(\epsilon\) is too big, the leapfrog algorithm will loop around and return to a place near its original step. The trajectory length \(T = \epsilon L\), which need to be tuned in similar style with \(\epsilon\): if \(L\) is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if \(L\) is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
 
-The No-U-Turn Sampler (NUTS) proposed by Hoffman and Gelman (\protect\hyperlink{ref-hoffman2014no}{2014}) solved the difficulty of hand tuning \(\epsilon\) and \(T\) in static HMC. NUTS calculates the optimal step size \(\epsilon\) and number of steps \(L\) through a tree building algorithm (Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The tree depth \(k\) is defined as the number of doublings, resulting in \(2^k\) leapfrog steps to build the trajectory. This \(k\) is then decided by repeating the doubling iterations until the trajectory `makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune \(\epsilon\) and \(T\).
+The No-U-Turn Sampler (NUTS) proposed by Hoffman and Gelman (\protect\hyperlink{ref-hoffman2014no}{2014}) solves the difficulty of hand tuning \(\epsilon\) and \(T\) in static HMC. NUTS calculates the optimal step size \(\epsilon\) and number of steps \(L\) through a tree building algorithm (Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The tree depth \(k\) is defined as the number of doublings, resulting in \(2^k\) leapfrog steps to build the trajectory. This \(k\) is then decided by repeating the doubling iterations until the trajectory `makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune \(\epsilon\) and \(T\).
 
 \hypertarget{integrated-laplace-approximation-inla}{%
 \subsection{Integrated Laplace Approximation (INLA)}\label{integrated-laplace-approximation-inla}}
@@ -577,8 +610,8 @@ Four types of critical events were recorded in the critical events data:
 Once some thresholds with regard to the driver's operation were met, the sensor will be triggered and critical events will be recorded in their database.
 There were 12,458 critical events created by the 496 truck drivers during the study period.
 
-\hypertarget{driver-demographic}{%
-\subsection{Driver demographic}\label{driver-demographic}}
+\hypertarget{driver-demographics}{%
+\subsection{Driver demographics}\label{driver-demographics}}
 
 These variables can be linked to the trips and crashes table via a common unique identifier.
 
@@ -1267,6 +1300,9 @@ Betancourt, Michael. 2017. ``A Conceptual Introduction to Hamiltonian Monte Carl
 \leavevmode\hypertarget{ref-braver1997tractor}{}%
 Braver, Elisa R, Paul L Zador, Denise Thum, Eric L Mitter, Herbert M Baum, and Frank J Vilardo. 1997. ``Tractor-Trailer Crashes in Indiana: A Case-Control Study of the Role of Truck Configuration.'' \emph{Accident Analysis \& Prevention} 29 (1): 79--96.
 
+\leavevmode\hypertarget{ref-breiman2001statistical}{}%
+Breiman, Leo, and others. 2001. ``Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author).'' \emph{Statistical Science} 16 (3): 199--231.
+
 \leavevmode\hypertarget{ref-canani2005prevalence}{}%
 Canani, SF, AB John, MG Raymundi, S Schönwald, and SS Menna Barreto. 2005. ``Prevalence of Sleepiness in a Group of Brazilian Lorry Drivers.'' \emph{Public Health} 119 (10): 925--29.
 
@@ -1533,6 +1569,9 @@ Sallinen, Mikael, Mikko HÄRMÄ, Pertti Mutanen, Riikka RANTA, Jussi Virkkala, a
 
 \leavevmode\hypertarget{ref-sedgwick2014case}{}%
 Sedgwick, Philip. 2014. ``Case-Control Studies: Advantages and Disadvantages.'' \emph{Bmj} 348: f7707.
+
+\leavevmode\hypertarget{ref-shmueli2010explain}{}%
+Shmueli, Galit, and others. 2010. ``To Explain or to Predict?'' \emph{Statistical Science} 25 (3): 289--310.
 
 \leavevmode\hypertarget{ref-solomon2004healthcare}{}%
 Solomon, Andrew J, John T Doucette, Elizabeth Garland, and Thomas McGinn. 2004. ``Healthcare and the Long Haul: Long Distance Truck Drivers---a Medically Underserved Population.'' \emph{American Journal of Industrial Medicine} 46 (5): 463--71.

@@ -1,10 +1,30 @@
-
 Predictive models
 -----------------
+### Overview
+
+**Explain or to predict** @shmueli2010explain; @breiman2001statistical
+
+The most commonly used statistical models for traffic safety are logistic regression (Model \@ref(eq:logit)) and Poisson regression (Model \@ref(eq:poisson)).
+
+\begin{equation}
+\begin{split}
+Y_i & \sim \text{Bernoulli}(p_i) \\
+\text{logit}(\frac{p_i}{1 - p_i}) & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+(\#eq:logit)
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+Y_i^\star & \sim \text{Poisson}(\mu_i) \\
+\log\mu_i & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+(\#eq:poisson)
+\end{split}
+\end{equation}
 
 ### Bayesian models
 
-In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions [@gelman2013bayesian].
+In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions [@gelman2013bayesian]. Researchers have subjective prior beliefs (a probability distribution) on these parameters $p(\theta)$ before they collect any data. After observing the data $\mathbf{X}$, the researchers could change their prior beliefs. Therefore, the posterior distribution $p(\theta | \mathbf{X})$ is an an unconditional distribution that is a compromise between the prior beliefs and the data. This compromise is given analytically by the Bayes Theorem (Equation \@ref(eq:bayes)).
 
 \begin{equation}
 \begin{split}
@@ -14,11 +34,9 @@ p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \
 \end{split}
 \end{equation}
 
-Where $p(\theta | \mathbf{X})$ is the posterior distribution of the parameters, $p(\theta)$ is the prior distribution of the parameters, $p(\mathbf{X}|\theta)$ is the likelihood function, and $\int p(\theta)p(\mathbf{X}|\theta)d\theta$ is a normalizing constant.
+Where $p(\mathbf{X}|\theta)$ is the likelihood function, which reflects the data generating process that gives rise to the data observed. The denominator $\int p(\theta)p(\mathbf{X}|\theta)d\theta$ is a normalizing constant that makes the posterior distribution integrates to one. The prior and likelihood function are straightforward since they both have analytical forms. The trickiest part of Bayesian inference is the normalizing constant in the denominator [@gelman2013bayesian]. 
 
-The prior distribution reflects the researcher's subjective belief on the parameters before observing any data. The likelihood function reflects the data generating process that gives rise to the data observed. The posterior distribution is an unconditional distribution that includes the researcher's belief on the parameters after observing the data. The prior and likelihood function are straightforward since they both have analytical forms. The most tricky part of Bayesian inference is the normalizing constant in the denominator [@gelman2013bayesian]. 
-
-The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods, to calculate or approximate this constant.
+The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods or the integrated Laplace approximation, to directly sample from this posterior distribution or approximate this constant.
 
 
 **Advantages of Bayesian inference**
@@ -27,7 +45,19 @@ The normalizing constant need to make the posterior distribution integrate to on
 
 ### Hierarchical models
 
-Driver-focused statistical models [@cantor2010driver].
+Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur. We must also study the non-crashes and compare them with crashes. Therefore, we argue that it is more natural to use vehicle drivers as the sampling unit. The data generating process (DGP) is to sample a certain number of drivers from a population, observe their driving trips or shifts for a specific period, then compare the crashes with the non-crashes, and make conclusions on risk factors.
+
+In this driver-centered DGP, a hierarchical model that accounts for both driver-level variation and trip- or shift-level variation is deemed more appropriate.
+
+\begin{equation}
+\begin{split}
+\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D\\
+\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d} + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k\\
+Y_{i, d} &\sim \text{Bernoulli}(p_i)
+(\#eq:hierarchicalbayes)
+\end{split}
+\end{equation}
+
 
 partial pooling
 
@@ -35,20 +65,19 @@ partial pooling
 
 In modern statistics, Bayesian inference almost indispensably relies on Markov chain Monte Carlo (MCMC) sampling to overcome the intractable denominator in the Bayes Theroem (Equation \@ref(eq:bayes)). A **Monte Carlo simulation** is a technique to understand a target distribution by generating a large amount of random values from that distribution [@kruschke2014doing]. A **Markov chain** has the property that the probability distribution of the observation $i$ only depends on the previous observation $i-1$, not on any one prior to observation $i-1$, as demonstrated in Equation \@ref(eq:markovchain). 
 \begin{equation}
-P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right)=P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
+P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right) = P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
 (\#eq:markovchain)
 \end{equation}
 
 Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution [@van2018simple]. It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science [@craiu2014bayesian].  The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals). 
 
-The first proposal of using MCMC dates back to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter $\theta$. From a pre-defined symmetric proposal probability distribution  $p(\theta | \mathbf{x})$, it then draw a proposal parameter value $\theta^{(\text{prop})}$, which only depends on the current parameter value $\theta^{(t)}$. This proposal value will be accepted with the probability of $\alpha$ defined in Equation \@ref(eq:metropolisalpha).
+The first proposal of using MCMC dates to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter $\theta$. From a pre-defined symmetric proposal probability distribution  $p(\theta | \mathbf{x})$, it then draw a proposal parameter value $\theta^{(\text{prop})}$, which only depends on the current parameter value $\theta^{(t)}$. This proposal value will be accepted with the probability of $\alpha$ defined in Equation \@ref(eq:metropolisalpha).
 \begin{equation}
 \alpha = \min\bigg(1, \frac{p(\theta^{(\text{prop})}|\mathbf{x})}{p(\theta^{(t)}|\mathbf{x})}\bigg)
 (\#eq:metropolisalpha)
 \end{equation}
 
-This proposal and acceptance with probability steps will be iterated for a pre-define number of times. When the Metropolis algorithm reaches a steady state, these proposal values are random values drawn from the posterior distribution of parameter $\theta$, which can be used to describe and characterize the posterior distribution.
-
+This proposal and acceptance with probability steps will be iterated for a pre-define number of times. When the Metropolis algorithm reaches a steady state, these proposal values are random values drawn from the posterior distribution of parameter $\theta$, which can be used to describe and characterize the posterior distribution. 
 
 After decades of successful empirical trials in physics, @hastings1970monte proposed a more generalized form of the Metropolis algorithm, in which the proposal distribution can be arbitrary, but the acceptance probability $\alpha^\star$ is modified as shown in Equation \@ref(eq:MHalpha). This Metropolis-Hasting (MH) algorithm is the most classic and widely-known MCMC algorithm used in multiple fields.
 
@@ -77,18 +106,17 @@ Suppose $\mathbf{\theta} = [\theta_1, \theta_2, \cdots, \theta_k]$ is a $k$-dime
 6. Simulate $\theta_k^{(t)}$ from $p(\theta_k|\theta_1^{(t)}, \theta_3^{(t)},\cdots , \theta_{k-1}^{(t)}, \mathbf{X})$,
 7. Set $t \leftarrow t + 1$ and repeat steps $3-6$ for a pre-specified number of iterations and make sure the Gibbs sampler reaches the steady state for a sufficient number of iterations.
 
-
-The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in `R` or `BUGS` help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized [@betancourt2019convergence]. The performance of the M-H algorithm crucially depends on the proposal distribution. A efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space [@quiroz2015bayesian]. On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler [@lambert2018student].
+The generality of the M-H algorithm and Gibbs sampler and the simplicity in software packages in `R` or `BUGS` help them gain popularity among applied researchers in the recent 30 years. However, as more and more data are available in applied field, the performance of the two most popular MCMC methods has been widely criticized [@betancourt2019convergence]. The performance of the M-H algorithm crucially depends on the proposal distribution. An efficient proposal distribution in M-H algorithm should generate random draws with less auto-correlation, which enables more effective exploration of the parameter space [@quiroz2015bayesian]. On the other hand, the performance of the Gibss Sampler crucially depends on the parameter structure. If there is a significant correlation between parameter estimates, the Gibbs Sampler will become very inefficient as the geometry of the distribution is not aligned with the stepping directions of each sampler [@lambert2018student].
 
 
 Scalable Bayesian models
 ------------------------
 
-Recent ten years witnessed an explosive growth of data size and dimensionality.  This poses a major challenge to Bayesian methods using MCMC. Traditional MCMC algorithm need to evaluate the entire data at each step of iteration, which could be expensive for computation in the case of tall data [@bardenet2017markov]. In applied analysis, researchers often need to set  thousands of iterations to reach stable posterior distribution, which takes hours or days to implement a single model. Besides, when the researchers have high dimensional data where high-probability regions are concentrated on a extremely limited region of sample space, it would very hard for random-walk MCMC to generate samples from these small regions [@barp2018geometry]. Hierarchical models even complicates this issue by adding random parameters for each subgroup, which further grows the dimensionality of parameter space. Furthermore, when there is high correlation between different parameters that often occur in the case of many parameters, neither the M-H algorithm or Gibbs sampler can efficiently generate samples from the posterior distribtion. All the aforementioned problems motivates researchers in different fields to develop different scalable algorithms to make Bayesian inference for big data.
+Recent ten years witnessed an explosive growth of data size and dimensionality.  This poses a major challenge to Bayesian methods using MCMC. Traditional MCMC algorithm need to evaluate the entire data at each step of iteration, which could be expensive for computation in the case of tall data [@bardenet2017markov]. In applied analysis, researchers often need to set  thousands of iterations to reach stable posterior distribution, which takes hours or days to implement a single model. Besides, when the researchers have high dimensional data where high-probability regions are concentrated on a extremely limited region of sample space, it would very hard for random-walk MCMC to generate samples from these small regions [@barp2018geometry]. Hierarchical models even complicate this issue by adding random parameters for each subgroup, which further grows the dimensionality of parameter space. Furthermore, when there is high correlation between different parameters that often occur in the case of many parameters, neither the M-H algorithm or Gibbs sampler can efficiently generate samples from the posterior distribtion. All the aforementioned problems motivate researchers in different fields to develop different scalable algorithms to make Bayesian inference for big data.
 
 ### Hamiltonian Monte Carlo (HMC)
 
-The M-H algorithm and Gibbs sampler can be very inefficient in big data settings as a consequence of sparse high-density parameter space, high costs of evaluating the entire data at each step, or a high correlation between parameters. Originally proposed by @duane1987hybrid with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) modifies the random-walk behavior in M-H algorithm into a deterministic one by adding auxiliary momentum parameters $p_n$, thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler [@betancourt2017conceptual; @wang2019hamiltonian]. Although HMC was originally proposed in 1987 [@duane1987hybrid], it is only widely adopted by applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler (NUTS) [@hoffman2014no] and the statistical programming language `Stan` [@carpenter2017stan].
+The M-H algorithm and Gibbs sampler can be very inefficient in big data settings because of sparse high-density parameter space, high costs of evaluating the entire data at each step, or a high correlation between parameters. Originally proposed by @duane1987hybrid with the name of Hybrid Monte Carlo, the Hamiltonian Monte Carlo (HMC) modifies the random-walk behavior in M-H algorithm into a deterministic one by adding auxiliary momentum parameters $p_n$, thus more efficiently explores the high-density regions in big data settings compared to the traditional M-H algorithm or the Gibbs sampler [@betancourt2017conceptual; @wang2019hamiltonian]. Although HMC was originally proposed in 1987 [@duane1987hybrid], it is only widely adopted by applied researchers in the recent five years, thanks to the development of the No-U-Turn Sampler (NUTS) [@hoffman2014no] and the statistical programming language `Stan` [@carpenter2017stan].
 
 Let $\boldsymbol{q}$ denote the position vector and $\boldsymbol{p}$ denote the momentum vector in the conservative dynamics physics system. Note that $\boldsymbol{q}$ and $\boldsymbol{q}$ must have the same length. The combination $(\boldsymbol{q}, \boldsymbol{p})$ then defines a position-momentum phase space, which can be calculated using the conditional distribution [@neal2011mcmc; @betancourt2017conceptual]:
 $$\pi(\boldsymbol{p}, \boldsymbol{q}) = \pi(\boldsymbol{p}|\boldsymbol{q})\pi(\boldsymbol{q})$$
@@ -121,7 +149,7 @@ It turns out that we can randomly generate high density proposals in the paramet
 1. Let $\theta^{(0)}$ denote a random initial value from a proposal distribution,
 2. Set $t = 1$,
 3. Generate a random initial momentum $m$ from a proposal distribution (typically a multivariate normal distribution),
-4. Use the leapfrog algorithm to solve the trajectory moving over the high-density posterior parameter space under the Hamiltonian mechanism for a time period,
+4. Use the leapfrog algorithm to solve the trajectory moving over the high-density posterior parameter space under the Hamiltonian mechanism for a period,
 5. Calculate the new momentum $m^\prime$ and new position $\theta^{(\text{prop})}$
 6. Compute the following probability:
 \begin{equation}
@@ -130,11 +158,11 @@ It turns out that we can randomly generate high density proposals in the paramet
 \end{equation}
 7. Set $\theta^{(t+1)} = \theta^{(\text{prop})}$ with the probability of $\alpha^H$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$. Set $t \leftarrow t + 1$ and return to 3 until the desired number of iterations is reached.
 
-The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \@ref(hmc)).
+The HMC is essentially an improved form of M-H algorithm by using the Hamiltonian to generate effective proposals instead of naive random-walk and revised form of the acceptance probability (Equation \@ref(eq:hmc)).
 
-Two parameters need to be tuned when implementing the HMC: step size $\epsilon$ and the optimal trajectory length $T$. The optimal trajectory length is the product of the number of steps $L$ and step size $\epsilon$ [@neal2011mcmc; @monnahan2017faster]. The step size $\epsilon$ decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If $\epsilon$ is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If $\epsilon$ is too big, the leapfrog algorithm will loop around and return back to close to its original place. The trajectory length $T = \epsilon L$, which need to be tuned in similar style with $\epsilon$: if $L$ is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if $L$ is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
+Two parameters need to be tuned when implementing the HMC: step size $\epsilon$ and the optimal trajectory length $T$. The optimal trajectory length is the product of the number of steps $L$ and step size $\epsilon$ [@neal2011mcmc; @monnahan2017faster]. The step size $\epsilon$ decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If $\epsilon$ is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If $\epsilon$ is too big, the leapfrog algorithm will loop around and return to a place near its original step. The trajectory length $T = \epsilon L$, which need to be tuned in similar style with $\epsilon$: if $L$ is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if $L$ is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
 
-The No-U-Turn Sampler (NUTS) proposed by @hoffman2014no solved the difficulty of hand tuning $\epsilon$ and $T$ in static HMC. NUTS calculates the optimal step size $\epsilon$ and number of steps $L$ through a tree building algorithm [@monnahan2017faster]. The tree depth $k$ is defined as the number of doublings, resulting in $2^k$ leapfrog steps to build the trajectory. This $k$ is then decided by repeating the doubling iterations until the trajectory 'makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune $\epsilon$ and $T$.
+The No-U-Turn Sampler (NUTS) proposed by @hoffman2014no solves the difficulty of hand tuning $\epsilon$ and $T$ in static HMC. NUTS calculates the optimal step size $\epsilon$ and number of steps $L$ through a tree building algorithm [@monnahan2017faster]. The tree depth $k$ is defined as the number of doublings, resulting in $2^k$ leapfrog steps to build the trajectory. This $k$ is then decided by repeating the doubling iterations until the trajectory 'makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune $\epsilon$ and $T$.
 
 
 ### Integrated Laplace Approximation (INLA)
