@@ -398,6 +398,29 @@ Y_{i, d} &\sim \text{Bernoulli}(p_i)
 
 partial pooling
 
+Pros of hierarchical models:
+
+\begin{itemize}
+\tightlist
+\item
+  Bayesian Hierarchical Models are a way to build a statistical model of the data by splitting into steps
+\item
+  Typically, decomposing into steps exposes what is needed - typically many conditional distributions
+\item
+  For complex data, this may be the only viable way to build the
+  statistical model
+\item
+  The decomposition is usually very natural and logical
+\item
+  The model allows the proper propagation of errors from one layer to
+  the next,
+\item
+  including a proper treatment of systematics
+\item
+  One can often use efficient sampling algorithms to sample from the posterior - precisely what one wants from a Bayesian statistical
+  analysis
+\end{itemize}
+
 \hypertarget{markov-chain-monte-carlo-mcmc}{%
 \subsection{Markov chain Monte Carlo (MCMC)}\label{markov-chain-monte-carlo-mcmc}}
 

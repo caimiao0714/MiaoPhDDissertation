@@ -71,8 +71,20 @@ Y_{i, d} &\sim \text{Bernoulli}(p_i)
 \end{split}
 \end{equation}
 
-
 partial pooling
+
+Pros of hierarchical models:
+
+- Bayesian Hierarchical Models are a way to build a statistical model of the data by splitting into steps
+- Typically, decomposing into steps exposes what is needed - typically many conditional distributions
+- For complex data, this may be the only viable way to build the
+statistical model
+- The decomposition is usually very natural and logical
+- The model allows the proper propagation of errors from one layer to
+the next,
+- including a proper treatment of systematics
+- One can often use efficient sampling algorithms to sample from the posterior - precisely what one wants from a Bayesian statistical
+analysis
 
 ### Markov chain Monte Carlo (MCMC)
 
@@ -105,7 +117,6 @@ Let $p(\mathbf{\theta|X})$ be the posterior distribution we want to know, then t
 (\#eq:MHalpha)
 \end{equation}
 5. Set $\theta^{(t+1)} = \theta^{(\text{prop})}$ with the probability of $\alpha^\star$; otherwise set $\theta^{(t+1)} = \theta^{(t)}$. Set $t \leftarrow t + 1$ and return to 3 until the desired number of iterations is reached.
-
 
 Although the M-H algorithm is simple and powerful for performing MCMC, its performance highly depends on the choice of the proposal distribution. When there are a few parameters in the model and the proposal distribution is not well-designed, the M-H algorithm will have a very low acceptance rate, which makes the M-H algorithm very inefficient. In view of this issue, Gibbs sampler was proposed with the idea that the proposed values are always accepted and each parameter is updated one at a time by generating samples from the conditional distributions [@geman1987stochastic; @gelfand1990sampling; @lambert2018student]. The development of the software *Bayesian inference Using Gibbs Sampler (BUGS)* [@lunn2000winbugs; @lunn2009bugs] was critical in increasing the popularity of applied Bayesian analyses considering its support for a wide variety of statistical distributions, automatic application of the Gibbs Sampler, and numerous textbooks, tutorials and discussion.
 
