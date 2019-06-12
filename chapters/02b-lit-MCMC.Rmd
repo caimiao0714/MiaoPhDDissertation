@@ -48,12 +48,7 @@ Where $p(\mathbf{X}|\theta)$ is the likelihood function, which reflects the data
 
 The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods such as Markov chain Monte Carlo (MCMC) methods to directly sample from this posterior distribution, or the integrated Laplace approximation to approximate this constant. However, this numerical methods often fail or take an inhibitively long time to solve the problem with the presence of high-dimensional data or very tall data in this era.
 
-There are several strengths of Bayesian models over traditional Frequentist models.
-
-- Intuitive interpretation and model comparison. Posterior predictive distribution.
-- Prior
-- Sparse data
-- Model flexibility
+There are several strengths of Bayesian models over traditional Frequentist models. First, the probabilistic distribution of parameters and posterior credibles intervals have straightforward and intuitive interpretations, which has been mistakenly understood in Frequentist perspectives. Second, Bayesian models incorporate prior information $p(\theta)$ into the statistical model, which can be useful when there is sufficient prior background information. This prior belief is particularly useful for estimation in high-dimensional, sparse data settings, and complex statistical models such as hierarchical models [@betancourt2015hamiltonian]. Lastly, Bayesian models are scalable to complex data generating process. This is because modern Bayesian estimation is powered by numerical methods and simulation, which in essence only requires researchers to specify the priors and likelihood function. The difficulty of written the likelihood function is minimal compared to traditional Frequentist approaches such as the maximum likelihood estimation, which scales with the complexity of models [@lambert2018student].
 
 
 ### Hierarchical models
@@ -74,7 +69,7 @@ Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
 
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups [@mcelreath2018statistical]. This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data [@gelman2006data; @lambert2018student].
 
-Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
+Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchical structure.
 
 
 ### Markov chain Monte Carlo (MCMC)

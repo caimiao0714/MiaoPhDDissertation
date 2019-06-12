@@ -368,19 +368,7 @@ Where \(p(\mathbf{X}|\theta)\) is the likelihood function, which reflects the da
 
 The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods such as Markov chain Monte Carlo (MCMC) methods to directly sample from this posterior distribution, or the integrated Laplace approximation to approximate this constant. However, this numerical methods often fail or take an inhibitively long time to solve the problem with the presence of high-dimensional data or very tall data in this era.
 
-There are several strengths of Bayesian models over traditional Frequentist models.
-
-\begin{itemize}
-\tightlist
-\item
-  Intuitive interpretation and model comparison. Posterior predictive distribution.
-\item
-  Prior
-\item
-  Sparse data
-\item
-  Model flexibility
-\end{itemize}
+There are several strengths of Bayesian models over traditional Frequentist models. First, the probabilistic distribution of parameters and posterior credibles intervals have straightforward and intuitive interpretations, which has been mistakenly understood in Frequentist perspectives. Second, Bayesian models incorporate prior information \(p(\theta)\) into the statistical model, which can be useful when there is sufficient prior background information. This prior belief is particularly useful for estimation in high-dimensional, sparse data settings, and complex statistical models such as hierarchical models (Betancourt and Girolami \protect\hyperlink{ref-betancourt2015hamiltonian}{2015}). Lastly, Bayesian models are scalable to complex data generating process. This is because modern Bayesian estimation is powered by numerical methods and simulation, which in essence only requires researchers to specify the priors and likelihood function. The difficulty of written the likelihood function is minimal compared to traditional Frequentist approaches such as the maximum likelihood estimation, which scales with the complexity of models (Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
 \hypertarget{hierarchical-models}{%
 \subsection{Hierarchical models}\label{hierarchical-models}}
@@ -401,7 +389,7 @@ Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
 
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups (McElreath \protect\hyperlink{ref-mcelreath2018statistical}{2018}). This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data (Gelman and Hill \protect\hyperlink{ref-gelman2006data}{2006}; Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
-Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
+Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchical structure.
 
 \hypertarget{markov-chain-monte-carlo-mcmc}{%
 \subsection{Markov chain Monte Carlo (MCMC)}\label{markov-chain-monte-carlo-mcmc}}
@@ -1328,6 +1316,9 @@ Betancourt, Michael. 2017. ``A Conceptual Introduction to Hamiltonian Monte Carl
 
 \leavevmode\hypertarget{ref-betancourt2019convergence}{}%
 ---------. 2019. ``The Convergence of Markov Chain Monte Carlo Methods: From the Metropolis Method to Hamiltonian Monte Carlo.'' \emph{Annalen Der Physik} 531 (3): 1700214.
+
+\leavevmode\hypertarget{ref-betancourt2015hamiltonian}{}%
+Betancourt, Michael, and Mark Girolami. 2015. ``Hamiltonian Monte Carlo for Hierarchical Models.'' \emph{Current Trends in Bayesian Methodology with Applications} 79: 30.
 
 \leavevmode\hypertarget{ref-braver1997tractor}{}%
 Braver, Elisa R, Paul L Zador, Denise Thum, Eric L Mitter, Herbert M Baum, and Frank J Vilardo. 1997. ``Tractor-Trailer Crashes in Indiana: A Case-Control Study of the Role of Truck Configuration.'' \emph{Accident Analysis \& Prevention} 29 (1): 79--96.

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  11 JUN 2019 23:58
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  12 JUN 2019 00:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -753,22 +753,31 @@ Missing character: There is no ◦ in font ec-lmr12!
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [11] [12] [13] [14] [15]
+Underfull \vbox (badness 1062) has occurred while \output is active []
+
+[16] [17] [18] [19]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[16] [17] [18] [19] [20] [21] [22] [23] [24
+[20]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-]
+[21] [22]
+Underfull \vbox (badness 2961) has occurred while \output is active []
+
+[23] [24]
 Chapter 3.
 
-LaTeX Warning: Reference `tab:tripsdata' on page 25 undefined on input line 609
+LaTeX Warning: Reference `tab:tripsdata' on page 25 undefined on input line 597
 .
 
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
-[25]
+[25
+
+]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 640.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 628.
 [26]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -812,34 +821,34 @@ Chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1164.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1152.
 [45] [46] [47] [48
 
 ] [49
 
-] [50] [51]
-Overfull \hbox (32.88687pt too wide) in paragraph at lines 1398--1400
+] [50]
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[51]
+Overfull \hbox (32.88687pt too wide) in paragraph at lines 1389--1391
 \T1/lmr/m/n/12 la-tions.'' [][]$\T1/lmtt/m/n/12 https : / / www . fmcsa . dot .
  gov / regulations / hours -[] service / summary -[] hours -[] service -[]
  []
 
-
-Overfull \hbox (134.60506pt too wide) in paragraph at lines 1404--1406
+[52]
+Overfull \hbox (134.60506pt too wide) in paragraph at lines 1395--1397
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data 
 -[] and -[] statistics / 84856 / cmvtrafficsafetyfactsheet2016 -[]
  []
 
 
-Underfull \vbox (badness 1057) has occurred while \output is active []
-
-[52]
-Overfull \hbox (36.791pt too wide) in paragraph at lines 1407--1409
+Overfull \hbox (36.791pt too wide) in paragraph at lines 1398--1400
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data -[] an
 d -[] statistics / 398686 / ltbcf -[] 2016 -[] final -[]
  []
 
 
-Overfull \hbox (1.98053pt too wide) in paragraph at lines 1422--1424
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 1413--1415
 [][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
 rgeant, and Gamini Punchi-
  []
@@ -847,23 +856,20 @@ rgeant, and Gamini Punchi-
 [53]
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[54] [55]
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-[56]
-Overfull \hbox (7.444pt too wide) in paragraph at lines 1539--1541
+[54] [55] [56]
+Overfull \hbox (7.444pt too wide) in paragraph at lines 1530--1532
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008 -[] stat
 e -[] of -[] the -[] states -[] report -[] on -[] drowsy -[]
  []
 
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
+Underfull \vbox (badness 1057) has occurred while \output is active []
 
 [57]
 Missing character: There is no ı in font ec-lmr12!
 Missing character: There is no ́ in font ec-lmr12!
 
-Overfull \hbox (0.43573pt too wide) in paragraph at lines 1566--1568
+Overfull \hbox (0.43573pt too wide) in paragraph at lines 1557--1559
 [][]\T1/lmr/m/n/12 Pérez-Chada, Daniel, Ale-jan-dro J Videla, Mar-tin E O'flahe
 rty, Pa-tri-cia Palermo, Jorgelina
  []
@@ -871,11 +877,14 @@ rty, Pa-tri-cia Palermo, Jorgelina
 
 Underfull \vbox (badness 1509) has occurred while \output is active []
 
-[58] [59]
-Underfull \vbox (badness 1509) has occurred while \output is active []
+[58]
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[59]
+Underfull \vbox (badness 1184) has occurred while \output is active []
 
 [60]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 1635--1637
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 1626--1628
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road -[] safety / safety -[] topics / fatality -[] estimates$[][]\T1/lmr/m/
 n/12 . 
@@ -887,18 +896,18 @@ n/12 .
 
 ]
 No file MiaoPhDDissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1696.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1696.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1687.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1687.
 (./MiaoPhDDissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1696.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1696.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1687.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1687.
 
 Package rerunfilecheck Info: File `MiaoPhDDissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 1C29D06C6FECCC6174749F3CF3F73125.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1696.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1687.
  ) 
 Here is how much of TeX's memory you used:
  13748 strings out of 492956
