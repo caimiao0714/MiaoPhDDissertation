@@ -364,24 +364,28 @@ p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \
 \end{split}
 \end{equation}
 
-Where \(p(\mathbf{X}|\theta)\) is the likelihood function, which reflects the data generating process that gives rise to the data observed. The denominator \(\int p(\theta)p(\mathbf{X}|\theta)d\theta\) is a normalizing constant that makes the posterior distribution integrates to one. The prior and likelihood function are straightforward since they both have analytical forms. The trickiest part of Bayesian inference is the normalizing constant in the denominator (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}).
+Where \(p(\mathbf{X}|\theta)\) is the likelihood function, which reflects the data generating process that gives rise to the data observed. The denominator \(\int p(\theta)p(\mathbf{X}|\theta)d\theta\) is a normalizing constant that makes the posterior distribution integrates to one. The prior and likelihood function are straightforward since they both have analytical forms. The trickiest part of Bayesian inference is the normalizing constant in the denominator (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}; Kruschke \protect\hyperlink{ref-kruschke2014doing}{2014}).
 
-The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods or the integrated Laplace approximation, to directly sample from this posterior distribution or approximate this constant.
+The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods such as Markov chain Monte Carlo (MCMC) methods to directly sample from this posterior distribution, or the integrated Laplace approximation to approximate this constant. However, this numerical methods often fail or take an inhibitively long time to solve the problem with the presence of high-dimensional data or very tall data in this era.
 
-\textbf{Advantages of Bayesian inference}
+There are several strengths of Bayesian models over traditional Frequentist models.
 
 \begin{itemize}
 \tightlist
 \item
+  Intuitive interpretation and model comparison. Posterior predictive distribution.
+\item
+  Prior
+\item
   Sparse data
 \item
-  Posterior predictive distribution.
+  Model flexibility
 \end{itemize}
 
 \hypertarget{hierarchical-models}{%
 \subsection{Hierarchical models}\label{hierarchical-models}}
 
-Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road with relatively high rate of crashes during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur; we must also study the non-crashes and compare them with crashes. On the other hand, these studies that focus on road segments ignore driver-level unobserved effects. It is reported that the chance of having crashes for truck drivers with crash history in the past year is nearly twice as high as those without crash history in the past year (Cantor et al. \protect\hyperlink{ref-cantor2010driver}{2010}). Most motor carrier insurance companies and employers also view historical safety events as an important measure of the driver's performance. Therefore, it is more natural to use driver-focused models to account for unobserved variation and characteristics associated with vehicle drivers.
+Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road with relatively high rate of crashes during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur; we must also study the non-crashes and compare them with crashes. On the other hand, these studies that focus on road segments ignore driver-level unobserved effects. It is reported that the chance of having crashes for truck drivers with crash history in the past year is nearly twice as high as those without crash history in the past year (Cantor et al. \protect\hyperlink{ref-cantor2010driver}{2010}). Most motor carrier insurance companies and employers also view historical safety events as an important measure of the driver's performance. Therefore, it is more natural to use driver-focused models to account for unobserved variation and characteristics associated with vehicle drivers (Huang and Abdel-Aty \protect\hyperlink{ref-huang2010multilevel}{2010}).
 
 In the Bayesian perspective, a hierarchical model is a statistical model with the probability distribution of one parameter depends on another parameter (Kruschke and Vanpaemel \protect\hyperlink{ref-kruschke2015bayesian}{2015}). Suppose we have a model with two parameters \(\alpha, \beta\) and data \(D\). The joint prior distribution of the two parameters is \(p(\alpha, \beta)\). According to the Bayes Theorem, the posterior distribution is proportional to the product of the prior distribution and the likelihood function: \(P(\alpha, \beta|D) \propto P(\alpha, \beta)P(D|\alpha,\beta)\). In a hierarchical model setting, the product can be factored as a chain of products among parameters, also known as conditional independence, such as \(P(\alpha, \beta)P(D|\alpha,\beta) = P(D|\beta)P(\beta|\alpha)P(\alpha)\). In this parameterization, the parameter \(\alpha\) is known as the hyperparameter because it gives rise to the parameter \(\beta\) (the parameter of a parameter) (Kruschke and Vanpaemel \protect\hyperlink{ref-kruschke2015bayesian}{2015}).
 
@@ -397,7 +401,7 @@ Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
 
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups (McElreath \protect\hyperlink{ref-mcelreath2018statistical}{2018}). This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data (Gelman and Hill \protect\hyperlink{ref-gelman2006data}{2006}; Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
-Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
+Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
 
 \hypertarget{markov-chain-monte-carlo-mcmc}{%
 \subsection{Markov chain Monte Carlo (MCMC)}\label{markov-chain-monte-carlo-mcmc}}
@@ -1432,6 +1436,9 @@ Hastings, W Keith. 1970. ``Monte Carlo Sampling Methods Using Markov Chains and 
 
 \leavevmode\hypertarget{ref-hoffman2014no}{}%
 Hoffman, Matthew D, and Andrew Gelman. 2014. ``The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo.'' \emph{Journal of Machine Learning Research} 15 (1): 1593--1623.
+
+\leavevmode\hypertarget{ref-huang2010multilevel}{}%
+Huang, Helai, and Mohamed Abdel-Aty. 2010. ``Multilevel Data and Bayesian Analysis in Traffic Safety.'' \emph{Accident Analysis \& Prevention} 42 (6): 1556--65.
 
 \leavevmode\hypertarget{ref-huang2013development}{}%
 Huang, Yueng-hsiang, Dov Zohar, Michelle M Robertson, Angela Garabet, Jin Lee, and Lauren A Murphy. 2013. ``Development and Validation of Safety Climate Scales for Lone Workers Using Truck Drivers as Exemplar.'' \emph{Transportation Research Part F: Traffic Psychology and Behaviour} 17: 5--19.

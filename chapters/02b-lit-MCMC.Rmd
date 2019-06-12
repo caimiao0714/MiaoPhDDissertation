@@ -44,19 +44,21 @@ p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \
 \end{split}
 \end{equation}
 
-Where $p(\mathbf{X}|\theta)$ is the likelihood function, which reflects the data generating process that gives rise to the data observed. The denominator $\int p(\theta)p(\mathbf{X}|\theta)d\theta$ is a normalizing constant that makes the posterior distribution integrates to one. The prior and likelihood function are straightforward since they both have analytical forms. The trickiest part of Bayesian inference is the normalizing constant in the denominator [@gelman2013bayesian]. 
+Where $p(\mathbf{X}|\theta)$ is the likelihood function, which reflects the data generating process that gives rise to the data observed. The denominator $\int p(\theta)p(\mathbf{X}|\theta)d\theta$ is a normalizing constant that makes the posterior distribution integrates to one. The prior and likelihood function are straightforward since they both have analytical forms. The trickiest part of Bayesian inference is the normalizing constant in the denominator [@gelman2013bayesian; @kruschke2014doing]. 
 
-The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods, such as Markov chain Monte Carlo (MCMC) methods or the integrated Laplace approximation, to directly sample from this posterior distribution or approximate this constant.
+The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods such as Markov chain Monte Carlo (MCMC) methods to directly sample from this posterior distribution, or the integrated Laplace approximation to approximate this constant. However, this numerical methods often fail or take an inhibitively long time to solve the problem with the presence of high-dimensional data or very tall data in this era.
 
+There are several strengths of Bayesian models over traditional Frequentist models.
 
-**Advantages of Bayesian inference**
-
+- Intuitive interpretation and model comparison. Posterior predictive distribution.
+- Prior
 - Sparse data
-- Posterior predictive distribution.
+- Model flexibility
+
 
 ### Hierarchical models
 
-Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road with relatively high rate of crashes during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur; we must also study the non-crashes and compare them with crashes. On the other hand, these studies that focus on road segments ignore driver-level unobserved effects. It is reported that the chance of having crashes for truck drivers with crash history in the past year is nearly twice as high as those without crash history in the past year [@cantor2010driver]. Most motor carrier insurance companies and employers also view historical safety events as an important measure of the driver's performance. Therefore, it is more natural to use driver-focused models to account for unobserved variation and characteristics associated with vehicle drivers.
+Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road with relatively high rate of crashes during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur; we must also study the non-crashes and compare them with crashes. On the other hand, these studies that focus on road segments ignore driver-level unobserved effects. It is reported that the chance of having crashes for truck drivers with crash history in the past year is nearly twice as high as those without crash history in the past year [@cantor2010driver]. Most motor carrier insurance companies and employers also view historical safety events as an important measure of the driver's performance. Therefore, it is more natural to use driver-focused models to account for unobserved variation and characteristics associated with vehicle drivers [@huang2010multilevel].
 
 In the Bayesian perspective, a hierarchical model is a statistical model with the probability distribution of one parameter depends on another parameter [@kruschke2015bayesian]. Suppose we have a model with two parameters $\alpha, \beta$ and data $D$. The joint prior distribution of the two parameters is $p(\alpha, \beta)$. According to the Bayes Theorem, the posterior distribution is proportional to the product of the prior distribution and the likelihood function: $P(\alpha, \beta|D) \propto P(\alpha, \beta)P(D|\alpha,\beta)$. In a hierarchical model setting, the product can be factored as a chain of products among parameters, also known as conditional independence, such as $P(\alpha, \beta)P(D|\alpha,\beta) = P(D|\beta)P(\beta|\alpha)P(\alpha)$. In this parameterization, the parameter $\alpha$ is known as the hyperparameter because it gives rise to the parameter $\beta$ (the parameter of a parameter) [@kruschke2015bayesian].
 
@@ -72,7 +74,7 @@ Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
 
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups [@mcelreath2018statistical]. This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data [@gelman2006data; @lambert2018student].
 
-Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
+Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
 
 
 ### Markov chain Monte Carlo (MCMC)
