@@ -14,6 +14,8 @@ Among all driver-related safety critical events, fatigue has become the most pre
 
 [@anderson2017exploratory]
 
+Definitions of fatigue [@yung2016fatigue; @cavuoto2017understanding]
+
 @hos2017 demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time.
 
 
