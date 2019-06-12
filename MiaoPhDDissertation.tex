@@ -323,9 +323,7 @@ Pack et al. (\protect\hyperlink{ref-pack1995characteristics}{1995})'s analysis r
 \hypertarget{overview}{%
 \subsection{Overview}\label{overview}}
 
-\textbf{Explain or to predict} Shmueli and others (\protect\hyperlink{ref-shmueli2010explain}{2010}); Breiman and others (\protect\hyperlink{ref-breiman2001statistical}{2001}).
-
-The most commonly used statistical models for traffic safety are logistic regression and Poisson regression.
+The most commonly used statistical models for traffic safety are logistic regression and Poisson regression. Logistic regression is commonly used to predict crash likelihood (probability) using real-time data, for example traffic and weather at 5-minute intervals (Wang, Abdel-Aty, and Lee \protect\hyperlink{ref-wang2017safety}{2017}). In contrast, Poisson regression is used to predict the crash frequency (the number of crashes) within a time period using aggregated data such as average data traffic and precipitation. I will briefly introduce the two models and then compare the two cultures of predictive models in statistical and machine learning perspective.
 
 The parameterization of a logistic regression is shown in Model \eqref{eq:logit}.
 
@@ -339,9 +337,7 @@ Y_i & \sim \text{Bernoulli}(p_i) \\
 
 Where \(Y_i\) is a binary variable that indicates whether an event occurred or not in the \(i\)-th observation. \(p_i\) is the mean parameter of a Bernoulli distribution, which is constrained on \([0, 1]\). The logit transformation of \(p_i\) then has the range from \(-\infty\) to \(+\infty\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
 
-Logistic regression is commonly used to predict the crash likelihood (probability)
-
-The parameterization of a Poisson regression is shown in Model \eqref{eq:poisson}.
+On the other hand, the parameterization of a Poisson regression is shown in Model \eqref{eq:poisson}.
 \begin{equation}
 \begin{split}
 Y_i^\star & \sim \text{Poisson}(\mu_i) \\
@@ -351,6 +347,8 @@ Y_i^\star & \sim \text{Poisson}(\mu_i) \\
 \end{equation}
 
 Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which must be a non-negative integer. \(\mu_i\) is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of \(\mu_i\) transforms \(\mu_i\) into the range of \((-\infty, +\infty)\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
+
+\textbf{Explain or to predict} Shmueli and others (\protect\hyperlink{ref-shmueli2010explain}{2010}); Breiman and others (\protect\hyperlink{ref-breiman2001statistical}{2001}).
 
 \hypertarget{bayesian-models}{%
 \subsection{Bayesian models}\label{bayesian-models}}
@@ -368,7 +366,7 @@ Where \(p(\mathbf{X}|\theta)\) is the likelihood function, which reflects the da
 
 The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods such as Markov chain Monte Carlo (MCMC) methods to directly sample from this posterior distribution, or the integrated Laplace approximation to approximate this constant. However, this numerical methods often fail or take an inhibitively long time to solve the problem with the presence of high-dimensional data or very tall data in this era.
 
-There are several strengths of Bayesian models over traditional Frequentist models. First, the probabilistic distribution of parameters and posterior credibles intervals have straightforward and intuitive interpretations, which has been mistakenly understood in Frequentist perspectives. Second, Bayesian models incorporate prior information \(p(\theta)\) into the statistical model, which can be useful when there is sufficient prior background information. This prior belief is particularly useful for estimation in high-dimensional, sparse data settings, and complex statistical models such as hierarchical models (Betancourt and Girolami \protect\hyperlink{ref-betancourt2015hamiltonian}{2015}). Lastly, Bayesian models are scalable to complex data generating process. This is because modern Bayesian estimation is powered by numerical methods and simulation, which in essence only requires researchers to specify the priors and likelihood function. The difficulty of written the likelihood function is minimal compared to traditional Frequentist approaches such as the maximum likelihood estimation, which scales with the complexity of models (Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
+There are several strengths of Bayesian models over traditional Frequentist models. First, the probabilistic distribution of parameters, posterior credibles intervals, and posterior predictive distributions account for the uncertainty in parameters and the data generating process. They also have straightforward and intuitive interpretations. Second, Bayesian models incorporate prior information \(p(\theta)\) into the statistical model, which can be useful when there is sufficient prior background information. This prior belief is particularly useful for estimation in high-dimensional, sparse data settings, and complex statistical models such as hierarchical models (Betancourt and Girolami \protect\hyperlink{ref-betancourt2015hamiltonian}{2015}). Lastly, Bayesian models are scalable to complex data generating process. This is because modern Bayesian estimation is powered by numerical methods and simulation, which in essence only requires researchers to specify the priors and likelihood function. The difficulty of written the likelihood function is minimal compared to traditional Frequentist approaches such as the maximum likelihood estimation, which scales with the complexity of models (Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
 \hypertarget{hierarchical-models}{%
 \subsection{Hierarchical models}\label{hierarchical-models}}
@@ -1640,6 +1638,9 @@ Van Ravenzwaaij, Don, Pete Cassey, and Scott D Brown. 2018. ``A Simple Introduct
 
 \leavevmode\hypertarget{ref-Verbosio2017}{}%
 Verbosio, Fabio, Arne De Coninck, Drosos Kourounis, and Olaf Schenk. 2017. ``Enhancing the Scalability of Selected Inversion Factorization Algorithms in Genomic Prediction.'' \emph{Journal of Computational Science} 22 (Supplement C): 99--108. \url{https://doi.org/10.1016/j.jocs.2017.08.013}.
+
+\leavevmode\hypertarget{ref-wang2017safety}{}%
+Wang, Ling, Mohamed Abdel-Aty, and Jaeyoung Lee. 2017. ``Safety Analytics for Integrating Crash Frequency and Real-Time Risk Modeling for Expressways.'' \emph{Accident Analysis \& Prevention} 104: 58--64.
 
 \leavevmode\hypertarget{ref-wang2019hamiltonian}{}%
 Wang, Ziqi, Marco Broccardo, and Junho Song. 2019. ``Hamiltonian Monte Carlo Methods for Subset Simulation in Reliability Analysis.'' \emph{Structural Safety} 76: 51--67.
