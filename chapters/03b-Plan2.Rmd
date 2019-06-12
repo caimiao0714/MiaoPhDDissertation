@@ -1,8 +1,18 @@
 Analytical Plan for Aim 2
 -------------------------
 
+In this study, we use vehicle drivers as the sampling unit and adopt hierarchical statistical models that accounts for both driver-level variation and trip-level variation. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.
+
 ### Logistic regression
 
+\begin{equation}
+\begin{split}
+Y_{i, d} &\sim \text{Bernoulli}(p_i)\\
+\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d} + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k\\
+\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D
+(\#eq:hierarchicallogit)
+\end{split}
+\end{equation}
 
 
 ### Poisson regression

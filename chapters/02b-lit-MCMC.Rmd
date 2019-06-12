@@ -21,7 +21,6 @@ Where $Y_i$ is a binary variable that indicates whether an event occurred or not
 Logistic regression is commonly used to predict the crash likelihood (probability)
 
 The parameterization of a Poisson regression is shown in Model \@ref(eq:poisson).
-
 \begin{equation}
 \begin{split}
 Y_i^\star & \sim \text{Poisson}(\mu_i) \\
@@ -37,7 +36,6 @@ Where $Y_i^\star$ is the number of events in the $i$-th observation, which must 
 ### Bayesian models
 
 In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions [@gelman2013bayesian]. Researchers have subjective prior beliefs (a probability distribution) on these parameters $p(\theta)$ before they collect any data. After observing the data $\mathbf{X}$, the researchers could change their prior beliefs. Therefore, the posterior distribution $p(\theta | \mathbf{X})$ is an an unconditional distribution that is a compromise between the prior beliefs and the data. This compromise is given analytically by the Bayes Theorem (Equation \@ref(eq:bayes)).
-
 \begin{equation}
 \begin{split}
 p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \\
@@ -58,33 +56,24 @@ The normalizing constant need to make the posterior distribution integrate to on
 
 ### Hierarchical models
 
-Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur. We must also study the non-crashes and compare them with crashes. Therefore, we argue that it is more natural to use vehicle drivers as the sampling unit. The data generating process (DGP) is to sample a certain number of drivers from a population, observe their driving trips or shifts for a specific period, then compare the crashes with the non-crashes, and make conclusions on risk factors.
+Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road with relatively high rate of crashes during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur; we must also study the non-crashes and compare them with crashes. On the other hand, these studies that focus on road segments ignore driver-level unobserved effects. It is reported that the chance of having crashes for truck drivers with crash history in the past year is nearly twice as high as those without crash history in the past year [@cantor2010driver]. Most motor carrier insurance companies and employers also view historical safety events as an important measure of the driver's performance. Therefore, it is more natural to use driver-focused models to account for unobserved variation and characteristics associated with vehicle drivers.
 
-In this driver-centered DGP, a hierarchical model that accounts for both driver-level variation and trip- or shift-level variation is deemed more appropriate.
+In the Bayesian perspective, a hierarchical model is a statistical model with the probability distribution of one parameter depends on another parameter [@kruschke2015bayesian]. Suppose we have a model with two parameters $\alpha, \beta$ and data $D$. The joint prior distribution of the two parameters is $p(\alpha, \beta)$. According to the Bayes Theorem, the posterior distribution is proportional to the product of the prior distribution and the likelihood function: $P(\alpha, \beta|D) \propto P(\alpha, \beta)P(D|\alpha,\beta)$. In a hierarchical model setting, the product can be factored as a chain of products among parameters, also known as conditional independence, such as $P(\alpha, \beta)P(D|\alpha,\beta) = P(D|\beta)P(\beta|\alpha)P(\alpha)$. In this parameterization, the parameter $\alpha$ is known as the hyperparameter because it gives rise to the parameter $\beta$ (the parameter of a parameter) [@kruschke2015bayesian].
 
+Model \@ref(eq:hierarchicalbayes) demonstrates a random-intercept hierarchical logitistic regression that predicts the likelihood of safety events. The outcome $Y_{i, d(i)}$ is a binary variable that indicates whether a safety event occurred or not, and it has a Bernoulli distribution with the mean parameter $p_{i, d(i)}$. The logit transformation of $p_{i, d(i)}$ can then be predicted by $k$ variables $x_1, x_2, \cdots, x_k$. The random intercept $\beta_{0, d(i)}$ determines that this is hierarchical model since they vary across different drivers $d(i)$. This model assumes that these random intercepts are sampled from a population of drivers with the mean of $\mu_0$ and standard deviation of $\sigma_0$, which are known as hyperparameters.
 \begin{equation}
 \begin{split}
-\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D\\
-\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d} + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k\\
-Y_{i, d} &\sim \text{Bernoulli}(p_i)
+Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
+\log\frac{p_{i, d(i)}}{1-p_{i, d(i)}} &= \beta_{0, d(i)} + \beta_1x_{1,i} + \beta_2x_{2,i} + \cdots + \beta_kx_{k,i}\\
+\beta_{0, d(i)} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D
 (\#eq:hierarchicalbayes)
 \end{split}
 \end{equation}
 
-partial pooling
+Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups [@mcelreath2018statistical]. This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data [@gelman2006data; @lambert2018student].
 
-Pros of hierarchical models:
+Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
 
-- Bayesian Hierarchical Models are a way to build a statistical model of the data by splitting into steps
-- Typically, decomposing into steps exposes what is needed - typically many conditional distributions
-- For complex data, this may be the only viable way to build the
-statistical model
-- The decomposition is usually very natural and logical
-- The model allows the proper propagation of errors from one layer to
-the next,
-- including a proper treatment of systematics
-- One can often use efficient sampling algorithms to sample from the posterior - precisely what one wants from a Bayesian statistical
-analysis
 
 ### Markov chain Monte Carlo (MCMC)
 

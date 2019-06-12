@@ -1,4 +1,4 @@
-book_filename: Miao_PhD_Dissertation
+book_filename: MiaoPhDDissertation
 rmd_subdir: ["chapters/"]
 output_dir: ["."]
 delete_merged_file: true

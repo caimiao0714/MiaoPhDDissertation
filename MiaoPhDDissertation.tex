@@ -342,7 +342,6 @@ Where \(Y_i\) is a binary variable that indicates whether an event occurred or n
 Logistic regression is commonly used to predict the crash likelihood (probability)
 
 The parameterization of a Poisson regression is shown in Model \eqref{eq:poisson}.
-
 \begin{equation}
 \begin{split}
 Y_i^\star & \sim \text{Poisson}(\mu_i) \\
@@ -357,7 +356,6 @@ Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which m
 \subsection{Bayesian models}\label{bayesian-models}}
 
 In contrast to traditional frequentist models that view parameters as unknown but fixed values, Bayesian models view parameters as random variables that have probability distributions (Gelman et al. \protect\hyperlink{ref-gelman2013bayesian}{2013}). Researchers have subjective prior beliefs (a probability distribution) on these parameters \(p(\theta)\) before they collect any data. After observing the data \(\mathbf{X}\), the researchers could change their prior beliefs. Therefore, the posterior distribution \(p(\theta | \mathbf{X})\) is an an unconditional distribution that is a compromise between the prior beliefs and the data. This compromise is given analytically by the Bayes Theorem (Equation \eqref{eq:bayes}).
-
 \begin{equation}
 \begin{split}
 p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \\
@@ -383,43 +381,23 @@ The normalizing constant need to make the posterior distribution integrate to on
 \hypertarget{hierarchical-models}{%
 \subsection{Hierarchical models}\label{hierarchical-models}}
 
-Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur. We must also study the non-crashes and compare them with crashes. Therefore, we argue that it is more natural to use vehicle drivers as the sampling unit. The data generating process (DGP) is to sample a certain number of drivers from a population, observe their driving trips or shifts for a specific period, then compare the crashes with the non-crashes, and make conclusions on risk factors.
+Most studies on traffic safety assume that the sampling unit is a spatial-temporal segment, which is a specific section of a road with relatively high rate of crashes during a period. However, it is not sufficient to only study the occasions where the crashes are more likely to occur; we must also study the non-crashes and compare them with crashes. On the other hand, these studies that focus on road segments ignore driver-level unobserved effects. It is reported that the chance of having crashes for truck drivers with crash history in the past year is nearly twice as high as those without crash history in the past year (Cantor et al. \protect\hyperlink{ref-cantor2010driver}{2010}). Most motor carrier insurance companies and employers also view historical safety events as an important measure of the driver's performance. Therefore, it is more natural to use driver-focused models to account for unobserved variation and characteristics associated with vehicle drivers.
 
-In this driver-centered DGP, a hierarchical model that accounts for both driver-level variation and trip- or shift-level variation is deemed more appropriate.
+In the Bayesian perspective, a hierarchical model is a statistical model with the probability distribution of one parameter depends on another parameter (Kruschke and Vanpaemel \protect\hyperlink{ref-kruschke2015bayesian}{2015}). Suppose we have a model with two parameters \(\alpha, \beta\) and data \(D\). The joint prior distribution of the two parameters is \(p(\alpha, \beta)\). According to the Bayes Theorem, the posterior distribution is proportional to the product of the prior distribution and the likelihood function: \(P(\alpha, \beta|D) \propto P(\alpha, \beta)P(D|\alpha,\beta)\). In a hierarchical model setting, the product can be factored as a chain of products among parameters, also known as conditional independence, such as \(P(\alpha, \beta)P(D|\alpha,\beta) = P(D|\beta)P(\beta|\alpha)P(\alpha)\). In this parameterization, the parameter \(\alpha\) is known as the hyperparameter because it gives rise to the parameter \(\beta\) (the parameter of a parameter) (Kruschke and Vanpaemel \protect\hyperlink{ref-kruschke2015bayesian}{2015}).
 
+Model \eqref{eq:hierarchicalbayes} demonstrates a random-intercept hierarchical logitistic regression that predicts the likelihood of safety events. The outcome \(Y_{i, d(i)}\) is a binary variable that indicates whether a safety event occurred or not, and it has a Bernoulli distribution with the mean parameter \(p_{i, d(i)}\). The logit transformation of \(p_{i, d(i)}\) can then be predicted by \(k\) variables \(x_1, x_2, \cdots, x_k\). The random intercept \(\beta_{0, d(i)}\) determines that this is hierarchical model since they vary across different drivers \(d(i)\). This model assumes that these random intercepts are sampled from a population of drivers with the mean of \(\mu_0\) and standard deviation of \(\sigma_0\), which are known as hyperparameters.
 \begin{equation}
 \begin{split}
-\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D\\
-\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d} + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k\\
-Y_{i, d} &\sim \text{Bernoulli}(p_i)
+Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
+\log\frac{p_{i, d(i)}}{1-p_{i, d(i)}} &= \beta_{0, d(i)} + \beta_1x_{1,i} + \beta_2x_{2,i} + \cdots + \beta_kx_{k,i}\\
+\beta_{0, d(i)} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D
 \label{eq:hierarchicalbayes}
 \end{split}
 \end{equation}
 
-partial pooling
+Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups (McElreath \protect\hyperlink{ref-mcelreath2018statistical}{2018}). This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data (Gelman and Hill \protect\hyperlink{ref-gelman2006data}{2006}; Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
-Pros of hierarchical models:
-
-\begin{itemize}
-\tightlist
-\item
-  Bayesian Hierarchical Models are a way to build a statistical model of the data by splitting into steps
-\item
-  Typically, decomposing into steps exposes what is needed - typically many conditional distributions
-\item
-  For complex data, this may be the only viable way to build the
-  statistical model
-\item
-  The decomposition is usually very natural and logical
-\item
-  The model allows the proper propagation of errors from one layer to
-  the next,
-\item
-  including a proper treatment of systematics
-\item
-  One can often use efficient sampling algorithms to sample from the posterior - precisely what one wants from a Bayesian statistical
-  analysis
-\end{itemize}
+Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchy.
 
 \hypertarget{markov-chain-monte-carlo-mcmc}{%
 \subsection{Markov chain Monte Carlo (MCMC)}\label{markov-chain-monte-carlo-mcmc}}
@@ -690,8 +668,19 @@ This part will be based on truck driver's trips data and crashes data.
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
 
+In this study, we use vehicle drivers as the sampling unit and adopt hierarchical statistical models that accounts for both driver-level variation and trip-level variation. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.
+
 \hypertarget{logistic-regression}{%
 \subsection{Logistic regression}\label{logistic-regression}}
+
+\begin{equation}
+\begin{split}
+Y_{i, d} &\sim \text{Bernoulli}(p_i)\\
+\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d} + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k\\
+\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D
+\label{eq:hierarchicallogit}
+\end{split}
+\end{equation}
 
 \hypertarget{poisson-regression}{%
 \subsection{Poisson regression}\label{poisson-regression}}
@@ -1417,6 +1406,9 @@ FMCSA. 2016. ``Fatal occupational injuries by event, 2016.'' \url{https://www.fm
 \leavevmode\hypertarget{ref-gelfand1990sampling}{}%
 Gelfand, Alan E, and Adrian FM Smith. 1990. ``Sampling-Based Approaches to Calculating Marginal Densities.'' \emph{Journal of the American Statistical Association} 85 (410): 398--409.
 
+\leavevmode\hypertarget{ref-gelman2006data}{}%
+Gelman, Andrew, and Jennifer Hill. 2006. \emph{Data Analysis Using Regression and Multilevel/Hierarchical Models}. Cambridge university press.
+
 \leavevmode\hypertarget{ref-gelman2013bayesian}{}%
 Gelman, Andrew, Hal S Stern, John B Carlin, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. \emph{Bayesian Data Analysis}. Chapman; Hall/CRC.
 
@@ -1471,6 +1463,9 @@ Kourounis, D., A. Fuchs, and O. Schenk. 2018. ``Towards the Next Generation of M
 \leavevmode\hypertarget{ref-kruschke2014doing}{}%
 Kruschke, John. 2014. \emph{Doing Bayesian Data Analysis: A Tutorial with R, Jags, and Stan}. Academic Press.
 
+\leavevmode\hypertarget{ref-kruschke2015bayesian}{}%
+Kruschke, John K, and Wolf Vanpaemel. 2015. ``Bayesian Estimation in Hierarchical Models.'' \emph{The Oxford Handbook of Computational and Mathematical Psychology}, 279--99.
+
 \leavevmode\hypertarget{ref-kusano2012safety}{}%
 Kusano, Kristofer D, and Hampton C Gabler. 2012. ``Safety Benefits of Forward Collision Warning, Brake Assist, and Autonomous Braking Systems in Rear-End Collisions.'' \emph{IEEE Transactions on Intelligent Transportation Systems} 13 (4): 1546--55.
 
@@ -1506,6 +1501,9 @@ MacLean, Alistair W, David RT Davies, and Kris Thiele. 2003. ``The Hazards and P
 
 \leavevmode\hypertarget{ref-Thiago2013}{}%
 Martins, Thiago G., Daniel Simpson, Finn Lindgren, and Håvard Rue. 2013. ``Bayesian Computing with INLA: New Features.'' \emph{Computational Statistics and Data Analysis} 67: 68--83.
+
+\leavevmode\hypertarget{ref-mcelreath2018statistical}{}%
+McElreath, Richard. 2018. \emph{Statistical Rethinking: A Bayesian Course with Examples in R and Stan}. Chapman; Hall/CRC.
 
 \leavevmode\hypertarget{ref-metropolis1953equation}{}%
 Metropolis, Nicholas, Arianna W Rosenbluth, Marshall N Rosenbluth, Augusta H Teller, and Edward Teller. 1953. ``Equation of State Calculations by Fast Computing Machines.'' \emph{The Journal of Chemical Physics} 21 (6): 1087--92.
