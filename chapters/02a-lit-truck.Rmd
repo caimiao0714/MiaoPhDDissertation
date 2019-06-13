@@ -3,7 +3,14 @@ LITERATURE REVIEW
 Precursors to crashes
 ---------------------
 
+Limitation of crashes data:
 
+- extremely rare
+- no real-time monitor and subject to recall bias
+- under-reporting
+- much costly than precursor data
+
+@saleh2013accident
 
 Risk factors
 ------------
@@ -47,7 +54,7 @@ One more risk factor that could explain driving safety critical events is driver
 
 Although it is generally believed that lower **speed limits** can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results [@neeley2009effect; @korkut2010freeway; @zhu2011comprehensive; @davis2015longitudinal]. 
 
-
+Speed [@tseng2016comprehensive].
 
 
 ### Weather
@@ -58,5 +65,5 @@ Weather has both direct and indirect effects on drivers’ safety critical event
 
 ### Time of the day
 
-@pack1995characteristics's analysis reported the crashes in which the drivers fell asleep occurred primarily from mid-night to 7 a.m. and from 2 p.m. to 4 p.m.
+@pack1995characteristics's analysis reported the crashes in which the drivers fell asleep occurred primarily from mid-night to 7 a.m. and from 2 p.m. to 4 p.m.. A significant amount of research emphasizes the association between more night driving, often accompanied by changes in shift scheduling, inadequate sleep, sleep apnea and disorder, and fatigue development, which is detrimental to transportation safety [@cavuoto2017understanding]. 
 

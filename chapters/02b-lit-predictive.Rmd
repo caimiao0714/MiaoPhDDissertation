@@ -4,7 +4,7 @@ Predictive models
 
 The most commonly used statistical models for traffic safety are logistic regression and Poisson regression. Logistic regression is commonly used to predict crash likelihood (probability) using real-time data, for example traffic and weather at 5-minute intervals [@wang2017safety]. In contrast, Poisson regression is used to predict the crash frequency (the number of crashes) within a time period using aggregated data such as average data traffic and precipitation. I will briefly introduce the two models and then compare the two cultures of predictive models in statistical and machine learning perspective.
 
-The parameterization of a logistic regression is shown in Model \@ref(eq:logit).
+The parameterization of a binary logistic regression is shown in Model \@ref(eq:logit).
 
 \begin{equation}
 \begin{split}
@@ -16,9 +16,21 @@ Y_i & \sim \text{Bernoulli}(p_i) \\
 
 Where $Y_i$ is a binary variable that indicates whether an event occurred or not in the $i$-th observation. $p_i$ is the mean parameter of a Bernoulli distribution, which is constrained on $[0, 1]$. The logit transformation of $p_i$ then has the range from $-\infty$ to $+\infty$, which equals a linear combination of the predictors $x_1, x_2, \cdots, x_k$ and associated parameters $\beta_0, \beta_1, \cdots, \beta_k$.
 
-**Add some reference on logitistic regression applied in traffic safety**
+The most commonly used outcomes for binary logistic regressions are injury versus non-injury crashes or fatal versus non-fatal crashes [@savolainen2011statistical]. For example, @chen2016driver used a two-level hierarchical Bayesian logistic model to predict the likelihood of high-severity crashes compared to low-severity crashes in New Mexico, accounting for both crash-level and driver-level effects. They found that road curve, functional and disabled vehicle damage, single-vehicle crashes, female, older drivers, drug or alcohol involvement were associated with increased odds of severe crashes. Considering the rare-event natural of crashes, @theofilatos2016predicting used logistic regression with rare events bias correction and Firth method to study significant risk factors for crashes in Greece. They found a negative association between crash likelihood and speed in crash locations. The proportion of trucks on the road was included in their model but not found to be significant. Other traffic safety studies using logistic regressions include but were not limit to @moudon2011risk, @meuleners2017determinants, @ahmed2018effects.
 
-On the other hand, the parameterization of a Poisson regression is shown in Model \@ref(eq:poisson).
+Other variants of a binary logistic regression are binary probit models [@lee2008presence; @yu2014using], ordered logistic or probit models [@xie2009crash; @zhu2011comprehensive], multinomial logit models [@ye2011investigation]. There are only minor difference between a probit model and a logistic model. A logistic model uses the inverse logit of the linear predictors to calculate the probability of an event, as shown in Equation \@ref(eq:inverselogit); a probit model uses the cumulative normal density function of the linear predictors to calculate the probability. The error function $\text{erf}(x)$ is an integral without an analytical solution: $\text{erf}(x) = \frac{2}{\pi}\int_0^xe^{-t^2}dt$.
+\begin{equation}
+p = \text{logit}^{-1}(\mathbf{X}^\prime\beta) = \frac{\exp (\mathbf{X}^\prime\beta)}{1 + \exp (\mathbf{X}^\prime\beta)}
+(\#eq:inverselogit)
+\end{equation}
+\begin{equation}
+p = \Phi(\mathbf{X}^\prime\beta) = \frac{1}{2}\Big[1+\text{erf}(\frac{\mathbf{X}^\prime\beta}{\sqrt 2})\Big]
+(\#eq:inverselogit)
+\end{equation}
+
+Ordered logistic or probit regressions aim to model an ordered multi-category outcome variable. The most common case is study the severity of crashes, such as no-injury crashes, minor-injury crashes, and fatal-injury crashes [@zhu2011comprehensive]. These ordered models account for the ranked nature of different severity levels but make the proportional odds assumption [@rifaat2012severity]. When the proportional odds assumption is violated, researchers often switch to multinomial logit or probit models, in which the outcome variable is deemed as nominal.
+
+On the other hand, the parameterization of a Poisson regression is shown in model \@ref(eq:poisson).
 \begin{equation}
 \begin{split}
 Y_i^\star & \sim \text{Poisson}(\mu_i) \\
@@ -29,7 +41,7 @@ Y_i^\star & \sim \text{Poisson}(\mu_i) \\
 
 Where $Y_i^\star$ is the number of events in the $i$-th observation, which must be a non-negative integer. $\mu_i$ is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of $\mu_i$ transforms $\mu_i$ into the range of $(-\infty, +\infty)$, which equals a linear combination of the predictors $x_1, x_2, \cdots, x_k$ and associated parameters $\beta_0, \beta_1, \cdots, \beta_k$.
 
-**Add some reference on Poisson regression applied in traffic safety**
+@cantor2010driver used Poisson regressions to explore the association between the rate of crashes driver-level characteristics among 560,695 commercial truck drivers in the United States. They found that past safety performance, out-of-service rate, body mass index (BMI), age, and the number of unique companies were strong predictors of the rate of truck crashes. 
 
 **Explain or to predict** @shmueli2010explain; @breiman2001statistical.
 
@@ -49,7 +61,7 @@ Where $p(\mathbf{X}|\theta)$ is the likelihood function, which reflects the data
 
 The normalizing constant need to make the posterior distribution integrate to one since the posterior is supposed to be a probability density distribution. When there are more than two parameters in the model, the normalizing constant often becomes intractable since it involves integration in multiple dimensions. Modern Bayesian inference often uses numerical methods such as Markov chain Monte Carlo (MCMC) methods to directly sample from this posterior distribution, or the integrated Laplace approximation to approximate this constant. However, this numerical methods often fail or take an inhibitively long time to solve the problem with the presence of high-dimensional data or very tall data in this era.
 
-There are several strengths of Bayesian models over traditional Frequentist models. First, the probabilistic distribution of parameters, posterior credibles intervals, and posterior predictive distributions account for the uncertainty in parameters and the data generating process. They also have straightforward and intuitive interpretations. Second, Bayesian models incorporate prior information $p(\theta)$ into the statistical model, which can be useful when there is sufficient prior background information. This prior belief is particularly useful for estimation in high-dimensional, sparse data settings, and complex statistical models such as hierarchical models [@betancourt2015hamiltonian]. Lastly, Bayesian models are scalable to complex data generating process. This is because modern Bayesian estimation is powered by numerical methods and simulation, which in essence only requires researchers to specify the priors and likelihood function. The difficulty of written the likelihood function is minimal compared to traditional Frequentist approaches such as the maximum likelihood estimation, which scales with the complexity of models [@lambert2018student].
+There are several strengths of Bayesian models over traditional Frequentist models. First, the probabilistic distribution of parameters, posterior credibles intervals, and posterior predictive distributions account for the uncertainty in parameters and the data generating process. They also have straightforward and intuitive interpretations. Second, Bayesian models incorporate prior information $p(\theta)$ into the statistical model, which can be useful when there is sufficient prior background information. This prior distribution (regularizing priors) is particularly useful for estimation in high-dimensional, sparse data settings, and complex statistical models such as hierarchical models [@betancourt2015hamiltonian; @mcelreath2018statistical]. Lastly, Bayesian models are scalable to complex data generating process. This is because modern Bayesian estimation is powered by numerical methods and simulation, which in essence only requires researchers to specify the priors and likelihood function. The difficulty of written the likelihood function is minimal compared to traditional Frequentist approaches such as the maximum likelihood estimation, which scales with the complexity of models [@lambert2018student].
 
 
 ### Hierarchical models
