@@ -357,7 +357,7 @@ Y_i & \sim \text{Bernoulli}(p_i) \\
 
 Where \(Y_i\) is a binary variable that indicates whether an event occurred or not in the \(i\)-th observation. \(p_i\) is the mean parameter of a Bernoulli distribution, which is constrained on \([0, 1]\). The logit transformation of \(p_i\) then has the range from \(-\infty\) to \(+\infty\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
 
-The most commonly used outcomes for binary logistic regressions are injury versus non-injury crashes or fatal versus non-fatal crashes (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}). For example, Chen et al. (\protect\hyperlink{ref-chen2016driver}{2016}) used a two-level hierarchical Bayesian logistic model to predict the likelihood of high-severity crashes compared to low-severity crashes in New Mexico, accounting for both crash-level and driver-level effects. They found that road curve, functional and disabled vehicle damage, single-vehicle crashes, female, older drivers, drug or alcohol involvement were associated with increased odds of severe crashes. Considering the rare-event natural of crashes, Theofilatos et al. (\protect\hyperlink{ref-theofilatos2016predicting}{2016}) used logistic regression with rare events bias correction and Firth method to study significant risk factors for crashes in Greece. They found a negative association between crash likelihood and speed in crash locations. The proportion of trucks on the road was included in their model but not found to be significant. Other traffic safety studies using logistic regressions include but were not limit to Moudon et al. (\protect\hyperlink{ref-moudon2011risk}{2011}), Meuleners et al. (\protect\hyperlink{ref-meuleners2017determinants}{2017}), Ahmed et al. (\protect\hyperlink{ref-ahmed2018effects}{2018}).
+The most commonly used outcomes for binary logistic regressions are injury versus non-injury crashes or fatal versus non-fatal crashes (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}). For example, Chen et al. (\protect\hyperlink{ref-chen2016driver}{2016}) used a two-level hierarchical Bayesian logistic model to predict the likelihood of high-severity crashes compared to low-severity crashes in New Mexico, accounting for both crash-level and driver-level effects. They found that road curve, functional and disabled vehicle damage, single-vehicle crashes, female, older drivers, drug or alcohol involvement were associated with increased odds of severe crashes. Considering the rare-event natural of crashes, Theofilatos et al. (\protect\hyperlink{ref-theofilatos2016predicting}{2016}) used logistic regression with rare events bias correction and Firth method to study significant risk factors for crashes in Greece. They found a negative association between crash likelihood and speed in crash locations. The proportion of trucks on the road was included in their model but not found to be significant. Other traffic safety studies using logistic regressions include but were not limit to Moudon et al. (\protect\hyperlink{ref-moudon2011risk}{2011}), Meuleners et al. (\protect\hyperlink{ref-meuleners2017determinants}{2017}), Ahmed et al. (\protect\hyperlink{ref-ahmed2018effects}{2018}). There are two excellent systematic reviews on traffic crash likelihood predictions by Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{2015}) and Xu et al. (\protect\hyperlink{ref-xu2015calibration}{2015}).
 
 Other variants of a binary logistic regression are binary probit models (Lee and Abdel-Aty \protect\hyperlink{ref-lee2008presence}{2008}; Yu and Abdel-Aty \protect\hyperlink{ref-yu2014using}{2014}), ordered logistic or probit models (Xie, Zhang, and Liang \protect\hyperlink{ref-xie2009crash}{2009}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}), multinomial logit models (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}). There are only minor difference between a probit model and a logistic model. A logistic model uses the inverse logit of the linear predictors to calculate the probability of an event, as shown in Equation \eqref{eq:inverselogit}; a probit model uses the cumulative normal density function of the linear predictors to calculate the probability. The error function \(\text{erf}(x)\) is an integral without an analytical solution: \(\text{erf}(x) = \frac{2}{\pi}\int_0^xe^{-t^2}dt\).
 \begin{equation}
@@ -380,9 +380,11 @@ Y_i^\star & \sim \text{Poisson}(\mu_i) \\
 \end{split}
 \end{equation}
 
-Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which must be a non-negative integer. \(\mu_i\) is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of \(\mu_i\) transforms \(\mu_i\) into the range of \((-\infty, +\infty)\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
+Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which must be a non-negative integer. \(\mu_i\) is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of \(\mu_i\) transforms \(\mu_i\) into the range of \((-\infty, +\infty)\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\). Note that the mean parameter equals the variance parameter in the Poisson distribution, which is often violated in real-life data. When the variance of the data is greater than expected, it is called overdispersion. Otherwise, it is called underdispersion. Overdispersion is much more common than underdispersion in statistical practice.
 
-Cantor et al. (\protect\hyperlink{ref-cantor2010driver}{2010}) used Poisson regressions to explore the association between the rate of crashes driver-level characteristics among 560,695 commercial truck drivers in the United States. They found that past safety performance, out-of-service rate, body mass index (BMI), age, and the number of unique companies were strong predictors of the rate of truck crashes.
+When researchers have crash data that are aggregated over a long time period such as one year, it often makes sense to study the number of crashes instead of whether a crash occurred or not since they are often more than one crash. The most commonly used statistical model is therefore Poisson model, as it well handles count data that are right-skewed, long tailed, and only have non-negative integer values. For example, Cantor et al. (\protect\hyperlink{ref-cantor2010driver}{2010}) used Poisson regressions to explore the association between the rate of crashes driver-level characteristics among 560,695 commercial truck drivers in the United States. They found that past safety performance, out-of-service rate, body mass index (BMI), age, and the number of unique companies were strong predictors of the rate of truck crashes.
+
+Other variants of a Poisson model includes negative binomial models, quasi-Poisson models, and zero-inflated Poisson or negative binomial models (Lord \protect\hyperlink{ref-lord2006modeling}{2006}; Mohammadi, Samaranayake, and Bham \protect\hyperlink{ref-mohammadi2014crash}{2014}). Negative binomial or quasi-Poisson models are developed to account for the overdispersion and underdispersion in count data, for which a Poisson model fails to account. Zero-inflated Poisson or negative binomial models are developed to account for the feature of rare events in traffic crash data (Lord, Washington, and Ivan \protect\hyperlink{ref-lord2005poisson}{2005}, \protect\hyperlink{ref-lord2007further}{2007}; Washington, Karlaftis, and Mannering \protect\hyperlink{ref-washington2010statistical}{2010}; Dong et al. \protect\hyperlink{ref-dong2014multivariate}{2014}). There is an excellent review paper on statistical models for crash frequency data by Lord and Mannering (\protect\hyperlink{ref-lord2010statistical}{2010}).
 
 \textbf{Explain or to predict} Shmueli and others (\protect\hyperlink{ref-shmueli2010explain}{2010}); Breiman and others (\protect\hyperlink{ref-breiman2001statistical}{2001}).
 
@@ -1417,6 +1419,9 @@ Di Milia, Lee, Michael H Smolensky, Giovanni Costa, Heidi D Howarth, Maurice M O
 \leavevmode\hypertarget{ref-dingus2006development}{}%
 Dingus, Thomas A, Vicki L Neale, Sheila G Klauer, Andrew D Petersen, and Robert J Carroll. 2006. ``The Development of a Naturalistic Data Collection System to Perform Critical Incident Analysis: An Investigation of Safety and Fatigue Issues in Long-Haul Trucking.'' \emph{Accident Analysis \& Prevention} 38 (6): 1127--36.
 
+\leavevmode\hypertarget{ref-dong2014multivariate}{}%
+Dong, Chunjiao, David B Clarke, Xuedong Yan, Asad Khattak, and Baoshan Huang. 2014. ``Multivariate Random-Parameters Zero-Inflated Negative Binomial Regression Model: An Application to Estimate Crash Frequencies at Intersections.'' \emph{Accident Analysis \& Prevention} 70: 320--29.
+
 \leavevmode\hypertarget{ref-duane1987hybrid}{}%
 Duane, Simon, Anthony D Kennedy, Brian J Pendleton, and Duncan Roweth. 1987. ``Hybrid Monte Carlo.'' \emph{Physics Letters B} 195 (2): 216--22.
 
@@ -1537,6 +1542,18 @@ Lindgren, Finn, Håvard Rue, and Johan Lindström. 2011. ``An Explicit Link Betw
 \leavevmode\hypertarget{ref-litman2013transportation}{}%
 Litman, Todd. 2013. ``Transportation and Public Health.'' \emph{Annual Review of Public Health} 34: 217--33.
 
+\leavevmode\hypertarget{ref-lord2006modeling}{}%
+Lord, Dominique. 2006. ``Modeling Motor Vehicle Crashes Using Poisson-Gamma Models: Examining the Effects of Low Sample Mean Values and Small Sample Size on the Estimation of the Fixed Dispersion Parameter.'' \emph{Accident Analysis \& Prevention} 38 (4): 751--66.
+
+\leavevmode\hypertarget{ref-lord2010statistical}{}%
+Lord, Dominique, and Fred Mannering. 2010. ``The Statistical Analysis of Crash-Frequency Data: A Review and Assessment of Methodological Alternatives.'' \emph{Transportation Research Part A: Policy and Practice} 44 (5): 291--305.
+
+\leavevmode\hypertarget{ref-lord2007further}{}%
+Lord, Dominique, Simon Washington, and John N Ivan. 2007. ``Further Notes on the Application of Zero-Inflated Models in Highway Safety.'' \emph{Accident Analysis \& Prevention} 39 (1): 53--57.
+
+\leavevmode\hypertarget{ref-lord2005poisson}{}%
+Lord, Dominique, Simon P Washington, and John N Ivan. 2005. ``Poisson, Poisson-Gamma and Zero-Inflated Regression Models of Motor Vehicle Crashes: Balancing Statistical Fit and Theory.'' \emph{Accident Analysis \& Prevention} 37 (1): 35--46.
+
 \leavevmode\hypertarget{ref-lunn2000winbugs}{}%
 Lunn, David J, Andrew Thomas, Nicky Best, and David Spiegelhalter. 2000. ``WinBUGS-a Bayesian Modelling Framework: Concepts, Structure, and Extensibility.'' \emph{Statistics and Computing} 10 (4): 325--37.
 
@@ -1563,6 +1580,9 @@ Meuleners, Lynn, Michelle L Fraser, Matthew H Govorko, and Mark R Stevenson. 201
 
 \leavevmode\hypertarget{ref-mitler1997sleep}{}%
 Mitler, Merrill M, James C Miller, Jeffrey J Lipsitz, James K Walsh, and C Dennis Wylie. 1997. ``The Sleep of Long-Haul Truck Drivers.'' \emph{New England Journal of Medicine} 337 (11): 755--62.
+
+\leavevmode\hypertarget{ref-mohammadi2014crash}{}%
+Mohammadi, Mojtaba A, VA Samaranayake, and Ghulam H Bham. 2014. ``Crash Frequency Modeling Using Negative Binomial Models: An Application of Generalized Estimating Equation to Longitudinal Data.'' \emph{Analytic Methods in Accident Research} 2: 52--69.
 
 \leavevmode\hypertarget{ref-moneta1996time}{}%
 Moneta, Giovanni B, Annette Leclerc, Jean-François Chastang, Patrick Dang Tran, and Marcel Goldberg. 1996. ``Time-Trend of Sleep Disorder in Relation to Night Work: A Study of Sequential 1-Year Prevalences Within the Gazel Cohort.'' \emph{Journal of Clinical Epidemiology} 49 (10): 1133--41.
@@ -1711,6 +1731,9 @@ Wang, Ling, Mohamed Abdel-Aty, and Jaeyoung Lee. 2017. ``Safety Analytics for In
 \leavevmode\hypertarget{ref-wang2019hamiltonian}{}%
 Wang, Ziqi, Marco Broccardo, and Junho Song. 2019. ``Hamiltonian Monte Carlo Methods for Subset Simulation in Reliability Analysis.'' \emph{Structural Safety} 76: 51--67.
 
+\leavevmode\hypertarget{ref-washington2010statistical}{}%
+Washington, Simon P, Matthew G Karlaftis, and Fred Mannering. 2010. \emph{Statistical and Econometric Methods for Transportation Data Analysis}. Chapman; Hall/CRC.
+
 \leavevmode\hypertarget{ref-who2018b}{}%
 WHO. 2018a. ``Road traffic injuries.'' \url{http://www.who.int/mediacentre/factsheets/fs358/en/}.
 
@@ -1722,6 +1745,9 @@ Wikipedia contributors. 2019. ``OpenStreetMap --- Wikipedia, the Free Encycloped
 
 \leavevmode\hypertarget{ref-xie2009crash}{}%
 Xie, Yuanchang, Yunlong Zhang, and Faming Liang. 2009. ``Crash Injury Severity Analysis Using Bayesian Ordered Probit Models.'' \emph{Journal of Transportation Engineering} 135 (1): 18--25.
+
+\leavevmode\hypertarget{ref-xu2015calibration}{}%
+Xu, Chengcheng, Wei Wang, Pan Liu, and Zhibin Li. 2015. ``Calibration of Crash Risk Models on Freeways with Limited Real-Time Traffic Data Using Bayesian Meta-Analysis and Bayesian Inference Approach.'' \emph{Accident Analysis \& Prevention} 85: 207--18.
 
 \leavevmode\hypertarget{ref-ye2011investigation}{}%
 Ye, Fan, and Dominique Lord. 2011. ``Investigation of Effects of Underreporting Crash Data on Three Commonly Used Traffic Crash Severity Models: Multinomial Logit, Ordered Probit, and Mixed Logit.'' \emph{Transportation Research Record} 2241 (1): 51--58.
