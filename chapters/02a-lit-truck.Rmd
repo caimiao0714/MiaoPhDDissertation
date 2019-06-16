@@ -2,14 +2,11 @@ LITERATURE REVIEW
 =================
 Precursors to crashes
 ---------------------
-Truck crash data have several limitations. Firstly, truck crashes are extremely rare compared with non-crashes. 
+Truck crash data have several limitations. Firstly, truck crashes are extremely rare compared with non-crashes. According to the @fmcsareport2017, large truck and bus fatalities in 2017 were 0.156 per million travelled vehicle miles, which was a 6.8 percent increase from 2016. This rareness poses a challenge to infer unbiased estimates using traditional statistical models. Secondly, most truck crash data reply on post hoc police reports. Although these data are generally accurate and detailed by police officers, they are limited in determining the information of the driver in the meaningful time period leading up to the crash [@dingus2011estimating]. Thirdly, truck crashes are underreported, particularly for no-injury and minor-injury crashes. It is estimated that 25% of minor-injury and 50% of non-injury crashes were not reported, while 100% of fatal crashes were reported [@savolainen2011statistical].
 
-Limitation of crashes data:
 
-- extremely rare
-- no real-time monitor and subject to recall bias
-- under-reporting
-- much costly than precursor data
+
+
 
 @saleh2013accident
 
