@@ -12,7 +12,6 @@ A small device was installed in each of their truck, which will ping irregularly
 Each **ping** will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second. 
 In total, 13,187,289 pings were collected and provided to the research team. 
 
-
 For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips. 
 These ping data were then aggregated into different trips. 
 A **trip** is therefore defined as a continuous period of driving without stop. 
@@ -69,9 +68,10 @@ If the OSM API returned data from multiple geometry structures, we took the mean
 The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).
 
 
+Data Cleaning
+-------------
 
-
-
+@hos2017 demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time. [@goel2014hours; @anderson2017exploratory]
 
 
 

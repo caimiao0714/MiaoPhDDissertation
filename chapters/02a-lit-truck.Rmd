@@ -11,33 +11,30 @@ A more formal definition of near-crash, or the more general accident precursor, 
 
 Risk factors
 ------------
+The traffic safety of large trucks shares most of the risk factors with that of other vehicles. Therefore, the review of risk factors is not restricted to trucks only, but more general motor vehicles.
 
 ### Fatigue
 
-Among all driver-related safety critical events, fatigue has become the most pressing problem of traffic accidents. It is estimated by National Sleep Foundation that approximately 32% of drivers in U.S drive with fatigue over twice a month [@nsleepf]. The American Automobile Association Foundation for Traffic Safety claimed that 16.5% of fatal traffic accidents and 12.5% of collisions related to injuries in the US in 2010 were associated with driving with fatigue [@aaafoundation].  
+Among all driver-related safety events, fatigue has become the most pressing problem of truck accidents. It is estimated by National Sleep Foundation that approximately 32% of drivers drive with fatigue over twice a month [@nsleepf]. The American Automobile Association Foundation for Traffic Safety claimed that 16.5% of fatal traffic accidents and 12.5% of injuries-related collisions were associated with driving with fatigue in 2010 [@aaafoundation].  The National Highway Traffic Safety Administration (NHTSA) estimated that 60% of fatal truck crashes were attributable to the driver falling asleep while driving [@craye2016multi; @cavuoto2017understanding].
 
-[@anderson2017exploratory]
+Fatigue is often defined as a multidimensional process that leads to diminished worker performance, which may be a result of prolonged work, psychological, socioeconomic, and environment factors [@yung2016fatigue; @cavuoto2017understanding]. However, this definition has low specificity since there are other factors associated with a decreased worker performance, such as cell phone use, which does not result in driver fatigue. There is no uniform and succint definition on fatigue since it involves interactions between biological, behavior, and psychological process. A comprehensive review on fatigue definition and measurement is provided by @yung2016fatigue.
 
-Definitions of fatigue [@yung2016fatigue; @cavuoto2017understanding]
+The mechanism of fatigue leading to traffic safety events is that the driver’s capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation [@zhang2014study]. It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05% [@maclean2003hazards]. What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour [@knipling1994crashes]. This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
 
-@hos2017 demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time.
+Although fatigue has been recognized as the primary reason for traffic safety, little has been done about drowsy driving since there is no simple way to objectively measure fatigue driving [@dement1997perils]. In view of the difficulty of measuring fatigue, researchers have attempted to  use different proxies of fatigue associated with truck drivers. @stern2018data reviewed the research related to fatigue of commercial motor vehicle drivers. 
+
+@jovanis2011hours used cumulative hours of driving, time of the day, driving patterns over multiple days, rests after driving, and the 34-hour recovery policy as measures of driver fatigue. They found that more driving time was associated with increased odds of crashes among 686 less-than-truck-load drivers (224 crash-involved drivers and 464 randomly sampled non-crash drivers from the same terminal in the same month), with the highest odds in the 11-th hour. From the fifth hour to the 11th hour, the odds of crashes were consistently increasing [@jovanis2012effects].
 
 
-Drowsy driving is an especially common practice in less-developed countries because of cost control and tight schedule. Surveys of commercial and public road transportation companies in less-developed countries showed that employers were frequently forcing their employees to drive for longer hours and keep working even when they were exhausted [@zhang2016traffic; @odero2003road; @nantulya2002neglected]. High proportions of drowsy driving have been found among Brazilian (22%) [@canani2005prevalence], Argentinean (44%) [@perez2005sleep], Pakistani (54%) [@azam2014comparison], and Thai (75%) [@leechawengwongs2006role] truck or bus drivers. The mechanism of fatigue leading to safety critical events is that a driver’s capability to stay alert to ambient traffic and pedestrians will be largely impaired. The reaction time is subsequently prolonged in that situation [@zhang2014study]. It is estimated that 17 hours of continuous working lead to a deterioration of driving performance equivalent to a blood alcohol level of 0.05% [@maclean2003hazards]. What makes the outcomes worse is that fatigue driving is more likely to happen on expressways and major highways where the speed limit is over 55 miles per hour [@knipling1994crashes]. This is especially concerning because fatigue driving safety critical events are more likely to result in serious injuries and fatalities, compared with non-fatigue driving safety critical events.
 
-@stern2018data reviewed the research related to fatigue of commercial motor vehicle drivers.  Because of the difficulty of running a controlled experiment by imposing treatments, most research designs are observational studies, that is, they compare the effects of variables that are observed, not imposed.  One exception to this is a *randomized encouragement design* where drivers are randomized to receive some sort of incentive to apply  some treatment, but are not forced to do so.  If an effect is observed, we would conclude that it is due to the incentive, not necessarily to the actual treatment.  Many studies use a cohort design or a case-control study.  In a cohort design, a number of drivers is identified and studied across time.  In a case-control study, a number of cases (e.g., crashes, or some other safety measure) are identified and are matched with controls; focus is then placed on the differences between the cases and controls.  Both cohort studies and case-control studies can be useful in assessing safety.
-
-**Fatigue measurement**
-
-The reason why little has been done about drowsy driving is there is no simple way to objectively measure fatigue driving [@dement1997perils].
 
 ### Driver characteristics
 
 A study by @pack1995characteristics revealed that the drivers were 25 years of age or younger in over a half of the 5,000 highway crashes in which they fell asleep whiling driving.
 
-[@duke2010age] Age-related safety.
+[@duke2010age] Age-related safety. Teenager driver [@ouimet2014higher]
 
-Another driver-related risk factor of driving safety critical events is drivers’ age. It is reported that younger drivers will experience more crashes than older drivers [@cantor2010driver]. 
+Another driver-related risk factor of driving safety critical events is the age of drivers. It is reported that younger drivers will experience more crashes than older drivers [@cantor2010driver]. 
 
 
 On the other hand, older drivers can also experience an increased risk of crash. To meet the huge demand services and supply chain management, it is very common to extend the retirement age or reemploy retired workers in developing countries [@popkin2008age]. Aging drivers increase the chance of the safety critical events in three aspects: impaired eyesight, prolonged reaction time to exogenous stimuli, and vulnerability to fatigue [@di2011demographic]. Aged drivers are associated with eyesight diseases or functionality impairment, such as cataracts, narrowed peripheral vision and decreasing visual acuity [@di2011demographic]. In addition, working for truck companies often means irregular shifts and taking the night schedules, which disrupt the circadian time-keeping systems, especially for the aged workers [@moneta1996time]. 
@@ -62,5 +59,9 @@ Weather has both direct and indirect effects on drivers’ safety critical event
 
 ### Time of the day
 
+Time of the day is closely associated with drivers' fatigue. @mitler1997sleep monitored 80 truck drivers in North America using 24-hour electrophysiologic measures. They found that drivers an average had 5.18 hours of sleep in bed per day and 4.78 hours of electrophysiologically validated sleep per day, which were significantly less than needed to stay alert on job. It was also suggested that late-night or early-morning work were detrimental to the drivers' sleep.
+
 @pack1995characteristics's analysis reported the crashes in which the drivers fell asleep occurred primarily from mid-night to 7 a.m. and from 2 p.m. to 4 p.m.. A significant amount of research emphasizes the association between more night driving, often accompanied by changes in shift scheduling, inadequate sleep, sleep apnea and disorder, and fatigue development, which is detrimental to transportation safety [@cavuoto2017understanding]. 
+
+Daily sleep pattern [@chen2016influence]
 
