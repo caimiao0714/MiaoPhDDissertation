@@ -6,9 +6,8 @@ Truck crash data have several limitations. Firstly, truck crashes are extremely 
 
 In light of the aforementioned limitations, a growing number of literature is using naturalistic driving data to identify crash causation and develop effective crash countermeasures [@klauer2009comparing; @guo2010near; @hickman2010distraction]. These studies use unobstrusive  devices installed on vehicles to collect real-time driving behavior and and performance. Instead of collecting extremely rare vehicle crash data, these studies focus on near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes [@dingus2011estimating]. Although these near-crashes were not real crashes, these studies suggested that they are predictive crashes [@dingus2011estimating; @guo2010near].
 
+A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed in @saleh2013accident. An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions [@saleh2013accident]. A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry [@smith2007decision], chemistry [@phimister2003near], and aerospace industry [@kirwan2008human]. However, there are limited number of studies in accident precursors in the truck safety field.
 
-
-@saleh2013accident
 
 Risk factors
 ------------
