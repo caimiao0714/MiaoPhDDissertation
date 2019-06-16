@@ -2,6 +2,7 @@ LITERATURE REVIEW
 =================
 Precursors to crashes
 ---------------------
+Truck crash data have several limitations. Firstly, truck crashes are extremely rare compared with non-crashes. 
 
 Limitation of crashes data:
 
