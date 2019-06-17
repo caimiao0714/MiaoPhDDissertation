@@ -4,11 +4,17 @@ Precursors to crashes
 ---------------------
 Truck crash data have several limitations. Firstly, truck crashes are extremely rare compared with non-crashes. According to the @fmcsareport2017, large truck and bus fatalities in 2017 were 0.156 per million travelled vehicle miles, which was a 6.8 percent increase from 2016. This rareness poses a challenge to infer unbiased estimates using traditional statistical models [@guo2010near; @theofilatos2018impact]. Secondly, most truck crash data reply on post hoc police reports. Although these data are generally accurate and detailed by police officers, they are limited in determining the information of the driver in the meaningful time period leading up to the crash [@dingus2011estimating]. Some of the critical factors, such as distraction, are not reported or cannot be determined due to a varitety of reasons [@dingus2011estimating]. Thirdly, truck crashes are underreported, particularly for no-injury and minor-injury crashes [@ye2011investigation; @stern2019data]. It is estimated that 25% of minor-injury and 50% of non-injury crashes were not reported, while 100% of fatal crashes were reported [@savolainen2011statistical].
 
-In light of the aforementioned limitations, a growing number of literature is using naturalistic driving data to identify crash causation and develop effective crash countermeasures [@klauer2009comparing; @guo2010near; @hickman2010distraction]. These studies use unobstrusive  devices installed on vehicles to collect real-time driving behavior and and performance. Instead of collecting extremely rare vehicle crash data, these studies focus on near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes [@dingus2011estimating]. Although these near-crashes were not real crashes, these studies suggested that they are predictive crashes [@dingus2011estimating; @guo2010near].
+In light of the aforementioned limitations, a growing number of literature is using naturalistic driving data to identify crash causation and develop effective crash countermeasures [@dingus2006100; @klauer2009comparing; @guo2010near; @hickman2010distraction]. These studies use unobstrusive devices installed on vehicles to collect real-time driving behavior and and performance. Instead of collecting extremely rare vehicle crash data, these studies focus on near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes [@dingus2011estimating]. Although these near-crashes were not real crashes, these studies suggested that they are predictive crashes [@dingus2011estimating; @guo2010near].
 
 A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed in @saleh2013accident. An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions [@saleh2013accident]. A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry [@smith2007decision], chemistry [@phimister2003near], and aerospace industry [@kirwan2008human]. However, there are limited number of studies in accident precursors in the truck safety field.
 
+Naturalistic driving data
+-------------------------
 
+The first large-scale NDS was The 100-Car Naturalistic Driving study conducted in North Virginia, the United States [@neale2005overview].
+
+
+@knipling2015naturalistic challenges the validity of naturalistic driving data.
 
 Risk factors
 ------------
@@ -63,11 +69,15 @@ For example, based on multinomial logit and negative binomial models, @dong2017e
 
 Weather has both direct and indirect effects on drivers’ safety critical events. On one hand, the increase of ambient temperature places risks on drivers’ occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather [@kjellstrom2009direct; @basagana2015high]. Leard and Roth found that for a day with temperature above 80◦F there is a 9.5% increase in fatality rates compared with a day at 50-60 F [@leard2015weather]. A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures [@im2016impact]. On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver’s visual capability or reduce the safety of driving on the road [@chang2005data; @al2007experimental; @baker1992wind]. It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents [@al2007experimental; @graham2003spatial]. Abdel-Aty et al. used detector and sensor data to successfully predict more than 70% of accidents with low visibility conditions [@abdel2012real]. The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
+@ghasemzadeh2018parametric
 
 ### Road Geometry
 
 @dong2015assessment
 
 
+@islam2014comprehensive did a comprehensive analysis of truck at-fault crashes.
 
+@uddin2017truck lighting conditions.
 
+@meuleners2017determinants determinants of truck crashes in Australia.

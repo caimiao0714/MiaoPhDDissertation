@@ -237,7 +237,7 @@ The importance of truck industry and the potential catastrophic consequences of 
 
 To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes and make accurate prediction. However, there are several limitations of studies using crash data. First, traffic crashes are characterized by rare events (dozens to thousands of times fewer crashes than non-crashes) (Theofilatos et al. \protect\hyperlink{ref-theofilatos2016predicting}{2016}, \protect\hyperlink{ref-theofilatos2018impact}{2018}). To tackle this rare-event issue, the most common study design is a case-control study that matches a crash with one to up to ten non-crashes, and then use statistical models such as logistic regressions to explain the causes or predict the crashes (Braver et al. \protect\hyperlink{ref-braver1997tractor}{1997}; Chen Chen and Xie \protect\hyperlink{ref-chen2014modeling}{2014}; Meuleners et al. \protect\hyperlink{ref-meuleners2015obstructive}{2015}; Née et al. \protect\hyperlink{ref-nee2019road}{2019}). Unfortunately, a case-control study is limited in estimating the incidence data or overall average treatment effect. It may be contentious in selecting the ratio of controls to cases and how to select these controls (Grimes and Schulz \protect\hyperlink{ref-grimes2005compared}{2005}; Sedgwick \protect\hyperlink{ref-sedgwick2014case}{2014}). Second, due to the retrospective nature of crash data, it is unrealistic to trace back to the real-time traffic, weather, and other environmental factors that were associated with the crashes. Most of crash data reported by police and associated drivers were subject to recall and misinformation bias (Girotto et al. \protect\hyperlink{ref-girotto2016professional}{2016}). Third, crashes are underreported, especially those without injuries or economic losses, as well as those crashes with minor severity (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}). The National Highway Traffic Safety Adminitration estimated that 25\% of minor-injury crashes and 50\% of no-injury crashes were not reported, compared to 100\% reporting rate for fatal crashes (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}).
 
-Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as a critical events, adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes (Dingus et al. \protect\hyperlink{ref-dingus2006development}{2006}).
+Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as a critical events, adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes (Dingus, Neale, et al. \protect\hyperlink{ref-dingus2006development}{2006}).
 
 With the rapid development of modern technology, real-time driving and critical events data are recorded more and more by truck companies (Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Although critical events do not always result in an accident, they could potentially be used as an early warning system to mitigate or prevent truck crashes (Kusano and Gabler \protect\hyperlink{ref-kusano2012safety}{2012}; Rome et al. \protect\hyperlink{ref-de2018near}{2018}).
 
@@ -267,9 +267,16 @@ I believe that this work will contribute to statistical theories in constructing
 
 Truck crash data have several limitations. Firstly, truck crashes are extremely rare compared with non-crashes. According to the FMCSA (\protect\hyperlink{ref-fmcsareport2017}{2018}\protect\hyperlink{ref-fmcsareport2017}{b}), large truck and bus fatalities in 2017 were 0.156 per million travelled vehicle miles, which was a 6.8 percent increase from 2016. This rareness poses a challenge to infer unbiased estimates using traditional statistical models (Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Theofilatos et al. \protect\hyperlink{ref-theofilatos2018impact}{2018}). Secondly, most truck crash data reply on post hoc police reports. Although these data are generally accurate and detailed by police officers, they are limited in determining the information of the driver in the meaningful time period leading up to the crash (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Some of the critical factors, such as distraction, are not reported or cannot be determined due to a varitety of reasons (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Thirdly, truck crashes are underreported, particularly for no-injury and minor-injury crashes (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}; Stern et al. \protect\hyperlink{ref-stern2019data}{2019}). It is estimated that 25\% of minor-injury and 50\% of non-injury crashes were not reported, while 100\% of fatal crashes were reported (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}).
 
-In light of the aforementioned limitations, a growing number of literature is using naturalistic driving data to identify crash causation and develop effective crash countermeasures (Klauer et al. \protect\hyperlink{ref-klauer2009comparing}{2009}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Hickman, Hanowski, and Bocanegra \protect\hyperlink{ref-hickman2010distraction}{2010}). These studies use unobstrusive devices installed on vehicles to collect real-time driving behavior and and performance. Instead of collecting extremely rare vehicle crash data, these studies focus on near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Although these near-crashes were not real crashes, these studies suggested that they are predictive crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}).
+In light of the aforementioned limitations, a growing number of literature is using naturalistic driving data to identify crash causation and develop effective crash countermeasures (Dingus, Klauer, et al. \protect\hyperlink{ref-dingus2006100}{2006}; Klauer et al. \protect\hyperlink{ref-klauer2009comparing}{2009}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Hickman, Hanowski, and Bocanegra \protect\hyperlink{ref-hickman2010distraction}{2010}). These studies use unobstrusive devices installed on vehicles to collect real-time driving behavior and and performance. Instead of collecting extremely rare vehicle crash data, these studies focus on near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Although these near-crashes were not real crashes, these studies suggested that they are predictive crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}).
 
 A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed in Saleh et al. (\protect\hyperlink{ref-saleh2013accident}{2013}). An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}). A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry (Smith and Borgonovo \protect\hyperlink{ref-smith2007decision}{2007}), chemistry (Phimister et al. \protect\hyperlink{ref-phimister2003near}{2003}), and aerospace industry (Kirwan, Gibson, and Hickling \protect\hyperlink{ref-kirwan2008human}{2008}). However, there are limited number of studies in accident precursors in the truck safety field.
+
+\hypertarget{naturalistic-driving-data}{%
+\section{Naturalistic driving data}\label{naturalistic-driving-data}}
+
+The first large-scale NDS was The 100-Car Naturalistic Driving study conducted in North Virginia, the United States (Neale et al. \protect\hyperlink{ref-neale2005overview}{2005}).
+
+Knipling (\protect\hyperlink{ref-knipling2015naturalistic}{2015}) challenges the validity of naturalistic driving data.
 
 \hypertarget{risk-factors}{%
 \section{Risk factors}\label{risk-factors}}
@@ -324,10 +331,18 @@ Liu, Boyle, and Banerjee (\protect\hyperlink{ref-liu2018predicting}{2018}) used 
 
 Weather has both direct and indirect effects on drivers' safety critical events. On one hand, the increase of ambient temperature places risks on drivers' occupational safety, and possibly leads to cognition loss, heat stroke, and impairment of wakefulness. Evidence showed that the risk of mistakes and safety critical events increase in hot weather (Kjellstrom et al. \protect\hyperlink{ref-kjellstrom2009direct}{2009}; Basagaña et al. \protect\hyperlink{ref-basagana2015high}{2015}). Leard and Roth found that for a day with temperature above 80◦F there is a 9.5\% increase in fatality rates compared with a day at 50-60 F (Leard, Roth, and others \protect\hyperlink{ref-leard2015weather}{2015}). A literature review found that 11 out of 13 studies indicated an increase in unintentional injuries associated with high temperatures (Kampe, Kovats, and Hajat \protect\hyperlink{ref-im2016impact}{2016}). On the other hand, real-time extreme weather conditions such as heavy rain, fog, storm, and snow can either impair the driver's visual capability or reduce the safety of driving on the road (Chang and Chen \protect\hyperlink{ref-chang2005data}{2005}; Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Baker and Reynolds \protect\hyperlink{ref-baker1992wind}{1992}). It is to noted that the cumulative time of driving in such extreme weather conditions could increase the chances of safety critical events. Studies that explore the association between precipitation and driving safety critical events consistently find a negative relationship. The positive linear relationship between precipitation and traffic accidents can be observed in both driver accidents and pedestrian accidents (Al-Ghamdi \protect\hyperlink{ref-al2007experimental}{2007}; Graham and Glaister \protect\hyperlink{ref-graham2003spatial}{2003}). Abdel-Aty et al.~used detector and sensor data to successfully predict more than 70\% of accidents with low visibility conditions (Abdel-Aty et al. \protect\hyperlink{ref-abdel2012real}{2012}). The common problem for the literature exploring the relationship between ambient weather and safety driving critical events is the failure to include the cumulative effect of weather conditions. Instead, they all use an indicator variable to represent whether extreme weather happened during the trip or not, which could lead to potential bias in prediction models.
 
+Ghasemzadeh et al. (\protect\hyperlink{ref-ghasemzadeh2018parametric}{2018})
+
 \hypertarget{road-geometry}{%
 \subsection{Road Geometry}\label{road-geometry}}
 
 Dong et al. (\protect\hyperlink{ref-dong2015assessment}{2015})
+
+Islam, Jones, and Dye (\protect\hyperlink{ref-islam2014comprehensive}{2014}) did a comprehensive analysis of truck at-fault crashes.
+
+Uddin and Huynh (\protect\hyperlink{ref-uddin2017truck}{2017}) lighting conditions.
+
+Meuleners et al. (\protect\hyperlink{ref-meuleners2017determinants}{2017}) determinants of truck crashes in Australia.
 
 \hypertarget{predictive-models}{%
 \section{Predictive models}\label{predictive-models}}
@@ -1419,6 +1434,9 @@ Di Milia, Lee, Michael H Smolensky, Giovanni Costa, Heidi D Howarth, Maurice M O
 \leavevmode\hypertarget{ref-dingus2011estimating}{}%
 Dingus, Thomas A, Richard J Hanowski, and Sheila G Klauer. 2011. ``Estimating Crash Risk.'' \emph{Ergonomics in Design} 19 (4): 8--12.
 
+\leavevmode\hypertarget{ref-dingus2006100}{}%
+Dingus, Thomas A, Sheila G Klauer, Vicki Lewis Neale, Andy Petersen, Suzanne E Lee, Jeremy Sudweeks, Miguel A Perez, et al. 2006. ``The 100-Car Naturalistic Driving Study. Phase 2: Results of the 100-Car Field Experiment.'' United States. Department of Transportation. National Highway Traffic Safety~\ldots{}.
+
 \leavevmode\hypertarget{ref-dingus2006development}{}%
 Dingus, Thomas A, Vicki L Neale, Sheila G Klauer, Andrew D Petersen, and Robert J Carroll. 2006. ``The Development of a Naturalistic Data Collection System to Perform Critical Incident Analysis: An Investigation of Safety and Fatigue Issues in Long-Haul Trucking.'' \emph{Accident Analysis \& Prevention} 38 (6): 1127--36.
 
@@ -1470,6 +1488,9 @@ Gelman, Andrew, Hal S Stern, John B Carlin, David B Dunson, Aki Vehtari, and Don
 \leavevmode\hypertarget{ref-geman1987stochastic}{}%
 Geman, Stuart, and Donald Geman. 1987. ``Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images.'' In \emph{Readings in Computer Vision}, 564--84. Elsevier.
 
+\leavevmode\hypertarget{ref-ghasemzadeh2018parametric}{}%
+Ghasemzadeh, Ali, Britton E Hammit, Mohamed M Ahmed, and Rhonda Kae Young. 2018. ``Parametric Ordinal Logistic Regression and Non-Parametric Decision Tree Approaches for Assessing the Impact of Weather Conditions on Driver Speed Selection Using Naturalistic Driving Data.'' \emph{Transportation Research Record}, 0361198118758035.
+
 \leavevmode\hypertarget{ref-girotto2016professional}{}%
 Girotto, Edmarlon, Selma Maffei de Andrade, Alberto Durán González, and Arthur Eumann Mesas. 2016. ``Professional Experience and Traffic Accidents/Near-Miss Accidents Among Truck Drivers.'' \emph{Accident Analysis \& Prevention} 95: 299--304.
 
@@ -1512,6 +1533,9 @@ Huang, Yueng-hsiang, Dov Zohar, Michelle M Robertson, Angela Garabet, Jin Lee, a
 \leavevmode\hypertarget{ref-hyder2012addressing}{}%
 Hyder, Adnan A, Katharine A Allen, Gayle Di Pietro, Claudia A Adriazola, Rochelle Sobel, Kelly Larson, and Margie Peden. 2012. ``Addressing the Implementation Gap in Global Road Safety: Exploring Features of an Effective Response and Introducing a 10-Country Program.'' \emph{American Journal of Public Health} 102 (6): 1061--7.
 
+\leavevmode\hypertarget{ref-islam2014comprehensive}{}%
+Islam, Samantha, Steven L Jones, and Daniel Dye. 2014. ``Comprehensive Analysis of Single-and Multi-Vehicle Large Truck at-Fault Crashes on Rural and Urban Roadways in Alabama.'' \emph{Accident Analysis \& Prevention} 67: 148--58.
+
 \leavevmode\hypertarget{ref-jackson2016utility}{}%
 Jackson, Melinda L, Gerard A Kennedy, Catherine Clarke, Melissa Gullo, Philip Swann, Luke A Downey, Amie C Hayley, Rob J Pierce, and Mark E Howard. 2016. ``The Utility of Automated Measures of Ocular Metrics for Detecting Driver Drowsiness During Extended Wakefulness.'' \emph{Accident Analysis \& Prevention} 87: 127--33.
 
@@ -1541,6 +1565,9 @@ Kjellstrom, Tord, R Sari Kovats, Simon J Lloyd, Tom Holt, and Richard SJ Tol. 20
 
 \leavevmode\hypertarget{ref-klauer2009comparing}{}%
 Klauer, Sheila G, Thomas A Dingus, Vicki L Neale, Jeremy D Sudweeks, and David J Ramsey. 2009. ``Comparing Real-World Behaviors of Drivers with High Versus Low Rates of Crashes and Near Crashes.''
+
+\leavevmode\hypertarget{ref-knipling2015naturalistic}{}%
+Knipling, Ronald R. 2015. ``Naturalistic Driving Events: No Harm, No Foul, No Validity.''
 
 \leavevmode\hypertarget{ref-knipling1994crashes}{}%
 Knipling, Ronald R, and Jing-Shiarn Wang. 1994. \emph{Crashes and Fatalities Related to Driver Drowsiness/Fatigue}. National Highway Traffic Safety Administration Washington, DC.
@@ -1655,6 +1682,9 @@ National Transportation Safety Board. 1990. ``Safety Study: Fatigue, Alcohol, Ot
 
 \leavevmode\hypertarget{ref-neal2011mcmc}{}%
 Neal, Radford M, and others. 2011. ``MCMC Using Hamiltonian Dynamics.'' \emph{Handbook of Markov Chain Monte Carlo} 2 (11): 2.
+
+\leavevmode\hypertarget{ref-neale2005overview}{}%
+Neale, Vicki L, Thomas A Dingus, Sheila G Klauer, Jeremy Sudweeks, and Michael Goodman. 2005. ``An Overview of the 100-Car Naturalistic Study and Findings.'' \emph{National Highway Traffic Safety Administration, Paper} 5: 0400.
 
 \leavevmode\hypertarget{ref-neeley2009effect}{}%
 Neeley, Grant W, and Lilliard E Richardson Jr. 2009. ``The Effect of State Regulations on Truck-Crash Fatalities.'' \emph{American Journal of Public Health} 99 (3): 408--15.
@@ -1778,6 +1808,9 @@ The United States, Bureau of Labor Statistics. 2017. ``Fatal occupational injuri
 
 \leavevmode\hypertarget{ref-tseng2016comprehensive}{}%
 Tseng, Chien-Ming, Ming-Shan Yeh, Li-Yung Tseng, Hsin-Hsien Liu, and Min-Chi Lee. 2016. ``A Comprehensive Analysis of Factors Leading to Speeding Offenses Among Large-Truck Drivers.'' \emph{Transportation Research Part F: Traffic Psychology and Behaviour} 38: 171--81.
+
+\leavevmode\hypertarget{ref-uddin2017truck}{}%
+Uddin, Majbah, and Nathan Huynh. 2017. ``Truck-Involved Crashes Injury Severity Analysis for Different Lighting Conditions on Rural and Urban Roadways.'' \emph{Accident Analysis \& Prevention} 108: 44--55.
 
 \leavevmode\hypertarget{ref-van2018simple}{}%
 Van Ravenzwaaij, Don, Pete Cassey, and Scott D Brown. 2018. ``A Simple Introduction to Markov Chain Monte--Carlo Sampling.'' \emph{Psychonomic Bulletin \& Review} 25 (1): 143--54.
