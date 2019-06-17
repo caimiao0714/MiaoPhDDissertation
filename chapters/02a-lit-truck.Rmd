@@ -16,6 +16,10 @@ The first large-scale NDS was The 100-Car Naturalistic Driving study conducted i
 
 @knipling2015naturalistic challenges the validity of naturalistic driving data.
 
+@mollicone2019predicting used a Poisson regression to quantify the association between driver performance and predicted fatigue level based on natualistic driving data from 106 commercial truck drivers. The number of hard-braking events, defined as deceleration force greater than 0.3 g, were considered the outcome variable in that study. The fatigue level was predicted using a complex biomathematical model provided by @mccauley2013dynamic. After accounting for time of the day, they reported a significant association between predicted fatigue and the rate of hard-braking events (relative risk 1.078, 95% confidence interval 1.013-1.146).
+
+
+
 Risk factors
 ------------
 
