@@ -313,6 +313,8 @@ Although it is generally believed that lower \textbf{speed limits} can reduce th
 
 Speed (Tseng et al. \protect\hyperlink{ref-tseng2016comprehensive}{2016}).
 
+For example, based on multinomial logit and negative binomial models, Dong et al. (\protect\hyperlink{ref-dong2017estimating}{2017}) used vehicle and driver characteristics, traffic, environment, and road geometry to predict the frequency and severity of large truck-involved crashes. Liu, Boyle, and Banerjee (\protect\hyperlink{ref-liu2018predicting}{2018}) used artificial neural network classification and regression tree, and support vector machine to predict crash rate levels of motor carriers.
+
 \hypertarget{weather}{%
 \subsection{Weather}\label{weather}}
 
@@ -342,14 +344,14 @@ Where \(Y_i\) is a binary variable that indicates whether an event occurred or n
 
 The most commonly used outcomes for binary logistic regressions are injury versus non-injury crashes or fatal versus non-fatal crashes (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}). For example, Cong Chen et al. (\protect\hyperlink{ref-chen2016driver}{2016}) used a two-level hierarchical Bayesian logistic model to predict the likelihood of high-severity crashes compared to low-severity crashes in New Mexico, accounting for both crash-level and driver-level effects. They found that road curve, functional and disabled vehicle damage, single-vehicle crashes, female, older drivers, drug or alcohol involvement were associated with increased odds of severe crashes. Considering the rare-event natural of crashes, Theofilatos et al. (\protect\hyperlink{ref-theofilatos2016predicting}{2016}) used logistic regression with rare events bias correction and Firth method to study significant risk factors for crashes in Greece. They found a negative association between crash likelihood and speed in crash locations. The proportion of trucks on the road was included in their model but not found to be significant. Other traffic safety studies using logistic regressions include but were not limit to Moudon et al. (\protect\hyperlink{ref-moudon2011risk}{2011}), Meuleners et al. (\protect\hyperlink{ref-meuleners2017determinants}{2017}), Ahmed et al. (\protect\hyperlink{ref-ahmed2018effects}{2018}). There are two excellent systematic reviews on traffic crash likelihood predictions by Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{2015}) and Xu et al. (\protect\hyperlink{ref-xu2015calibration}{2015}).
 
-Other variants of a binary logistic regression are binary probit models (Lee and Abdel-Aty \protect\hyperlink{ref-lee2008presence}{2008}; Yu and Abdel-Aty \protect\hyperlink{ref-yu2014using}{2014}), ordered logistic or probit models (Xie, Zhang, and Liang \protect\hyperlink{ref-xie2009crash}{2009}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}), multinomial logit models (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}). There are only minor difference between a probit model and a logistic model. A logistic model uses the inverse logit of the linear predictors to calculate the probability of an event, as shown in Equation \eqref{eq:inverselogit}; a probit model uses the cumulative normal density function of the linear predictors to calculate the probability. The error function \(\text{erf}(x)\) is an integral without an analytical solution: \(\text{erf}(x) = \frac{2}{\pi}\int_0^xe^{-t^2}dt\).
+Other variants of a binary logistic regression are binary probit models (Lee and Abdel-Aty \protect\hyperlink{ref-lee2008presence}{2008}; Yu and Abdel-Aty \protect\hyperlink{ref-yu2014using}{2014}), ordered logistic or probit models (Xie, Zhang, and Liang \protect\hyperlink{ref-xie2009crash}{2009}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}), multinomial logit models (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}). There are only minor difference between a probit model and a logistic model. A logistic model uses the inverse logit of the linear predictors to calculate the probability of an event, as shown in Equation \eqref{eq:inverselogit}; a probit model uses the cumulative normal density function of the linear predictors to calculate the probability, as shown in Equation \eqref{eq:probit}. The error function \(\text{erf}(x)\) is an integral without an analytical solution: \(\text{erf}(x) = \frac{2}{\pi}\int_0^xe^{-t^2}dt\).
 \begin{equation}
 p = \text{logit}^{-1}(\mathbf{X}^\prime\beta) = \frac{\exp (\mathbf{X}^\prime\beta)}{1 + \exp (\mathbf{X}^\prime\beta)}
 \label{eq:inverselogit}
 \end{equation}
 \begin{equation}
 p = \Phi(\mathbf{X}^\prime\beta) = \frac{1}{2}\Big[1+\text{erf}(\frac{\mathbf{X}^\prime\beta}{\sqrt 2})\Big]
-\label{eq:inverselogit}
+\label{eq:probit}
 \end{equation}
 
 Ordered logistic or probit regressions aim to model an ordered multi-category outcome variable. The most common case is study the severity of crashes, such as no-injury crashes, minor-injury crashes, and fatal-injury crashes (Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}). These ordered models account for the ranked nature of different severity levels but make the proportional odds assumption (Rifaat, Tay, and De Barros \protect\hyperlink{ref-rifaat2012severity}{2012}). When the proportional odds assumption is violated, researchers often switch to multinomial logit or probit models, in which the outcome variable is deemed as nominal.
@@ -613,7 +615,7 @@ The average length of a trip in this study is 2.31 hours with the standard devia
 
 After the ping data were aggregated into trips, these trips data were then further divded into different shifts according to an eight-hour rest time for each driver.
 A \textbf{shift} is defined as a long period of driving with potentially less than 8 hours' stops.
-The Shift\_ID column in Table \ref{tab:tripsdata} shows different shifts, separated by an eight-hour threshold.
+The Shift\_ID column in Table 1 shows different shifts, separated by an eight-hour threshold.
 The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
 
 \hypertarget{truck-crashes-and-critical-events}{%
@@ -1416,6 +1418,9 @@ Dingus, Thomas A, Vicki L Neale, Sheila G Klauer, Andrew D Petersen, and Robert 
 \leavevmode\hypertarget{ref-dong2014multivariate}{}%
 Dong, Chunjiao, David B Clarke, Xuedong Yan, Asad Khattak, and Baoshan Huang. 2014. ``Multivariate Random-Parameters Zero-Inflated Negative Binomial Regression Model: An Application to Estimate Crash Frequencies at Intersections.'' \emph{Accident Analysis \& Prevention} 70: 320--29.
 
+\leavevmode\hypertarget{ref-dong2017estimating}{}%
+Dong, Chunjiao, Qiao Dong, Baoshan Huang, Wei Hu, and Shashi S Nambisan. 2017. ``Estimating Factors Contributing to Frequency and Severity of Large Truck--Involved Crashes.'' \emph{Journal of Transportation Engineering, Part A: Systems} 143 (8): 04017032.
+
 \leavevmode\hypertarget{ref-duane1987hybrid}{}%
 Duane, Simon, Anthony D Kennedy, Brian J Pendleton, and Duncan Roweth. 1987. ``Hybrid Monte Carlo.'' \emph{Physics Letters B} 195 (2): 216--22.
 
@@ -1565,6 +1570,9 @@ Lindgren, Finn, Håvard Rue, and Johan Lindström. 2011. ``An Explicit Link Betw
 
 \leavevmode\hypertarget{ref-litman2013transportation}{}%
 Litman, Todd. 2013. ``Transportation and Public Health.'' \emph{Annual Review of Public Health} 34: 217--33.
+
+\leavevmode\hypertarget{ref-liu2018predicting}{}%
+Liu, Jundi, Linda N Boyle, and Ashis G Banerjee. 2018. ``Predicting Interstate Motor Carrier Crash Rate Level Using Classification Models.'' \emph{Accident Analysis \& Prevention} 120: 211--18.
 
 \leavevmode\hypertarget{ref-lord2006modeling}{}%
 Lord, Dominique. 2006. ``Modeling Motor Vehicle Crashes Using Poisson-Gamma Models: Examining the Effects of Low Sample Mean Values and Small Sample Size on the Estimation of the Fixed Dispersion Parameter.'' \emph{Accident Analysis \& Prevention} 38 (4): 751--66.

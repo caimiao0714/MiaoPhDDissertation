@@ -19,7 +19,7 @@ The average length of a trip in this study is 2.31 hours with the standard devia
 
 After the ping data were aggregated into trips, these trips data were then further divded into different shifts according to an eight-hour rest time for each driver. 
 A **shift** is defined as a long period of driving with potentially less than 8 hours' stops. 
-The Shift_ID column in Table \@ref(tab:tripsdata) shows different shifts, separated by an eight-hour threshold. 
+The Shift_ID column in Table 1 shows different shifts, separated by an eight-hour threshold. 
 The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
 
 ### Truck crashes and critical events

@@ -53,6 +53,7 @@ Although it is generally believed that lower **speed limits** can reduce the cha
 
 Speed [@tseng2016comprehensive].
 
+For example, based on multinomial logit and negative binomial models, @dong2017estimating used vehicle and driver characteristics, traffic, environment, and road geometry to predict the frequency and severity of large truck-involved crashes. @liu2018predicting used artificial neural network classification and regression tree, and support vector machine to predict crash rate levels of motor carriers.
 
 ### Weather
 
