@@ -5,4 +5,4 @@ Conceptual framework
 
 @roshandel2015impact proposed five factors that affect traffic safety: (a)  behavioral characteristics of the driver, e.g., impairment, fatigue, distractions; (b) vehicle --- the condition of the vehicle; (c) traffic --- the traffic conditions; (d) geometry --- geometric characteristics of the road, e.g. curve, hill, ramps, etc.; and (e) environmental --- characteristics of the surrounding environment, such as weather conditions (rain, snow, night-time driving, etc.). Traffic conditions are the most studied of these and we focus on discussing them in this subsection.
 
-
+Previous studies suggested that driver behavior can contribute to over 90% of crashes [@dingus2016driver; @guo2019statistical]. A recent report by the @nhtsa2013national revealed that human error was the criticval reason for 93% of crashes.

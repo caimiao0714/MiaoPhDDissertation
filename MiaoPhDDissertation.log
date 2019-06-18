@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  17 JUN 2019 23:26
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  18 JUN 2019 00:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -791,7 +791,7 @@ Underfull \vbox (badness 1348) has occurred while \output is active []
 
 [33]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 688.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 690.
 [34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -835,7 +835,7 @@ Chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1217.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1219.
 [55] [56] [57] [58
 
 ] [59
@@ -847,40 +847,43 @@ Underfull \vbox (badness 1057) has occurred while \output is active []
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [62]
-Overfull \hbox (6.68362pt too wide) in paragraph at lines 1472--1474
+Overfull \hbox (6.68362pt too wide) in paragraph at lines 1477--1479
 \T1/lmr/m/n/12 ``Es-ti-mat-ing Fac-tors Con-tribut-ing to Fre-quency and Sever-
 ity of Large Truck--Involved Crashes.''
  []
 
 
-Underfull \vbox (badness 1509) has occurred while \output is active []
+Underfull \vbox (badness 2245) has occurred while \output is active []
 
 [63]
-Overfull \hbox (32.88687pt too wide) in paragraph at lines 1493--1495
+Overfull \hbox (32.88687pt too wide) in paragraph at lines 1498--1500
 \T1/lmr/m/n/12 la-tions.'' [][]$\T1/lmtt/m/n/12 https : / / www . fmcsa . dot .
  gov / regulations / hours -[] service / summary -[] hours -[] service -[]
  []
 
 
-Overfull \hbox (134.60506pt too wide) in paragraph at lines 1499--1501
+Overfull \hbox (134.60506pt too wide) in paragraph at lines 1504--1506
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data 
 -[] and -[] statistics / 84856 / cmvtrafficsafetyfactsheet2016 -[]
  []
 
 
-Overfull \hbox (36.791pt too wide) in paragraph at lines 1502--1504
+Overfull \hbox (36.791pt too wide) in paragraph at lines 1507--1509
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data -[] an
 d -[] statistics / 398686 / ltbcf -[] 2016 -[] final -[]
  []
 
+
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
 [64]
-Overfull \hbox (1.90947pt too wide) in paragraph at lines 1523--1525
+Overfull \hbox (1.90947pt too wide) in paragraph at lines 1528--1530
 \T1/lmr/m/n/12 2018. ``Para-met-ric Or-di-nal Lo-gis-tic Re-gres-sion and Non-P
 arametric De-ci-sion Tree Ap-proaches
  []
 
 
-Overfull \hbox (1.98053pt too wide) in paragraph at lines 1535--1537
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 1540--1542
 [][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
 rgeant, and Gamini Punchi-
  []
@@ -889,44 +892,35 @@ rgeant, and Gamini Punchi-
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [65] [66]
-Underfull \vbox (badness 1178) has occurred while \output is active []
+Underfull \vbox (badness 1681) has occurred while \output is active []
 
-[67] [68]
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-[69]
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-[70]
-Underfull \vbox (badness 1509) has occurred while \output is active []
+[67] [68] [69] [70]
+Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [71]
-Overfull \hbox (7.444pt too wide) in paragraph at lines 1730--1732
+Overfull \hbox (7.444pt too wide) in paragraph at lines 1735--1737
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008 -[] stat
 e -[] of -[] the -[] states -[] report -[] on -[] drowsy -[]
  []
 
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
+Underfull \vbox (badness 1057) has occurred while \output is active []
 
 [72]
-Underfull \vbox (badness 1509) has occurred while \output is active []
+Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [73] [74]
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [75]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 1850--1852
+Underfull \vbox (badness 1681) has occurred while \output is active []
+
+[76]
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 1858--1860
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road -[] safety / safety -[] topics / fatality -[] estimates$[][]\T1/lmr/m/
 n/12 . 
  []
-
-
-Underfull \vbox (badness 1681) has occurred while \output is active []
-
-[76]
-Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [77] [78] [79] [80
 
@@ -934,15 +928,15 @@ Underfull \vbox (badness 1178) has occurred while \output is active []
 
 ]
 No file MiaoPhDDissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1938.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1938.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1946.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1946.
 (./MiaoPhDDissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1938.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1938.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1946.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1946.
 
 Package rerunfilecheck Info: File `MiaoPhDDissertation.out' has not changed.
 (rerunfilecheck)             Checksum: C1580054E61B86BEBA3B7046ECE85892.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1938.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1946.
  ) 
 Here is how much of TeX's memory you used:
  13752 strings out of 492956
