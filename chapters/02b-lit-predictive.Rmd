@@ -2,7 +2,9 @@ Predictive models
 -----------------
 ### Overview
 
-The most commonly used statistical models for traffic safety are logistic regression and Poisson regression. Logistic regression is commonly used to predict crash likelihood (probability) using real-time data, for example traffic and weather at 5-minute intervals [@wang2017safety]. In contrast, Poisson regression is used to predict the crash frequency (the number of crashes) within a time period using aggregated data such as average data traffic and precipitation. I will briefly introduce the two models and then compare the two cultures of predictive models in statistical and machine learning perspective.
+There are two cultures in current statistical or data science field, explanation and prediction [@shmueli2010explain; @breiman2001statistical]. The pro-explanation culture has long been adopted by most desciplines, such as epidemiology, economics, and psychology. In these desciplines, researchers commonly use generalized linear models, such as logistic regression and Poisson regression, to explain the association between the outcome and predictor variables. In contrast, the pro-prediction culture has recently been adopted in data science disciplines, in which they use blackbox algorithms such as random forests, decision trees, and neural networks to achieve similarly high prediction accuracy in training and testing sets. Pro-explanation models tend to excel at explaining the association between predictors and the outcome variable and being less likely to overfit the data. However, compared with machine learning and deep learning algorithms, pro-explanation models are less likely to capture potential interaction between predictor variables since they are conceptual framework driven. Therefore, pro-explanation models generally have less prediction accuracy compared with black-box algorithms.
+
+Traffic safety field has a pro-explanation culture, although it is shifting towards a pro-prediction by adopting cutting-edge machine learning and deep learning algorithms. The most commonly used statistical models for are logistic regression and Poisson regression. Logistic regression is commonly used to predict crash likelihood (probability) using real-time data, for example traffic and weather at 5-minute intervals [@wang2017safety]. In contrast, Poisson regression is used to predict the crash frequency (the number of crashes) within a time period using aggregated data such as average data traffic and precipitation. I will briefly introduce the two models and then compare the two cultures of predictive models in statistical and machine learning perspective.
 
 The parameterization of a binary logistic regression is shown in Model \@ref(eq:logit).
 
@@ -46,9 +48,11 @@ Other variants of a Poisson model includes negative binomial models, quasi-Poiss
 
 Recently, recurrent event models have also been applied to model the change in intensity of SCEs in the traffic safety field.
 
-- Change point analysis: 
+- Change point analysis: @li2017evaluation; @li2018bayesian
+- Frailty framework: @chen2016evaluating
 
-There are two cultures in current statistical or data science field, explanation and prediction [@shmueli2010explain; @breiman2001statistical]. The pro-explanation culture has long been adopted by most desciplines, such as epidemiology, economics, and psychology. In these desciplines, researchers commonly use generalized linear models, such as logistic regression and Poisson regression, to explain the association between the outcome and predictor variables. In contrast, the pro-prediction culture has recently been adopted in data science disciplines, in which they use blackbox algorithms such as random forests, decision trees, and neural networks to achieve similarly high prediction accuracy in training and testing sets. Pro-explanation models tend to excel at explaining the association between predictors and the outcome variable and being less likely to overfit the data. However, compared with machine learning and deep learning algorithms, pro-explanation models are less likely to capture potential interaction between predictor variables since they are conceptual framework driven. Therefore, pro-explanation models generally have less prediction accuracy compared with black-box algorithms.
+
+
 
 ### Bayesian models
 
