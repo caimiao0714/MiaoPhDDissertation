@@ -262,17 +262,18 @@ I believe that this work will contribute to statistical theories in constructing
 \hypertarget{literature-review}{%
 \chapter{LITERATURE REVIEW}\label{literature-review}}
 
-\hypertarget{precursors-to-crashes}{%
-\section{Precursors to crashes}\label{precursors-to-crashes}}
-
-Truck crash data have several limitations. Firstly, truck crashes are extremely rare compared with non-crashes. According to the FMCSA (\protect\hyperlink{ref-fmcsareport2017}{2018}\protect\hyperlink{ref-fmcsareport2017}{b}), large truck and bus fatalities in 2017 were 0.156 per million travelled vehicle miles, which was a 6.8 percent increase from 2016. This rareness poses a challenge to infer unbiased estimates using traditional statistical models (Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Theofilatos et al. \protect\hyperlink{ref-theofilatos2018impact}{2018}). Secondly, most truck crash data reply on post hoc police reports. Although these data are generally accurate and detailed by police officers, they are limited in determining the information of the driver in the meaningful time period leading up to the crash (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Some of the critical factors, such as distraction, are not reported or cannot be determined due to a varitety of reasons (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Thirdly, truck crashes are underreported, particularly for no-injury and minor-injury crashes (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}; Stern et al. \protect\hyperlink{ref-stern2019data}{2019}). It is estimated that 25\% of minor-injury and 50\% of non-injury crashes were not reported, while 100\% of fatal crashes were reported (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}).
-
-In light of the aforementioned limitations, a growing number of literature is using naturalistic driving data to identify crash causation and develop effective crash countermeasures (Dingus, Klauer, et al. \protect\hyperlink{ref-dingus2006100}{2006}; Klauer et al. \protect\hyperlink{ref-klauer2009comparing}{2009}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Hickman, Hanowski, and Bocanegra \protect\hyperlink{ref-hickman2010distraction}{2010}). These studies use unobstrusive devices installed on vehicles to collect real-time driving behavior and and performance. Instead of collecting extremely rare vehicle crash data, these studies focus on near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Although these near-crashes were not real crashes, these studies suggested that they are predictive crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}).
-
-A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed in Saleh et al. (\protect\hyperlink{ref-saleh2013accident}{2013}). An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}). A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry (Smith and Borgonovo \protect\hyperlink{ref-smith2007decision}{2007}), chemistry (Phimister et al. \protect\hyperlink{ref-phimister2003near}{2003}), and aerospace industry (Kirwan, Gibson, and Hickling \protect\hyperlink{ref-kirwan2008human}{2008}). However, there are limited number of studies in accident precursors in the truck safety field.
-
 \hypertarget{naturalistic-driving-data}{%
 \section{Naturalistic driving data}\label{naturalistic-driving-data}}
+
+Traditional truck crash prediction studies almost exclusively use data that ultimately trace back to post hoc vehicle inspection, interviews with survived drivers and witnesses, and police reports (Hickman, Hanowski, and Bocanegra \protect\hyperlink{ref-hickman2018synthetic}{2018}; Stern et al. \protect\hyperlink{ref-stern2019data}{2019}). Despite these data can be in-depth and thorough, they have several inherent limitations. Firstly, truck crashes are extremely rare compared with non-crashes. According to the FMCSA (\protect\hyperlink{ref-fmcsareport2017}{2018}\protect\hyperlink{ref-fmcsareport2017}{b}), large truck and bus fatalities in 2017 were 0.156 per million travelled vehicle miles, which was a 6.8 percent increase from 2016. This rareness poses a challenge to infer unbiased estimates using traditional statistical models (Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Theofilatos et al. \protect\hyperlink{ref-theofilatos2018impact}{2018}). Secondly, most truck crash data reply on post hoc police reports. Although these data are generally accurate and detailed by police officers, they are limited in determining the information of the driver in the meaningful time period leading up to the crash (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Some of the critical factors, such as distraction, are not reported or cannot be determined due to a varitety of reasons (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Thirdly, truck crashes are underreported, particularly for no-injury and minor-injury crashes (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}; Stern et al. \protect\hyperlink{ref-stern2019data}{2019}). It is estimated that 25\% of minor-injury and 50\% of non-injury crashes were not reported, while 100\% of fatal crashes were reported (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}).
+
+In light of the aforementioned limitations, a growing number of naturalistic driving studies have been initiated worldwide to identify crash causation and develop effective action to improve traffic safety (Klauer et al. \protect\hyperlink{ref-klauer2009comparing}{2009}; Hickman, Hanowski, and Bocanegra \protect\hyperlink{ref-hickman2018synthetic}{2018}; Guo \protect\hyperlink{ref-guo2019statistical}{2019}), such as the 100-Car NDS (Dingus, Klauer, et al. \protect\hyperlink{ref-dingus2006100}{2006}), the second Strategic Highway Research Program including more than 3,400 drivers (Ghasemzadeh and Ahmed \protect\hyperlink{ref-ghasemzadeh2017probit}{2017}), and the UDRIVE NDS in Europe (Eenink et al. \protect\hyperlink{ref-eenink2014udrive}{2014}; Barnard et al. \protect\hyperlink{ref-barnard2016study}{2016}). There are also a few other NDS that target at specific sub-populations, such as the 40-Teen NDS (Alden et al. \protect\hyperlink{ref-alden2016animal}{2016}), the Older Driver Fitness-to-Drive NDS (Guo, Fang, and Antin \protect\hyperlink{ref-guo2015older}{2015}), and the Commercial Truck Driver NDS (Sparrow et al. \protect\hyperlink{ref-sparrow2016naturalistic}{2016}).
+
+NDS use unobstrusive devices, sensors, and cameras installed on vehicles to proactively collect frequent real-time driving behavior and and performance data under real-world driving conditions (Hickman, Hanowski, and Bocanegra \protect\hyperlink{ref-hickman2018synthetic}{2018}; Guo \protect\hyperlink{ref-guo2019statistical}{2019}). Compared with tradtional post-hoc crash data that are road segment-based, NDS collect driver-based data which are more useful in comparing the rate of unsafe events under different circumstances. In addition, NDS data provide high-resolution driver behavior and performance data, which enable researcher to access data shortly prior to the occurance of crashes or SCE without information bias or selection bias (Guo et al. \protect\hyperlink{ref-guo2010near}{2010}). Third, collecting naturalistic data is considerably less costly and difficult compared to tradtional crash data that involve human resource, interviews, and witnesses.
+
+Instead of collecting extremely rare vehicle crash data, these studies focus on safety-critical events (SCEs) and near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Although near-crashes or SCEs were not real crashes, these studies suggested that they are highly correlated with crashes (Dingus, Klauer, et al. \protect\hyperlink{ref-dingus2006100}{2006}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). The most commonly studied SCE is hard brakes (also knowns as hard-braking events or harsh braking), defined as a deceleration force higher than a pre-specified threshold, such as 0.3 g (Jansen and Simone Wesseling \protect\hyperlink{ref-jansen2018harsh}{2018}; Mollicone et al. \protect\hyperlink{ref-mollicone2019predicting}{2019}).
+
+A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed in Saleh et al. (\protect\hyperlink{ref-saleh2013accident}{2013}). An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}). A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry (Smith and Borgonovo \protect\hyperlink{ref-smith2007decision}{2007}), chemistry (Phimister et al. \protect\hyperlink{ref-phimister2003near}{2003}), and aerospace industry (Kirwan, Gibson, and Hickling \protect\hyperlink{ref-kirwan2008human}{2008}). However, there are limited number of studies in accident precursors in the truck safety field.
 
 The first large-scale NDS was The 100-Car Naturalistic Driving study conducted in North Virginia, the United States (Neale et al. \protect\hyperlink{ref-neale2005overview}{2005}).
 
@@ -1334,6 +1335,9 @@ Abdel-Aty, Mohamed A, Hany M Hassan, Mohamed Ahmed, and Ali S Al-Ghamdi. 2012. `
 \leavevmode\hypertarget{ref-ahmed2018effects}{}%
 Ahmed, Mohamed M, Rebecca Franke, Khaled Ksaibati, and Debbie S Shinstine. 2018. ``Effects of Truck Traffic on Crash Injury Severity on Rural Highways in Wyoming Using Bayesian Binary Logit Models.'' \emph{Accident Analysis \& Prevention} 117: 106--13.
 
+\leavevmode\hypertarget{ref-alden2016animal}{}%
+Alden, Andrew Scott, Brian Mayer, Patrick Mcgowen, Rini Sherony, and Hiroyuki Takahashi. 2016. ``Animal-Vehicle Encounter Naturalistic Driving Data Collection and Photogrammetric Analysis.'' SAE Technical Paper.
+
 \leavevmode\hypertarget{ref-al2007experimental}{}%
 Al-Ghamdi, Ali S. 2007. ``Experimental Evaluation of Fog Warning System.'' \emph{Accident Analysis \& Prevention} 39 (6): 1065--72.
 
@@ -1354,6 +1358,9 @@ Baker, CJ, and Sheila Reynolds. 1992. ``Wind-Induced Accidents of Road Vehicles.
 
 \leavevmode\hypertarget{ref-bardenet2017markov}{}%
 Bardenet, Rémi, Arnaud Doucet, and Chris Holmes. 2017. ``On Markov Chain Monte Carlo Methods for Tall Data.'' \emph{The Journal of Machine Learning Research} 18 (1): 1515--57.
+
+\leavevmode\hypertarget{ref-barnard2016study}{}%
+Barnard, Yvonne, Fabian Utesch, Nicole van Nes, Rob Eenink, and Martin Baumann. 2016. ``The Study Design of Udrive: The Naturalistic Driving Study Across Europe for Cars, Trucks and Scooters.'' \emph{European Transport Research Review} 8 (2): 14.
 
 \leavevmode\hypertarget{ref-barp2018geometry}{}%
 Barp, Alessandro, François-Xavier Briol, Anthony D Kennedy, and Mark Girolami. 2018. ``Geometry and Dynamics for Markov Chain Monte Carlo.'' \emph{Annual Review of Statistics and Its Application} 5: 451--71.
@@ -1457,6 +1464,9 @@ Duane, Simon, Anthony D Kennedy, Brian J Pendleton, and Duncan Roweth. 1987. ``H
 \leavevmode\hypertarget{ref-duke2010age}{}%
 Duke, Janine, Maya Guest, and May Boggess. 2010. ``Age-Related Safety in Professional Heavy Vehicle Drivers: A Literature Review.'' \emph{Accident Analysis \& Prevention} 42 (2): 364--71.
 
+\leavevmode\hypertarget{ref-eenink2014udrive}{}%
+Eenink, Rob, Yvonne Barnard, Martin Baumann, Xavier Augros, and Fabian Utesch. 2014. ``UDRIVE: The European Naturalistic Driving Study.'' In \emph{Proceedings of Transport Research Arena}. IFSTTAR.
+
 \leavevmode\hypertarget{ref-eugster2013osmar}{}%
 Eugster, Manuel JA, and Thomas Schlesinger. 2013. ``Osmar: OpenStreetMap and R.'' \emph{The R Journal} 5 (1): 53--63.
 
@@ -1490,6 +1500,9 @@ Gelman, Andrew, Hal S Stern, John B Carlin, David B Dunson, Aki Vehtari, and Don
 \leavevmode\hypertarget{ref-geman1987stochastic}{}%
 Geman, Stuart, and Donald Geman. 1987. ``Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images.'' In \emph{Readings in Computer Vision}, 564--84. Elsevier.
 
+\leavevmode\hypertarget{ref-ghasemzadeh2017probit}{}%
+Ghasemzadeh, Ali, and Mohamed M Ahmed. 2017. ``A Probit-Decision Tree Approach to Analyze Effects of Adverse Weather Conditions on Work Zone Crash Severity Using Second Strategic Highway Research Program Roadway Information Dataset.''
+
 \leavevmode\hypertarget{ref-ghasemzadeh2018parametric}{}%
 Ghasemzadeh, Ali, Britton E Hammit, Mohamed M Ahmed, and Rhonda Kae Young. 2018. ``Parametric Ordinal Logistic Regression and Non-Parametric Decision Tree Approaches for Assessing the Impact of Weather Conditions on Driver Speed Selection Using Naturalistic Driving Data.'' \emph{Transportation Research Record}, 0361198118758035.
 
@@ -1514,14 +1527,20 @@ Grimes, David A, and Kenneth F Schulz. 2005. ``Compared to What? Finding Control
 \leavevmode\hypertarget{ref-gunawan2018subsampling}{}%
 Gunawan, David, Khue-Dung Dang, Matias Quiroz, Robert Kohn, and Minh-Ngoc Tran. 2018. ``Subsampling Sequential Monte Carlo for Static Bayesian Models.'' \emph{arXiv Preprint arXiv:1805.03317}.
 
+\leavevmode\hypertarget{ref-guo2019statistical}{}%
+Guo, Feng. 2019. ``Statistical Methods for Naturalistic Driving Studies.'' \emph{Annual Review of Statistics and Its Application} 6: 309--28.
+
+\leavevmode\hypertarget{ref-guo2015older}{}%
+Guo, Feng, Youjia Fang, and Jonathan F Antin. 2015. ``Older Driver Fitness-to-Drive Evaluation Using Naturalistic Driving Data.'' \emph{Journal of Safety Research} 54: 49--e29.
+
 \leavevmode\hypertarget{ref-guo2010near}{}%
 Guo, Feng, Sheila G Klauer, Jonathan M Hankey, and Thomas A Dingus. 2010. ``Near Crashes as Crash Surrogate for Naturalistic Driving Studies.'' \emph{Transportation Research Record} 2147 (1): 66--74.
 
 \leavevmode\hypertarget{ref-hastings1970monte}{}%
 Hastings, W Keith. 1970. ``Monte Carlo Sampling Methods Using Markov Chains and Their Applications.''
 
-\leavevmode\hypertarget{ref-hickman2010distraction}{}%
-Hickman, Jeffrey S, Richard J Hanowski, and Joseph Bocanegra. 2010. ``Distraction in Commercial Trucks and Buses: Assessing Prevalence and Risk in Conjunction with Crashes and Near-Crashes.''
+\leavevmode\hypertarget{ref-hickman2018synthetic}{}%
+Hickman, Jeffrey S, Richard J Hanowski, and Joseph Bocanegra. 2018. ``A Synthetic Approach to Compare the Large Truck Crash Causation Study and Naturalistic Driving Data.'' \emph{Accident Analysis \& Prevention} 112: 11--14.
 
 \leavevmode\hypertarget{ref-hoffman2014no}{}%
 Hoffman, Matthew D, and Andrew Gelman. 2014. ``The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo.'' \emph{Journal of Machine Learning Research} 15 (1): 1593--1623.
@@ -1543,6 +1562,9 @@ Jackson, Melinda L, Gerard A Kennedy, Catherine Clarke, Melissa Gullo, Philip Sw
 
 \leavevmode\hypertarget{ref-janakiraman2016discovery}{}%
 Janakiraman, Vijay Manikandan, Bryan Matthews, and Nikunj Oza. 2016. ``Discovery of Precursors to Adverse Events Using Time Series Data.'' In \emph{Proceedings of the 2016 Siam International Conference on Data Mining}, 639--47. SIAM.
+
+\leavevmode\hypertarget{ref-jansen2018harsh}{}%
+Jansen, Reinier J, and SWOV Simone Wesseling. 2018. ``Harsh Braking by Truck Drivers: A Comparison of Thresholds and Driving Contexts Using Naturalistic Driving Data.'' In \emph{Proceedings of the 6th Humanist Conference, Disponibile Al Link Https://Bit. Ly/2C2Bw3Z {[}Online}.
 
 \leavevmode\hypertarget{ref-jiang2017transport}{}%
 Jiang, Baoguo, Song Liang, Zhong-Ren Peng, Haozhe Cong, Morgan Levy, Qu Cheng, Tianbing Wang, and Justin V Remais. 2017. ``Transport and Public Health in China: The Road to a Healthy Future.'' \emph{The Lancet} 390 (10104): 1781--91.

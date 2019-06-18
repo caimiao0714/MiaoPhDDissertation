@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  17 JUN 2019 16:21
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  17 JUN 2019 19:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -706,11 +706,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] (./MiaoPhDDissertation.toc [7
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 37.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 36.
 (c:/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (33.37675pt too wide) in paragraph at lines 56--56
+Overfull \hbox (33.37675pt too wide) in paragraph at lines 55--55
  [] [][][]\T1/lmr/bx/n/12 HIERARCHICAL BAYESIAN MOD-ELS US-ING SUB-SAM-PLING MA
 RKOVE 
  []
@@ -742,133 +742,148 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [2] [3] [4] [5] [6]
 Chapter 2.
+
+Underfull \vbox (badness 1087) has occurred while \output is active []
+
 [7
 
-] [8] [9]
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[8] [9]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [10]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11] [12]
+[11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13]
-Missing character: There is no ◦ in font ec-lmr12!
-[14] [15]
-Underfull \vbox (badness 2318) has occurred while \output is active []
+[12]
+Underfull \vbox (badness 2119) has occurred while \output is active []
 
-[16]
-Underfull \vbox (badness 8189) has occurred while \output is active []
+[13] [14]
+Missing character: There is no ◦ in font ec-lmr12!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[15] [16]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[18] [19] [20]
+[18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[21] [22]
-Underfull \vbox (badness 3471) has occurred while \output is active []
+[19]
+Underfull \vbox (badness 3179) has occurred while \output is active []
 
-[23] [24] [25]
-Underfull \vbox (badness 7133) has occurred while \output is active []
+[20] [21] [22] [23] [24] [25]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[26] [27] [28] [29] [30]
+[26] [27] [28]
+Underfull \vbox (badness 5231) has occurred while \output is active []
+
+[29] [30] [31] [32
+
+]
 Chapter 3.
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
-[31
-
-]
+[33]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 673.
-[32]
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 674.
+[34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[33] [34] [35]
+[35] [36] [37]
 Underfull \vbox (badness 1635) has occurred while \output is active []
 
-[36]
+[38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[37]
+[39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[38] [39] [40
+[40] [41] [42
 
 ]
 Chapter 4.
-[41] [42] [43] [44
+[43] [44] [45] [46
 
 ]
 Chapter 5.
-[45] [46
+[47] [48
 
 ]
 Chapter 6.
-[47]
+[49]
 
 Package Fancyhdr Warning: \headheight is too small (14.49998pt): 
  Make it at least 27.11652pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[48]
+[50]
 Chapter 7.
-[49
+[51
 
-] [50
+] [52
 
 ]
 Chapter 8.
-[51] [52
+[53] [54
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1202.
-[53] [54] [55] [56
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1203.
+[55] [56] [57] [58
 
-] [57
+] [59
 
-] [58] [59]
+] [60]
+Underfull \vbox (badness 1057) has occurred while \output is active []
+
+[61]
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[60]
-Overfull \hbox (6.68362pt too wide) in paragraph at lines 1448--1450
+[62]
+Overfull \hbox (6.68362pt too wide) in paragraph at lines 1455--1457
 \T1/lmr/m/n/12 ``Es-ti-mat-ing Fac-tors Con-tribut-ing to Fre-quency and Sever-
 ity of Large Truck--Involved Crashes.''
  []
 
 
-Overfull \hbox (32.88687pt too wide) in paragraph at lines 1466--1468
+Underfull \vbox (badness 1509) has occurred while \output is active []
+
+[63]
+Overfull \hbox (32.88687pt too wide) in paragraph at lines 1476--1478
 \T1/lmr/m/n/12 la-tions.'' [][]$\T1/lmtt/m/n/12 https : / / www . fmcsa . dot .
  gov / regulations / hours -[] service / summary -[] hours -[] service -[]
  []
 
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-[61]
-Overfull \hbox (134.60506pt too wide) in paragraph at lines 1472--1474
+Overfull \hbox (134.60506pt too wide) in paragraph at lines 1482--1484
 \T1/lmtt/m/n/12 gov / sites / fmcsa . dot . gov / files / docs / safety / data 
 -[] and -[] statistics / 84856 / cmvtrafficsafetyfactsheet2016 -[]
  []
 
 
-Overfull \hbox (36.791pt too wide) in paragraph at lines 1475--1477
+Overfull \hbox (36.791pt too wide) in paragraph at lines 1485--1487
 \T1/lmtt/m/n/12 sites / fmcsa . dot . gov / files / docs / safety / data -[] an
 d -[] statistics / 398686 / ltbcf -[] 2016 -[] final -[]
  []
 
-
-Overfull \hbox (1.90947pt too wide) in paragraph at lines 1493--1495
+[64]
+Overfull \hbox (1.90947pt too wide) in paragraph at lines 1506--1508
 \T1/lmr/m/n/12 2018. ``Para-met-ric Or-di-nal Lo-gis-tic Re-gres-sion and Non-P
 arametric De-ci-sion Tree Ap-proaches
  []
 
-[62]
-Overfull \hbox (1.98053pt too wide) in paragraph at lines 1505--1507
+
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 1518--1520
 [][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
 rgeant, and Gamini Punchi-
  []
@@ -876,57 +891,66 @@ rgeant, and Gamini Punchi-
 
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[63]
+[65] [66]
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[67] [68]
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[69]
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[70]
 Underfull \vbox (badness 1681) has occurred while \output is active []
 
-[64] [65] [66] [67]
-Underfull \vbox (badness 1681) has occurred while \output is active []
-
-[68]
-Overfull \hbox (7.444pt too wide) in paragraph at lines 1685--1687
+[71]
+Overfull \hbox (7.444pt too wide) in paragraph at lines 1707--1709
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008 -[] stat
 e -[] of -[] the -[] states -[] report -[] on -[] drowsy -[]
  []
 
-[69]
+
 Underfull \vbox (badness 1681) has occurred while \output is active []
 
-[70] [71]
+[72]
+Underfull \vbox (badness 1681) has occurred while \output is active []
+
+[73]
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
-[72]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 1805--1807
+[74]
+Underfull \vbox (badness 1057) has occurred while \output is active []
+
+[75]
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 1827--1829
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road -[] safety / safety -[] topics / fatality -[] estimates$[][]\T1/lmr/m/
 n/12 . 
  []
 
+[76] [77] [78] [79
 
-Underfull \vbox (badness 1057) has occurred while \output is active []
-
-[73] [74] [75] [76] [77
-
-] [78
+] [80
 
 ]
 No file MiaoPhDDissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1890.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1890.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1912.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1912.
 (./MiaoPhDDissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1890.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1890.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1912.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1912.
 
 Package rerunfilecheck Info: File `MiaoPhDDissertation.out' has not changed.
-(rerunfilecheck)             Checksum: F5848EDFD80FA62CC1CB3F5E38E549D9.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1890.
+(rerunfilecheck)             Checksum: E576E019BE2AC8E5BABBFC94498E1108.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1912.
  ) 
 Here is how much of TeX's memory you used:
- 13752 strings out of 492956
- 196060 string characters out of 6136893
- 309657 words of memory out of 5000000
- 17556 multiletter control sequences out of 15000+600000
+ 13751 strings out of 492956
+ 196037 string characters out of 6136893
+ 309524 words of memory out of 5000000
+ 17555 multiletter control sequences out of 15000+600000
  50356 words of font info for 60 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 36i,17n,47p,2436b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,47p,2443b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MiaoPhDDissertation.pdf (91 pages).
+Output written on MiaoPhDDissertation.pdf (93 pages).
