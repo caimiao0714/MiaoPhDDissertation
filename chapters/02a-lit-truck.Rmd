@@ -20,7 +20,7 @@ A more formal definition of near-crash, or the more general accident precursor, 
 The rational for using SCE as a surrogates for vehicle crashes is Heinrich's Triangle. 
 
 
-The first large-scale NDS was The 100-Car Naturalistic Driving study conducted in North Virginia, the United States [@neale2005overview]. The research team continuously followed the 102 recruited drivers for 12 months, resulting in two million miles and over 40,000 hours of driving data.
+The first large-scale NDS was The 100-Car Naturalistic Driving study conducted in North Virginia, the United States [@neale2005overview]. The research team continuously followed the 102 recruited drivers for 12 months, resulting in two million miles and over 40,000 hours of driving data. To maximize the number of SCEs, the research team intentionally chose more young drivers and high mileage drivers. 
 
 
 @mollicone2019predicting used a Poisson regression to quantify the association between driver performance and predicted fatigue level based on natualistic driving data from 106 commercial truck drivers. The number of hard-braking events, defined as deceleration force greater than 0.3 g, were considered the outcome variable in that study. The fatigue level was predicted using a complex biomathematical model provided by @mccauley2013dynamic. After accounting for time of the day, they reported a significant association between predicted fatigue and the rate of hard-braking events (relative risk 1.078, 95% confidence interval 1.013-1.146).
