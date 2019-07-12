@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {2.1.2}Crashes and SCEs}{10}{subsection.2.1.2}
 \contentsline {section}{\numberline {2.2}Risk factors}{13}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Fatigue}{13}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Driver characteristics}{16}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.2}Driver characteristics}{17}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Traffic}{18}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}Weather}{19}{subsection.2.2.4}
 \contentsline {subsection}{\numberline {2.2.5}Road Geometry}{20}{subsection.2.2.5}
@@ -61,4 +61,4 @@
 \contentsline {subsection}{Weather data}{59}{section*.8}
 \contentsline {subsection}{Road geometry data}{60}{section*.9}
 \contentsline {chapter}{Bibliography}{63}{chapter*.10}
-\contentsline {chapter}{Vita Auctoris}{87}{chapter*.11}
+\contentsline {chapter}{Vita Auctoris}{85}{chapter*.11}
