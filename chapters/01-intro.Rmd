@@ -53,7 +53,7 @@ To reduce the lives and economic losses associated with trucks, numerous studies
 
 Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as a critical events, adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash [@saleh2013accident; @janakiraman2016discovery]. Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes [@dingus2006development]. 
 
-With the rapid development of modern technology, real-time driving and critical events data are recorded more and more by truck companies [@janakiraman2016discovery]. Although critical events do not always result in an accident, they could potentially be used as an early warning system to mitigate or prevent truck crashes [@kusano2012safety; @de2018near]. \hl{More description on this part.}
+With the rapid development of modern technology, real-time driving and critical events data are recorded more and more by truck companies [@janakiraman2016discovery]. Although critical events do not always result in an accident, they could potentially be used as an early warning system to mitigate or prevent truck crashes [@kusano2012safety; @de2018near]. \hl{More description on this part.} @guo2019statistical.
 
 
 ## Proposal
