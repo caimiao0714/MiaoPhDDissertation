@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  11 JUL 2019 23:55
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  12 JUL 2019 00:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -771,7 +771,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[16] [17] [18]
+[16] [17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[18]
 Missing character: There is no ◦ in font ec-lmr12!
 [19] [20]
 Underfull \vbox (badness 1430) has occurred while \output is active []
@@ -782,16 +785,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[23] [24] [25]
+[23] [24]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[25]
+Underfull \vbox (badness 2119) has occurred while \output is active []
+
 [26] [27]
-Underfull \vbox (badness 3471) has occurred while \output is active []
+Underfull \vbox (badness 2922) has occurred while \output is active []
 
-[28] [29] [30]
-Underfull \vbox (badness 7133) has occurred while \output is active []
-
-[31] [32] [33] [34] [35] [36
+[28] [29] [30] [31] [32] [33] [34] [35] [36
 
 ]
 Chapter 3.
@@ -953,13 +956,13 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2011.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2011.
 
 Package rerunfilecheck Info: File `MiaoPhDDissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 27CA7BFE02370D69666AF4644724C6FD.
+(rerunfilecheck)             Checksum: C0AA5D355E17257D1377FB0E4C847970.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2011.
  ) 
 Here is how much of TeX's memory you used:
  13754 strings out of 492956
- 196097 string characters out of 6136893
- 309828 words of memory out of 5000000
+ 196102 string characters out of 6136893
+ 309847 words of memory out of 5000000
  17558 multiletter control sequences out of 15000+600000
  50356 words of font info for 60 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
