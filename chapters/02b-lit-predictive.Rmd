@@ -196,11 +196,6 @@ Two parameters need to be tuned when implementing the HMC: step size $\epsilon$ 
 The No-U-Turn Sampler (NUTS) proposed by @hoffman2014no solves the difficulty of hand tuning $\epsilon$ and $T$ in static HMC. NUTS calculates the optimal step size $\epsilon$ and number of steps $L$ through a tree building algorithm [@monnahan2017faster]. The tree depth $k$ is defined as the number of doublings, resulting in $2^k$ leapfrog steps to build the trajectory. This $k$ is then decided by repeating the doubling iterations until the trajectory 'makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune $\epsilon$ and $T$.
 
 
-### Integrated Laplace Approximation (INLA)
-
-[@Havard2009; @Lindgren2011; @Thiago2013; @Coninck2016; @Rue2017; @Verbosio2017; @Kourounis2018]
-
-
 ### Subsampling MCMC
 
 

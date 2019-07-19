@@ -237,27 +237,27 @@ The importance of truck industry and the potential catastrophic consequences of 
 
 To reduce the lives and economic losses associated with trucks, numerous studies attempted to screen the risk factors for truck-related traffic crashes and make accurate prediction. However, there are several limitations of studies using crash data. First, traffic crashes are characterized by rare events (dozens to thousands of times fewer crashes than non-crashes) (Theofilatos et al. \protect\hyperlink{ref-theofilatos2016predicting}{2016}, \protect\hyperlink{ref-theofilatos2018impact}{2018}). To tackle this rare-event issue, the most common study design is a case-control study that matches a crash with one to up to ten non-crashes, and then use statistical models such as logistic regressions to explain the causes or predict the crashes (Braver et al. \protect\hyperlink{ref-braver1997tractor}{1997}; Chen Chen and Xie \protect\hyperlink{ref-chen2014modeling}{2014}; Meuleners et al. \protect\hyperlink{ref-meuleners2015obstructive}{2015}; Née et al. \protect\hyperlink{ref-nee2019road}{2019}). Unfortunately, a case-control study is limited in estimating the incidence data or overall average treatment effect. It may be contentious in selecting the ratio of controls to cases and how to select these controls (Grimes and Schulz \protect\hyperlink{ref-grimes2005compared}{2005}; Sedgwick \protect\hyperlink{ref-sedgwick2014case}{2014}). Second, due to the retrospective nature of crash data, it is unrealistic to trace back to the real-time traffic, weather, and other environmental factors that were associated with the crashes. Most of crash data reported by police and associated drivers were subject to recall and misinformation bias (Girotto et al. \protect\hyperlink{ref-girotto2016professional}{2016}). Third, crashes are underreported, especially those without injuries or economic losses, as well as those crashes with minor severity (Ye and Lord \protect\hyperlink{ref-ye2011investigation}{2011}). The National Highway Traffic Safety Adminitration estimated that 25\% of minor-injury crashes and 50\% of no-injury crashes were not reported, compared to 100\% reporting rate for fatal crashes (Savolainen et al. \protect\hyperlink{ref-savolainen2011statistical}{2011}).
 
-Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as a critical events, adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, suggest fatigue and a lapse in performance, and they can lead to giant crashes (Dingus, Neale, et al. \protect\hyperlink{ref-dingus2006development}{2006}).
+Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as safety critical events (SCEs), adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, potentially suggest fatigue and a lapse in performance, and can lead to catastrophic crashes (Dingus, Neale, et al. \protect\hyperlink{ref-dingus2006development}{2006}).
 
-With the rapid development of modern technology, real-time driving and critical events data are recorded more and more by truck companies (Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Although critical events do not always result in an accident, they could potentially be used as an early warning system to mitigate or prevent truck crashes (Kusano and Gabler \protect\hyperlink{ref-kusano2012safety}{2012}; Rome et al. \protect\hyperlink{ref-de2018near}{2018}). \hl{More description on this part.}
+With the rapid development of modern technology, more real-time naturalistic driving and critical events data are collection by commercial truck companies (Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). With advanced unobstrusive instrumentation, these data provide a unique opportunity to continuously study real-world driving performance and potential consequences (Dingus et al. \protect\hyperlink{ref-dingus2016driver}{2016}). Naturalistic driving data can be further powered to examine the risk factors associated with truck crash, by continuously collecting high resolution data on the risk factors, such as driver behavior, vehicle condition, traffic, weather, and road geometry (Guo \protect\hyperlink{ref-guo2019statistical}{2019}).
 
 \hypertarget{proposal}{%
 \section{Proposal}\label{proposal}}
 
-I propose using real-time truck ping data provided by the J.B. Hunt, real-time weather and traffic data to
+This prospectus proposal focuses on Bayesian statistical models in a large truck naturalistic driving data. The research goals are:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  quantify the association between truck crashes and critical events;
+  quantify the association between truck crashes and SCEs;
 \item
-  construct predictive models for truck critical events;
+  construct scalable Bayesian hierarchical models for truck critical events;
 \item
-  establish scalable Bayesian hierarchical models for large truck data.
+  create an innovative reliability model to account for short rests between different trips.
 \end{enumerate}
 
-I believe that this work will contribute to statistical theories in constructing scalable Bayesian hierarchical statistical and reliability models using modern Markov chain Monte Carlo simulations. Realistically, these predictive models will inform policy-makers the functional relationship between driver characteristics, traffic, weather, and other real-time driving environment. These predictive models can be further used to provide data-driven justification to optimize trucking routes and minimize unsafe driving behaviors.
+I believe that this work will contribute to statistical theories in constructing scalable Bayesian hierarchical statistical models using modern Markov chain Monte Carlo simulations (MCMC). Realistically, these statistical models will provide insights into the functional relationship between driver characteristics, traffic, weather, and other real-time driving environment. These statistical models can be further used to provide data-driven justification to optimize trucking routes and minimize unsafe driving behaviors.
 
 \hypertarget{literature-review}{%
 \chapter{LITERATURE REVIEW}\label{literature-review}}
@@ -609,11 +609,6 @@ The HMC is essentially an improved form of M-H algorithm by using the Hamiltonia
 Two parameters need to be tuned when implementing the HMC: step size \(\epsilon\) and the optimal trajectory length \(T\). The optimal trajectory length is the product of the number of steps \(L\) and step size \(\epsilon\) (Neal and others \protect\hyperlink{ref-neal2011mcmc}{2011}; Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The step size \(\epsilon\) decides how similarly the sympletic methods (typically the leapfrog algorithm) imitates the true unnormalized posterior density. If \(\epsilon\) is too small, it will take a lot of steps for the leapfrog algorithm to explore the posterior space. If \(\epsilon\) is too big, the leapfrog algorithm will loop around and return to a place near its original step. The trajectory length \(T = \epsilon L\), which need to be tuned in similar style with \(\epsilon\): if \(L\) is too short, it will be hard to simulate distant proposal and the algorithm is inefficient; if \(L\) is too long, the trajectory will loop back and become computationally inefficient. Hand tuning these two parameters was the major obstacle to implement HMC for applied researchers.
 
 The No-U-Turn Sampler (NUTS) proposed by Hoffman and Gelman (\protect\hyperlink{ref-hoffman2014no}{2014}) solves the difficulty of hand tuning \(\epsilon\) and \(T\) in static HMC. NUTS calculates the optimal step size \(\epsilon\) and number of steps \(L\) through a tree building algorithm (Monnahan, Thorson, and Branch \protect\hyperlink{ref-monnahan2017faster}{2017}). The tree depth \(k\) is defined as the number of doublings, resulting in \(2^k\) leapfrog steps to build the trajectory. This \(k\) is then decided by repeating the doubling iterations until the trajectory `makes a U-turn' (loops back) or diverges (the Hamiltonian expands to infinity). Therefore, the NUTS can automatically create trajectories that can efficiently explore the high-density parameter space without having to hand tune \(\epsilon\) and \(T\).
-
-\hypertarget{integrated-laplace-approximation-inla}{%
-\subsection{Integrated Laplace Approximation (INLA)}\label{integrated-laplace-approximation-inla}}
-
-(Rue, Martino, and Chopin \protect\hyperlink{ref-Havard2009}{2009}; Lindgren, Rue, and Lindström \protect\hyperlink{ref-Lindgren2011}{2011}; Martins et al. \protect\hyperlink{ref-Thiago2013}{2013}; De Coninck et al. \protect\hyperlink{ref-Coninck2016}{2016}; Rue et al. \protect\hyperlink{ref-Rue2017}{2017}; Verbosio et al. \protect\hyperlink{ref-Verbosio2017}{2017}; Kourounis, Fuchs, and Schenk \protect\hyperlink{ref-Kourounis2018}{2018})
 
 \hypertarget{subsampling-mcmc}{%
 \subsection{Subsampling MCMC}\label{subsampling-mcmc}}
@@ -1479,9 +1474,6 @@ Dang, Khue-Dung, Matias Quiroz, Robert Kohn, Minh-Ngoc Tran, and Mattias Villani
 \leavevmode\hypertarget{ref-davis2015longitudinal}{}%
 Davis, Amelia, Elizabeth Hacker, Peter T Savolainen, and Timothy J Gates. 2015. ``Longitudinal Analysis of Rural Interstate Fatalities in Relation to Speed Limit Policies.'' \emph{Transportation Research Record} 2514 (1): 21--31.
 
-\leavevmode\hypertarget{ref-Coninck2016}{}%
-De Coninck, Arne, Bernard De Baets, Drosos Kourounis, Fabio Verbosio, Olaf Schenk, Steven Maenhout, and Jan Fostier. 2016. ``Needles: Toward Large-Scale Genomic Prediction with Marker-by-Environment Interaction.'' \emph{Genetics} 203 (1): 543--55. \url{https://doi.org/10.1534/genetics.115.179887}.
-
 \leavevmode\hypertarget{ref-dement1997perils}{}%
 Dement, William C. 1997. ``The Perils of Drowsy Driving.'' \emph{The New England Journal of Medicine} 337 (11): 783--84.
 
@@ -1668,17 +1660,11 @@ Knipling, Ronald R, and Jing-Shiarn Wang. 1994. \emph{Crashes and Fatalities Rel
 \leavevmode\hypertarget{ref-korkut2010freeway}{}%
 Korkut, Murat, Sherif Ishak, and Brian Wolshon. 2010. ``Freeway Truck Lane Restriction and Differential Speed Limits: Crash Analysis and Traffic Characteristics.'' \emph{Transportation Research Record} 2194 (1): 11--20.
 
-\leavevmode\hypertarget{ref-Kourounis2018}{}%
-Kourounis, D., A. Fuchs, and O. Schenk. 2018. ``Towards the Next Generation of Multiperiod Optimal Power Flow Solvers.'' \emph{IEEE Transactions on Power Systems} PP (99): 1--10. \url{https://doi.org/10.1109/TPWRS.2017.2789187}.
-
 \leavevmode\hypertarget{ref-kruschke2014doing}{}%
 Kruschke, John. 2014. \emph{Doing Bayesian Data Analysis: A Tutorial with R, Jags, and Stan}. Academic Press.
 
 \leavevmode\hypertarget{ref-kruschke2015bayesian}{}%
 Kruschke, John K, and Wolf Vanpaemel. 2015. ``Bayesian Estimation in Hierarchical Models.'' \emph{The Oxford Handbook of Computational and Mathematical Psychology}, 279--99.
-
-\leavevmode\hypertarget{ref-kusano2012safety}{}%
-Kusano, Kristofer D, and Hampton C Gabler. 2012. ``Safety Benefits of Forward Collision Warning, Brake Assist, and Autonomous Braking Systems in Rear-End Collisions.'' \emph{IEEE Transactions on Intelligent Transportation Systems} 13 (4): 1546--55.
 
 \leavevmode\hypertarget{ref-lambert2018student}{}%
 Lambert, Ben. 2018. \emph{A Student's Guide to Bayesian Statistics}. Sage.
@@ -1700,9 +1686,6 @@ Li, Qing, Feng Guo, Inyoung Kim, Sheila G Klauer, and Bruce G Simons-Morton. 201
 
 \leavevmode\hypertarget{ref-li2017evaluation}{}%
 Li, Qing, Feng Guo, Sheila G Klauer, and Bruce G Simons-Morton. 2017. ``Evaluation of Risk Change-Point for Novice Teenage Drivers.'' \emph{Accident Analysis \& Prevention} 108: 139--46.
-
-\leavevmode\hypertarget{ref-Lindgren2011}{}%
-Lindgren, Finn, Håvard Rue, and Johan Lindström. 2011. ``An Explicit Link Between Gaussian Fields and Gaussian Markov Random Fields: The Stochastic Partial Differential Equation Approach (with Discussion).'' \emph{Journal of the Royal Statistical Society B} 73 (4): 423--98.
 
 \leavevmode\hypertarget{ref-litman2013transportation}{}%
 Litman, Todd. 2013. ``Transportation and Public Health.'' \emph{Annual Review of Public Health} 34: 217--33.
@@ -1733,9 +1716,6 @@ Lunn, David, David Spiegelhalter, Andrew Thomas, and Nicky Best. 2009. ``The Bug
 
 \leavevmode\hypertarget{ref-maclean2003hazards}{}%
 MacLean, Alistair W, David RT Davies, and Kris Thiele. 2003. ``The Hazards and Prevention of Driving While Sleepy.'' \emph{Sleep Medicine Reviews} 7 (6): 507--21.
-
-\leavevmode\hypertarget{ref-Thiago2013}{}%
-Martins, Thiago G., Daniel Simpson, Finn Lindgren, and Håvard Rue. 2013. ``Bayesian Computing with INLA: New Features.'' \emph{Computational Statistics and Data Analysis} 67: 68--83.
 
 \leavevmode\hypertarget{ref-mccauley2013dynamic}{}%
 McCauley, Peter, Leonid V Kalachev, Daniel J Mollicone, Siobhan Banks, David F Dinges, and Hans PA Van Dongen. 2013. ``Dynamic Circadian Modulation in a Biomathematical Model for the Effects of Sleep and Sleep Loss on Waking Neurobehavioral Performance.'' \emph{Sleep} 36 (12): 1987--97.
@@ -1851,9 +1831,6 @@ Quiroz, Matias, Mattias Villani, Robert Kohn, Minh-Ngoc Tran, and Khue-Dung Dang
 \leavevmode\hypertarget{ref-rifaat2012severity}{}%
 Rifaat, Shakil Mohammad, Richard Tay, and Alexandre De Barros. 2012. ``Severity of Motorcycle Crashes in Calgary.'' \emph{Accident Analysis \& Prevention} 49: 44--49.
 
-\leavevmode\hypertarget{ref-de2018near}{}%
-Rome, Liz de, Julie Brown, Matthew Baldock, and Michael Fitzharris. 2018. ``Near-Miss Crashes and Other Predictors of Motorcycle Crashes: Findings from a Population-Based Survey.'' \emph{Traffic Injury Prevention} 19 (sup2): S20--S26.
-
 \leavevmode\hypertarget{ref-roshandel2015impact}{}%
 Roshandel, Saman, Zuduo Zheng, and Simon Washington. 2015. ``Impact of Real-Time Traffic Characteristics on Freeway Crash Occurrence: Systematic Review and Meta-Analysis.'' \emph{Accident Analysis \& Prevention} 79: 198--211.
 
@@ -1862,12 +1839,6 @@ Rotenberg, Lúcia, Luciana Fernandes Portela, Bahby Banks, Rosane Harter Griep, 
 
 \leavevmode\hypertarget{ref-hrbrmstr}{}%
 Rudis, Bob. 2018. ``darksky: An R interface to the Dark Sky API.'' GitHub. \url{https://github.com/hrbrmstr/darksky}.
-
-\leavevmode\hypertarget{ref-Havard2009}{}%
-Rue, Håvard, Sara Martino, and Nicholas Chopin. 2009. ``Approximate Bayesian Inference for Latent Gaussian Models Using Integrated Nested Laplace Approximations (with Discussion).'' \emph{Journal of the Royal Statistical Society B} 71: 319--92.
-
-\leavevmode\hypertarget{ref-Rue2017}{}%
-Rue, Håvard, Andrea I. Riebler, Sigrunn H. Sørbye, Janine B. Illian, Daniel P. Simpson, and Finn K. Lindgren. 2017. ``Bayesian Computing with INLA: A Review.'' \emph{Annual Reviews of Statistics and Its Applications} 4 (March): 395--421. \url{http://arxiv.org/abs/1604.00860}.
 
 \leavevmode\hypertarget{ref-saleh2013accident}{}%
 Saleh, Joseph H, Elizabeth A Saltmarsh, Francesca M Favaro, and Loic Brevault. 2013. ``Accident Precursors, Near Misses, and Warning Signs: Critical Review and Formal Definitions Within the Framework of Discrete Event Systems.'' \emph{Reliability Engineering \& System Safety} 114: 148--54.
@@ -1931,9 +1902,6 @@ Uddin, Majbah, and Nathan Huynh. 2017. ``Truck-Involved Crashes Injury Severity 
 
 \leavevmode\hypertarget{ref-van2018simple}{}%
 Van Ravenzwaaij, Don, Pete Cassey, and Scott D Brown. 2018. ``A Simple Introduction to Markov Chain Monte--Carlo Sampling.'' \emph{Psychonomic Bulletin \& Review} 25 (1): 143--54.
-
-\leavevmode\hypertarget{ref-Verbosio2017}{}%
-Verbosio, Fabio, Arne De Coninck, Drosos Kourounis, and Olaf Schenk. 2017. ``Enhancing the Scalability of Selected Inversion Factorization Algorithms in Genomic Prediction.'' \emph{Journal of Computational Science} 22 (Supplement C): 99--108. \url{https://doi.org/10.1016/j.jocs.2017.08.013}.
 
 \leavevmode\hypertarget{ref-wang2017safety}{}%
 Wang, Ling, Mohamed Abdel-Aty, and Jaeyoung Lee. 2017. ``Safety Analytics for Integrating Crash Frequency and Real-Time Risk Modeling for Expressways.'' \emph{Accident Analysis \& Prevention} 104: 58--64.

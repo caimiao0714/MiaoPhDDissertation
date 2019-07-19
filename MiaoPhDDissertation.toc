@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {1.1}Transportation safety}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Truck safety}{3}{section.1.2}
 \contentsline {section}{\numberline {1.3}Modern Truck Safety Studies}{4}{section.1.3}
-\contentsline {section}{\numberline {1.4}Proposal}{5}{section.1.4}
+\contentsline {section}{\numberline {1.4}Proposal}{6}{section.1.4}
 \contentsline {chapter}{\numberline {2}LITERATURE REVIEW}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Naturalistic driving Study (NDS)}{7}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Safety-critical events (SCEs)}{9}{subsection.2.1.1}
@@ -25,8 +25,7 @@
 \contentsline {subsection}{\numberline {2.3.4}Markov chain Monte Carlo (MCMC)}{27}{subsection.2.3.4}
 \contentsline {section}{\numberline {2.4}Scalable Bayesian models}{30}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo (HMC)}{31}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Integrated Laplace Approximation (INLA)}{34}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Subsampling MCMC}{34}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.2}Subsampling MCMC}{34}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}Conceptual framework}{34}{section.2.5}
 \contentsline {section}{\numberline {2.6}Gaps in literature}{35}{section.2.6}
 \contentsline {section}{\numberline {2.7}Research aims}{35}{section.2.7}
