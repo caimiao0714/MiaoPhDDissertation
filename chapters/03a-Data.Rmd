@@ -32,7 +32,6 @@ Four types of critical events were recorded in the critical events data:
 1.	Hard brake
 2.	Headway
 3.	Rolling stability
-4.	Collision mitigation
 
 Once some thresholds with regard to the driver's operation were met, the sensor will be triggered and critical events will be recorded in their database.
 There were 12,458 critical events created by the 496 truck drivers during the study period. 

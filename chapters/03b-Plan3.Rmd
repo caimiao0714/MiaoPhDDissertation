@@ -1,2 +1,6 @@
 Analytical Plan for Aim 3
 -------------------------
+
+
+
+@liu2019assessing proposed to use a mixed-effects Poisson process (a recurrent-event model) to model unintentional lane deviation events, with the baseline intensity and time-varying coefficients modeled by penalized B-splines. The first conducted a simulation study to assess the performance of the proposed model with different curvature of time-varying coefficients and the magnitude of event rate. Simulated 500 data sets with 500 shifts per set suggested satisfactory estimates for the true Gamma fragility parameter $\phi$ as estimated by an expectation–maximization algorithm, where larger values of $\phi$ indicated greater heterogeneity between shifts and more intense events. The bias $\phi$ in the simulation ranged from $-0.01$ to $-0.09$, which was around 2% smaller and 0.6% smaller than the true value in low and high event rate settings respectively. They  applied the proposed model to 96 commercial truck drivers including 1,880 shifts. The study found that shifts with normal sleep time (7-9 hours) had a lower intensity compared with insufficient (< 7 hours) and abundant ($\geq 9$ hours) sleep time shifts.

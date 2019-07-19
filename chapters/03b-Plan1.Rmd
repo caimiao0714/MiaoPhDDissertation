@@ -3,3 +3,39 @@ Analytical Plan for Aim 1
 
 This part will be based on truck driver's trips data and crashes data.
 
+
+Let us assume that:
+
+$$
+\begin{aligned}
+\lambda & \sim \text{Gamma}(\alpha, \beta)\\
+X|\lambda & \sim \text{Poisson}(\lambda)\\
+\end{aligned}
+$$
+
+Then we have:
+
+$$X \sim \text{Gamma-Poisson}(\alpha, \beta)$$
+
+The Gamma-Poisson distribution is a $\alpha$-parameter distribution, with the probability mass function of:
+
+$$f(x) = \frac{\Gamma(x + \beta)\alpha^x}{\Gamma(\beta)(1 + \alpha)^{\beta + x}x!}, \quad x = 0, 1, 2, \dots$$
+
+The mean and variance are:
+
+$$
+\begin{aligned}
+E(X) & = \alpha\beta \\
+V(X) & = \alpha\beta + \alpha^2\beta\\
+     & = \alpha\beta(1 + \alpha)
+\end{aligned}
+$$
+
+where $\alpha$ measures the overdispersion.
+
+We might assume that:
+$$
+\log\beta = \mathbf{X\gamma}, \; \text{and } \alpha \text{ is fixed}
+$$
+
+and $\alpha$ is a fixed value.
