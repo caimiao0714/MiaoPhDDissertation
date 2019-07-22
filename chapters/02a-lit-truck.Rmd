@@ -74,15 +74,11 @@ Another risk factor for truck crashes at driver's level is gender. Gender has be
 
 ### Traffic
 
-[@dozza2013factors; ]
+Traffic characteristics are also viewed as an important risk factor for traffic safety issues. For the sake of availability and low cost, most prior studies used aggregated traffic data as proxies of traffic, such as Annual Average Daily Traffic (AADT). More recently, an increasing number of studies start to use real-time traffic data as a high-resolution proxy of traffic characteristics. Three published papers reviewed the impact of traffic variables on traffic safety issues [@wang2013effect; @theofilatos2014review; @roshandel2015impact].
 
-Although it is generally believed that lower **speed limits** can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results [@neeley2009effect; @korkut2010freeway; @zhu2011comprehensive; @davis2015longitudinal]. 
+Traffic variables include flow (traffic volume), occupancy/density, and speed [@wang2013effect; @theofilatos2014review]. Traffic flow is defined as the number of vehicles passing through a specific road segment in a given unit time. Traffic occupancy or density is defined as the number of vehicles in a unit area of road at a moment. Speed can be computed from the road perspective as the mean speed of vehicles passing that road segment (such as the AADT), or from the vehicle perspective as the speed of the vehicle (such as real-time speed). Compared to traffic flow and speed, traffic density is relatively less investigated due to a lack of relevant data.
 
-Speed [@tseng2016comprehensive].
-
-For example, based on multinomial logit and negative binomial models, @dong2017estimating used vehicle and driver characteristics, traffic, environment, and road geometry to predict the frequency and severity of large truck-involved crashes. 
-
-@liu2018predicting used artificial neural network classification and regression tree, and support vector machine to predict crash rate levels of motor carriers.
+For example, based on multinomial logit and negative binomial models, @dong2017estimating used vehicle and driver characteristics, traffic, environment, and road geometry to predict the frequency and severity of large truck-involved crashes. They found that the percent of large trucks, AADT, driver condition, and weather characteristics were significantly associated with both crash frequency and severity. @theofilatos2018impact used hourly aggregated traffic variables, including flow, occupancy, mean time speed, and percentage of trucks to predict crash occurence with a bias-correction logistic regression. This study found that the main risk factor, average speed had a negative effect on crashes. Instead of studying risk factors of crashes, @kamla2019analysing focused on the association between Hard Braking Incidents (HBIs) and geometric and traffic variables among large trucks at roundabouts. They found that HBIs were influenced by traffic and geometric variables in a similar fashion as crashes.
 
 ### Weather
 
@@ -92,8 +88,15 @@ Weather has both direct and indirect effects on drivers’ safety critical event
 
 @ghasemzadeh2018parametric
 
-### Road Geometry
+### Road characteristics
 
+the number of lanes, speed limits, lighting conditions.
+
+Although it is generally believed that lower **speed limits** can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results [@neeley2009effect; @korkut2010freeway; @zhu2011comprehensive; @davis2015longitudinal]. 
+
+@zhu2011comprehensive found that crashes on roadways with more lanes tended to be severe, which may result from a better separation between vehicles. They also reported that crashes in higher speed limit segments were more likely to be severe crashes.
+
+Road geometry
 @dong2015assessment
 
 

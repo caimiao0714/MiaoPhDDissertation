@@ -341,15 +341,11 @@ Another risk factor for truck crashes at driver's level is gender. Gender has be
 \hypertarget{traffic}{%
 \subsection{Traffic}\label{traffic}}
 
-{[}Dozza (\protect\hyperlink{ref-dozza2013factors}{2013}); {]}
+Traffic characteristics are also viewed as an important risk factor for traffic safety issues. For the sake of availability and low cost, most prior studies used aggregated traffic data as proxies of traffic, such as Annual Average Daily Traffic (AADT). More recently, an increasing number of studies start to use real-time traffic data as a high-resolution proxy of traffic characteristics. Three published papers reviewed the impact of traffic variables on traffic safety issues (Wang, Quddus, and Ison \protect\hyperlink{ref-wang2013effect}{2013}; Theofilatos and Yannis \protect\hyperlink{ref-theofilatos2014review}{2014}; Roshandel, Zheng, and Washington \protect\hyperlink{ref-roshandel2015impact}{2015}).
 
-Although it is generally believed that lower \textbf{speed limits} can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results (Neeley and Richardson Jr \protect\hyperlink{ref-neeley2009effect}{2009}; Korkut, Ishak, and Wolshon \protect\hyperlink{ref-korkut2010freeway}{2010}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}; Davis et al. \protect\hyperlink{ref-davis2015longitudinal}{2015}).
+Traffic variables include flow (traffic volume), occupancy/density, and speed (Wang, Quddus, and Ison \protect\hyperlink{ref-wang2013effect}{2013}; Theofilatos and Yannis \protect\hyperlink{ref-theofilatos2014review}{2014}). Traffic flow is defined as the number of vehicles passing through a specific road segment in a given unit time. Traffic occupancy or density is defined as the number of vehicles in a unit area of road at a moment. Speed can be computed from the road perspective as the mean speed of vehicles passing that road segment (such as the AADT), or from the vehicle perspective as the speed of the vehicle (such as real-time speed). Compared to traffic flow and speed, traffic density is relatively less investigated due to a lack of relevant data.
 
-Speed (Tseng et al. \protect\hyperlink{ref-tseng2016comprehensive}{2016}).
-
-For example, based on multinomial logit and negative binomial models, Dong et al. (\protect\hyperlink{ref-dong2017estimating}{2017}) used vehicle and driver characteristics, traffic, environment, and road geometry to predict the frequency and severity of large truck-involved crashes.
-
-Liu, Boyle, and Banerjee (\protect\hyperlink{ref-liu2018predicting}{2018}) used artificial neural network classification and regression tree, and support vector machine to predict crash rate levels of motor carriers.
+For example, based on multinomial logit and negative binomial models, Dong et al. (\protect\hyperlink{ref-dong2017estimating}{2017}) used vehicle and driver characteristics, traffic, environment, and road geometry to predict the frequency and severity of large truck-involved crashes. They found that the percent of large trucks, AADT, driver condition, and weather characteristics were significantly associated with both crash frequency and severity. Theofilatos et al. (\protect\hyperlink{ref-theofilatos2018impact}{2018}) used hourly aggregated traffic variables, including flow, occupancy, mean time speed, and percentage of trucks to predict crash occurence with a bias-correction logistic regression. This study found that the main risk factor, average speed had a negative effect on crashes. Instead of studying risk factors of crashes, Kamla, Parry, and Dawson (\protect\hyperlink{ref-kamla2019analysing}{2019}) focused on the association between Hard Braking Incidents (HBIs) and geometric and traffic variables among large trucks at roundabouts. They found that HBIs were influenced by traffic and geometric variables in a similar fashion as crashes.
 
 \hypertarget{weather}{%
 \subsection{Weather}\label{weather}}
@@ -360,9 +356,16 @@ Weather has both direct and indirect effects on drivers' safety critical events.
 
 Ghasemzadeh et al. (\protect\hyperlink{ref-ghasemzadeh2018parametric}{2018})
 
-\hypertarget{road-geometry}{%
-\subsection{Road Geometry}\label{road-geometry}}
+\hypertarget{road-characteristics}{%
+\subsection{Road characteristics}\label{road-characteristics}}
 
+the number of lanes, speed limits, lighting conditions.
+
+Although it is generally believed that lower \textbf{speed limits} can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results (Neeley and Richardson Jr \protect\hyperlink{ref-neeley2009effect}{2009}; Korkut, Ishak, and Wolshon \protect\hyperlink{ref-korkut2010freeway}{2010}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}; Davis et al. \protect\hyperlink{ref-davis2015longitudinal}{2015}).
+
+Zhu and Srinivasan (\protect\hyperlink{ref-zhu2011comprehensive}{2011}) found that crashes on roadways with more lanes tended to be severe, which may result from a better separation between vehicles. They also reported that crashes in higher speed limit segments were more likely to be severe crashes.
+
+Road geometry
 Dong et al. (\protect\hyperlink{ref-dong2015assessment}{2015})
 
 Islam, Jones, and Dye (\protect\hyperlink{ref-islam2014comprehensive}{2014}) did a comprehensive analysis of truck at-fault crashes.
@@ -1537,9 +1540,6 @@ Dong, Chunjiao, Qiao Dong, Baoshan Huang, Wei Hu, and Shashi S Nambisan. 2017. `
 \leavevmode\hypertarget{ref-dong2015assessment}{}%
 Dong, Chunjiao, Shashi S Nambisan, Stephen H Richards, and Zhuanglin Ma. 2015. ``Assessment of the Effects of Highway Geometric Design Features on the Frequency of Truck Involved Crashes Using Bivariate Regression.'' \emph{Transportation Research Part A: Policy and Practice} 75: 30--41.
 
-\leavevmode\hypertarget{ref-dozza2013factors}{}%
-Dozza, Marco. 2013. ``What Factors Influence Drivers' Response Time for Evasive Maneuvers in Real Traffic?'' \emph{Accident Analysis \& Prevention} 58: 299--308.
-
 \leavevmode\hypertarget{ref-duane1987hybrid}{}%
 Duane, Simon, Anthony D Kennedy, Brian J Pendleton, and Duncan Roweth. 1987. ``Hybrid Monte Carlo.'' \emph{Physics Letters B} 195 (2): 216--22.
 
@@ -1669,6 +1669,9 @@ Jovanis, Paul P, Kun-Feng Wu, and Chen Chen. 2011. ``Hours of Service and Driver
 \leavevmode\hypertarget{ref-jovanis2012effects}{}%
 ---------. 2012. ``Effects of Hours of Service and Driving Patterns on Motor Carrier Crashes.'' \emph{Transportation Research Record} 2281 (1): 119--27.
 
+\leavevmode\hypertarget{ref-kamla2019analysing}{}%
+Kamla, Jwan, Tony Parry, and Andrew Dawson. 2019. ``Analysing Truck Harsh Braking Incidents to Study Roundabout Accident Risk.'' \emph{Accident Analysis \& Prevention} 122: 365--77.
+
 \leavevmode\hypertarget{ref-im2016impact}{}%
 Kampe, Eveline Otte im, Sari Kovats, and Shakoor Hajat. 2016. ``Impact of High Ambient Temperature on Unintentional Injuries in High-Income Countries: A Narrative Systematic Literature Review.'' \emph{BMJ Open} 6 (2): e010399.
 
@@ -1725,9 +1728,6 @@ Li, Qing, Feng Guo, Sheila G Klauer, and Bruce G Simons-Morton. 2017. ``Evaluati
 
 \leavevmode\hypertarget{ref-litman2013transportation}{}%
 Litman, Todd. 2013. ``Transportation and Public Health.'' \emph{Annual Review of Public Health} 34: 217--33.
-
-\leavevmode\hypertarget{ref-liu2018predicting}{}%
-Liu, Jundi, Linda N Boyle, and Ashis G Banerjee. 2018. ``Predicting Interstate Motor Carrier Crash Rate Level Using Classification Models.'' \emph{Accident Analysis \& Prevention} 120: 211--18.
 
 \leavevmode\hypertarget{ref-liu2019assessing}{}%
 Liu, Yi, Feng Guo, and Richard J Hanowski. 2019. ``Assessing the Impact of Sleep Time on Truck Driver Performance Using a Recurrent Event Model.'' \emph{Statistics in Medicine}.
@@ -1921,6 +1921,9 @@ The Dark Sky Company, LLC. 2019. ``Dark Sky API --- Overview.'' \url{https://dar
 \leavevmode\hypertarget{ref-nsc2018}{}%
 The National Safety Council. 2018. ``Vehicle Deaths Estimated at 40,000 for Third Straight Year.'' \url{https://www.nsc.org/road-safety/safety-topics/fatality-estimates}.
 
+\leavevmode\hypertarget{ref-theofilatos2014review}{}%
+Theofilatos, Athanasios, and George Yannis. 2014. ``A Review of the Effect of Traffic and Weather Characteristics on Road Safety.'' \emph{Accident Analysis \& Prevention} 72: 244--56.
+
 \leavevmode\hypertarget{ref-theofilatos2016predicting}{}%
 Theofilatos, Athanasios, George Yannis, Pantelis Kopelias, and Fanis Papadimitriou. 2016. ``Predicting Road Accidents: A Rare-Events Modeling Approach.'' \emph{Transportation Research Procedia} 14: 3399--3405.
 
@@ -1930,14 +1933,14 @@ Theofilatos, Athanasios, George Yannis, Pantelis Kopelias, and Fanis Papadimitri
 \leavevmode\hypertarget{ref-bols}{}%
 The United States, Bureau of Labor Statistics. 2017. ``Fatal occupational injuries by event, 2017.'' \url{https://www.bls.gov/charts/census-of-fatal-occupational-injuries/fatal-occupational-injuries-by-event-drilldown.htm}.
 
-\leavevmode\hypertarget{ref-tseng2016comprehensive}{}%
-Tseng, Chien-Ming, Ming-Shan Yeh, Li-Yung Tseng, Hsin-Hsien Liu, and Min-Chi Lee. 2016. ``A Comprehensive Analysis of Factors Leading to Speeding Offenses Among Large-Truck Drivers.'' \emph{Transportation Research Part F: Traffic Psychology and Behaviour} 38: 171--81.
-
 \leavevmode\hypertarget{ref-uddin2017truck}{}%
 Uddin, Majbah, and Nathan Huynh. 2017. ``Truck-Involved Crashes Injury Severity Analysis for Different Lighting Conditions on Rural and Urban Roadways.'' \emph{Accident Analysis \& Prevention} 108: 44--55.
 
 \leavevmode\hypertarget{ref-van2018simple}{}%
 Van Ravenzwaaij, Don, Pete Cassey, and Scott D Brown. 2018. ``A Simple Introduction to Markov Chain Monte--Carlo Sampling.'' \emph{Psychonomic Bulletin \& Review} 25 (1): 143--54.
+
+\leavevmode\hypertarget{ref-wang2013effect}{}%
+Wang, Chao, Mohammed A Quddus, and Stephen G Ison. 2013. ``The Effect of Traffic and Road Characteristics on Road Safety: A Review and Future Research Direction.'' \emph{Safety Science} 57: 264--75.
 
 \leavevmode\hypertarget{ref-wang2017safety}{}%
 Wang, Ling, Mohamed Abdel-Aty, and Jaeyoung Lee. 2017. ``Safety Analytics for Integrating Crash Frequency and Real-Time Risk Modeling for Expressways.'' \emph{Accident Analysis \& Prevention} 104: 58--64.
