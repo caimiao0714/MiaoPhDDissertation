@@ -359,20 +359,13 @@ In addition, the increase of ambient temperature places risks on occupational sa
 \hypertarget{road-characteristics}{%
 \subsection{Road characteristics}\label{road-characteristics}}
 
-the number of lanes, speed limits, lighting conditions.
+Based on engineering theory, it is expected that road characteristics are potential risk factors of road safety (Wang, Quddus, and Ison \protect\hyperlink{ref-wang2013effect}{2013}). Commonly used road characteristics in traffic safety studies include the number of lanes, lane with, speed limits, horizontal curves, road curvature, and lighting conditions.
 
-Although it is generally believed that lower \textbf{speed limits} can reduce the chances of traffic crashes, studies on speed limits and traffic fatalities showed inconsistent results (Neeley and Richardson Jr \protect\hyperlink{ref-neeley2009effect}{2009}; Korkut, Ishak, and Wolshon \protect\hyperlink{ref-korkut2010freeway}{2010}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}; Davis et al. \protect\hyperlink{ref-davis2015longitudinal}{2015}).
+The effect of the number of lanes and lane with on traffic safety is inconsistent in previous literature. Some studies suggest that the number of lanes is negatively associated with the risk of traffic accidents. For example, Zhu and Srinivasan (\protect\hyperlink{ref-zhu2011comprehensive}{2011}) found that crashes on roadways with more lanes tended to be less severe, which may result from the fact that more lanes give more space and separation between vehicles. They also reported that crashes in higher speed limit segments were more likely to be severe crashes. In contrast, several other studies suggested that an increase in the number of lanes and lane width were positively associated with traffic fatalities (Noland and Oh \protect\hyperlink{ref-noland2004effect}{2004}; Kononov, Bailey, and Allery \protect\hyperlink{ref-kononov2008relationships}{2008}; Zhu and Srinivasan \protect\hyperlink{ref-zhu2011comprehensive}{2011}; Islam, Jones, and Dye \protect\hyperlink{ref-islam2014comprehensive}{2014}). This reversed relationship could possibly be explained by an increased chance of lane-change-related conflict opportunities (Wang, Quddus, and Ison \protect\hyperlink{ref-wang2013effect}{2013}).
 
-Zhu and Srinivasan (\protect\hyperlink{ref-zhu2011comprehensive}{2011}) found that crashes on roadways with more lanes tended to be severe, which may result from a better separation between vehicles. They also reported that crashes in higher speed limit segments were more likely to be severe crashes.
+It is generally believed that lower speed limits can reduce the chances of traffic crashes, as well as the severity of crashes. For example, Neeley and Richardson Jr (\protect\hyperlink{ref-neeley2009effect}{2009}) used state-level data from 1991 to 2005 to examine the association between truck-specific restrictions and fatality rates. They found that higher speed limits were associated with increased fatality rates, although different speed limits across vehicle types had no significant effect. Another study by Davis et al. (\protect\hyperlink{ref-davis2015longitudinal}{2015}) also provided evidence that both overall and truck-involved fatalities were positively associated with maximum speed limits.
 
-Road geometry
-Dong et al. (\protect\hyperlink{ref-dong2015assessment}{2015})
-
-Islam, Jones, and Dye (\protect\hyperlink{ref-islam2014comprehensive}{2014}) did a comprehensive analysis of truck at-fault crashes.
-
-Uddin and Huynh (\protect\hyperlink{ref-uddin2017truck}{2017}) lighting conditions.
-
-Meuleners et al. (\protect\hyperlink{ref-meuleners2017determinants}{2017}) determinants of truck crashes in Australia.
+Road geometric design features, such as road curvature and terrain type, were also reported to be risk factor of traffic safety events. Dong et al. (\protect\hyperlink{ref-dong2015assessment}{2015}) used zero-inflated negative binomial models to examine the effects of road geometry fratures and crash frequency. Based on 1,787 truck-involved crashes from 1,310 highway segments in four years, they found that AADT, segment length, degree of horizontal curvature, terrain type, land use and width, median type, right side shoulder width, lighting condition, rutting depth, and posted speed limits were significantly associated with the likelihood of truck-involved crash frequency. Islam, Jones, and Dye (\protect\hyperlink{ref-islam2014comprehensive}{2014}) found that crashes on roadway curved were associated with higher likelihood of major and possible injuries in urban single-vehicle large truck at-fault accidents, but this association is not statistically significant in multi-vehicle accidents.
 
 \hypertarget{predictive-models}{%
 \section{Predictive models}\label{predictive-models}}
@@ -424,15 +417,7 @@ Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which m
 When researchers have crash data that are aggregated over a long time period such as one year, it often makes sense to study the number of crashes instead of whether a crash occurred or not since they are often more than one crash. The most commonly used statistical model is therefore Poisson model, as it well handles count data that are right-skewed, long tailed, and only have non-negative integer values. For example, Cantor et al. (\protect\hyperlink{ref-cantor2010driver}{2010}) used Poisson regressions to explore the association between the rate of crashes driver-level characteristics among 560,695 commercial truck drivers in the United States. They found that past safety performance, out-of-service rate, body mass index (BMI), age, and the number of unique companies were strong predictors of the rate of truck crashes.
 Other variants of a Poisson model includes negative binomial models, quasi-Poisson models, and zero-inflated Poisson or negative binomial models (Lord \protect\hyperlink{ref-lord2006modeling}{2006}; Mohammadi, Samaranayake, and Bham \protect\hyperlink{ref-mohammadi2014crash}{2014}). Negative binomial or quasi-Poisson models are developed to account for the overdispersion and underdispersion in count data, for which a Poisson model fails to account. Zero-inflated Poisson or negative binomial models are developed to account for the feature of rare events in traffic crash data (Lord, Washington, and Ivan \protect\hyperlink{ref-lord2005poisson}{2005}, \protect\hyperlink{ref-lord2007further}{2007}; Washington, Karlaftis, and Mannering \protect\hyperlink{ref-washington2010statistical}{2010}; Dong et al. \protect\hyperlink{ref-dong2014multivariate}{2014}). There is an excellent review paper on statistical models for crash frequency data by Lord and Mannering (\protect\hyperlink{ref-lord2010statistical}{2010}).
 
-Recently, recurrent event models have also been applied to model the change in intensity of SCEs in the traffic safety field.
-
-\begin{itemize}
-\tightlist
-\item
-  Change point analysis: Li et al. (\protect\hyperlink{ref-li2017evaluation}{2017}); Li et al. (\protect\hyperlink{ref-li2018bayesian}{2018})
-\item
-  Frailty framework: Chen Chen and Guo (\protect\hyperlink{ref-chen2016evaluating}{2016})
-\end{itemize}
+Recently, recurrent event models have also been applied to model the change in intensity of SCEs in the traffic safety field. For example, Liu, Guo, and Hanowski (\protect\hyperlink{ref-liu2019assessing}{2019}) proposed to use a mixed-effects Poisson process (a recurrent-event model) to model unintentional lane deviation events, with the baseline intensity and time-varying coefficients modeled by penalized B-splines. The first conducted a simulation study to assess the performance of the proposed model with different curvature of time-varying coefficients and the magnitude of event rate. Simulated 500 data sets with 500 shifts per set suggested satisfactory estimates for the true Gamma fragility parameter \(\phi\) as estimated by an expectation--maximization algorithm, where larger values of \(\phi\) indicated greater heterogeneity between shifts and more intense events. The bias \(\phi\) in the simulation ranged from \(-0.01\) to \(-0.09\), which was around 2\% smaller and 0.6\% smaller than the true value in low and high event rate settings respectively. They applied the proposed model to 96 commercial truck drivers including 1,880 shifts. The study found that shifts with normal sleep time (7-9 hours) had a lower intensity compared with insufficient (\textless{} 7 hours) and abundant (\(\geq 9\) hours) sleep time shifts.
 
 \hypertarget{bayesian-models}{%
 \subsection{Bayesian models}\label{bayesian-models}}
@@ -932,8 +917,6 @@ l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\be
 
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
-
-Liu, Guo, and Hanowski (\protect\hyperlink{ref-liu2019assessing}{2019}) proposed to use a mixed-effects Poisson process (a recurrent-event model) to model unintentional lane deviation events, with the baseline intensity and time-varying coefficients modeled by penalized B-splines. The first conducted a simulation study to assess the performance of the proposed model with different curvature of time-varying coefficients and the magnitude of event rate. Simulated 500 data sets with 500 shifts per set suggested satisfactory estimates for the true Gamma fragility parameter \(\phi\) as estimated by an expectation--maximization algorithm, where larger values of \(\phi\) indicated greater heterogeneity between shifts and more intense events. The bias \(\phi\) in the simulation ranged from \(-0.01\) to \(-0.09\), which was around 2\% smaller and 0.6\% smaller than the true value in low and high event rate settings respectively. They applied the proposed model to 96 commercial truck drivers including 1,880 shifts. The study found that shifts with normal sleep time (7-9 hours) had a lower intensity compared with insufficient (\textless{} 7 hours) and abundant (\(\geq 9\) hours) sleep time shifts.
 
 \hypertarget{the-probable-content}{%
 \chapter{THE PROBABLE CONTENT}\label{the-probable-content}}
@@ -1477,9 +1460,6 @@ Cavuoto, Lora, and Fadel Megahed. 2017. ``Understanding Fatigue: Implications fo
 \leavevmode\hypertarget{ref-chang2005data}{}%
 Chang, Li-Yen, and Wen-Chieh Chen. 2005. ``Data Mining of Tree-Based Models to Analyze Freeway Accident Frequency.'' \emph{Journal of Safety Research} 36 (4): 365--75.
 
-\leavevmode\hypertarget{ref-chen2016evaluating}{}%
-Chen, Chen, and Feng Guo. 2016. ``Evaluating the Influence of Crashes on Driving Risk Using Recurrent Event Models and Naturalistic Driving Study Data.'' \emph{Journal of Applied Statistics} 43 (12): 2225--38.
-
 \leavevmode\hypertarget{ref-chen2014modeling}{}%
 Chen, Chen, and Yuanchang Xie. 2014. ``Modeling the Safety Impacts of Driving Hours and Rest Breaks on Truck Drivers Considering Time-Dependent Covariates.'' \emph{Journal of Safety Research} 51: 57--63.
 
@@ -1693,8 +1673,8 @@ Knipling, Ronald R. 2015. ``Naturalistic Driving Events: No Harm, No Foul, No Va
 \leavevmode\hypertarget{ref-knipling1994crashes}{}%
 Knipling, Ronald R, and Jing-Shiarn Wang. 1994. \emph{Crashes and Fatalities Related to Driver Drowsiness/Fatigue}. National Highway Traffic Safety Administration Washington, DC.
 
-\leavevmode\hypertarget{ref-korkut2010freeway}{}%
-Korkut, Murat, Sherif Ishak, and Brian Wolshon. 2010. ``Freeway Truck Lane Restriction and Differential Speed Limits: Crash Analysis and Traffic Characteristics.'' \emph{Transportation Research Record} 2194 (1): 11--20.
+\leavevmode\hypertarget{ref-kononov2008relationships}{}%
+Kononov, Jake, Barbara Bailey, and Bryan K Allery. 2008. ``Relationships Between Safety and Both Congestion and Number of Lanes on Urban Freeways.'' \emph{Transportation Research Record} 2083 (1): 26--39.
 
 \leavevmode\hypertarget{ref-kruschke2014doing}{}%
 Kruschke, John. 2014. \emph{Doing Bayesian Data Analysis: A Tutorial with R, Jags, and Stan}. Academic Press.
@@ -1716,12 +1696,6 @@ Lee, Chris, and Mohamed Abdel-Aty. 2008. ``Presence of Passengers: Does It Incre
 
 \leavevmode\hypertarget{ref-lemp2011analysis}{}%
 Lemp, Jason D, Kara M Kockelman, and Avinash Unnikrishnan. 2011. ``Analysis of Large Truck Crash Severity Using Heteroskedastic Ordered Probit Models.'' \emph{Accident Analysis \& Prevention} 43 (1): 370--80.
-
-\leavevmode\hypertarget{ref-li2018bayesian}{}%
-Li, Qing, Feng Guo, Inyoung Kim, Sheila G Klauer, and Bruce G Simons-Morton. 2018. ``A Bayesian Finite Mixture Change-Point Model for Assessing the Risk of Novice Teenage Drivers.'' \emph{Journal of Applied Statistics} 45 (4): 604--25.
-
-\leavevmode\hypertarget{ref-li2017evaluation}{}%
-Li, Qing, Feng Guo, Sheila G Klauer, and Bruce G Simons-Morton. 2017. ``Evaluation of Risk Change-Point for Novice Teenage Drivers.'' \emph{Accident Analysis \& Prevention} 108: 139--46.
 
 \leavevmode\hypertarget{ref-litman2013transportation}{}%
 Litman, Todd. 2013. ``Transportation and Public Health.'' \emph{Annual Review of Public Health} 34: 217--33.
@@ -1815,6 +1789,9 @@ Née, Mélanie, Benjamin Contrand, Ludivine Orriols, Cédric Gil-Jardiné, Cedri
 
 \leavevmode\hypertarget{ref-nhtsa2013national}{}%
 NHTSA. 2013. ``National Motor Vehicle Crash Causation Survey: Report to Congress.'' National Highway Traffic Safety Administration Washington DC.
+
+\leavevmode\hypertarget{ref-noland2004effect}{}%
+Noland, Robert B, and Lyoong Oh. 2004. ``The Effect of Infrastructure and Demographic Change on Traffic-Related Fatalities and Crashes: A Case Study of Illinois County-Level Data.'' \emph{Accident Analysis \& Prevention} 36 (4): 525--32.
 
 \leavevmode\hypertarget{ref-olson2016weight}{}%
 Olson, Ryan, Brad Wipfli, Sharon V Thompson, Diane L Elliot, W Kent Anger, Todd Bodner, Leslie B Hammer, and Nancy A Perrin. 2016. ``Weight Control Intervention for Truck Drivers: The Shift Randomized Controlled Trial, United States.'' \emph{American Journal of Public Health} 106 (9): 1698--1706.
@@ -1929,9 +1906,6 @@ Theofilatos, Athanasios, George Yannis, Pantelis Kopelias, and Fanis Papadimitri
 
 \leavevmode\hypertarget{ref-bols}{}%
 The United States, Bureau of Labor Statistics. 2017. ``Fatal occupational injuries by event, 2017.'' \url{https://www.bls.gov/charts/census-of-fatal-occupational-injuries/fatal-occupational-injuries-by-event-drilldown.htm}.
-
-\leavevmode\hypertarget{ref-uddin2017truck}{}%
-Uddin, Majbah, and Nathan Huynh. 2017. ``Truck-Involved Crashes Injury Severity Analysis for Different Lighting Conditions on Rural and Urban Roadways.'' \emph{Accident Analysis \& Prevention} 108: 44--55.
 
 \leavevmode\hypertarget{ref-van2018simple}{}%
 Van Ravenzwaaij, Don, Pete Cassey, and Scott D Brown. 2018. ``A Simple Introduction to Markov Chain Monte--Carlo Sampling.'' \emph{Psychonomic Bulletin \& Review} 25 (1): 143--54.

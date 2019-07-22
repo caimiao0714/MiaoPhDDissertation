@@ -46,13 +46,15 @@ Where $Y_i^\star$ is the number of events in the $i$-th observation, which must 
 When researchers have crash data that are aggregated over a long time period such as one year, it often makes sense to study the number of crashes instead of whether a crash occurred or not since they are often more than one crash. The most commonly used statistical model is therefore Poisson model, as it well handles count data that are right-skewed, long tailed, and only have non-negative integer values. For example, @cantor2010driver used Poisson regressions to explore the association between the rate of crashes driver-level characteristics among 560,695 commercial truck drivers in the United States. They found that past safety performance, out-of-service rate, body mass index (BMI), age, and the number of unique companies were strong predictors of the rate of truck crashes. 
 Other variants of a Poisson model includes negative binomial models, quasi-Poisson models, and zero-inflated Poisson or negative binomial models [@lord2006modeling; @mohammadi2014crash]. Negative binomial or quasi-Poisson models are developed to account for the overdispersion and underdispersion in count data, for which a Poisson model fails to account. Zero-inflated Poisson or negative binomial models are developed to account for the feature of rare events in traffic crash data [@lord2005poisson; @lord2007further; @washington2010statistical; @dong2014multivariate]. There is an excellent review paper on statistical models for crash frequency data by @lord2010statistical.
 
-Recently, recurrent event models have also been applied to model the change in intensity of SCEs in the traffic safety field.
+
+Recently, recurrent event models have also been applied to model the change in intensity of SCEs in the traffic safety field. For example, @liu2019assessing proposed to use a mixed-effects Poisson process (a recurrent-event model) to model unintentional lane deviation events, with the baseline intensity and time-varying coefficients modeled by penalized B-splines. The first conducted a simulation study to assess the performance of the proposed model with different curvature of time-varying coefficients and the magnitude of event rate. Simulated 500 data sets with 500 shifts per set suggested satisfactory estimates for the true Gamma fragility parameter $\phi$ as estimated by an expectation–maximization algorithm, where larger values of $\phi$ indicated greater heterogeneity between shifts and more intense events. The bias $\phi$ in the simulation ranged from $-0.01$ to $-0.09$, which was around 2% smaller and 0.6% smaller than the true value in low and high event rate settings respectively. They  applied the proposed model to 96 commercial truck drivers including 1,880 shifts. The study found that shifts with normal sleep time (7-9 hours) had a lower intensity compared with insufficient (< 7 hours) and abundant ($\geq 9$ hours) sleep time shifts.
+
+<!-- 
 
 - Change point analysis: @li2017evaluation; @li2018bayesian
 - Frailty framework: @chen2016evaluating
 
-
-
+-->
 
 ### Bayesian models
 
