@@ -27,7 +27,7 @@
 \contentsline {subsection}{\numberline {2.4.1}Hamiltonian Monte Carlo (HMC)}{32}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Subsampling MCMC}{35}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}Conceptual framework}{35}{section.2.5}
-\contentsline {section}{\numberline {2.6}Gaps in literature}{35}{section.2.6}
+\contentsline {section}{\numberline {2.6}Gaps in literature}{36}{section.2.6}
 \contentsline {section}{\numberline {2.7}Research aims}{36}{section.2.7}
 \contentsline {chapter}{\numberline {3}METHODS}{37}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data source}{37}{section.3.1}

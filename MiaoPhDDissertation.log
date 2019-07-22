@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  21 JUL 2019 19:59
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  21 JUL 2019 20:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -778,21 +778,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 2318) has occurred while \output is active []
 
 [22]
-Underfull \vbox (badness 2903) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[23] [24] [25] [26] [27]
-Underfull \vbox (badness 1062) has occurred while \output is active []
+[23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[28]
-Underfull \vbox (badness 4713) has occurred while \output is active []
+[24] [25] [26]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[27] [28]
+Underfull \vbox (badness 3471) has occurred while \output is active []
 
 [29] [30] [31]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7133) has occurred while \output is active []
 
-[32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[33] [34] [35] [36]
+[32] [33] [34] [35] [36]
 Chapter 3.
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
