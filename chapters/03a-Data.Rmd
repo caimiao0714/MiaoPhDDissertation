@@ -24,8 +24,6 @@ The average length of a shift in this study is 8.42 hours with the standard devi
 
 ### Truck crashes and critical events
 
-
-
 The company regularly collected real-time GPS location and time-stamped critical events data for all their trucks. 
 Four types of critical events were recorded in the critical events data:
 

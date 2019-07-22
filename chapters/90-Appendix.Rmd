@@ -123,4 +123,98 @@ df = data.table::fread("data/20190605_ping_compressed_3digits.csv")
 dfcontainer12 = loop_data(start_index = 1)
 ```
 
+
 \doublespacing
+
+### Likelihood function of a NHPP
+
+#### The first event
+
+The cumulative density function (cdf) of time to the first event is $F(t_1)$: $$F_1(t_1) = P(T_1 \leq t_1) = 1 - S(t_1)$$.
+
+The survival function for the first event $S_1(t_1)$ is:
+\begin{align*}
+S_1(t_1) & = P(T_1 > t_1) \\
+ & = P(N(0, t_1) = 0) \quad N \text{is the number of events}\\
+ & = e^{-\int_{0}^{t_1}\lambda_{u}du}(e^{-\int_{0}^{t_1}\lambda_{u}du})^0/0!\\
+ & = e^{-\int_{0}^{t_1}\lambda_{u}du}
+\end{align*}
+
+The probability density function (pdf) of time to the first event can be calculated by taking the first order derivative of the cdf $F_1(t_1)$:
+\begin{align*}
+f_1(t_1) & = \frac{d}{dt_1}F_1(t_1)\\
+& = \frac{d}{dt_1}[1 - S_1(t_1)] \\
+& = - \frac{d}{dt_1}S_1(t_1)\\
+& = - \frac{d}{dt_1}e^{-\int_{0}^{t_1}\lambda (u)du}\\
+& = -(-\lambda_{t_1})e^{-\int_{0}^{t_1}\lambda (u)du}\\
+& = \lambda (t_1)e^{-\int_{0}^{t_1}\lambda (u)du}
+\end{align*}
+
+If this NHPP is a PLL, we plug in the intensity function $\lambda(t) = (\beta / \theta)(t/\theta)^{\beta - 1}$, then we have:
+
+$$f_1(t_1) = \frac{\beta}{\theta}(\frac{t_1}{\theta})^{\beta - 1}e^{-(\frac{t_1}{\theta})^\beta}, \quad t_1 > 0$$
+
+This pdf is identical with the pdf of Weibull distribution, so we have:
+$$T_1 \sim \text{Weibull}(\beta, \theta)$$
+
+
+#### The second event
+
+The Survival function of the second event given the first event occurred at $t_2$ is:
+
+\begin{align*}
+S_2(t_2 | t_1) & = P(T_2 > t_2 | T_1 = t)\\
+& = P(N(t_1, t_2) = 0|T_1 = t_1) \\
+& = e^{-\int_{t_1}^{t_2}\lambda_{u}du}[\int_{t_1}^{t_2}\lambda_{u}du]^0/0!\\
+& = e^{-\int_{t_1}^{t_2}\lambda_{u}du}
+\end{align*}
+
+The we can derive the pdf of $t_2$ conditioned on $t_1$
+\begin{equation}\label{t2}
+\begin{aligned}
+f(t_2|t_1) & = - \frac{d}{dt_2}S_2(t_2)\\
+& = - \frac{d}{dt_2}e^{-\int_{t_1}^{t_2}\lambda(u)du}\\
+& = \lambda(t_2)e^{-\int_{t_1}^{t_2}\lambda(u)du}\\
+& = \frac{\beta}{\theta}(\frac{t_2}{\theta})^{\beta - 1}e^{-[(\frac{t_2}{\theta})^\beta - (\frac{t_1}{\theta})^\beta]}\\
+& = \frac{\frac{\beta}{\theta}(\frac{t_2}{\theta})^{\beta - 1}e^{-(t_2/\theta)^\beta }}{e^{- (t_1/\theta)^\beta}}, \quad t_2 > t_1
+\end{aligned}
+\end{equation}
+
+#### Failure truncated case
+
+In the *failure truncated case*, we know the total number of events $n$ before the experiment starts. Therefore, we can get the joint likelihood function for $t_1 < t_2 < \cdots < t_n$ in the failure truncated case based on Equation \@ref(t2).
+\begin{equation}\label{pdfn}
+\begin{aligned}
+f(t_1, t_2, \cdots, t_n) & = f(t_1)f(t_2|t_1)f(t_3|t_1, t_2) \cdots f(t_n|t_1, t_2, \dots, t_{n - 1}) \\
+& = \lambda (t_1)e^{-\int_{0}^{t_1} \dot \lambda (u)du}\lambda (t_2)e^{-\int_{t_1}^{t_2} \dot \lambda (u)du}\cdots\lambda (t_n)e^{-\int_{t_{n-1}}^{t_n}\lambda (u)du}\\
+& = \Big(\prod_{i=1}^n\lambda(t_i)\Big)e^{-\int_0^t\lambda(u)du}\\
+& = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(t_n/\theta)^\beta}, \quad t_1 < t_2 < \cdots < t_n
+\end{aligned}
+\end{equation}
+
+The log-likelihood function in the failure truncated case is therefore:
+$$\log \ell = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{t_n}{\theta}\Big)^\beta$$
+
+#### Time truncated case
+
+In the *time truncated case*, we assume that the truncated time is $\tau$. The derivation of $f(t_1, t_2, \cdots, t_n|n)$ is messy in math, we directly give the conclusion here: $$f(t_1, t_2, \cdots, t_n|n) = n!\prod_{i=1}^n\frac{\lambda(t_i)}{\Lambda(\tau)}$$
+
+Therefore, the joint likelihood function for $f(n, t_1, t_2, \cdots, t_n)$ is:
+\begin{equation}\label{pdftau}
+\begin{aligned}
+f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
+& = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
+& = \Big(\prod_{i=1}^n\lambda(t_i) \Big)e^{-\int_0^\tau \lambda(u)du}\\
+& = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1} \Big)e^{-(\tau/\theta)^\beta},\\ 
+n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
+\end{aligned}
+\end{equation}
+
+The log likelihood function $l$ is then:
+\begin{equation}\label{logtau}
+\begin{aligned}
+l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(\tau/\theta)^\beta}\Bigg)\\
+& = \sum_{i=1}^n\log\Big(\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big) - (\frac{\tau}{\theta})^\beta\\
+& = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{\tau}{\theta}\Big)^\beta
+\end{aligned}
+\end{equation}
