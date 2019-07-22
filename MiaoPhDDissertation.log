@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  21 JUL 2019 19:23
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.10.17)  21 JUL 2019 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -774,9 +774,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [15] [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17] [18]
-Missing character: There is no ◦ in font ec-lmr12!
-[19] [20] [21]
+[17] [18] [19] [20] [21]
 Underfull \vbox (badness 2318) has occurred while \output is active []
 
 [22]
@@ -883,37 +881,31 @@ d -[] statistics / 398686 / ltbcf -[] 2016 -[] final -[]
  []
 
 [68]
-Overfull \hbox (1.90947pt too wide) in paragraph at lines 1588--1590
-\T1/lmr/m/n/12 2018. ``Para-met-ric Or-di-nal Lo-gis-tic Re-gres-sion and Non-P
-arametric De-ci-sion Tree Ap-proaches
- []
-
-
-Overfull \hbox (1.02092pt too wide) in paragraph at lines 1594--1596
+Overfull \hbox (1.02092pt too wide) in paragraph at lines 1591--1593
 [][]\T1/lmr/m/n/12 Gitelman, Vic-to-ria, Shlomo Bekhor, Etti Doveh, Fany Pe-sa-
 hov, Roby Carmel, and Smadar
  []
 
-[69]
-Overfull \hbox (1.98053pt too wide) in paragraph at lines 1603--1605
+
+Overfull \hbox (1.98053pt too wide) in paragraph at lines 1600--1602
 [][]\T1/lmr/m/n/12 Goonewardene, Sanchia S, Khalid Baloch, Keith Porter, Ian Sa
 rgeant, and Gamini Punchi-
  []
 
-[70]
-Underfull \vbox (badness 1178) has occurred while \output is active []
+[69] [70]
+Underfull \vbox (badness 1681) has occurred while \output is active []
 
 [71] [72] [73] [74]
 Underfull \vbox (badness 1057) has occurred while \output is active []
 
 [75]
-Overfull \hbox (7.444pt too wide) in paragraph at lines 1801--1803
+Overfull \hbox (7.444pt too wide) in paragraph at lines 1798--1800
 [][]$\T1/lmtt/m/n/12 http : / / drowsydriving . org / resources / 2008 -[] stat
 e -[] of -[] the -[] states -[] report -[] on -[] drowsy -[]
  []
 
 
-Underfull \vbox (badness 1681) has occurred while \output is active []
+Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [76]
 Underfull \vbox (badness 1178) has occurred while \output is active []
@@ -925,30 +917,30 @@ Underfull \vbox (badness 1178) has occurred while \output is active []
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
 [79]
-Underfull \vbox (badness 1681) has occurred while \output is active []
-
-[80]
-Overfull \hbox (7.44864pt too wide) in paragraph at lines 1921--1923
+Overfull \hbox (7.44864pt too wide) in paragraph at lines 1918--1920
 \T1/lmr/m/n/12 Straight Year.'' [][]$\T1/lmtt/m/n/12 https : / / www . nsc . or
 g / road -[] safety / safety -[] topics / fatality -[] estimates$[][]\T1/lmr/m/
 n/12 . 
  []
 
-[81] [82] [83] [84
+
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+[80] [81] [82] [83] [84
 
 ] [85] [86
 
 ]
 No file MiaoPhDDissertation.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2018.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2018.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2015.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2015.
 (./MiaoPhDDissertation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2018.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2018.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2015.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2015.
 
 Package rerunfilecheck Info: File `MiaoPhDDissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 7DA903A8E1D7190F325183EB4DC8E939.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2018.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2015.
  ) 
 Here is how much of TeX's memory you used:
  13753 strings out of 492956
@@ -957,6 +949,6 @@ Here is how much of TeX's memory you used:
  17557 multiletter control sequences out of 15000+600000
  50356 words of font info for 60 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 36i,17n,47p,2436b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,47p,2305b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on MiaoPhDDissertation.pdf (99 pages).
