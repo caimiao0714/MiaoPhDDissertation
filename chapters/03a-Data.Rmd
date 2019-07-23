@@ -1,75 +1,78 @@
 METHODS
 =======
 
-Data source
------------
+Data sources
+------------
 
 ### Real-time ping
 
-The J.B. Hunt Transport Services, a trucking and transportation company in the United States,
-provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016 to the research team. 
-A small device was installed in each of their truck, which will ping irregularly (typically every 5-30 minutes). 
-Each **ping** will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second. 
-In total, 13,187,289 pings were collected and provided to the research team. 
+The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-5 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved.
 
-For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips. 
-These ping data were then aggregated into different trips. 
-A **trip** is therefore defined as a continuous period of driving without stop. 
-The average length of a trip in this study is 2.31 hours with the standard deviation of 1.8 hours.
+### Truck crashes and SCEs
 
-After the ping data were aggregated into trips, these trips data were then further divided into different shifts according to an eight-hour rest time for each driver. 
-A **shift** is defined as a long period of driving with potentially less than 8 hours' stops. 
-The Shift_ID column in Table 1 shows different shifts, separated by an eight-hour threshold. 
-The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
-
-### Truck crashes and critical events
-
-The company regularly collected real-time GPS location and time-stamped critical events data for all their trucks. 
-Four types of critical events were recorded in the critical events data:
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded:
 
 1.	Hard brake
 2.	Headway
 3.	Rolling stability
 
-Once some thresholds with regard to the driver's operation were met, the sensor will be triggered and critical events will be recorded in their database.
-There were 12,458 critical events created by the 496 truck drivers during the study period. 
+Once some thresholds with regard to the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded.
 
-### Driver demographics
-
-These variables can be linked to the trips and crashes table via a common unique identifier.
+<!-- There were 12,458 critical events created by the 496 truck drivers during the study period.-->
 
 ### Weather data from the `DarkSky API`
 
-We retrieved weather variables from the Dark Sky API: *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*. 
+Weather variables, including *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*, will be retrieved from the Dark Sky API. 
 The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe [@darksky]. 
 According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. 
-Among several different weather data providers we tested, the Dark Sky API provides the most accurate and complete weather variables.
+Among several different weather data providers I tested, the Dark Sky API provides the most accurate and complete weather variables.
 
-To reduce the cost of querying weather data for the 13 million historic ping data, we rounded the latitudes and longitudes coordinates to two decimal places, which were worth up to 1.1 kilometers 
-We also rounded the time to the nearest hour and ignore those stopping pings. 
-This scaled the original 13 million ping data down to 4.9 million unique latitude-longitude-date-time combinations. 
-We used the R package `darksky` to obtain weather variables for these reduced 4.9 million unique  combinations [@hrbrmstr]. 
-The weather data for these combinations were then merged back to the origin data.
+To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. 
+We will also round the time to the nearest hour and ignore those stopping pings. 
+This reduction algorithm will scaled the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. 
+We will use the R package `darksky` to obtain weather variables for these reduced give million unique  combinations [@hrbrmstr]. 
+The weather data for these combinations will then be merged back to the original ping data.
 A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat).
 
 ### Road geometry data from the `OpenStreetMap`
 
-We queried two road geometry variables from the `OpenStreetMap` (OSM) project: *speed limit* and *the number of lanes*. 
+Two road geometry variables for the 496 regional truck drivers will be queried from the `OpenStreetMap` (OSM) project: *speed limits* and *the number of lanes*. 
 The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources [@wikiOSM]. 
 The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License. 
 
-We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. 
-We used real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. 
-If the $100\times100$ meters box is too small to have any road geometry data, we expanded the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. 
-If the OSM API returned data from multiple geometry structures, we took the mean as the returned values. 
+We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. 
+We will use real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. 
+If the $100\times100$ meters box is too small to have any road geometry data, we will expand the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. 
+If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. 
 The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).
+
+### Driver demographics
+
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
 
 
 Data Cleaning
 -------------
 
-@hos2017 demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time. [@goel2014hours; @anderson2017exploratory]
+In order to make the MCMC estimation in Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to *trips* and *shifts*:
 
+- For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different *trips*. 
+
+- These trips data will be further divided into different *shifts* if the specific driver was not moving for eight hours. 
+
+Therefore, a *trip* is defined as a continuous period of driving without stopping for more than 20 minutes. a *shift* is defined as a long period of driving without stopping for more than 8 hours. 
+
+<!--
+. 
+The average length of a trip in this study is 2.31 hours with the standard deviation of 1.8 hours.
+
+The Shift_ID column in Table 1 shows different shifts, separated by an eight-hour threshold. 
+The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
+-->
+
+<!--
+@hos2017 demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time. [@goel2014hours; @anderson2017exploratory]
+-->
 
 
 

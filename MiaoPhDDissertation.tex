@@ -647,33 +647,18 @@ Previous studies suggested that driver behavior can contribute to over 90\% of c
 \hypertarget{methods}{%
 \chapter{METHODS}\label{methods}}
 
-\hypertarget{data-source}{%
-\section{Data source}\label{data-source}}
+\hypertarget{data-sources}{%
+\section{Data sources}\label{data-sources}}
 
 \hypertarget{real-time-ping}{%
 \subsection{Real-time ping}\label{real-time-ping}}
 
-The J.B. Hunt Transport Services, a trucking and transportation company in the United States,
-provided real-time ping data on 496 truck drivers who conducted regional work (REG, JBI00) from April 1st, 2015 to March 29th, 2016 to the research team.
-A small device was installed in each of their truck, which will ping irregularly (typically every 5-30 minutes).
-Each \textbf{ping} will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identity number, and speed at that second.
-In total, 13,187,289 pings were collected and provided to the research team.
+The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-5 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved.
 
-For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data were separated into two different trips.
-These ping data were then aggregated into different trips.
-A \textbf{trip} is therefore defined as a continuous period of driving without stop.
-The average length of a trip in this study is 2.31 hours with the standard deviation of 1.8 hours.
+\hypertarget{truck-crashes-and-sces}{%
+\subsection{Truck crashes and SCEs}\label{truck-crashes-and-sces}}
 
-After the ping data were aggregated into trips, these trips data were then further divided into different shifts according to an eight-hour rest time for each driver.
-A \textbf{shift} is defined as a long period of driving with potentially less than 8 hours' stops.
-The Shift\_ID column in Table 1 shows different shifts, separated by an eight-hour threshold.
-The average length of a shift in this study is 8.42 hours with the standard deviation of 2.45 hours.
-
-\hypertarget{truck-crashes-and-critical-events}{%
-\subsection{Truck crashes and critical events}\label{truck-crashes-and-critical-events}}
-
-The company regularly collected real-time GPS location and time-stamped critical events data for all their trucks.
-Four types of critical events were recorded in the critical events data:
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -686,46 +671,54 @@ Four types of critical events were recorded in the critical events data:
   Rolling stability
 \end{enumerate}
 
-Once some thresholds with regard to the driver's operation were met, the sensor will be triggered and critical events will be recorded in their database.
-There were 12,458 critical events created by the 496 truck drivers during the study period.
-
-\hypertarget{driver-demographics}{%
-\subsection{Driver demographics}\label{driver-demographics}}
-
-These variables can be linked to the trips and crashes table via a common unique identifier.
+Once some thresholds with regard to the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded.
 
 \hypertarget{weather-data-from-the-darksky-api}{%
 \subsection{\texorpdfstring{Weather data from the \texttt{DarkSky\ API}}{Weather data from the DarkSky API}}\label{weather-data-from-the-darksky-api}}
 
-We retrieved weather variables from the Dark Sky API: \emph{precipitation intensity}, \emph{precipitation probability}, \emph{wind speed}, and \emph{visibility}.
+Weather variables, including \emph{precipitation intensity}, \emph{precipitation probability}, \emph{wind speed}, and \emph{visibility}, will be retrieved from the Dark Sky API.
 The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe (The Dark Sky Company, LLC \protect\hyperlink{ref-darksky}{2019}).
 According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location (The Dark Sky API \protect\hyperlink{ref-darkskyds}{2019}).
-Among several different weather data providers we tested, the Dark Sky API provides the most accurate and complete weather variables.
+Among several different weather data providers I tested, the Dark Sky API provides the most accurate and complete weather variables.
 
-To reduce the cost of querying weather data for the 13 million historic ping data, we rounded the latitudes and longitudes coordinates to two decimal places, which were worth up to 1.1 kilometers
-We also rounded the time to the nearest hour and ignore those stopping pings.
-This scaled the original 13 million ping data down to 4.9 million unique latitude-longitude-date-time combinations.
-We used the R package \texttt{darksky} to obtain weather variables for these reduced 4.9 million unique combinations (Rudis \protect\hyperlink{ref-hrbrmstr}{2018}).
-The weather data for these combinations were then merged back to the origin data.
+To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers.
+We will also round the time to the nearest hour and ignore those stopping pings.
+This reduction algorithm will scaled the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations.
+We will use the R package \texttt{darksky} to obtain weather variables for these reduced give million unique combinations (Rudis \protect\hyperlink{ref-hrbrmstr}{2018}).
+The weather data for these combinations will then be merged back to the original ping data.
 A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \ref{weatherdat}.
 
 \hypertarget{road-geometry-data-from-the-openstreetmap}{%
 \subsection{\texorpdfstring{Road geometry data from the \texttt{OpenStreetMap}}{Road geometry data from the OpenStreetMap}}\label{road-geometry-data-from-the-openstreetmap}}
 
-We queried two road geometry variables from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limit} and \emph{the number of lanes}.
+Two road geometry variables for the 496 regional truck drivers will be queried from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limits} and \emph{the number of lanes}.
 The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors \protect\hyperlink{ref-wikiOSM}{2019}).
 The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
 
-We queried the speed limit and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}).
-We used real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables.
-If the \(100\times100\) meters box is too small to have any road geometry data, we expanded the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data.
-If the OSM API returned data from multiple geometry structures, we took the mean as the returned values.
+We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger \protect\hyperlink{ref-eugster2013osmar}{2013}).
+We will use real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables.
+If the \(100\times100\) meters box is too small to have any road geometry data, we will expand the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data.
+If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output.
 The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
+
+\hypertarget{driver-demographics}{%
+\subsection{Driver demographics}\label{driver-demographics}}
+
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
 
 \hypertarget{data-cleaning}{%
 \section{Data Cleaning}\label{data-cleaning}}
 
-Federal Motor Carrier Safety Administration (\protect\hyperlink{ref-hos2017}{2017}) demands that property-carrying drivers should not drive more than 14 consecutive hours after coming on duty after 10 hours of rest. This 14-hour restriction cannot be extended by off-duty time. (Goel \protect\hyperlink{ref-goel2014hours}{2014}; Anderson et al. \protect\hyperlink{ref-anderson2017exploratory}{2017})
+In order to make the MCMC estimation in Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to \emph{trips} and \emph{shifts}:
+
+\begin{itemize}
+\item
+  For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different \emph{trips}.
+\item
+  These trips data will be further divided into different \emph{shifts} if the specific driver was not moving for eight hours.
+\end{itemize}
+
+Therefore, a \emph{trip} is defined as a continuous period of driving without stopping for more than 20 minutes. a \emph{shift} is defined as a long period of driving without stopping for more than 8 hours.
 
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
@@ -1159,8 +1152,8 @@ Chapter 6: DISCUSSION
   Future research
 \end{enumerate}
 
-\hypertarget{truck-crashes-and-critical-events-1}{%
-\chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events-1}}
+\hypertarget{truck-crashes-and-critical-events}{%
+\chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events}}
 
 \hypertarget{three-statistical-models-predicting-truck-critical-events}{%
 \chapter{THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}\label{three-statistical-models-predicting-truck-critical-events}}
@@ -1623,9 +1616,6 @@ Eugster, Manuel JA, and Thomas Schlesinger. 2013. ``Osmar: OpenStreetMap and R.'
 \leavevmode\hypertarget{ref-evans2014traffic}{}%
 Evans, Leonard. 2014. ``Traffic Fatality Reductions: United States Compared with 25 Other Countries.'' \emph{American Journal of Public Health} 104 (8): 1501--7.
 
-\leavevmode\hypertarget{ref-hos2017}{}%
-Federal Motor Carrier Safety Administration. 2017. ``Summary of Hours of Service Regulations.'' \url{https://www.fmcsa.dot.gov/regulations/hours-service/summary-hours-service-regulations}.
-
 \leavevmode\hypertarget{ref-fjell2008perceived}{}%
 Fjell, Ylva, Kristina Alexanderson, Mikael Nordenmark, and Carina Bildt. 2008. ``Perceived Physical Strain in Paid and Unpaid Work and the Work-Home Interface: The Associations with Musculoskeletal Pain and Fatigue Among Public Employees.'' \emph{Women \& Health} 47 (1): 21--44.
 
@@ -1658,9 +1648,6 @@ Girotto, Edmarlon, Selma Maffei de Andrade, Alberto Durán González, and Arthur
 
 \leavevmode\hypertarget{ref-gitelman2018exploring}{}%
 Gitelman, Victoria, Shlomo Bekhor, Etti Doveh, Fany Pesahov, Roby Carmel, and Smadar Morik. 2018. ``Exploring Relationships Between Driving Events Identified by in-Vehicle Data Recorders, Infrastructure Characteristics and Road Crashes.'' \emph{Transportation Research Part C: Emerging Technologies} 91: 156--75.
-
-\leavevmode\hypertarget{ref-goel2014hours}{}%
-Goel, Asvin. 2014. ``Hours of Service Regulations in the United States and the 2013 Rule Change.'' \emph{Transport Policy} 33: 48--55.
 
 \leavevmode\hypertarget{ref-golias2013evaluating}{}%
 Golias, Mihalis, and S Mishra. 2013. ``Evaluating the Hours-of-Service Rule via Gps/Gis Truck Trip Data.'' \emph{Draft Report. Intermodal Freight Transportation Institute, University of Memphis, Tenn}.
