@@ -10,6 +10,8 @@ Gaps in literature
 Research aims
 -------------
 
+The overarching goal of this proposed study is to 
+
 1. **Aim1**: to examine the association between truck crashes and critical events using a Gamma-Poisson regression.
 
 

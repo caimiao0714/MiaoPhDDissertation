@@ -53,11 +53,10 @@ To reduce the lives and economic losses associated with trucks, numerous studies
 
 Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as safety critical events (SCEs), adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash [@saleh2013accident; @janakiraman2016discovery]. Truck critical events deserve more attention since they occur more frequently than crashes, potentially suggest fatigue and a lapse in performance, and can lead to catastrophic crashes [@dingus2006development]. 
 
+Proposal
+--------
+
 With the rapid development of modern technology, more real-time naturalistic driving and critical events data are collection by commercial truck companies [@janakiraman2016discovery]. With advanced unobstrusive instrumentation, these data provide a unique opportunity to continuously study real-world driving performance and potential consequences [@dingus2016driver]. Naturalistic driving data can be further powered to examine the risk factors associated with truck crash, by continuously collecting high resolution data on the risk factors, such as driver behavior, vehicle condition, traffic, weather, and road geometry [@guo2019statistical].
-
-
-## Proposal
-
 
 This prospectus proposal focuses on Bayesian statistical models in a large truck naturalistic driving data. The research goals are:
 

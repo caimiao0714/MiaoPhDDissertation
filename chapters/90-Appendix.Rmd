@@ -200,7 +200,7 @@ $$\log \ell = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log 
 In the *time truncated case*, we assume that the truncated time is $\tau$. The derivation of $f(t_1, t_2, \cdots, t_n|n)$ is messy in math, we directly give the conclusion here: $$f(t_1, t_2, \cdots, t_n|n) = n!\prod_{i=1}^n\frac{\lambda(t_i)}{\Lambda(\tau)}$$
 
 Therefore, the joint likelihood function for $f(n, t_1, t_2, \cdots, t_n)$ is:
-\begin{equation}\label{pdftau}
+\begin{equation}
 \begin{aligned}
 f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
 & = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
@@ -211,7 +211,7 @@ n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
 \end{equation}
 
 The log likelihood function $l$ is then:
-\begin{equation}\label{logtau}
+\begin{equation}
 \begin{aligned}
 l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(\tau/\theta)^\beta}\Bigg)\\
 & = \sum_{i=1}^n\log\Big(\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big) - (\frac{\tau}{\theta})^\beta\\

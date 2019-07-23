@@ -50,7 +50,7 @@ Since logistic regression ignores the intensity of the critical events with any 
 \lambda_{d(i)} & =\exp(\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT} + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D})
 \end{split}
 \end{align}
-Where N is the number of critical events for driver $d(i)$ in time interval $j$, and it has a Poisson distribution with parameter $\lambda$. The other variables are identical as those described in Equation \ref{logis}.
+Where N is the number of critical events for driver $d(i)$ in time interval $j$, and it has a Poisson distribution with parameter $\lambda$. The other variables are identical as those described in Equation .
 
 **Censored Poisson Regression**
 

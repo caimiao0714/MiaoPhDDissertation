@@ -16,7 +16,9 @@ Instead of collecting extremely rare vehicle crash data, NDS focus on safety-cri
 
 A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed and analyzed in @saleh2013accident. An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions [@saleh2013accident]. A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry [@smith2007decision], chemistry [@phimister2003near], and aerospace industry [@kirwan2008human]. 
 
+<!--
 @wu2013defining \hl{defined crash surrogates in naturalistic driving data.}
+-->
 
 The rationale for using near-crashes and SCEs as surrogates for crashes is Heinrich's Triangle. The Heinrich's Triangle assumes that less severe events are more frequent than severe events, and the frequency of severe events can diminish as that of less severe events decreases [@guo2019statistical]. The latter assumption can be quantitatively tested using crash and naturalistic driving data, but verifying the former assumption is challenging since the causal mechanism is complex and unknown [@guo2010near]. Applying SCEs in traffic safety studies to this Heinrich's Triangle can substantially increase the study sample size and may potentially enable the estimation of driving risk. However, a crucial question prior to the usage of SCEs in naturalistic studies is whether they are good surrogates of traffic crashes.
 

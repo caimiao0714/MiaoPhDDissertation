@@ -41,7 +41,7 @@
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage[nottoc]{tocbibind}
 \usepackage{xspace}
-\usepackage[utf8]{inputenc}
+%%%\usepackage[utf8]{inputenc}
 \usepackage{titling}
 \usepackage{sectsty}
 \usepackage[T1]{fontenc}
@@ -63,6 +63,7 @@
 %\usepackage{url}
 %\usepackage{cite}
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\geometry{headheight=27.2pt}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{float}
@@ -239,10 +240,10 @@ To reduce the lives and economic losses associated with trucks, numerous studies
 
 Past truck safety literature almost exclusively focused on crashes, while ignoring the precursors to crashes. A precursor to crashes, also known as safety critical events (SCEs), adverse events, or near-miss crashes, is an emerging pattern or signature associated with an increasing chance of truck crash (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}; Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). Truck critical events deserve more attention since they occur more frequently than crashes, potentially suggest fatigue and a lapse in performance, and can lead to catastrophic crashes (Dingus, Neale, et al. \protect\hyperlink{ref-dingus2006development}{2006}).
 
-With the rapid development of modern technology, more real-time naturalistic driving and critical events data are collection by commercial truck companies (Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). With advanced unobstrusive instrumentation, these data provide a unique opportunity to continuously study real-world driving performance and potential consequences (Dingus et al. \protect\hyperlink{ref-dingus2016driver}{2016}). Naturalistic driving data can be further powered to examine the risk factors associated with truck crash, by continuously collecting high resolution data on the risk factors, such as driver behavior, vehicle condition, traffic, weather, and road geometry (Guo \protect\hyperlink{ref-guo2019statistical}{2019}).
-
 \hypertarget{proposal}{%
 \section{Proposal}\label{proposal}}
+
+With the rapid development of modern technology, more real-time naturalistic driving and critical events data are collection by commercial truck companies (Janakiraman, Matthews, and Oza \protect\hyperlink{ref-janakiraman2016discovery}{2016}). With advanced unobstrusive instrumentation, these data provide a unique opportunity to continuously study real-world driving performance and potential consequences (Dingus et al. \protect\hyperlink{ref-dingus2016driver}{2016}). Naturalistic driving data can be further powered to examine the risk factors associated with truck crash, by continuously collecting high resolution data on the risk factors, such as driver behavior, vehicle condition, traffic, weather, and road geometry (Guo \protect\hyperlink{ref-guo2019statistical}{2019}).
 
 This prospectus proposal focuses on Bayesian statistical models in a large truck naturalistic driving data. The research goals are:
 
@@ -279,8 +280,6 @@ The first large-scale NDS was The 100-Car Naturalistic Driving study conducted i
 Instead of collecting extremely rare vehicle crash data, NDS focus on safety-critical events (SCEs) and near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Although near-crashes or SCEs were not real crashes, these studies suggested that they are highly correlated with crashes (Dingus, Klauer, et al. \protect\hyperlink{ref-dingus2006100}{2006}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). The most commonly studied SCE is hard brakes (also knowns as hard-braking events or harsh braking), defined as a deceleration force higher than a pre-specified threshold, such as 0.3 g (Jansen and Simone Wesseling \protect\hyperlink{ref-jansen2018harsh}{2018}; Mollicone et al. \protect\hyperlink{ref-mollicone2019predicting}{2019}).
 
 A more formal definition of near-crash, or the more general accident precursor, in safety analysis and accident prevention field was proposed and analyzed in Saleh et al. (\protect\hyperlink{ref-saleh2013accident}{2013}). An accident precursor was defined as a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions (Saleh et al. \protect\hyperlink{ref-saleh2013accident}{2013}). A near-crash or near miss is a special case of accident precursor, with the feature of being close to a complete accident sequence. Accidence precursor has been widely studies in certain safety science in which the accidents are extremely rare, such as nuclear industry (Smith and Borgonovo \protect\hyperlink{ref-smith2007decision}{2007}), chemistry (Phimister et al. \protect\hyperlink{ref-phimister2003near}{2003}), and aerospace industry (Kirwan, Gibson, and Hickling \protect\hyperlink{ref-kirwan2008human}{2008}).
-
-Wu and Jovanis (\protect\hyperlink{ref-wu2013defining}{2013}) \hl{defined crash surrogates in naturalistic driving data.}
 
 The rationale for using near-crashes and SCEs as surrogates for crashes is Heinrich's Triangle. The Heinrich's Triangle assumes that less severe events are more frequent than severe events, and the frequency of severe events can diminish as that of less severe events decreases (Guo \protect\hyperlink{ref-guo2019statistical}{2019}). The latter assumption can be quantitatively tested using crash and naturalistic driving data, but verifying the former assumption is challenging since the causal mechanism is complex and unknown (Guo et al. \protect\hyperlink{ref-guo2010near}{2010}). Applying SCEs in traffic safety studies to this Heinrich's Triangle can substantially increase the study sample size and may potentially enable the estimation of driving risk. However, a crucial question prior to the usage of SCEs in naturalistic studies is whether they are good surrogates of traffic crashes.
 
@@ -634,6 +633,8 @@ Previous studies suggested that driver behavior can contribute to over 90\% of c
 \hypertarget{research-aims}{%
 \section{Research aims}\label{research-aims}}
 
+The overarching goal of this proposed study is to
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
@@ -828,7 +829,7 @@ Since logistic regression ignores the intensity of the critical events with any 
 \lambda_{d(i)} & =\exp(\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT} + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D})
 \end{split}
 \end{align}
-Where N is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with parameter \(\lambda\). The other variables are identical as those described in Equation \ref{logis}.
+Where N is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with parameter \(\lambda\). The other variables are identical as those described in Equation .
 
 \textbf{Censored Poisson Regression}
 
@@ -1455,7 +1456,7 @@ The log-likelihood function in the failure truncated case is therefore:
 In the \emph{time truncated case}, we assume that the truncated time is \(\tau\). The derivation of \(f(t_1, t_2, \cdots, t_n|n)\) is messy in math, we directly give the conclusion here: \[f(t_1, t_2, \cdots, t_n|n) = n!\prod_{i=1}^n\frac{\lambda(t_i)}{\Lambda(\tau)}\]
 
 Therefore, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is:
-\begin{equation}\label{pdftau}
+\begin{equation}
 \begin{aligned}
 f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
 & = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
@@ -1466,7 +1467,7 @@ n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
 \end{equation}
 
 The log likelihood function \(l\) is then:
-\begin{equation}\label{logtau}
+\begin{equation}
 \begin{aligned}
 l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(\tau/\theta)^\beta}\Bigg)\\
 & = \sum_{i=1}^n\log\Big(\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big) - (\frac{\tau}{\theta})^\beta\\
