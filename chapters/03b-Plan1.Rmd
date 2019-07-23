@@ -1,9 +1,7 @@
 Analytical Plan for Aim 1
 -------------------------
 
-### Study cohort
-
-The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
+The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
 
 ### Data reduction
 

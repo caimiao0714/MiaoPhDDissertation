@@ -275,7 +275,7 @@ NDS use unobstrusive devices, sensors, and cameras installed on vehicles to proa
 The first large-scale NDS was The 100-Car Naturalistic Driving study conducted in North Virginia, the United States (Neale et al. \protect\hyperlink{ref-neale2005overview}{2005}). The research team continuously followed the 102 recruited drivers for 12 months, resulting in two million miles and over 40,000 hours of driving data. To maximize the number of SCEs, the research team intentionally chose more young drivers and high mileage drivers. Based on this data, Dingus, Klauer, et al. (\protect\hyperlink{ref-dingus2006100}{2006}) found that hard braking events were significantly associated with collisions and near-crashes. Since the number of near-crashes and incidents were significantly larger than crashes, they proposed to use near-crashes and incidents as surrogates of crashes.
 
 \hypertarget{safety-critical-events-sces}{%
-\subsection{Safety-critical events (SCEs)}\label{safety-critical-events-sces}}
+\section{Safety-critical events (SCEs)}\label{safety-critical-events-sces}}
 
 Instead of collecting extremely rare vehicle crash data, NDS focus on safety-critical events (SCEs) and near-crash events, defined as events that used last-second successful evasive maneuver that avoided crashes (Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). Although near-crashes or SCEs were not real crashes, these studies suggested that they are highly correlated with crashes (Dingus, Klauer, et al. \protect\hyperlink{ref-dingus2006100}{2006}; Guo et al. \protect\hyperlink{ref-guo2010near}{2010}; Dingus, Hanowski, and Klauer \protect\hyperlink{ref-dingus2011estimating}{2011}). The most commonly studied SCE is hard brakes (also knowns as hard-braking events or harsh braking), defined as a deceleration force higher than a pre-specified threshold, such as 0.3 g (Jansen and Simone Wesseling \protect\hyperlink{ref-jansen2018harsh}{2018}; Mollicone et al. \protect\hyperlink{ref-mollicone2019predicting}{2019}).
 
@@ -286,7 +286,7 @@ The rationale for using near-crashes and SCEs as surrogates for crashes is Heinr
 Guo et al. (\protect\hyperlink{ref-guo2010near}{2010}) proposed two critical principles for using near crashes as surrogates for crashes: 1) similar or the same causal mechanisms between crashes and surrogates, 2) a strong association between the frequency of surrogates and crashes. Based on the 100-car database, they investigated the two principles using a sequential factor analysis, a Poisson regression, and a sensitivity analysis. The study concluded that using near crashes as surrogates for crashes will lead to conservative risk estimates but significantly reduce the variance of estimation. They suggested that using near crashes as surrogates in small-scale studies will be informative for evaluating the risk of crashes.
 
 \hypertarget{crashes-and-sces}{%
-\subsection{Crashes and SCEs}\label{crashes-and-sces}}
+\section{Crashes and SCEs}\label{crashes-and-sces}}
 
 Gordon et al. (\protect\hyperlink{ref-gordon2011analysis}{2011}) conducted a preliminary study to validate surrogates for road-departure crashes by spatially merging road geometry, average traffic, crashes, and naturalistic driving data. Bayesian seemingly unrelated Poisson models estimated with weighted least squares were used to examine if the same sets of predictor variables can have the same effects on crashes and surrogates respectively. The found that time to edge crossing and lane-departure warning were two useful surrogates for crashes on rural nonfreeway roads, while lane deviation was a poor surrogate for lane-departure crashes.
 
@@ -304,8 +304,8 @@ However, NDS is not bought without a doubt. Knipling (\protect\hyperlink{ref-kni
 
 Another study by Knipling (\protect\hyperlink{ref-knipling2017threats}{2017}) specifically targeted Hour-of-Service rule research, such as Blanco et al. (\protect\hyperlink{ref-blanco2011impact}{2011}) and Hanowski et al. (\protect\hyperlink{ref-hanowski2008analysis}{2008}), and relevant policy revisions among commercial truck drivers. He argued that HOS studies with a quasi-experiment design were subject to confounding variables, so these studies are limited in demonstrating a causal relationship between HOS and safety outcomes. The paper also argued that NDS lacked external validity since no large truck NDS had examined the causal link between crashed and SCEs. Lastly, the construct validity was doubted as the relationship between driver fatigue, HOS, and SCEs had not been validated.
 
-\hypertarget{risk-factors}{%
-\section{Risk factors}\label{risk-factors}}
+\hypertarget{risk-factors-for-traffic-safety}{%
+\section{Risk factors for traffic safety}\label{risk-factors-for-traffic-safety}}
 
 \hypertarget{fatigue}{%
 \subsection{Fatigue}\label{fatigue}}
@@ -613,8 +613,24 @@ Wu and Jovanis (\protect\hyperlink{ref-wu2013defining}{2013})
 
 Previous studies suggested that driver behavior can contribute to over 90\% of crashes (Dingus et al. \protect\hyperlink{ref-dingus2016driver}{2016}; Guo \protect\hyperlink{ref-guo2019statistical}{2019}). A recent report by the NHTSA (\protect\hyperlink{ref-nhtsa2013national}{2013}) revealed that human error was the criticval reason for 93\% of crashes.
 
-\hypertarget{gaps-in-literature}{%
-\section{Gaps in literature}\label{gaps-in-literature}}
+\hypertarget{research-aims}{%
+\section{Research aims}\label{research-aims}}
+
+\hl{Describes the research problems to be addressed and why these are important issues.}
+
+The overarching goal of this proposed study is to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Aim1}: to examine the association between truck crashes and critical events using a Gamma-Poisson regression.
+\item
+  \textbf{Aim2}: to construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process.
+\item
+  \textbf{Aim3}: to propose an innovative reliability model that accounts for both within shift cumulative driving time and within-shift between-trip rest time.
+\end{enumerate}
+
+\textbf{Gaps in literature}
 
 \begin{itemize}
 \tightlist
@@ -629,21 +645,6 @@ Previous studies suggested that driver behavior can contribute to over 90\% of c
 \item
   A focus on traditional statistical models instead of recurrent events models
 \end{itemize}
-
-\hypertarget{research-aims}{%
-\section{Research aims}\label{research-aims}}
-
-The overarching goal of this proposed study is to
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Aim1}: to examine the association between truck crashes and critical events using a Gamma-Poisson regression.
-\item
-  \textbf{Aim2}: to construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process.
-\item
-  \textbf{Aim3}: to propose an innovative reliability model that accounts for both within shift cumulative driving time and within-shift between-trip rest time.
-\end{enumerate}
 
 \hypertarget{methods}{%
 \chapter{METHODS}\label{methods}}
@@ -710,10 +711,7 @@ A table that includes the birth date of each driver will be provided by the J.B.
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
 
-\hypertarget{study-cohort}{%
-\subsection{Study cohort}\label{study-cohort}}
-
-The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
+The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
 
 \hypertarget{data-reduction}{%
 \subsection{Data reduction}\label{data-reduction}}
@@ -779,6 +777,8 @@ All data reduction, cleaning, and statistical analysis will be done on the RStud
 
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
+
+The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of
 
 In this study, we use vehicle drivers as the sampling unit and adopt hierarchical statistical models that accounts for both driver-level variation and trip-level variation. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.
 
@@ -918,247 +918,126 @@ l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\be
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
 
+Aim 3 seeks to innovate the NHPP proposed in Aim 2 by accounting for the rest time within a shift. One more parameter, the percent of reliability recovery during a break within a shift, will be estimated for in this model.
+
 \hypertarget{the-probable-content}{%
 \chapter{THE PROBABLE CONTENT}\label{the-probable-content}}
 
-This dissertation will be completed according to the three-paper model. The expected chapter headings are as follows:
+The contents will follow the standard format for a traditional dissertation, as per guidelines set by the College for Public Health and Social Justice and Saint Louis University's Office of Graduate Education.
 
 Chapter 1: Introduction: The problem
 
 \begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\tightlist
-\item
-  Epidemiology of head and neck squamous cell carcinoma and its association with second primary malignancies
-\end{enumerate}
-
-\begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Cancer
+  Transportation safety
 \item
-  Head and neck squamous cell carcinoma
+  Truck safety
 \item
-  Definition of second primary malignancies
-\item
-  second primary malignancies and Head and neck squamous cell carcinoma
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Risk factors for second primary malignancies
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Tobacco use
-\item
-  Excessive alcohol use
-\item
-  Human papillomavirus infection
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Existing literature and gaps that exist in the area of second primary malignancies in patients with head and neck squamous cell carcinoma
+  Modern Truck Safety Studies
 \end{enumerate}
 
 Chapter 2: Literature review
 
 \begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\item
-  Introduction
-\item
-  Methods
-\end{enumerate}
-
-\begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Source of data and eligibility/exclusion criteria
+  Naturalistic driving Study (NDS)
 \item
-  Definitions of primary and secondary outcomes and covariates
+  Safety-critical events (SCEs)
 \item
-  Statistical analysis
+  Crashes and SCEs
+\item
+  Risk factors for traffic safety
+\item
+  Predictive models
+  a. Overview
+  b. Bayesian models
+  c.~Hierarchical models
+  d.~Markov chain Monte Carlo (MCMC)
+\item
+  Scalable Bayesian models
+  a. Hamiltonian Monte Carlo (HMC)
+  b. Subsampling MCMC
 \end{enumerate}
 
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Results
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Description of studies included in the study
-\item
-  Primary outcome results
-\item
-  Secondary outcome results
-\item
-  Publication bias and study quality assessment
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  Discussion/Conclusions
-\end{enumerate}
+Chapter 3: Aim 1 - truck crashes and critical events
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Implications
-\item
-  Strengths and limitations
-\item
-  Future research
-\end{enumerate}
-
-Chapter 3: Aim 1 - Truck crashes and critical events
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
 \tightlist
 \item
   Introduction
 \item
+  Data sources
+\item
   Methods
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Source of data and eligibility/exclusion criteria
-\item
-  Definitions of primary and secondary outcomes and covariates
-\item
-  Statistical analysis
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
 \item
   Results
+  a. A simulation study on Gamma-Poisson models
+  b. Real-world application on all SCEs
+  c.~Real-world application on different types of SCEs
+\item
+  Discussion
 \end{enumerate}
+
+Chapter 4: Aim 2 - Bayesian hierarchical models for SCEs
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Demographics of study population
-\item
-  Primary outcome results
-\item
-  Secondary outcome results
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  Discussion/Conclusions
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Implications
-\item
-  Strengths and limitations
-\item
-  Future research
-\end{enumerate}
-
-Chapter 4: Aim 2 - Statistical models predicting truck critical events
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
 \tightlist
 \item
   Introduction
 \item
+  Data sources
+\item
   Methods
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Source of data and eligibility/exclusion criteria
-\item
-  Definitions of primary and secondary outcomes and covariates
-\item
-  Statistical analysis
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
+  a. Logistic regression
+  b. Poisson regression
+  c.~Non-homogeneous Poisson process (NHPP)
 \item
   Results
+  a. Logistic regression
+  b. Poisson regression
+  c.~NHPP
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
+  \tightlist
+  \item
+    A simulation study on NHPP
+  \item
+    Real-world application on NHPP
+  \end{enumerate}
+\item
+  Discussion
 \end{enumerate}
+
+Chapter 5: Aim 3 - an innovation on NHPP to account for within shift rest time
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Demographics of study population
+  Introduction
 \item
-  Primary outcome results
+  Data sources
 \item
-  Secondary outcome results
+  Methods
+\item
+  Results
+  a. A simulation study on this new method
+  b. Real-world application on this new method
+\item
+  Discussion
 \end{enumerate}
 
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  Discussion/Conclusions
-\end{enumerate}
+Chapter 6: Discussion
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Implications
-\item
-  Strengths and limitations
-\item
-  Future research
-\end{enumerate}
-
-Chapter 5: Aim 3 - Subsampling Markov Chain Monte Carlo methods
-
-Chapter 6: DISCUSSION
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi}.}
 \tightlist
 \item
   Conclusion

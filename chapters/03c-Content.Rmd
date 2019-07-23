@@ -1,95 +1,67 @@
 # THE PROBABLE CONTENT
 
-This dissertation will be completed according to the three-paper model. The expected chapter headings are as follows:
+The contents will follow the standard format for a traditional dissertation, as per guidelines set by the College for Public Health and Social Justice and Saint Louis University’s Office of Graduate Education.
 
 Chapter 1: Introduction: The problem
-
-A.	Epidemiology of head and neck squamous cell carcinoma and its association with second primary malignancies
-
-  1.	Cancer
-  2.	Head and neck squamous cell carcinoma
-  3.	Definition of second primary malignancies
-  4.	second primary malignancies and Head and neck squamous cell carcinoma
-
-B.	Risk factors for second primary malignancies
-
-  1.	Tobacco use
-  2.	Excessive alcohol use
-  3.	Human papillomavirus infection
-
-C.	Existing literature and gaps that exist in the area of second primary malignancies in patients with head and neck squamous cell carcinoma
+  
+  1. Transportation safety
+  2. Truck safety
+  3. Modern Truck Safety Studies
 
 Chapter 2: Literature review
 
-A.	Introduction
+  1. Naturalistic driving Study (NDS)
+  2. Safety-critical events (SCEs)
+  3. Crashes and SCEs
+  4. Risk factors for traffic safety
+  5. Predictive models
+    a. Overview
+    b. Bayesian models
+    c. Hierarchical models
+    d. Markov chain Monte Carlo (MCMC)
+  6. Scalable Bayesian models
+    a. Hamiltonian Monte Carlo (HMC)
+    b. Subsampling MCMC
 
-B.	Methods
+Chapter 3: Aim 1 - truck crashes and critical events
+  
+  1. Introduction
+  2. Data sources
+  3. Methods
+  4. Results
+    a. A simulation study on Gamma-Poisson models
+    b. Real-world application on all SCEs
+    c. Real-world application on different types of SCEs
+  5. Discussion  
 
-  1.	Source of data and eligibility/exclusion criteria
-  2.	Definitions of primary and secondary outcomes and covariates
-  3.	Statistical analysis
+Chapter 4: Aim 2 - Bayesian hierarchical models for SCEs
 
-C.	Results
+  1. Introduction
+  2. Data sources
+  3. Methods
+    a. Logistic regression
+    b. Poisson regression
+    c. Non-homogeneous Poisson process (NHPP)
+  4. Results
+    a. Logistic regression
+    b. Poisson regression
+    c. NHPP
+      i. A simulation study on NHPP
+      ii. Real-world application on NHPP
+  5. Discussion
 
-  1.	Description of studies included in the study
-  2.	Primary outcome results
-  3.	Secondary outcome results
-  4.	Publication bias and study quality assessment
+Chapter 5: Aim 3 - an innovation on NHPP to account for within shift rest time
+  
+  1. Introduction
+  2. Data sources
+  3. Methods
+  4. Results
+    a. A simulation study on this new method
+    b. Real-world application on this new method
+  5. Discussion
 
-D.	Discussion/Conclusions
+Chapter 6: Discussion
 
-  1.	Implications
-  2.	Strengths and limitations
+  1.	Conclusion
+  2.	Strengths and limitation
   3.	Future research
-
-Chapter 3: Aim 1 - Truck crashes and critical events
-
-A.	Introduction
-B.	Methods
-
-  1.	Source of data and eligibility/exclusion criteria
-  2.	Definitions of primary and secondary outcomes and covariates
-  3.	Statistical analysis
-
-C.	Results
-
-  1.	Demographics of study population
-  2.	Primary outcome results
-  3.	Secondary outcome results
-
-D.	Discussion/Conclusions
-
-  1.	Implications
-  2.	Strengths and limitations
-  3.	Future research
-
-Chapter 4: Aim 2 - Statistical models predicting truck critical events
-
-A.	Introduction
-B.	Methods
-
-1.	Source of data and eligibility/exclusion criteria
-2.	Definitions of primary and secondary outcomes and covariates
-3.	Statistical analysis
-
-C.	Results
-
-1.	Demographics of study population
-2.	Primary outcome results
-3.	Secondary outcome results
-
-D.	Discussion/Conclusions
-
-1.	Implications
-2.	Strengths and limitations
-3.	Future research
-
-Chapter 5: Aim 3 - Subsampling Markov Chain Monte Carlo methods
-
-
-
-Chapter 6: DISCUSSION
-
-A.	Conclusion
-B.	Strengths and limitation
-C.	Future research
