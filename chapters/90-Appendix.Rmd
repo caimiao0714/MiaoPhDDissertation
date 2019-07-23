@@ -3,11 +3,11 @@
 
 \singlespacing
 
-# APPENDIX {#appendix .unnumbered}
+APPENDIX {#appendix .unnumbered}
+========
 
-## Data query {#dataquery .unnumbered}
-
-### Weather data {#weatherdat .unnumbered}
+Query weather data {#weatherdat .unnumbered}
+------------------
 
 ```{r eval=FALSE}
 gps_sample = 
@@ -78,7 +78,8 @@ for(i in 1:nrow(gps_sample)){
 ```
 
 
-### Road geometry data {#roadgeometry .unnumbered}
+Query road geometry data {#roadgeometry .unnumbered}
+========================
 
 ```{r eval=FALSE}
 pacman::p_load(osmar, stringr)
@@ -126,11 +127,9 @@ dfcontainer12 = loop_data(start_index = 1)
 
 \doublespacing
 
-### Likelihood function of a NHPP
+## Likelihood function of a NHPP
 
-#### The first event
-
-The cumulative density function (cdf) of time to the first event is $F(t_1)$: $$F_1(t_1) = P(T_1 \leq t_1) = 1 - S(t_1)$$.
+*The first event*: The cumulative density function (cdf) of time to the first event is $F(t_1)$: $$F_1(t_1) = P(T_1 \leq t_1) = 1 - S(t_1)$$.
 
 The survival function for the first event $S_1(t_1)$ is:
 \begin{align*}
@@ -158,9 +157,7 @@ This pdf is identical with the pdf of Weibull distribution, so we have:
 $$T_1 \sim \text{Weibull}(\beta, \theta)$$
 
 
-#### The second event
-
-The Survival function of the second event given the first event occurred at $t_2$ is:
+*The second event*: the Survival function of the second event given the first event occurred at $t_2$ is:
 
 \begin{align*}
 S_2(t_2 | t_1) & = P(T_2 > t_2 | T_1 = t)\\
@@ -180,9 +177,7 @@ f(t_2|t_1) & = - \frac{d}{dt_2}S_2(t_2)\\
 \end{aligned}
 \end{equation}
 
-#### Failure truncated case
-
-In the *failure truncated case*, we know the total number of events $n$ before the experiment starts. Therefore, we can get the joint likelihood function for $t_1 < t_2 < \cdots < t_n$ in the failure truncated case based on Equation \@ref(t2).
+*Failure truncated case*: in this case, we know that the total number of events $n$ before the experiment starts. Therefore, we can get the joint likelihood function for $t_1 < t_2 < \cdots < t_n$ in the failure truncated case based on Equation \@ref(t2).
 \begin{equation}\label{pdfn}
 \begin{aligned}
 f(t_1, t_2, \cdots, t_n) & = f(t_1)f(t_2|t_1)f(t_3|t_1, t_2) \cdots f(t_n|t_1, t_2, \dots, t_{n - 1}) \\
@@ -195,9 +190,7 @@ f(t_1, t_2, \cdots, t_n) & = f(t_1)f(t_2|t_1)f(t_3|t_1, t_2) \cdots f(t_n|t_1, t
 The log-likelihood function in the failure truncated case is therefore:
 $$\log \ell = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{t_n}{\theta}\Big)^\beta$$
 
-#### Time truncated case
-
-In the *time truncated case*, we assume that the truncated time is $\tau$. The derivation of $f(t_1, t_2, \cdots, t_n|n)$ is messy in math, we directly give the conclusion here: $$f(t_1, t_2, \cdots, t_n|n) = n!\prod_{i=1}^n\frac{\lambda(t_i)}{\Lambda(\tau)}$$
+*Time truncated case*: in this case, we assume that the truncated time is $\tau$. The derivation of $f(t_1, t_2, \cdots, t_n|n)$ is messy in math, we directly give the conclusion here: $$f(t_1, t_2, \cdots, t_n|n) = n!\prod_{i=1}^n\frac{\lambda(t_i)}{\Lambda(\tau)}$$
 
 Therefore, the joint likelihood function for $f(n, t_1, t_2, \cdots, t_n)$ is:
 \begin{equation}

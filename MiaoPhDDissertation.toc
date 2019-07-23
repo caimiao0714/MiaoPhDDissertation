@@ -59,13 +59,8 @@
 \contentsline {chapter}{\numberline {7}HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}{59}{chapter.7}
 \contentsline {chapter}{\numberline {8}DISCUSSION}{61}{chapter.8}
 \contentsline {chapter}{APPENDIX}{63}{chapter*.6}
-\contentsline {section}{Data query}{63}{section*.7}
-\contentsline {subsection}{Weather data}{63}{section*.8}
-\contentsline {subsection}{Road geometry data}{64}{section*.9}
-\contentsline {subsection}{\numberline {8.0.1}Likelihood function of a NHPP}{65}{subsection.8.0.1}
-\contentsline {subsubsection}{The first event}{65}{section*.10}
-\contentsline {subsubsection}{The second event}{67}{section*.11}
-\contentsline {subsubsection}{Failure truncated case}{67}{section*.12}
-\contentsline {subsubsection}{Time truncated case}{68}{section*.13}
-\contentsline {chapter}{Bibliography}{71}{chapter*.14}
-\contentsline {chapter}{Vita Auctoris}{93}{chapter*.15}
+\contentsline {section}{Query weather data}{63}{section*.7}
+\contentsline {chapter}{Query road geometry data}{65}{chapter*.8}
+\contentsline {section}{\numberline {8.1}Likelihood function of a NHPP}{66}{section.8.1}
+\contentsline {chapter}{Bibliography}{71}{chapter*.9}
+\contentsline {chapter}{Vita Auctoris}{93}{chapter*.10}
