@@ -739,24 +739,18 @@ The outcome variable will be the number of crashes for each driver. The primary 
 Since the outcome variable is a count variable, a Poisson model or a negative binomial model is a natural choice for this type of outcome variable (Lord and Mannering \protect\hyperlink{ref-lord2010statistical}{2010}). However, these two models are less likely to fully account for the variance across drivers. Therefore, I propose to use a Gamma-Poisson model to examine the association between crashes and SCEs. Here is how the proposed Gamma-Poisson model will be implemented:
 
 Let us assume that:
-
 \[
 \begin{aligned}
 \lambda & \sim \text{Gamma}(\alpha, \beta)\\
 X|\lambda & \sim \text{Poisson}(\lambda)\\
 \end{aligned}
 \]
-
 Then we have:
-
 \[X \sim \text{Gamma-Poisson}(\alpha, \beta)\]
-
 The Gamma-Poisson distribution is a \(\alpha\)-parameter distribution, with the \(\alpha\) as a measure of overdispersion. The Gamma-Poisson distribution has the probability mass function of:
-
 \[f(x) = \frac{\Gamma(x + \beta)\alpha^x}{\Gamma(\beta)(1 + \alpha)^{\beta + x}x!}, \quad x = 0, 1, 2, \dots\]
 
 The mean and variance of a Gamma-Poisson distribution are:
-
 \[
 \begin{aligned}
 E(X) & = \alpha\beta \\
@@ -766,11 +760,9 @@ V(X) & = \alpha\beta + \alpha^2\beta\\
 \]
 
 The log-linear Gamma-Poisson model will be specified as:
-
 \[
 \log\beta = \mathbf{X\gamma} - \log m,
 \]
-
 where \(\mathbf{X}\) is the predictor variables matrix, including the percent of night driving and the age of the drivers, \(\mathbf{\gamma}\) is the associated \(2*1\) parameter vector, \(m\) is the total miles driven as an offset term in the Poisson distribution, and \(\alpha\) is a fixed overdispersion parameter that does not depend on any covariates.
 
 All data reduction, cleaning, and statistical analysis will be done on the RStudio Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers (Center \protect\hyperlink{ref-OSC1987}{1987}). The Bayesian statistical models will be conducted using the \texttt{rstan} package in R 3.5.1 (Stan Development Team \protect\hyperlink{ref-rstancitation}{2018}; R Core Team \protect\hyperlink{ref-Rcitation}{2018}).
@@ -778,15 +770,15 @@ All data reduction, cleaning, and statistical analysis will be done on the RStud
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
 
-The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of
+The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers. Vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. Bayesian hierarchical logistic regression, Poisson regression, and NHPP that accounts for both driver-level variation and trip-level variation will be used.
 
-In this study, we use vehicle drivers as the sampling unit and adopt hierarchical statistical models that accounts for both driver-level variation and trip-level variation. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.
+\hypertarget{data-aggregation}{%
+\subsection{Data aggregation}\label{data-aggregation}}
 
 \hypertarget{logistic-regression}{%
 \subsection{Logistic regression}\label{logistic-regression}}
 
-Here we model the probability of a critical event occurred using a Bayesian hierarchical Bernoulli regression. We categorize the number of safety events during a trip into a binary variable \(Y\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. Since each trip \(i\) has a different travel time \(t_i\), we derived the Bernoulli distribution parameter \(p_i\) using a Poisson distribution, with the parameter \(\lambda_i\) represented by a linear combination of \(\beta_i\)~and \(x_i\).
-
+Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression. I will categorize the number of safety events during a trip into a binary variable \(Y\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. Since each trip \(i\) has a different travel time \(t_i\), we derived the Bernoulli distribution parameter \(p_i\) using a Poisson distribution, with the parameter \(\lambda_i\) represented by a linear combination of \(\beta_i\)~and \(x_i\).
 \[
 \begin{split}
 Y_{i, d} &\sim \text{Bernoulli}(p_i)\\
@@ -872,17 +864,12 @@ The ROCOF can be interpreted as the instantaneous rate of change in the expected
 
 When there is no simultaneous events, ROCOF is the same as intensity function.
 
-\textbf{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant.
-
-\textbf{Power law process (PLP)}: When the intensity function of a NHPP is:
-
-\[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\]
-
+\textbf{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+\[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\],
 Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP).
 
 Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function:
-
-\[\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\]
+\[\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\].
 
 There are two forms of truncation in a NHPP:
 
@@ -1030,6 +1017,7 @@ Chapter 5: Aim 3 - an innovation on NHPP to account for within shift rest time
   Results
   a. A simulation study on this new method
   b. Real-world application on this new method
+  c.~Real-world application on this new method stratified by SCE types
 \item
   Discussion
 \end{enumerate}

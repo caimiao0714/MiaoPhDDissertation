@@ -21,24 +21,18 @@ The outcome variable will be the number of crashes for each driver. The primary 
 Since the outcome variable is a count variable, a Poisson model or a negative binomial model is a natural choice for this type of outcome variable [@lord2010statistical]. However, these two models are less likely to fully account for the variance across drivers. Therefore, I propose to use a Gamma-Poisson model to examine the association between crashes and SCEs. Here is how the proposed Gamma-Poisson model will be implemented:
 
 Let us assume that:
-
 $$
 \begin{aligned}
 \lambda & \sim \text{Gamma}(\alpha, \beta)\\
 X|\lambda & \sim \text{Poisson}(\lambda)\\
 \end{aligned}
 $$
-
 Then we have:
-
 $$X \sim \text{Gamma-Poisson}(\alpha, \beta)$$
-
 The Gamma-Poisson distribution is a $\alpha$-parameter distribution, with the $\alpha$ as a measure of overdispersion. The Gamma-Poisson distribution  has the probability mass function of:
-
 $$f(x) = \frac{\Gamma(x + \beta)\alpha^x}{\Gamma(\beta)(1 + \alpha)^{\beta + x}x!}, \quad x = 0, 1, 2, \dots$$
 
 The mean and variance of a Gamma-Poisson distribution are:
-
 $$
 \begin{aligned}
 E(X) & = \alpha\beta \\
@@ -48,11 +42,9 @@ V(X) & = \alpha\beta + \alpha^2\beta\\
 $$
 
 The log-linear Gamma-Poisson model will be specified as:
-
 $$
 \log\beta = \mathbf{X\gamma} - \log m,
 $$
-
 where $\mathbf{X}$ is the predictor variables matrix, including the percent of night driving and the age of the drivers, $\mathbf{\gamma}$ is the associated $2*1$ parameter vector, $m$ is the total miles driven as an offset term in the Poisson distribution, and $\alpha$ is a fixed overdispersion parameter that does not depend on any covariates.
 
 All data reduction, cleaning, and statistical analysis will be done on the RStudio Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers [@OSC1987]. The Bayesian statistical models will be conducted using the `rstan` package in R 3.5.1 [@rstancitation; @Rcitation].

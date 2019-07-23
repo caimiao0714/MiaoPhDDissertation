@@ -40,9 +40,10 @@
 \contentsline {subsection}{\numberline {3.2.2}Outcome and predictor variables}{42}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Statistical models}{42}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Analytical Plan for Aim 2}{44}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Logistic regression}{44}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Poisson regression}{46}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Non-homogeneous Poisson process}{47}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Data aggregation}{44}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Logistic regression}{44}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Poisson regression}{46}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Non-homogeneous Poisson process}{47}{subsection.3.3.4}
 \contentsline {section}{\numberline {3.4}Analytical Plan for Aim 3}{49}{section.3.4}
 \contentsline {chapter}{\numberline {4}THE PROBABLE CONTENT}{51}{chapter.4}
 \contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{55}{chapter.5}

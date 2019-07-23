@@ -58,6 +58,7 @@ Chapter 5: Aim 3 - an innovation on NHPP to account for within shift rest time
   4. Results
     a. A simulation study on this new method
     b. Real-world application on this new method
+    c. Real-world application on this new method stratified by SCE types
   5. Discussion
 
 Chapter 6: Discussion

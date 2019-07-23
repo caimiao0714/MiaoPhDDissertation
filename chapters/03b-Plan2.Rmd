@@ -1,14 +1,16 @@
 Analytical Plan for Aim 2
 -------------------------
 
-The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of 
+The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers. Vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. Bayesian hierarchical logistic regression, Poisson regression, and NHPP that accounts for both driver-level variation and trip-level variation will be used. 
 
-In this study, we use vehicle drivers as the sampling unit and adopt hierarchical statistical models that accounts for both driver-level variation and trip-level variation. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.
+### Data aggregation
+
+
+
 
 ### Logistic regression
 
-Here we model the probability of a critical event occurred using a Bayesian hierarchical Bernoulli regression. We categorize the number of safety events during a trip into a binary variable $Y$ of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. Since each trip $i$ has a different travel time $t_i$, we derived the Bernoulli distribution parameter $p_i$ using a Poisson distribution, with the parameter $\lambda_i$ represented by a linear combination of $\beta_i$\ and $x_i$.
-
+Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression. I will categorize the number of safety events during a trip into a binary variable $Y$ of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. Since each trip $i$ has a different travel time $t_i$, we derived the Bernoulli distribution parameter $p_i$ using a Poisson distribution, with the parameter $\lambda_i$ represented by a linear combination of $\beta_i$\ and $x_i$.
 $$
 \begin{split}
 Y_{i, d} &\sim \text{Bernoulli}(p_i)\\
@@ -73,6 +75,8 @@ The log joint density function is then:
 
 This can be straightforwardly evaluated in `Stan` using the `poisson_lccdf` function.
 
+
+
 ### Non-homogeneous Poisson process
 
 **Mean function of a point process**: 
@@ -93,17 +97,12 @@ $$\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\D
 When there is no simultaneous events, ROCOF is the same as intensity function.
 
 
-**Nonhomogeneous Poisson Process (NHPP)**: The NHPP is a Poisson process whose intensity function is non-constant.
-
-**Power law process (PLP)**: When the intensity function of a NHPP is:
-
-$$\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}$$
-
+**Nonhomogeneous Poisson Process (NHPP)**: The NHPP is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+$$\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}$$, 
 Where $\beta > 0$ and $\theta > 0$, the process is called the power law process (PLP).
 
 Therefore, the mean function $\Lambda(t)$ is the integral of the intensity function:
-
-$$\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}$$
+$$\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}$$.
 
 There are two forms of truncation in a NHPP:
 
