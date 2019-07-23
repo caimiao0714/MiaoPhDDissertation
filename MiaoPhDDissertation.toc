@@ -36,33 +36,36 @@
 \contentsline {subsection}{\numberline {3.1.3}Weather data from the \texttt {DarkSky\ API}}{40}{subsection.3.1.3}
 \contentsline {subsection}{\numberline {3.1.4}Road geometry data from the \texttt {OpenStreetMap}}{41}{subsection.3.1.4}
 \contentsline {subsection}{\numberline {3.1.5}Driver demographics}{41}{subsection.3.1.5}
-\contentsline {section}{\numberline {3.2}Data Cleaning}{41}{section.3.2}
-\contentsline {section}{\numberline {3.3}Analytical Plan for Aim 1}{42}{section.3.3}
-\contentsline {section}{\numberline {3.4}Analytical Plan for Aim 2}{43}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Logistic regression}{43}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Poisson regression}{45}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Non-homogeneous Poisson process}{46}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}Analytical Plan for Aim 3}{48}{section.3.5}
-\contentsline {chapter}{\numberline {4}THE PROBABLE CONTENT}{49}{chapter.4}
-\contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{53}{chapter.5}
-\contentsline {chapter}{\numberline {6}THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}{55}{chapter.6}
-\contentsline {section}{\numberline {6.1}Hierarchical logistic model}{55}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Model set up}{55}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Bayesian estimation based on simulated data}{55}{subsection.6.1.2}
-\contentsline {section}{\numberline {6.2}Hierarchical Poisson model}{55}{section.6.2}
-\contentsline {section}{\numberline {6.3}Hierarchical power law process}{55}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}}{56}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}Bayesian estimation based on simulated data}{56}{subsection.6.3.2}
-\contentsline {chapter}{\numberline {7}HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}{57}{chapter.7}
-\contentsline {chapter}{\numberline {8}DISCUSSION}{59}{chapter.8}
-\contentsline {chapter}{APPENDIX}{61}{chapter*.6}
-\contentsline {section}{Data query}{61}{section*.7}
-\contentsline {subsection}{Weather data}{61}{section*.8}
-\contentsline {subsection}{Road geometry data}{62}{section*.9}
-\contentsline {subsection}{\numberline {8.0.1}Likelihood function of a NHPP}{63}{subsection.8.0.1}
-\contentsline {subsubsection}{The first event}{63}{section*.10}
-\contentsline {subsubsection}{The second event}{65}{section*.11}
-\contentsline {subsubsection}{Failure truncated case}{65}{section*.12}
-\contentsline {subsubsection}{Time truncated case}{66}{section*.13}
-\contentsline {chapter}{Bibliography}{69}{chapter*.14}
-\contentsline {chapter}{Vita Auctoris}{89}{chapter*.15}
+\contentsline {section}{\numberline {3.2}Analytical Plan for Aim 1}{42}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Study cohort}{42}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Data reduction}{42}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Outcome and predictor variables}{42}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Statistical models}{43}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Analytical Plan for Aim 2}{44}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Logistic regression}{44}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Poisson regression}{46}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Non-homogeneous Poisson process}{47}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Analytical Plan for Aim 3}{49}{section.3.4}
+\contentsline {chapter}{\numberline {4}THE PROBABLE CONTENT}{51}{chapter.4}
+\contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{55}{chapter.5}
+\contentsline {chapter}{\numberline {6}THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}{57}{chapter.6}
+\contentsline {section}{\numberline {6.1}Hierarchical logistic model}{57}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Model set up}{57}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Bayesian estimation based on simulated data}{57}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Hierarchical Poisson model}{57}{section.6.2}
+\contentsline {section}{\numberline {6.3}Hierarchical power law process}{57}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}}{58}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Bayesian estimation based on simulated data}{58}{subsection.6.3.2}
+\contentsline {chapter}{\numberline {7}HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}{59}{chapter.7}
+\contentsline {chapter}{\numberline {8}DISCUSSION}{61}{chapter.8}
+\contentsline {chapter}{APPENDIX}{63}{chapter*.6}
+\contentsline {section}{Data query}{63}{section*.7}
+\contentsline {subsection}{Weather data}{63}{section*.8}
+\contentsline {subsection}{Road geometry data}{64}{section*.9}
+\contentsline {subsection}{\numberline {8.0.1}Likelihood function of a NHPP}{65}{subsection.8.0.1}
+\contentsline {subsubsection}{The first event}{65}{section*.10}
+\contentsline {subsubsection}{The second event}{67}{section*.11}
+\contentsline {subsubsection}{Failure truncated case}{67}{section*.12}
+\contentsline {subsubsection}{Time truncated case}{68}{section*.13}
+\contentsline {chapter}{Bibliography}{71}{chapter*.14}
+\contentsline {chapter}{Vita Auctoris}{93}{chapter*.15}

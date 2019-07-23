@@ -653,7 +653,7 @@ Previous studies suggested that driver behavior can contribute to over 90\% of c
 \hypertarget{real-time-ping}{%
 \subsection{Real-time ping}\label{real-time-ping}}
 
-The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-5 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved.
+The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved.
 
 \hypertarget{truck-crashes-and-sces}{%
 \subsection{Truck crashes and SCEs}\label{truck-crashes-and-sces}}
@@ -706,24 +706,38 @@ The R code to retrieve road geometry data can be found in Appendix \ref{roadgeom
 
 A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
 
-\hypertarget{data-cleaning}{%
-\section{Data Cleaning}\label{data-cleaning}}
+\hypertarget{analytical-plan-for-aim-1}{%
+\section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
 
-In order to make the MCMC estimation in Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to \emph{trips} and \emph{shifts}:
+\hypertarget{study-cohort}{%
+\subsection{Study cohort}\label{study-cohort}}
+
+The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
+
+\hypertarget{data-reduction}{%
+\subsection{Data reduction}\label{data-reduction}}
+
+In order to make the MCMC estimation for Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to \emph{trips} and \emph{shifts}:
 
 \begin{itemize}
+\tightlist
 \item
-  For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different \emph{trips}.
+  For each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different \emph{trips}.
 \item
   These trips data will be further divided into different \emph{shifts} if the specific driver was not moving for eight hours.
 \end{itemize}
 
 Therefore, a \emph{trip} is defined as a continuous period of driving without stopping for more than 20 minutes. a \emph{shift} is defined as a long period of driving without stopping for more than 8 hours.
 
-\hypertarget{analytical-plan-for-aim-1}{%
-\section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
+\hypertarget{outcome-and-predictor-variables}{%
+\subsection{Outcome and predictor variables}\label{outcome-and-predictor-variables}}
 
-This part will be based on truck driver's trips data and crashes data.
+The outcome variable will be the number of crashes for each driver. The primary independent variable will be the number of SCEs per 10,000 miles. These SCEs will be further decomposed into the number of hard brakes, headways, and rolling stability per 10,000 miles in similar analysis. The covariates will be the total miles driven, the percent of night driving, and the age of the drivers.
+
+\hypertarget{statistical-models}{%
+\subsection{Statistical models}\label{statistical-models}}
+
+Since the outcome variable is a count variable, a Poisson model or a negative binomial model is a natural choice for this type of outcome variable (Lord and Mannering \protect\hyperlink{ref-lord2010statistical}{2010}). However, these two models are less likely to fully account for the variance across drivers. Therefore, I propose to use a Gamma-Poisson model to examine the association between crashes and SCEs. Here is how the proposed Gamma-Poisson model will be implemented:
 
 Let us assume that:
 
@@ -738,11 +752,11 @@ Then we have:
 
 \[X \sim \text{Gamma-Poisson}(\alpha, \beta)\]
 
-The Gamma-Poisson distribution is a \(\alpha\)-parameter distribution, with the probability mass function of:
+The Gamma-Poisson distribution is a \(\alpha\)-parameter distribution, with the \(\alpha\) as a measure of overdispersion. The Gamma-Poisson distribution has the probability mass function of:
 
 \[f(x) = \frac{\Gamma(x + \beta)\alpha^x}{\Gamma(\beta)(1 + \alpha)^{\beta + x}x!}, \quad x = 0, 1, 2, \dots\]
 
-The mean and variance are:
+The mean and variance of a Gamma-Poisson distribution are:
 
 \[
 \begin{aligned}
@@ -752,14 +766,15 @@ V(X) & = \alpha\beta + \alpha^2\beta\\
 \end{aligned}
 \]
 
-where \(\alpha\) measures the overdispersion.
+The log-linear Gamma-Poisson model will be specified as:
 
-We might assume that:
 \[
-\log\beta = \mathbf{X\gamma}, \; \text{and } \alpha \text{ is fixed}
+\log\beta = \mathbf{X\gamma} - \log m,
 \]
 
-and \(\alpha\) is a fixed value.
+where \(\mathbf{X}\) is the predictor variables matrix, including the percent of night driving and the age of the drivers, \(\mathbf{\gamma}\) is the associated \(2*1\) parameter vector, \(m\) is the total miles driven as an offset term in the Poisson distribution, and \(\alpha\) is a fixed overdispersion parameter that does not depend on any covariates.
+
+All data reduction, cleaning, and statistical analysis will be done on the RStudio Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers (Center \protect\hyperlink{ref-OSC1987}{1987}). The Bayesian statistical models will be conducted using the \texttt{rstan} package in R 3.5.1 (Stan Development Team \protect\hyperlink{ref-rstancitation}{2018}; R Core Team \protect\hyperlink{ref-Rcitation}{2018}).
 
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
@@ -1538,6 +1553,9 @@ Carpenter, Bob, Andrew Gelman, Matthew D Hoffman, Daniel Lee, Ben Goodrich, Mich
 \leavevmode\hypertarget{ref-cavuoto2017understanding}{}%
 Cavuoto, Lora, and Fadel Megahed. 2017. ``Understanding Fatigue: Implications for Worker Safety.'' \emph{Professional Safety} 62 (12): 16--19.
 
+\leavevmode\hypertarget{ref-OSC1987}{}%
+Center, Ohio Supercomputer. 1987. ``Ohio Supercomputer Center.'' \url{http://osc.edu/ark:/19495/f5s1ph73}.
+
 \leavevmode\hypertarget{ref-chang2005data}{}%
 Chang, Li-Yen, and Wen-Chieh Chen. 2005. ``Data Mining of Tree-Based Models to Analyze Freeway Accident Frequency.'' \emph{Journal of Safety Research} 36 (4): 365--75.
 
@@ -1913,6 +1931,9 @@ Quiroz, Matias, Minh-Ngoc Tran, Mattias Villani, Robert Kohn, and Khue-Dung Dang
 \leavevmode\hypertarget{ref-quirozsubsampling}{}%
 Quiroz, Matias, Mattias Villani, Robert Kohn, Minh-Ngoc Tran, and Khue-Dung Dang. n.d. ``Subsampling Mcmc-an Introduction for the Survey Statistician.'' \emph{Sankhya A}, 1--37.
 
+\leavevmode\hypertarget{ref-Rcitation}{}%
+R Core Team. 2018. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
+
 \leavevmode\hypertarget{ref-rifaat2012severity}{}%
 Rifaat, Shakil Mohammad, Richard Tay, and Alexandre De Barros. 2012. ``Severity of Motorcycle Crashes in Calgary.'' \emph{Accident Analysis \& Prevention} 49: 44--49.
 
@@ -1954,6 +1975,9 @@ Solomon, Andrew J, John T Doucette, Elizabeth Garland, and Thomas McGinn. 2004. 
 
 \leavevmode\hypertarget{ref-sparrow2016naturalistic}{}%
 Sparrow, Amy R, Daniel J Mollicone, Kevin Kan, Rachel Bartels, Brieann C Satterfield, Samantha M Riedy, Aaron Unice, and Hans PA Van Dongen. 2016. ``Naturalistic Field Study of the Restart Break in Us Commercial Motor Vehicle Drivers: Truck Driving, Sleep, and Fatigue.'' \emph{Accident Analysis \& Prevention} 93: 55--64.
+
+\leavevmode\hypertarget{ref-rstancitation}{}%
+Stan Development Team. 2018. ``RStan: The R Interface to Stan.'' \url{http://mc-stan.org/}.
 
 \leavevmode\hypertarget{ref-staton2016road}{}%
 Staton, Catherine, Joao Vissoci, Enying Gong, Nicole Toomey, Rebeccah Wafula, Jihad Abdelgadir, Yi Zhou, et al. 2016. ``Road Traffic Injury Prevention Initiatives: A Systematic Review and Metasummary of Effectiveness in Low and Middle Income Countries.'' \emph{PLoS One} 11 (1): e0144971.

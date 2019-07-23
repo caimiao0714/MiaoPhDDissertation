@@ -6,7 +6,7 @@ Data sources
 
 ### Real-time ping
 
-The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-5 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved.
+The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved.
 
 ### Truck crashes and SCEs
 
@@ -51,16 +51,6 @@ The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeo
 A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
 
 
-Data Cleaning
--------------
-
-In order to make the MCMC estimation in Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to *trips* and *shifts*:
-
-- For each of the truck drivers, if the ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different *trips*. 
-
-- These trips data will be further divided into different *shifts* if the specific driver was not moving for eight hours. 
-
-Therefore, a *trip* is defined as a continuous period of driving without stopping for more than 20 minutes. a *shift* is defined as a long period of driving without stopping for more than 8 hours. 
 
 <!--
 . 
