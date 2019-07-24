@@ -10,12 +10,10 @@ If no sustained action is taken, road injuries are predicted to be the seventh l
 Compared to the victims who were claimed lives by diseases, people killed in traffic are mostly   early- or middle-aged, particularly those aged 4 to 44 years old [@litman2013transportation; @evans2014traffic].
 Without traffic accidents, these victims could have much longer lives with normal health.
 
-
 Apart from fatal deaths, road traffic injuries were also reported to be the cause of 50 million non-fatal life injuries and approximately 75.5 million disability-adjusted life years globally [@staton2016road].
 In high-income countries, the majority of non-death costs were attributable to non-fatal crashes, with 2% of non-fatal events leading to over 40% of life-time medical costs [@ameratunga2006road].
 Besides non-fatal injuries, traffic safety is a major economic burden. 
 The global economic losses attributable to transportation safety were estimated to be 518 billion the United States Dollars (USD), which accounted for 1% the gross domestic product (GDP) in low-income countries, 1.5% in middle-income countries, and 2% in high-income countries [@peden2004world; @dalal2013economics]. 
-
 
 Specifically in the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40% of all fatal occupational injuries in 2017 [@bols]. 
 The National Safety Council reported that the number of deaths attributable to car crashes will be at least 40,000 in 2018, which is the third straight year that this number is over 40,000 [@nsc2018]. 
