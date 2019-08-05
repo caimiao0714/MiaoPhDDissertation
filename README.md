@@ -2,7 +2,7 @@
 
 To do list 2019-07-24:
 
-- [ ] Subsampling MCMC,
+- [x] ~~Subsampling MCMC,~~
 - [ ] Conceptual framework,
 - [ ] Research aims
 - [x] ~~Simulation for random-effects Poisson regression: check perfect fit?~~
