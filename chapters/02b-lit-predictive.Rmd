@@ -200,9 +200,15 @@ The No-U-Turn Sampler (NUTS) proposed by @hoffman2014no solves the difficulty of
 
 ### Subsampling MCMC
 
+With rapid development of automatically data collection system, more tall and wide data are becoming commonly available to researchers. A tall dataset has many observations or rows, while a wide dataset has many variables or columns. The emergence of big data poses a threat to the existing MCMC algorithms, as most of them require that the full data likelihood be evaluated at each iteration, which will be computationally intensive in the case of tall and wide data. One way to tackle the computational burden of evaluating the full data likelihood is subsampling MCMC, which means evaluate the likelihood based on a subset of data. 
+
+The first well-known subsampling MCMC algorithm is the firefly MCMC by @maclaurin2015firefly, which introduces an auxiliary variable for each observation that can be turned on or off to determine if the observation should be included in likelihood evaluation. Starting from this firefly MCMC algorithm, an increasing number of studies have been published on subsampling MCMC algorithms. @korattikara2014austerity proposed to use a sequential hypothesis test to generate *accept-reject samples* with high confidence on a fraction of data. Similar studies that use accept-reject samples include @bardenet2014towards and @bardenet2017markov. Another category of widely discussed subsampling MCMC algorithm is Pseudo-Marginal MCMC (PMCMC), which replaces the likelihood or the natural logarithm of likelihood with an unbiased estimate from a subset of data based on control variates at each MCMC iteration [@quiroz2018subsampling; @quiroz2019speeding]. They proposed two types of bias-correction log-likelihood estimates: a) parameter expanded control variates via Taylor expansion around a reference value in parameter space, and b) data expanded control variate via Taylor expansion around the nearest centroid in data space. Other subsampling MCMC algorithms include Block-Poisson estimator [@quiroz2016block], delayed acceptance [@quiroz2018speeding], noisy MCMC [@alquier2016noisy], and zig-zag process MCMC [@bierkens2019zig].
+
+Apart from the subsampling MCMC algorithms being mentioned, subsampling MCMC using the Hamiltonian mechanism deserves special attention as it effectively explores the parameter space.
 
 [Stochastic Gradient HMC](https://blog.csdn.net/u013841458/article/details/82495450)
 
-[@quirozsubsampling; @gunawan2018subsampling; @quiroz2016block; @quiroz2018speeding; @quiroz2018speeding1; @dang2017hamiltonian; @quiroz2015bayesian]
 
 @chen2014stochastic
+
+@dang2019hamiltonian

@@ -26,8 +26,8 @@
 \contentsline {section}{\numberline {2.6}Scalable Bayesian models}{32}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}Hamiltonian Monte Carlo (HMC)}{33}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}Subsampling MCMC}{36}{subsection.2.6.2}
-\contentsline {section}{\numberline {2.7}Conceptual framework}{36}{section.2.7}
-\contentsline {section}{\numberline {2.8}Research aims}{37}{section.2.8}
+\contentsline {section}{\numberline {2.7}Conceptual framework}{37}{section.2.7}
+\contentsline {section}{\numberline {2.8}Research aims}{38}{section.2.8}
 \contentsline {chapter}{\numberline {3}METHODS}{39}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data sources}{39}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Real-time ping}{39}{subsection.3.1.1}
