@@ -20,12 +20,16 @@ Once some thresholds with regard to the driving behavior were met, the sensor wi
 
 <!-- There were 12,458 critical events created by the 496 truck drivers during the study period.-->
 
-### Weather data from the `DarkSky API`
+### Driver demographics
 
-Weather variables, including *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*, will be retrieved from the Dark Sky API. 
-The DarkSky API allows the users to query historic minute-by-minute weather data anywhere on the globe [@darksky]. 
-According to the official document, the Dark Sky API is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. 
-Among several different weather data providers I tested, the Dark Sky API provides the most accurate and complete weather variables.
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
+
+### Weather data from the `Dark Sky API`
+
+Weather variables, including *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*, will be retrieved from the `Dark Sky API`. 
+The `Dark Sky API` allows the users to query historic minute-by-minute weather data anywhere on the globe [@darksky]. 
+According to the official document, the `Dark Sky API` is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. 
+Among several different weather data providers I tested, the `Dark Sky API` provides the most accurate and complete weather variables.
 
 To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. 
 We will also round the time to the nearest hour and ignore those stopping pings. 
@@ -45,10 +49,6 @@ We will use real-time longitudes and latitudes as the center point and defined a
 If the $100\times100$ meters box is too small to have any road geometry data, we will expand the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. 
 If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. 
 The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).
-
-### Driver demographics
-
-A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
 
 
 
