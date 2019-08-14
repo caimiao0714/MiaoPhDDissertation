@@ -7,7 +7,6 @@ There are two cultures in current statistical or data science field, explanation
 Traffic safety field has a pro-explanation culture, although it is shifting towards a pro-prediction by adopting cutting-edge machine learning and deep learning algorithms. The most commonly used statistical models for are logistic regression and Poisson regression. Logistic regression is commonly used to predict crash likelihood (probability) using real-time data, for example traffic and weather at 5-minute intervals [@wang2017safety]. In contrast, Poisson regression is used to predict the crash frequency (the number of crashes) within a time period using aggregated data such as average data traffic and precipitation. I will briefly introduce the two models and then compare the two cultures of predictive models in statistical and machine learning perspective.
 
 The parameterization of a binary logistic regression is shown in Model \@ref(eq:logit).
-
 \begin{equation}
 \begin{split}
 Y_i & \sim \text{Bernoulli}(p_i) \\
@@ -89,7 +88,6 @@ Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
 (\#eq:hierarchicalbayes)
 \end{split}
 \end{equation}
-
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups [@mcelreath2018statistical]. This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data [@gelman2006data; @lambert2018student].
 
 Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchical structure.
@@ -102,7 +100,6 @@ In modern statistics, Bayesian inference almost indispensably relies on Markov c
 P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right) = P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
 (\#eq:markovchain)
 \end{equation}
-
 Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution [@van2018simple]. It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science [@craiu2014bayesian].  The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals). 
 
 The first proposal of using MCMC dates to the paper by @metropolis1953equation, in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter $\theta$. From a pre-defined symmetric proposal probability distribution  $p(\theta | \mathbf{x})$, it then draw a proposal parameter value $\theta^{(\text{prop})}$, which only depends on the current parameter value $\theta^{(t)}$. This proposal value will be accepted with the probability of $\alpha$ defined in Equation \@ref(eq:metropolisalpha).

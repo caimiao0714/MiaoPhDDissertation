@@ -377,7 +377,6 @@ There are two cultures in current statistical or data science field, explanation
 Traffic safety field has a pro-explanation culture, although it is shifting towards a pro-prediction by adopting cutting-edge machine learning and deep learning algorithms. The most commonly used statistical models for are logistic regression and Poisson regression. Logistic regression is commonly used to predict crash likelihood (probability) using real-time data, for example traffic and weather at 5-minute intervals (Wang, Abdel-Aty, and Lee \protect\hyperlink{ref-wang2017safety}{2017}). In contrast, Poisson regression is used to predict the crash frequency (the number of crashes) within a time period using aggregated data such as average data traffic and precipitation. I will briefly introduce the two models and then compare the two cultures of predictive models in statistical and machine learning perspective.
 
 The parameterization of a binary logistic regression is shown in Model \eqref{eq:logit}.
-
 \begin{equation}
 \begin{split}
 Y_i & \sim \text{Bernoulli}(p_i) \\
@@ -452,7 +451,6 @@ Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
 \label{eq:hierarchicalbayes}
 \end{split}
 \end{equation}
-
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups (McElreath \protect\hyperlink{ref-mcelreath2018statistical}{2018}). This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data (Gelman and Hill \protect\hyperlink{ref-gelman2006data}{2006}; Lambert \protect\hyperlink{ref-lambert2018student}{2018}).
 
 Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchical structure.
@@ -465,7 +463,6 @@ In modern statistics, Bayesian inference almost indispensably relies on Markov c
 P\left(X_{i}=x_{i} | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{i-1}=x_{i-1}\right) = P\left(X_{i}=x_{i} | X_{i-1}=x_{i-1}\right)
 \label{eq:markovchain}
 \end{equation}
-
 Integrating Markov chains and Monte Carlo simulations, the MCMC method can characterize an unknown unconditional distribution without knowing its all mathematical properties by sampling from the distribution (Van Ravenzwaaij, Cassey, and Brown \protect\hyperlink{ref-van2018simple}{2018}). It has been widely applied in multiple fields such as statistics, physics, chemistry, and computer science (Craiu and Rosenthal \protect\hyperlink{ref-craiu2014bayesian}{2014}). The most notable application of MCMC is probably in Bayesian inference, in which it has been used to draw samples from the posterior distribution and calculate relevant statistics (such as mean, standard deviation, and intervals).
 
 The first proposal of using MCMC dates to the paper by Metropolis et al. (\protect\hyperlink{ref-metropolis1953equation}{1953}), in which they tried to solve an intractable integral with a random walk MCMC. The Metropolis algorithm starts with a randomly defined initial value of the parameter \(\theta\). From a pre-defined symmetric proposal probability distribution \(p(\theta | \mathbf{x})\), it then draw a proposal parameter value \(\theta^{(\text{prop})}\), which only depends on the current parameter value \(\theta^{(t)}\). This proposal value will be accepted with the probability of \(\alpha\) defined in Equation \eqref{eq:metropolisalpha}.
@@ -609,7 +606,7 @@ Roshandel, Zheng, and Washington (\protect\hyperlink{ref-roshandel2015impact}{20
 
 As shown in Figure \ref{fig:conceptmodel}, the conceptual model in this study is based on the framework proposed by Stern et al. (\protect\hyperlink{ref-stern2019data}{2019}).
 
-\begin{figure}
+\begin{figure}[H]
 
 {\centering \includegraphics[width=\linewidth]{figs/conceptual_model} 
 
@@ -716,7 +713,7 @@ The R code to retrieve road geometry data can be found in Appendix \ref{roadgeom
 \hypertarget{data-aggregation-and-merging}{%
 \section{Data aggregation and merging}\label{data-aggregation-and-merging}}
 
-\begin{figure}
+\begin{figure}[H]
 
 {\centering \includegraphics[width=\linewidth]{figs/Data_merging} 
 
@@ -844,33 +841,31 @@ Where N is the number of critical events for driver \(d(i)\) in time interval \(
 \hypertarget{non-homogeneous-poisson-process-nhpp}{%
 \subsection{Non-homogeneous Poisson process (NHPP)}\label{non-homogeneous-poisson-process-nhpp}}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=\linewidth]{figs/NHPP_arrow_plot} 
+{\centering \includegraphics[width=0.5\linewidth]{figs/NHPP_arrow_plot} 
 
 }
 
 \caption{An arrow plot of time to SCEs in each shift}\label{fig:arrowplot}
 \end{figure}
 
-\textbf{Mean function of a point process}:
+A point process is a stochastic model which describes the occurrence of events in a given period (Rigdon and Basu \protect\hyperlink{ref-rigdon2000statistical}{2000}). The mean function of a point process is \(\Lambda(t) = E(N(t))\), where \(\Lambda(t)\) is the expected number of failures through time \(t\). Two notations that are important in reliability models are \emph{Rate of Occurence of Failures (ROCOF)} and \emph{Intensity function}.
 
-\[\Lambda(t) = E(N(t))\]
-
-\(\Lambda(t)\) is the expected number of failures through time \(t\).
-
-\textbf{Rate of Occurence of Failures (ROCOF)}: When \(\Lambda\) is differentiable, the ROCOF is:
-
-\[\mu(t) = \frac{d}{dt}\Lambda(t)\]
-The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
-
-\textbf{Intensity function}: The intensity function of a point process is
-
-\[\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\]
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \emph{ROCOF}: When the mean function \(\Lambda(t)\) is differentiable, the ROCOF is:
+  \[\mu(t) = \frac{d}{dt}\Lambda(t)\]
+  The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
+\item
+  \emph{Intensity function}: The intensity function of a point process is
+  \[\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\]
+\end{enumerate}
 
 When there is no simultaneous events, ROCOF is the same as intensity function.
 
-\textbf{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+\emph{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
 \[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\],
 Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP).
 
@@ -1073,8 +1068,8 @@ Chapter 6: Discussion
 \hypertarget{truck-crashes-and-critical-events}{%
 \chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events}}
 
-\hypertarget{three-statistical-models-predicting-truck-critical-events}{%
-\chapter{THREE STATISTICAL MODELS PREDICTING TRUCK CRITICAL EVENTS}\label{three-statistical-models-predicting-truck-critical-events}}
+\hypertarget{three-models}{%
+\chapter{THREE MODELS}\label{three-models}}
 
 \hypertarget{hierarchical-logistic-model}{%
 \section{Hierarchical logistic model}\label{hierarchical-logistic-model}}
@@ -1125,18 +1120,8 @@ Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity fun
 \hypertarget{bayesian-estimation-based-on-simulated-data-1}{%
 \subsection{Bayesian estimation based on simulated data}\label{bayesian-estimation-based-on-simulated-data-1}}
 
-\hypertarget{hierarchical-bayesian-models-using-subsampling-markove-chain-monte-carlo-methods}{%
-\chapter{HIERARCHICAL BAYESIAN MODELS USING SUBSAMPLING MARKOVE CHAIN MONTE CARLO METHODS}\label{hierarchical-bayesian-models-using-subsampling-markove-chain-monte-carlo-methods}}
-
-\begin{itemize}
-\tightlist
-\item
-  Comparison with results given by frequentist models using REML (\texttt{lmer4})
-\item
-  Comparison with results given by Bayesian models using HMC (\texttt{rstan})
-\item
-  Comparison with results given Bayesian models using INLA (\texttt{INLA})
-\end{itemize}
+\hypertarget{jump-point-nhpp}{%
+\chapter{Jump-point NHPP}\label{jump-point-nhpp}}
 
 \hypertarget{discussion}{%
 \chapter{DISCUSSION}\label{discussion}}
@@ -1835,6 +1820,9 @@ R Core Team. 2018. \emph{R: A Language and Environment for Statistical Computing
 
 \leavevmode\hypertarget{ref-rifaat2012severity}{}%
 Rifaat, Shakil Mohammad, Richard Tay, and Alexandre De Barros. 2012. ``Severity of Motorcycle Crashes in Calgary.'' \emph{Accident Analysis \& Prevention} 49: 44--49.
+
+\leavevmode\hypertarget{ref-rigdon2000statistical}{}%
+Rigdon, Steven E, and Asit P Basu. 2000. \emph{Statistical Methods for the Reliability of Repairable Systems}. Wiley New York.
 
 \leavevmode\hypertarget{ref-roshandel2015impact}{}%
 Roshandel, Saman, Zuduo Zheng, and Simon Washington. 2015. ``Impact of Real-Time Traffic Characteristics on Freeway Crash Occurrence: Systematic Review and Meta-Analysis.'' \emph{Accident Analysis \& Prevention} 79: 198--211.

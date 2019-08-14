@@ -17,5 +17,8 @@ description: "This is Miao Cai's dissertation."
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center", out.width="\\linewidth")
+knitr::opts_chunk$set(echo = TRUE, 
+                      fig.align = "center", 
+                      out.width="\\linewidth",
+                      fig.pos = 'H')
 ```
