@@ -50,6 +50,12 @@ If the $100\times100$ meters box is too small to have any road geometry data, we
 If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. 
 The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).
 
+Data aggregation and merging
+----------------------------
+
+```{r fig.cap='Flow chart of data aggregation and merging'}
+knitr::include_graphics("figs/Data_merging.png")
+```
 
 
 <!--

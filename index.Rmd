@@ -1,5 +1,5 @@
 --- 
-title: "Modeling Truck Drivers' Critical Events: Efficient Bayesian Hierarchical Models"
+title: "Modeling Truck Drivers' Safety Critical Events: Efficient Bayesian Hierarchical Statistical and Reliability Models"
 author: "Miao Cai"
 date: "`r Sys.Date()`"
 output: 

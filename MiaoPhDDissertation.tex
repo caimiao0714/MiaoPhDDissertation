@@ -111,7 +111,7 @@
 \begin{titlepage}
 \vspace{1cm}
 \begin{center}
-\linespread{2}\normalsize \bfseries \MakeUppercase{Modeling Truck Drivers' Critical Events: Efficient Bayesian Hierarchical Models}
+\linespread{2}\normalsize \bfseries \MakeUppercase{Modeling Truck Drivers' Safety Critical Events: Efficient Bayesian Hierarchical Statistical and Reliability Models}
 \end{center}
 
 \vspace{7cm}
@@ -611,6 +611,8 @@ Wu and Jovanis (\protect\hyperlink{ref-wu2012crashes}{2012})
 
 Wu and Jovanis (\protect\hyperlink{ref-wu2013defining}{2013})
 
+Stern et al. (\protect\hyperlink{ref-stern2019data}{2019})
+
 Previous studies suggested that driver behavior can contribute to over 90\% of crashes (Dingus et al. \protect\hyperlink{ref-dingus2016driver}{2016}; Guo \protect\hyperlink{ref-guo2019statistical}{2019}). A recent report by the NHTSA (\protect\hyperlink{ref-nhtsa2013national}{2013}) revealed that human error was the criticval reason for 93\% of crashes.
 
 \hypertarget{research-aims}{%
@@ -708,6 +710,19 @@ If the \(100\times100\) meters box is too small to have any road geometry data, 
 If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output.
 The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
 
+\hypertarget{data-aggregation-and-merging}{%
+\section{Data aggregation and merging}\label{data-aggregation-and-merging}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"figs/Data_merging.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=44.44in]{figs/Data_merging} \caption{Flow chart of data aggregation and merging}\label{fig:unnamed-chunk-1}
+\end{figure}
+
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
 
@@ -778,17 +793,16 @@ The purpose of aim 2 is to develop three hierarchical Bayesian statistical and r
 \hypertarget{logistic-regression}{%
 \subsection{Logistic regression}\label{logistic-regression}}
 
-Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression. I will categorize the number of safety events during a trip into a binary variable \(Y\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. Since each trip \(i\) has a different travel time \(t_i\), we derived the Bernoulli distribution parameter \(p_i\) using a Poisson distribution, with the parameter \(\lambda_i\) represented by a linear combination of \(\beta_i\)~and \(x_i\).
+Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression. I will categorize the number of safety events during a trip into a binary variable \(Y_{i, d}\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip.
 \[
 \begin{split}
 Y_{i, d} &\sim \text{Bernoulli}(p_i)\\
 \log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D_i}\\
-\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D
+\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
+\beta_{1, d} &\sim N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
 \label{eq:hierarchicallogit}
 \end{split}
 \]
-
-Here the trip is indexed by \(i\), \(Y_i\) is the binary outcome variable of whether at least one critical event occurred in trip \(i\); \(d(i)\) is the driver for trip \(i\), \(\beta_{0, d(i)}\) is the random intercept for driver \(d(i)\); \(\beta_{1, d(i)}\) is the random slope for the cumulative time (CT\(i\)) of driving in the shift (the sum of driving time for all previous trips) for driver \(d(i)\); \(\mathbf{W}\) is a vector of external environment fixed effects, including precipitation intensity and probability, visibility, and whether it was sunrise or sunset time; \(\mathbf{D}_i\) are driver level fixed effects, including age group and business unit; \(t_i\) is the travel time for the trip \(i\).
 
 We assume that the drivers are random effects, and we assume exchangeable priors of the form
 \[
@@ -817,35 +831,14 @@ Since logistic regression ignores the intensity of the critical events with any 
 \begin{align}
 \label{pois}
 \begin{split}
-\text{N} & \sim \text{POIS}(t\cdot\lambda)\\
-\lambda_{d(i)} & =\exp(\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT} + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D})
+\text{N} & \sim \text{Poisson}(t\cdot\lambda)\\
+\lambda_{i, d(i)} & =\exp(\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT} + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D})
 \end{split}
 \end{align}
 Where N is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with parameter \(\lambda\). The other variables are identical as those described in Equation .
 
-\textbf{Censored Poisson Regression}
-
-In real data, some trips have over 40 critical events and these values cannot be true, so we assume these data points are censored at 5, which means any trips with more than 5 critical events are not observed, but we do know that these unobserved values are more than 5.
-
-For those trips with less than 5 critical events, we still assume the number of critical events has a Poisson distribution. However, we assume the number of critical events of trips with over 5 critical events are right censored at 5. We can integrate out these censored values by:
-
-\begin{align*}
-Pr(Y > 5) & = 1 - Pr(Y \leq 5)\\
-& = 1 - \sum_{i=0}^5\Lambda(t\cdot\lambda)
-\end{align*}
-Where \(\Lambda\) is the Poisson cumulative distribution function.
-
-The log joint density function is then:
-
-\begin{align*}
-\log\prod_{i=1}^nPr(Y_i > 5) & = \log\Big(1 - \sum_{i=0}^5\Lambda(t\cdot\lambda)\Big)^n\\
-& = n\log\Big(1 - \sum_{i=0}^5\Lambda(t\cdot\lambda)\Big)
-\end{align*}
-
-This can be straightforwardly evaluated in \texttt{Stan} using the \texttt{poisson\_lccdf} function.
-
-\hypertarget{non-homogeneous-poisson-process}{%
-\subsection{Non-homogeneous Poisson process}\label{non-homogeneous-poisson-process}}
+\hypertarget{non-homogeneous-poisson-process-nhpp}{%
+\subsection{Non-homogeneous Poisson process (NHPP)}\label{non-homogeneous-poisson-process-nhpp}}
 
 \textbf{Mean function of a point process}:
 
@@ -901,6 +894,30 @@ l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\be
 & = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{\tau}{\theta}\Big)^\beta
 \end{aligned}
 \end{equation}
+
+Despite Poisson regression consider the frequency of SCEs in a given interval, it assumes that the intensity of events is a constant, which may not be true in real-life transportation practice. Here we presented a reliability model, a non-homogeneous Poisson process (NHPP) with a power law process (PLP) based on the merged shifts data set. we aim to answer if SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
+
+Let \(T_{d, s, i}\) denote the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
+
+\begin{itemize}
+\item $i = 1, 2, \cdots, n_{d, S_d}$,
+\item $s = 1, 2, \cdots, S_d$,
+\item $d = 1, 2, \cdots, D$.
+\end{itemize}
+
+We assumes that the times of critical events within the \(d\)-th driver's \(s\)-th shift were generated from a PLP, with a fixed shape parameter \(\beta\) and varying scale parameters \(\theta_{d, s}\) across drivers \(d\) and shifts \(s\). In a PLP, the intensity function of the NHPP is \(\lambda(t) \frac{\beta}{\theta}(\frac{t}{\theta})^{\beta-1}\). The model is described in Equation\textasciitilde{}\ref{eq:nhpp}.
+\begin{equation}\label{eq:nhpp}
+\begin{aligned}
+  T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{PLP}(\beta, \theta_{d, s})\\
+  \beta & \sim \text{Gamma}(1, 1)\\
+  \log\theta_{d, s} &= \gamma_{0d} + \gamma_{1}x_{d, s, 1} + \gamma_{2}x_{d, s, 2} + \cdots + \gamma_{k}x_{d, s, k}\\
+  \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
+  \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
+  \mu_0 &\sim N(0, 10^2) \\
+  \sigma_0 &\sim \text{Gamma}(1, 1)
+\end{aligned}
+\end{equation}
+The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\beta > 1\), the intensity function \(\lambda(t)\) is increasing, the reliability of drivers is decreasing, and SCEs are becoming more frequent; when \(\beta < 1\), the intensity function \(\lambda(t)\) is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when \(\beta = 1\), the NHPP is simplified as a homogeneous Poisson process with the intensity of \(1/\theta\). The \(\theta_{d, s}\) is a scale parameter that does not reflect reliability changes.
 
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
