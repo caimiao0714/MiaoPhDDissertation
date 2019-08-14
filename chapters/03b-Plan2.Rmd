@@ -13,15 +13,13 @@ The purpose of aim 2 is to develop three hierarchical Bayesian statistical and r
 Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression. I will categorize the number of safety events during a trip into a binary variable $Y_{i, d}$ of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. 
 $$
 \begin{split}
-Y_{i, d} &\sim \text{Bernoulli}(p_i)\\
-\log\frac{p_{i, d}}{1-p_{i, d}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D_i}\\
-\beta_{0, d} &\sim N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
-\beta_{1, d} &\sim N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
+Y_{i} &\sim \text{Bernoulli}(p_{i})\\
+\log\frac{p_{i}}{1-p_{i}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
+\beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
+\beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
 (\#eq:hierarchicallogit)
 \end{split}
 $$
-
-
 
 We assume that the drivers are random effects, and we assume exchangeable priors of the form
 \[
@@ -32,31 +30,38 @@ and
 \beta_{1, d(1)}, \beta_{1, d(2)}, \ldots , \beta_{1, d(n)} \sim \text{i.i.d.} N(\mu_1,\sigma_1^2)
 \]
 The parameters $\mu_0, \sigma_0, \mu_1$, and $\sigma_1$ are hyperparameters with priors. Since we do not have much prior knowledge on the hyperparameters, we assigned diffuse priors for these hyperparameters.
-\begin{align}
-	\label{prior}
-	\begin{split}
-		\mu_0 & \sim N(0, 10^2)\\
-		\mu_1 & \sim N(0, 10^2)\\
-		\sigma_0 & \sim \text{GAMMA}(1, 1)\\
-		\sigma_1 & \sim \text{GAMMA}(1, 1)
-	\end{split}
-\end{align}
+$$
+\begin{split}
+Y_{i} &\sim \text{Bernoulli}(p_{i})\\
+\log\frac{p_{i}}{1-p_{i}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
+\beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
+\beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
+(\#eq:priors)
+\end{split}
+$$
 Since $\mu_0$ and $\mu_1$ can be any real number, so we assigned two normal distributions with mean of 0 and standard deviation of 10 as the priors for these two hyperparameters. In comparison, $\sigma_0$ and $\sigma_1$ must be strictly positive, so we assigned GAMMA$(1, 1)$ with wide distribution on positive real numbers as their priors.
 
 ### Poisson regression
 
 Since logistic regression ignores the intensity of the critical events with any number greater than 0 categorized into 1, I adopt a Bayesian hierarchical Poisson regression to model the effect of cumulative driving time on the occurrence of critical events. Each driver has a random intercept and a random slope on cumulative driving time.
-\begin{align}
-\label{pois}
+$$
 \begin{split}
-\text{N} & \sim \text{Poisson}(t\cdot\lambda)\\
-\lambda_{i, d(i)} & =\exp(\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT} + \mathbf{\xi} \cdot \mathbf{W} + \mathbf{\nu} \cdot \mathbf{D})
+Y_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
+\log\lambda_{i} & =\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
+\beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
+\beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
+(\#eq:hierarchicalpoisson)
 \end{split}
-\end{align}
+$$
 Where N is the number of critical events for driver $d(i)$ in time interval $j$, and it has a Poisson distribution with parameter $\lambda$. The other variables are identical as those described in Equation .
 
 
 ### Non-homogeneous Poisson process (NHPP)
+
+```{r arrowplot, fig.cap='An arrow plot of time to SCEs in each shift', echo=FALSE, eval=TRUE}
+knitr::include_graphics("figs/NHPP_arrow_plot.png")
+```
+
 
 **Mean function of a point process**: 
 
