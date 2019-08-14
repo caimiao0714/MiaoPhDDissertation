@@ -53,7 +53,7 @@ The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeo
 Data aggregation and merging
 ----------------------------
 
-```{r fig.cap='Flow chart of data aggregation and merging'}
+```{r fig.cap='Flow chart of data aggregation and merging', echo=FALSE, eval=TRUE}
 knitr::include_graphics("figs/Data_merging.png")
 ```
 
