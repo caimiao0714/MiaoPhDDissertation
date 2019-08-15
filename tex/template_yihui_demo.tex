@@ -13,14 +13,27 @@ $endif$
 %\usepackage[automark]{scrpage2}
 \usepackage{textcomp}
 \usepackage{verbatim}
-\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true, linkcolor=blue, citecolor=red, urlcolor=blue]{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=red, urlcolor=blue]{hyperref}
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 \usepackage{fancyhdr}
 \usepackage{soul}
 \usepackage{makeidx}
+\usepackage{emptypage}
 
+% Chapter title style
+\usepackage{titlesec}
+\titleformat{\chapter}
+   [display] %possible values are hang, leftmargin, drop, etc.
+   {\Huge\bfseries} % format to be applied to the whole title
+   {\MakeUppercase{\chaptertitlename} \thechapter} %label setting
+   {0pt} %horizontal separation between label and title body
+   {\MakeUppercase} %code preceding the title body
+   [\vspace{1ex}\titlerule]
+
+\usepackage{apacite}
 \usepackage{amsmath}
 \usepackage{amssymb}
 %\usepackage{url}
@@ -33,7 +46,7 @@ $endif$
 \usepackage{setspace}
 \usepackage{subfigure}
 \usepackage{titleref}
-\usepackage[sort&compress]{natbib}
+\usepackage{natbib}%[sort&compress]
 %\usepackage[round,authoryear]{natbib}
 \numberwithin{equation}{chapter}
 \usepackage[bf]{caption}
@@ -64,7 +77,7 @@ $endif$
 
 \renewcommand{\headrulewidth}{0pt}
 \pagestyle{fancy}
-\setlength\bibindent{4em}
+%\setlength\bibindent{4em}
 
 \begin{document}
 
@@ -96,10 +109,13 @@ Public Health Studies, Ph.D.\\
 \end{center}
 
 \end{titlepage}
-\clearpage
 
+
+%% -----------------------------------------------------------------------------
+%% copy right page
+%% -----------------------------------------------------------------------------
+\cleardoublepage
 \pagenumbering{roman}
-
 \begin{bottompar}
 \begin{center}
 \textcopyright \xspace Copyright by\\
@@ -110,6 +126,8 @@ ALL RIGHTS RESERVED\\
 \end{center}
 \end{bottompar}
 
+
+\cleardoublepage
 \topskip0pt
 \vspace*{\fill}
 \underline{COMMITTEE IN CHARGE OF CANDIDACY:}
@@ -138,10 +156,12 @@ $body$
 
 
 
-
+%\bibliographystyle{apacite}
+%\bibliography{bib/bib}
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 
 \backmatter
-\printindex
+%\printindex
 
 
 \end{document}

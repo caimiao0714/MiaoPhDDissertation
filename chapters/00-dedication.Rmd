@@ -1,15 +1,12 @@
-# Dedication {-}
+Dedication {-}
+==========
 
 I dedicate this dissertation to my parents, Zhimin Cai and Guizhen Xu, who believe in the power of higher education, hard work, and always support me.
 
-# Acknowledgement {-}
+Acknowledgement {-}
+===============
 
 I want to thank my PhD mentor and committee chair Dr. Steven E. Rigdon, committee members Dr. Hong Xian and Dr. Fadel Megahed.
-
-
-
-
-
 
 
 
@@ -21,5 +18,10 @@ I want to thank my PhD mentor and committee chair Dr. Steven E. Rigdon, committe
 
 
 \mainmatter
-
 \doublespacing
+
+<!--
+\doublespacing
+\singlespacing
+
+__>
