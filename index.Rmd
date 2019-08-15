@@ -8,9 +8,10 @@ output:
     latex_engine: xelatex
     citation_package: none
     keep_tex: yes
-    pandoc_args: [ "--csl", "AAP.csl" ]
+#    pandoc_args: [ "--csl", "AAP.csl" ]
 bibliography: [bib/bib.bib]
 #csl: [bib/AAP.csl]
+csl: nature.csl
 link-citations: yes
 site: bookdown::bookdown_site
 github-repo: caimiao0714/MiaoPhDDissertation

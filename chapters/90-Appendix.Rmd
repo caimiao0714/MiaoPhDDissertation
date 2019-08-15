@@ -127,8 +127,8 @@ dfcontainer12 = loop_data(start_index = 1)
 
 \doublespacing
 
-## Likelihood function of a NHPP
-
+Likelihood function of a NHPP {-}
+-----------------------------
 *The first event*: The cumulative density function (cdf) of time to the first event is $F(t_1)$: $$F_1(t_1) = P(T_1 \leq t_1) = 1 - S(t_1)$$.
 
 The survival function for the first event $S_1(t_1)$ is:
