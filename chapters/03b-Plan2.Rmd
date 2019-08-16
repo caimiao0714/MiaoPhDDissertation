@@ -112,11 +112,11 @@ l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\be
 Despite Poisson regression consider the frequency of SCEs in a given interval, it assumes that the intensity of events is a constant, which may not be true in real-life transportation practice. Here we presented a reliability model, a non-homogeneous Poisson process (NHPP) with a power law process (PLP) based on the merged shifts data set. we aim to answer if SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
 
 Let $T_{d, s, i}$ denote the time to the $d$-th driver's $s$-th shift's $i$-th critical event. The total number critical events of $d$-th driver's $s$-th shift is $n_{d,s}$. The ranges of these notations are: 
-\begin{itemize}
-\item $i = 1, 2, \cdots, n_{d, S_d}$,
-\item $s = 1, 2, \cdots, S_d$,
-\item $d = 1, 2, \cdots, D$.
-\end{itemize}
+
+- $i = 1, 2, \cdots, n_{d, S_d}$,
+- $s = 1, 2, \cdots, S_d$,
+- $d = 1, 2, \cdots, D$.
+
 We assumes that the times of critical events within the $d$-th driver's $s$-th shift were generated from a PLP, with a fixed shape parameter $\beta$ and varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$. In a PLP, the intensity function of the NHPP is $\lambda(t) \frac{\beta}{\theta}(\frac{t}{\theta})^{\beta-1}$. The model is described in Equation~\ref{eq:nhpp}.
 \begin{equation}\label{eq:nhpp}
 \begin{aligned}

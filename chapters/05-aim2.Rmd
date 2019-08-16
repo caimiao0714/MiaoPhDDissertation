@@ -47,7 +47,5 @@ $$\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{
 
 
 
-### 
-
 
 ### Bayesian estimation based on simulated data

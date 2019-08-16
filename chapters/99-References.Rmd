@@ -4,7 +4,8 @@
 Bibliography {-}
 ============
 \everypar{\hangafter=1 \setlength{\hangindent}{5em}}{\par}
-
+\setlength\parskip{0.8em}
+\setlength\parindent{0pt}
 <div id="refs"></div>
 
 

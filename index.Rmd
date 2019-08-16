@@ -10,8 +10,8 @@ output:
     keep_tex: yes
 #    pandoc_args: [ "--csl", "AAP.csl" ]
 bibliography: [bib/bib.bib]
-#csl: [bib/AAP.csl]
-csl: nature.csl
+csl: [bib/AAP.csl]
+#csl: nature.csl
 link-citations: yes
 site: bookdown::bookdown_site
 github-repo: caimiao0714/MiaoPhDDissertation
@@ -22,6 +22,6 @@ description: "This is Miao Cai's dissertation."
 knitr::opts_chunk$set(echo = TRUE, 
                       fig.align = "center", 
                       out.width="\\linewidth",
-                      fig.pos = 'h')
+                      fig.pos = 'ht')
 ```
 
