@@ -7,9 +7,3 @@ Bibliography {-}
 \setlength\parskip{0.8em}
 \setlength\parindent{0pt}
 <div id="refs"></div>
-
-
-\doublespacing
-Vita Auctoris {-}
-=============
-Miao Cai was born and raised in Xinzhou district, Wuhan, Hubei Province, China. 

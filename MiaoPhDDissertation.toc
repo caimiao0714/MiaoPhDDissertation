@@ -1,8 +1,8 @@
 \babel@toc {english}{}
 \contentsline {chapter}{Dedication}{v}{chapter*.1}
 \contentsline {chapter}{Acknowledgement}{vii}{chapter*.2}
-\contentsline {chapter}{List of Figures}{xi}{chapter*.4}
-\contentsline {chapter}{List of Tables}{xiii}{chapter*.5}
+\contentsline {chapter}{List of Figures}{xiii}{chapter*.4}
+\contentsline {chapter}{List of Tables}{xv}{chapter*.5}
 \contentsline {chapter}{\numberline {1}INTRODUCTION}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Transportation safety}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Truck safety}{3}{section.1.2}
@@ -55,7 +55,7 @@
 \contentsline {section}{\numberline {6.2}Hierarchical Poisson model}{57}{section.6.2}
 \contentsline {section}{\numberline {6.3}Hierarchical power law process}{57}{section.6.3}
 \contentsline {subsection}{\numberline {6.3.1}Bayesian estimation based on simulated data}{58}{subsection.6.3.1}
-\contentsline {chapter}{\numberline {7}Jump-point NHPP}{59}{chapter.7}
+\contentsline {chapter}{\numberline {7}JUMP-POINT NHPP}{59}{chapter.7}
 \contentsline {chapter}{\numberline {8}DISCUSSION}{61}{chapter.8}
 \contentsline {chapter}{APPENDIX}{63}{chapter*.6}
 \contentsline {section}{Query weather data}{63}{section*.7}

@@ -1,4 +1,8 @@
-# Jump-point NHPP
+# JUMP-POINT NHPP
+
+@black1996statistical gives an alternative plan for achieving Aim 3.
+
+
 
 <!--
 - Comparison with results given by frequentist models using REML (`lmer4`)

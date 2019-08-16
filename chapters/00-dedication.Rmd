@@ -1,7 +1,7 @@
 Dedication {-}
 ==========
 
-I dedicate this dissertation to my parents, Zhimin Cai and Guizhen Xu, who believe in the power of higher education, hard work, and always support me.
+I dedicate this dissertation to my parents, Zhimin Cai (蔡致民) and Guizhen Xu (徐桂珍), who believe in the power of higher education, hard work, and always support me.
 
 Acknowledgement {-}
 ===============
