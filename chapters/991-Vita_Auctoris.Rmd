@@ -1,4 +1,12 @@
 \doublespacing
+<!--
 Vita Auctoris {-}
 =============
+-->
+
+```{=latex}
+\chapter*{\markboth{Vita Auctoris}{Vita Auctoris}{Vita Auctoris}}
+\addcontentsline{toc}{chapter}{Vita Auctoris}
+```
+
 Miao Cai was born and raised in Xinzhou district, Wuhan, Hubei Province, China. 

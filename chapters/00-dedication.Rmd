@@ -9,7 +9,7 @@ Acknowledgement {-}
 I want to thank my PhD mentor and committee chair Dr. Steven E. Rigdon, committee members Dr. Hong Xian and Dr. Fadel Megahed.
 
 
-
+\linespread{1}
 \cleardoublepage
 \tableofcontents
 

@@ -24,10 +24,10 @@
 \contentsline {subsection}{\numberline {2.5.3}Hierarchical models}{27}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}Markov chain Monte Carlo (MCMC)}{29}{subsection.2.5.4}
 \contentsline {section}{\numberline {2.6}Scalable Bayesian models}{32}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Hamiltonian Monte Carlo (HMC)}{33}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Subsampling MCMC}{36}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.1}Hamiltonian Monte Carlo (HMC)}{32}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Subsampling MCMC}{35}{subsection.2.6.2}
 \contentsline {section}{\numberline {2.7}Conceptual framework}{37}{section.2.7}
-\contentsline {section}{\numberline {2.8}Research aims}{39}{section.2.8}
+\contentsline {section}{\numberline {2.8}Research aims}{38}{section.2.8}
 \contentsline {chapter}{\numberline {3}METHODS}{41}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data sources}{41}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Real-time ping}{41}{subsection.3.1.1}
@@ -47,19 +47,18 @@
 \contentsline {subsection}{\numberline {3.4.4}Non-homogeneous Poisson process (NHPP)}{49}{subsection.3.4.4}
 \contentsline {section}{\numberline {3.5}Analytical Plan for Aim 3}{52}{section.3.5}
 \contentsline {chapter}{\numberline {4}THE PROBABLE CONTENT}{53}{chapter.4}
-\contentsline {chapter}{\numberline {5}TRUCK CRASHES AND CRITICAL EVENTS}{55}{chapter.5}
-\contentsline {chapter}{\numberline {6}THREE MODELS}{57}{chapter.6}
-\contentsline {section}{\numberline {6.1}Hierarchical logistic model}{57}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Model set up}{57}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Bayesian estimation based on simulated data}{57}{subsection.6.1.2}
-\contentsline {section}{\numberline {6.2}Hierarchical Poisson model}{57}{section.6.2}
-\contentsline {section}{\numberline {6.3}Hierarchical power law process}{57}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Bayesian estimation based on simulated data}{58}{subsection.6.3.1}
-\contentsline {chapter}{\numberline {7}JUMP-POINT NHPP}{59}{chapter.7}
-\contentsline {chapter}{\numberline {8}DISCUSSION}{61}{chapter.8}
-\contentsline {chapter}{APPENDIX}{63}{chapter*.6}
-\contentsline {section}{Query weather data}{63}{section*.7}
-\contentsline {section}{Query road geometry data}{64}{section*.7}
-\contentsline {section}{Likelihood function of a NHPP}{65}{section*.7}
-\contentsline {chapter}{Bibliography}{71}{chapter*.8}
-\contentsline {chapter}{Vita Auctoris}{87}{chapter*.9}
+\contentsline {chapter}{\numberline {5}THREE MODELS}{55}{chapter.5}
+\contentsline {section}{\numberline {5.1}Hierarchical logistic model}{55}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Model set up}{55}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Bayesian estimation based on simulated data}{55}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Hierarchical Poisson model}{55}{section.5.2}
+\contentsline {section}{\numberline {5.3}Hierarchical power law process}{55}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Bayesian estimation based on simulated data}{55}{subsection.5.3.1}
+\contentsline {chapter}{\numberline {6}JUMP-POINT NHPP}{57}{chapter.6}
+\contentsline {chapter}{\numberline {7}DISCUSSION}{59}{chapter.7}
+\contentsline {chapter}{APPENDIX}{61}{chapter*.6}
+\contentsline {section}{Query weather data}{61}{section*.7}
+\contentsline {section}{Query road geometry data}{62}{section*.7}
+\contentsline {section}{Likelihood function of a NHPP}{63}{section*.7}
+\contentsline {chapter}{Bibliography}{69}{chapter*.8}
+\contentsline {chapter}{Vita Auctoris}{85}{chapter*.9}

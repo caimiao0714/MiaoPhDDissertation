@@ -2,9 +2,14 @@
 
 
 \singlespacing
-
+<!--
 APPENDIX {#appendix .unnumbered}
 ========
+-->
+```{=latex}
+\chapter*{\markboth{APPENDIX}{APPENDIX}{APPENDIX}}
+\addcontentsline{toc}{chapter}{APPENDIX}
+```
 
 Query weather data {#weatherdat .unnumbered}
 ------------------

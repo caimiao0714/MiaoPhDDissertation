@@ -135,13 +135,16 @@
 \vspace{7cm}
 
 \begin{center}
-{Miao Cai,  M.S.}
+{Miao Cai,  M.S.}\\
 \vspace{0.3cm}
-
 Draft on \today
+\end{center}
 
-\vspace{9cm}
+\vspace{8cm}
 
+\singlespacing
+\begin{bottompar}
+\begin{center}
 Dissertation Presented to the Graduate Faculty of \\
 Saint Louis University in Partial Fulfillment \\
 of the Requirements for the Degree of\\
@@ -149,7 +152,9 @@ Public Health Studies, Ph.D.\\
 \vspace{.5cm}
 \the\year
 \end{center}
+\end{bottompar}
 
+\linespread{2}
 \end{titlepage}
 
 
@@ -204,6 +209,7 @@ I dedicate this dissertation to my parents, Zhimin Cai (蔡致民) and Guizhen X
 
 I want to thank my PhD mentor and committee chair Dr.~Steven E. Rigdon, committee members Dr.~Hong Xian and Dr.~Fadel Megahed.
 
+\linespread{1}
 \cleardoublepage
 \tableofcontents
 
@@ -405,7 +411,6 @@ Y_i & \sim \text{Bernoulli}(p_i) \\
 \label{eq:logit}
 \end{split}
 \end{equation}
-
 Where \(Y_i\) is a binary variable that indicates whether an event occurred or not in the \(i\)-th observation. \(p_i\) is the mean parameter of a Bernoulli distribution, which is constrained on \([0, 1]\). The logit transformation of \(p_i\) then has the range from \(-\infty\) to \(+\infty\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\).
 
 The most commonly used outcomes for binary logistic regressions are injury versus non-injury crashes or fatal versus non-fatal crashes (Savolainen et al., \protect\hyperlink{ref-savolainen2011statistical}{2011}). For example, Cong Chen et al. (\protect\hyperlink{ref-chen2016driver}{2016}) used a two-level hierarchical Bayesian logistic model to predict the likelihood of high-severity crashes compared to low-severity crashes in New Mexico, accounting for both crash-level and driver-level effects. They found that road curve, functional and disabled vehicle damage, single-vehicle crashes, female, older drivers, drug or alcohol involvement were associated with increased odds of severe crashes. Considering the rare-event natural of crashes, Theofilatos et al. (\protect\hyperlink{ref-theofilatos2016predicting}{2016}) used logistic regression with rare events bias correction and Firth method to study significant risk factors for crashes in Greece. They found a negative association between crash likelihood and speed in crash locations. The proportion of trucks on the road was included in their model but not found to be significant. Other traffic safety studies using logistic regressions include but were not limit to Moudon et al. (\protect\hyperlink{ref-moudon2011risk}{2011}), Meuleners et al. (\protect\hyperlink{ref-meuleners2017determinants}{2017}), Ahmed et al. (\protect\hyperlink{ref-ahmed2018effects}{2018}). There are two excellent systematic reviews on traffic crash likelihood predictions by Roshandel et al. (\protect\hyperlink{ref-roshandel2015impact}{2015}) and Xu et al. (\protect\hyperlink{ref-xu2015calibration}{2015}).
@@ -419,19 +424,17 @@ p = \text{logit}^{-1}(\mathbf{X}^\prime\beta) = \frac{\exp (\mathbf{X}^\prime\be
 p = \Phi(\mathbf{X}^\prime\beta) = \frac{1}{2}\Big[1+\text{erf}(\frac{\mathbf{X}^\prime\beta}{\sqrt 2})\Big]
 \label{eq:probit}
 \end{equation}
-
 Ordered logistic or probit regressions aim to model an ordered multi-category outcome variable. The most common case is study the severity of crashes, such as no-injury crashes, minor-injury crashes, and fatal-injury crashes (Zhu and Srinivasan, \protect\hyperlink{ref-zhu2011comprehensive}{2011}). These ordered models account for the ranked nature of different severity levels but make the proportional odds assumption (Rifaat et al., \protect\hyperlink{ref-rifaat2012severity}{2012}). When the proportional odds assumption is violated, researchers often switch to multinomial logit or probit models, in which the outcome variable is deemed as nominal.
 
-On the other hand, the parameterization of a Poisson regression is shown in model \eqref{eq:poisson}.
+On the other hand, the parameterization of a Poisson regression is shown in model\eqref{eq:poisson}.
 \begin{equation}
 \begin{split}
 Y_i^\star & \sim \text{Poisson}(\mu_i) \\
-\log\mu_i & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k
+\log\mu_i & = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_kx_k,
 \label{eq:poisson}
 \end{split}
 \end{equation}
-
-Where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which must be a non-negative integer. \(\mu_i\) is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of \(\mu_i\) transforms \(\mu_i\) into the range of \((-\infty, +\infty)\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\). Note that the mean parameter equals the variance parameter in the Poisson distribution, which is often violated in real-life data. When the variance of the data is greater than expected, it is called overdispersion. Otherwise, it is called underdispersion. Overdispersion is much more common than underdispersion in statistical practice.
+where \(Y_i^\star\) is the number of events in the \(i\)-th observation, which must be a non-negative integer. \(\mu_i\) is the mean and variance of the Poisson distribution, and it must be a non-negative numeric value. The logarithm of \(\mu_i\) transforms \(\mu_i\) into the range of \((-\infty, +\infty)\), which equals a linear combination of the predictors \(x_1, x_2, \cdots, x_k\) and associated parameters \(\beta_0, \beta_1, \cdots, \beta_k\). Note that the mean parameter equals the variance parameter in the Poisson distribution, which is often violated in real-life data. When the variance of the data is greater than expected, it is called overdispersion. Otherwise, it is called underdispersion. Overdispersion is much more common than underdispersion in statistical practice.
 
 When researchers have crash data that are aggregated over a long time period such as one year, it often makes sense to study the number of crashes instead of whether a crash occurred or not since they are often more than one crash. The most commonly used statistical model is therefore Poisson model, as it well handles count data that are right-skewed, long tailed, and only have non-negative integer values. For example, Cantor et al. (\protect\hyperlink{ref-cantor2010driver}{2010}) used Poisson regressions to explore the association between the rate of crashes driver-level characteristics among 560,695 commercial truck drivers in the United States. They found that past safety performance, out-of-service rate, body mass index (BMI), age, and the number of unique companies were strong predictors of the rate of truck crashes.
 Other variants of a Poisson model includes negative binomial models, quasi-Poisson models, and zero-inflated Poisson or negative binomial models (Lord, \protect\hyperlink{ref-lord2006modeling}{2006}; Mohammadi et al., \protect\hyperlink{ref-mohammadi2014crash}{2014}). Negative binomial or quasi-Poisson models are developed to account for the overdispersion and underdispersion in count data, for which a Poisson model fails to account. Zero-inflated Poisson or negative binomial models are developed to account for the feature of rare events in traffic crash data (Dong et al., \protect\hyperlink{ref-dong2014multivariate}{2014}; Lord et al., \protect\hyperlink{ref-lord2007further}{2007}, \protect\hyperlink{ref-lord2005poisson}{2005}; Washington et al., \protect\hyperlink{ref-washington2010statistical}{2010}). There is an excellent review paper on statistical models for crash frequency data by Lord and Mannering (\protect\hyperlink{ref-lord2010statistical}{2010}).
@@ -463,15 +466,6 @@ Most studies on traffic safety assume that the sampling unit is a spatial-tempor
 
 In the Bayesian perspective, a hierarchical model is a statistical model with the probability distribution of one parameter depends on another parameter (Kruschke and Vanpaemel, \protect\hyperlink{ref-kruschke2015bayesian}{2015}). Suppose we have a model with two parameters \(\alpha, \beta\) and data \(D\). The joint prior distribution of the two parameters is \(p(\alpha, \beta)\). According to the Bayes Theorem, the posterior distribution is proportional to the product of the prior distribution and the likelihood function: \(P(\alpha, \beta|D) \propto P(\alpha, \beta)P(D|\alpha,\beta)\). In a hierarchical model setting, the product can be factored as a chain of products among parameters, also known as conditional independence, such as \(P(\alpha, \beta)P(D|\alpha,\beta) = P(D|\beta)P(\beta|\alpha)P(\alpha)\). In this parameterization, the parameter \(\alpha\) is known as the hyperparameter because it gives rise to the parameter \(\beta\) (the parameter of a parameter) (Kruschke and Vanpaemel, \protect\hyperlink{ref-kruschke2015bayesian}{2015}).
 
-Model \eqref{eq:hierarchicalbayes} demonstrates a random-intercept hierarchical logitistic regression that predicts the likelihood of safety events. The outcome \(Y_{i, d(i)}\) is a binary variable that indicates whether a safety event occurred or not, and it has a Bernoulli distribution with the mean parameter \(p_{i, d(i)}\). The logit transformation of \(p_{i, d(i)}\) can then be predicted by \(k\) variables \(x_1, x_2, \cdots, x_k\). The random intercept \(\beta_{0, d(i)}\) determines that this is hierarchical model since they vary across different drivers \(d(i)\). This model assumes that these random intercepts are sampled from a population of drivers with the mean of \(\mu_0\) and standard deviation of \(\sigma_0\), which are known as hyperparameters.
-\begin{equation}
-\begin{split}
-Y_{i, d(i)} &\sim \text{Bernoulli}(p_{i, d(i)})\\
-\log\frac{p_{i, d(i)}}{1-p_{i, d(i)}} &= \beta_{0, d(i)} + \beta_1x_{1,i} + \beta_2x_{2,i} + \cdots + \beta_kx_{k,i}\\
-\beta_{0, d(i)} &\sim N(\mu_0, \sigma_0^2), \quad k = 1, 2, \cdots, D
-\label{eq:hierarchicalbayes}
-\end{split}
-\end{equation}
 Compared with traditional fixed-effects models that either pool all groups of data or estimate separate models individually for each group, a hierarchical model has the advantage of partial pooling across different groups (McElreath, \protect\hyperlink{ref-mcelreath2018statistical}{2018}). This partial pooling shrinks group-level parameter estimates towards the group mean and shares information across groups. Therefore, with reasonable assumptions on the data generating process, estimates from a hierarchical model are generally more robust to extreme observations and reasonably accurate for those groups with sparse data (Gelman and Hill, \protect\hyperlink{ref-gelman2006data}{2006}; Lambert, \protect\hyperlink{ref-lambert2018student}{2018}).
 
 Hierarchical models also come with costs. They are particularly known for its complexity to estimate to coefficients in both Frequetist maximum likelihood and Bayesian estimation. The de facto way of current Bayesian estimation is Markov chain Monte Carlo (MCMC). However, in the hierarchical model setting, it is difficult for MCMC to efficiently sample from the posterior distributions of hyperparameters due to the correlation between different levels of parameters, as well as the large number of parameters created by the hierarchical structure.
@@ -1098,9 +1092,6 @@ Chapter 6: Discussion
   Future research
 \end{enumerate}
 
-\hypertarget{truck-crashes-and-critical-events}{%
-\chapter{TRUCK CRASHES AND CRITICAL EVENTS}\label{truck-crashes-and-critical-events}}
-
 \hypertarget{three-models}{%
 \chapter{THREE MODELS}\label{three-models}}
 
@@ -1119,34 +1110,6 @@ Chapter 6: Discussion
 \hypertarget{hierarchical-power-law-process}{%
 \section{Hierarchical power law process}\label{hierarchical-power-law-process}}
 
-*Mean function of a point process**:
-
-\[\Lambda(t) = E(N(t))\]
-
-\(\Lambda(t)\) is the expected number of failures through time \(t\).
-
-\textbf{Rate of Occurence of Failures (ROCOF)}: When \(\Lambda\) is differentiable, the ROCOF is:
-
-\[\mu(t) = \frac{d}{dt}\Lambda(t)\]
-The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
-
-\textbf{Intensity function}: The intensity function of a point process is
-
-\[\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\]
-
-When there is no simultaneous events, ROCOF is the same as intensity function.
-
-\textbf{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant.
-
-\textbf{Power law process (PLP)}: When the intensity function of a NHPP is:
-
-\[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\]
-Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP).
-
-Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function:
-
-\[\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\]
-
 \hypertarget{bayesian-estimation-based-on-simulated-data-1}{%
 \subsection{Bayesian estimation based on simulated data}\label{bayesian-estimation-based-on-simulated-data-1}}
 
@@ -1158,10 +1121,11 @@ Black and Rigdon (\protect\hyperlink{ref-black1996statistical}{1996}) gives an a
 \hypertarget{discussion}{%
 \chapter{DISCUSSION}\label{discussion}}
 
+--\textgreater{}
+
 \singlespacing
 
-\hypertarget{appendix}{%
-\chapter*{APPENDIX}\label{appendix}}
+\chapter*{\markboth{APPENDIX}{APPENDIX}{APPENDIX}}
 \addcontentsline{toc}{chapter}{APPENDIX}
 
 \hypertarget{weatherdat}{%
@@ -1382,8 +1346,7 @@ l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\be
 \cleardoublepage
 \singlespacing
 
-\hypertarget{bibliography}{%
-\chapter*{Bibliography}\label{bibliography}}
+\chapter*{\markboth{Bibliography}{Bibliography}{Bibliography}}
 \addcontentsline{toc}{chapter}{Bibliography}
 
 \everypar{\hangafter=1 \setlength{\hangindent}{5em}}{\par}
@@ -2002,8 +1965,7 @@ Zhu, X., Srinivasan, S., 2011. A comprehensive analysis of factors influencing t
 
 \doublespacing
 
-\hypertarget{vita-auctoris}{%
-\chapter*{Vita Auctoris}\label{vita-auctoris}}
+\chapter*{\markboth{Vita Auctoris}{Vita Auctoris}{Vita Auctoris}}
 \addcontentsline{toc}{chapter}{Vita Auctoris}
 
 Miao Cai was born and raised in Xinzhou district, Wuhan, Hubei Province, China.
