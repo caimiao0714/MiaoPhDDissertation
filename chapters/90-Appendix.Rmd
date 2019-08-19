@@ -1,6 +1,3 @@
-
-
-
 \singlespacing
 <!--
 APPENDIX {#appendix .unnumbered}

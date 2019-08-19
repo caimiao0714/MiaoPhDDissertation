@@ -1,4 +1,5 @@
-# JUMP-POINT NHPP
+<!--
+# JUMP-POINT PLP
 
 @black1996statistical gives an alternative plan for achieving Aim 3.
 

@@ -1,3 +1,4 @@
+<!--
 # THREE MODELS
 
 ## Hierarchical logistic model
@@ -21,3 +22,5 @@
 
 
 ### Bayesian estimation based on simulated data
+
+-->
