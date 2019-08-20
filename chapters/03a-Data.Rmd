@@ -74,7 +74,7 @@ fread("data/12_driver.csv") %>%
   dplyr::slice(1:5) %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "drivers") %>% #, longtable = TRUE
+      caption = "drivers") %>% 
   kable_styling(position = "float_right")
 ```
 A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \@ref(tab:drivers).

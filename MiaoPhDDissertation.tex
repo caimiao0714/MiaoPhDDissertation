@@ -620,35 +620,33 @@ Figure \ref{fig:conceptmodel} demonstrates the conceptual framework used in this
 \hypertarget{research-aims}{%
 \chapter{RESEARCH AIMS}\label{research-aims}}
 
-\hl{Describes the research problems to be addressed and why these are important issues.}
-
-The overarching goal of this proposed study is to
+The overarching goal of this proposed dissertation is to contruct scalable Bayesian hierarchical models for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers. However, there are several gaps in traffic safety studies based on the previous literature review. First, an increasing number of studies are using SCEs as the outcome variable, but \emph{the association between crashes and SCEs has not been confirmed}. Second, SCEs are much more common and there can be multiple SCEs within a short period, but \emph{recurrent events models were not widely applied} to understand the risk factors for SCEs. Third, \emph{the high-resolutional and high-dimensional data collected by NDS poses a challenge to Bayesian estimation}. Considering these limitations, the aims of this research will focus on developing innovative and scalable Bayesian hierarchical statistical and reliability models to understand NDS data. Accordingly, the specific aims of this dissertation are as follows:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Aim1}: to examine the association between truck crashes and critical events using a Gamma-Poisson regression.
+  \textbf{Aim1}: Examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression. I hypothesize that
 \item
-  \textbf{Aim2}: to construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process.
-\item
-  \textbf{Aim3}: to propose an innovative reliability model that accounts for both within shift cumulative driving time and within-shift between-trip rest time.
+  \textbf{Aim2}: Construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process with the power law process intensity function.
 \end{enumerate}
-
-\textbf{Gaps in literature}
 
 \begin{itemize}
 \tightlist
 \item
-  A focus on crashes instead of precursors of crashes
+  Sub-aim 1:
 \item
-  A focus on road segments rather than drivers
+  Sub-aim 2:
 \item
-  A focus on case-control comparison given the rareness of truck crashes rather than rates
-\item
-  A focus on small-scale data
-\item
-  A focus on traditional statistical models instead of recurrent events models
+  Sub-aim 3:
 \end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Aim3}: Propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time.
+\end{enumerate}
 
 \hypertarget{methods}{%
 \chapter{METHODS}\label{methods}}

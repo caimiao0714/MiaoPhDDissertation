@@ -1,24 +1,25 @@
 RESEARCH AIMS
 =============
 
-\hl{Describes the research problems to be addressed and why these are important issues.}
+<!--
+Describes the research problems to be addressed and why these are important issues.
+-->
 
-The overarching goal of this proposed study is to 
+The overarching goal of this proposed dissertation is to contruct scalable Bayesian hierarchical models for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers. However, there are several gaps in traffic safety studies based on the previous literature review. First, an increasing number of studies are using SCEs as the outcome variable, but *the association between crashes and SCEs has not been confirmed*. Second, SCEs are much more common and there can be multiple SCEs within a short period, but *recurrent events models were not widely applied* to understand the risk factors for SCEs. Third, *the high-resolutional and high-dimensional data collected by NDS poses a challenge to Bayesian estimation*. Considering these limitations, the aims of this research will focus on developing innovative and scalable Bayesian hierarchical statistical and reliability models to understand NDS data. Accordingly, the specific aims of this dissertation are as follows:
 
-1. **Aim1**: to examine the association between truck crashes and critical events using a Gamma-Poisson regression.
+1. **Aim1**: Examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression. I hypothesize that 
+
+2. **Aim2**: Construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process with the power law process intensity function.
+  + Sub-aim 1: 
+  + Sub-aim 2: 
+  + Sub-aim 3: 
+
+3. **Aim3**: Propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time.
 
 
-2. **Aim2**: to construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process.
-
-
-3. **Aim3**: to propose an innovative reliability model that accounts for both within shift cumulative driving time and within-shift between-trip rest time.
-
-
-
-**Gaps in literature**
-
+<!--
 - A focus on crashes instead of precursors of crashes
 - A focus on road segments rather than drivers
 - A focus on case-control comparison given the rareness of truck crashes rather than rates
 - A focus on small-scale data
-- A focus on traditional statistical models instead of recurrent events models
+-->
