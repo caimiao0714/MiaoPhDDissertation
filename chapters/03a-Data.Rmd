@@ -6,23 +6,47 @@ Data sources
 
 ### Real-time ping
 
-The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provid me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings.
+The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provide me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings. A sample of the ping data is demonstrated in Table \@ref(tab:ping).
+
+```{r ping, results='asis', eval=TRUE, echo=FALSE}
+pacman::p_load(data.table, knitr, ggplot2, kableExtra)
+ping = fread("data/01_ping.csv")
+ping[,ping_time := gsub("\"", "", ping_time)]
+
+kable(ping[1:5,], "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "ping data",
+      longtable = TRUE) %>% 
+  kable_styling(latex_options = c("HOLD_position"))
+```
+
 
 ### Truck crashes and SCEs
 
-Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded:
-
-1.	Hard brake
-2.	Headway
-3.	Rolling stability
-
-Once some thresholds with regard to the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded.
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1)	Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data is demonstrated in Table \@ref(tab:SCE).
+```{r SCE, results='asis', eval=TRUE, echo=FALSE}
+fread("data/11_SCE.csv") %>% 
+  .[,event_time := gsub("T|Z", " ", event_time)] %>% 
+  dplyr::slice(1:5) %>% 
+  kable("latex", #align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "safety critical events") %>% 
+  kable_styling(position = "float_right")
+```
 
 <!-- There were 12,458 critical events created by the 496 truck drivers during the study period.-->
 
 ### Driver demographics
 
-A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID.
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \@ref(tab:drivers).
+```{r drivers, results='asis', eval=TRUE, echo=FALSE}
+fread("data/12_driver.csv") %>% 
+  dplyr::slice(1:5) %>% 
+  kable("latex", #align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "drivers") %>% #, longtable = TRUE
+  kable_styling(position = "float_right")
+```
 
 ### Weather data from the `Dark Sky API`
 
@@ -31,12 +55,16 @@ The `Dark Sky API` allows the users to query historic minute-by-minute weather d
 According to the official document, the `Dark Sky API` is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. 
 Among several different weather data providers I tested, the `Dark Sky API` provides the most accurate and complete weather variables.
 
-To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. 
-We will also round the time to the nearest hour and ignore those stopping pings. 
-This reduction algorithm will scaled the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. 
-We will use the R package `darksky` to obtain weather variables for these reduced give million unique  combinations [@hrbrmstr]. 
-The weather data for these combinations will then be merged back to the original ping data.
-A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat).
+To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package `darksky` to obtain weather variables for these reduced five million unique combinations [@hrbrmstr]. The weather data for these combinations will then be merged back to the original ping data. A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat).
+```{r weather, results='asis', eval=TRUE, echo=FALSE}
+fread("data/13_weather.csv") %>% 
+  .[,ping_time := gsub("T|Z", " ", ping_time)] %>% 
+  dplyr::slice(1:5) %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "weather from the DarkSky API") %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+```
 
 ### Road geometry data from the `OpenStreetMap`
 
@@ -49,6 +77,21 @@ We will use real-time longitudes and latitudes as the center point and defined a
 If the $100\times100$ meters box is too small to have any road geometry data, we will expand the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. 
 If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. 
 The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).
+```{r road, results='asis', eval=TRUE, echo=FALSE}
+fread("data/14_OpenStreetMap.csv") %>% 
+  dplyr::slice(25:29) %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "Road geometry from the OpenStreetMap API", 
+      longtable = TRUE)  %>% 
+  kable_styling(latex_options = c("HOLD_position"))
+```
+
+
+
+
+
+
 
 Data aggregation and merging
 ----------------------------
@@ -57,6 +100,82 @@ Data aggregation and merging
 knitr::include_graphics("figs/Data_merging.png")
 ```
 
+
+```{r eval=TRUE, echo=FALSE}
+t1 = fread("data/21_Transformed_trips.csv")
+t1[,`:=`(start_time = gsub("T|Z", " ", start_time),
+         end_time = gsub("T|Z", " ", end_time)) ]
+t2 = fread("data/22_Transformed_30_min_interval.csv")
+t2[,`:=`(start_time = gsub("T|Z", " ", start_time),
+         end_time = gsub("T|Z", " ", end_time)) ]
+t3 = fread("data/23_Transformed_shifts.csv")
+t3[,`:=`(shift_start = gsub("T|Z", " ", shift_start),
+         shift_end = gsub("T|Z", " ", shift_end)) ]
+```
+
+```{r transformtrip, results='asis', eval=TRUE, echo=FALSE}
+kable(t1[driver == "canj1"][1:5,], 
+      "latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "Transformed trips data", 
+      longtable = TRUE) %>% 
+  kable_styling(latex_options = c("HOLD_position"))
+```
+
+```{r tranform30interval, results='asis', eval=TRUE, echo=FALSE}
+kable(t2[1:5,], "latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "Transformed 30-minute intervals", 
+      longtable = TRUE) %>% 
+  kable_styling(latex_options = c("HOLD_position"))
+```
+
+```{r transformshift, results='asis', eval=TRUE, echo=FALSE}
+kable(t3 %>% 
+        dplyr::slice(1:5) , 
+      "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "Transformed shifts data") %>% 
+  kable_styling(latex_options = c("HOLD_position"))
+```
+
+
+```{r eval=TRUE, echo=FALSE}
+agg30 = fread("data/31-analyses_30_minute_intervals.csv")
+shif = fread("data/32-analyses_shifts.csv")
+event_tab = fread("data/33-analyses_events.csv")
+```
+
+```{r analysis30int, results='asis', eval=TRUE, echo=FALSE}
+kable(agg30 %>% 
+        dplyr::slice(1:5) %>% 
+        dplyr::select(driver:SCE_type), "latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+#  landscape()
+```
+
+```{r analysisshift, results='asis', eval=TRUE, echo=FALSE}
+kable(shif %>% 
+        dplyr::slice(1:5) %>% 
+        dplyr::select(driver:end_time), "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "shifts data for hierarchical non-homogeneous Poisson process", 
+      longtable = TRUE) %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+#  landscape()
+```
+
+```{r analysisshiftevent, results='asis', eval=TRUE, echo=FALSE}
+kable(event_tab %>% 
+        dplyr::slice(1:5), 
+      "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "SCEs data for hierarchical non-homogeneous Poisson process", 
+      longtable = TRUE) %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+```
 
 <!--
 . 

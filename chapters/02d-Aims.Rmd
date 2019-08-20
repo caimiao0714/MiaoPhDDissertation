@@ -1,5 +1,5 @@
-Research aims
--------------
+RESEARCH AIMS
+=============
 
 \hl{Describes the research problems to be addressed and why these are important issues.}
 
