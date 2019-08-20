@@ -15,38 +15,69 @@ ping[,ping_time := gsub("\"", "", ping_time)]
 
 kable(ping[1:5,], "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "ping data",
-      longtable = TRUE) %>% 
-  kable_styling(latex_options = c("HOLD_position"))
+      caption = "ping data") %>% 
+  kable_styling(latex_options = c("hold_position"))
 ```
 
 
 ### Truck crashes and SCEs
 
-Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1)	Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data is demonstrated in Table \@ref(tab:SCE).
-```{r SCE, results='asis', eval=TRUE, echo=FALSE}
+```{r SCE, results='asis', eval=FALSE, echo=FALSE}
 fread("data/11_SCE.csv") %>% 
   .[,event_time := gsub("T|Z", " ", event_time)] %>% 
   dplyr::slice(1:5) %>% 
-  kable("latex", #align = "c", 
+  kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "safety critical events") %>% 
   kable_styling(position = "float_right")
 ```
+\begin{wraptable}{r}{8cm}
+\caption{\label{tab:SCE}safety critical events}
+\centering
+\begin{tabular}{ccc}
+\toprule
+driver & event\_time & event\_type\\
+\midrule
+canj1 & 2015-10-23 14:46:08 & HB\\
+canj1 & 2015-10-26 15:06:03 & HB\\
+canj1 & 2015-10-28 11:58:24 & HB\\
+canj1 & 2015-10-28 17:42:36 & HB\\
+canj1 & 2015-11-02 07:13:56 & HB\\
+\bottomrule
+\end{tabular}
+\end{wraptable}
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1)	Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data is demonstrated in Table \@ref(tab:SCE).
+
+
 
 <!-- There were 12,458 critical events created by the 496 truck drivers during the study period.-->
 
 ### Driver demographics
 
-A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \@ref(tab:drivers).
-```{r drivers, results='asis', eval=TRUE, echo=FALSE}
+\begin{wraptable}{r}{3.5cm}
+\caption{\label{tab:drivers}drivers}
+\centering
+\begin{tabular}{cc}
+\toprule
+driver & age\\
+\midrule
+canj1 & 46\\
+farj7 & 54\\
+gres0 & 55\\
+hunt & 48\\
+kell0 & 51\\
+\bottomrule
+\end{tabular}
+\end{wraptable}
+```{r drivers, results='asis', eval=FALSE, echo=FALSE}
 fread("data/12_driver.csv") %>% 
   dplyr::slice(1:5) %>% 
-  kable("latex", #align = "c", 
+  kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
       caption = "drivers") %>% #, longtable = TRUE
   kable_styling(position = "float_right")
 ```
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \@ref(tab:drivers).
 
 ### Weather data from the `Dark Sky API`
 
@@ -63,7 +94,7 @@ fread("data/13_weather.csv") %>%
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "weather from the DarkSky API") %>% 
-  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+  kable_styling(latex_options = c("hold_position", "scale_down"))
 ```
 
 ### Road geometry data from the `OpenStreetMap`
@@ -82,8 +113,7 @@ fread("data/14_OpenStreetMap.csv") %>%
   dplyr::slice(25:29) %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "Road geometry from the OpenStreetMap API", 
-      longtable = TRUE)  %>% 
+      caption = "Road geometry from the OpenStreetMap API")  %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
@@ -117,16 +147,14 @@ t3[,`:=`(shift_start = gsub("T|Z", " ", shift_start),
 kable(t1[driver == "canj1"][1:5,], 
       "latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "Transformed trips data", 
-      longtable = TRUE) %>% 
+      caption = "Transformed trips data") %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
 ```{r tranform30interval, results='asis', eval=TRUE, echo=FALSE}
 kable(t2[1:5,], "latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "Transformed 30-minute intervals", 
-      longtable = TRUE) %>% 
+      caption = "Transformed 30-minute intervals") %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
@@ -161,8 +189,7 @@ kable(shif %>%
         dplyr::slice(1:5) %>% 
         dplyr::select(driver:end_time), "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "shifts data for hierarchical non-homogeneous Poisson process", 
-      longtable = TRUE) %>% 
+      caption = "shifts data for hierarchical non-homogeneous Poisson process") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 #  landscape()
 ```
@@ -172,8 +199,7 @@ kable(event_tab %>%
         dplyr::slice(1:5), 
       "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "SCEs data for hierarchical non-homogeneous Poisson process", 
-      longtable = TRUE) %>% 
+      caption = "SCEs data for hierarchical non-homogeneous Poisson process") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 ```
 

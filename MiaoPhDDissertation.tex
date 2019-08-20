@@ -661,8 +661,11 @@ The overarching goal of this proposed study is to
 
 The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provide me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings. A sample of the ping data is demonstrated in Table \ref{tab:ping}.
 
-\begin{longtable}{cccccc}
-\caption{\label{tab:ping}ping data}\\
+\begin{table}[!h]
+
+\caption{\label{tab:ping}ping data}
+\centering
+\begin{tabular}{cccccc}
 \toprule
 trip\_id & ping\_time & speed & latitude & longitude & driver\\
 \midrule
@@ -672,18 +675,16 @@ trip\_id & ping\_time & speed & latitude & longitude & driver\\
 100160724 & 2015-10-23 08:23:30 & 4 & 33.97233 & -118.1678 & canj1\\
 100160724 & 2015-10-23 08:38:00 & 40 & 34.00708 & -118.1798 & canj1\\
 \bottomrule
-\end{longtable}
+\end{tabular}
+\end{table}
 
 \hypertarget{truck-crashes-and-sces}{%
 \subsection{Truck crashes and SCEs}\label{truck-crashes-and-sces}}
 
-Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1) Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data is demonstrated in Table \ref{tab:SCE}.
-
-\begin{wraptable}{r}{0pt}[t]
-
+\begin{wraptable}{r}{8cm}
 \caption{\label{tab:SCE}safety critical events}
 \centering
-\begin{tabular}{lll}
+\begin{tabular}{ccc}
 \toprule
 driver & event\_time & event\_type\\
 \midrule
@@ -696,16 +697,15 @@ canj1 & 2015-11-02 07:13:56 & HB\\
 \end{tabular}
 \end{wraptable}
 
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1) Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data is demonstrated in Table \ref{tab:SCE}.
+
 \hypertarget{driver-demographics}{%
 \subsection{Driver demographics}\label{driver-demographics}}
 
-A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \ref{tab:drivers}.
-
-\begin{wraptable}{r}{0pt}[t]
-
+\begin{wraptable}{r}{3.5cm}
 \caption{\label{tab:drivers}drivers}
 \centering
-\begin{tabular}{lr}
+\begin{tabular}{cc}
 \toprule
 driver & age\\
 \midrule
@@ -718,6 +718,8 @@ kell0 & 51\\
 \end{tabular}
 \end{wraptable}
 
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \ref{tab:drivers}.
+
 \hypertarget{weather-data-from-the-dark-sky-api}{%
 \subsection{\texorpdfstring{Weather data from the \texttt{Dark\ Sky\ API}}{Weather data from the Dark Sky API}}\label{weather-data-from-the-dark-sky-api}}
 
@@ -728,7 +730,7 @@ Among several different weather data providers I tested, the \texttt{Dark\ Sky\ 
 
 To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package \texttt{darksky} to obtain weather variables for these reduced five million unique combinations (Rudis, \protect\hyperlink{ref-hrbrmstr}{2018}). The weather data for these combinations will then be merged back to the original ping data. A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \ref{weatherdat}.
 
-\begin{table}[H]
+\begin{table}[!h]
 
 \caption{\label{tab:weather}weather from the DarkSky API}
 \centering
@@ -759,8 +761,11 @@ If the \(100\times100\) meters box is too small to have any road geometry data, 
 If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output.
 The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
 
-\begin{longtable}{ccccc}
-\caption{\label{tab:road}Road geometry from the OpenStreetMap API}\\
+\begin{table}[H]
+
+\caption{\label{tab:road}Road geometry from the OpenStreetMap API}
+\centering
+\begin{tabular}{ccccc}
 \toprule
 driver & latitude & longitude & speed\_limit & num\_lanes\\
 \midrule
@@ -770,7 +775,8 @@ farj7 & 30.34174 & -91.72572 & 60 & 2\\
 farj7 & 30.35075 & -91.69085 & 60 & 2\\
 farj7 & 30.35165 & -91.68755 & 60 & 2\\
 \bottomrule
-\end{longtable}
+\end{tabular}
+\end{table}
 
 \hypertarget{data-aggregation-and-merging}{%
 \section{Data aggregation and merging}\label{data-aggregation-and-merging}}
@@ -784,8 +790,11 @@ farj7 & 30.35165 & -91.68755 & 60 & 2\\
 \caption{Flow chart of data aggregation and merging}\label{fig:unnamed-chunk-1}
 \end{figure}
 
-\begin{longtable}{cccccc}
-\caption{\label{tab:transformtrip}Transformed trips data}\\
+\begin{table}[H]
+
+\caption{\label{tab:transformtrip}Transformed trips data}
+\centering
+\begin{tabular}{cccccc}
 \toprule
 driver & trip\_id & start\_time & end\_time & trip\_time & distance\\
 \midrule
@@ -795,10 +804,14 @@ canj1 & 100160726 & 2015-10-23 12:00:36 & 2015-10-23 15:37:36 & 217 & 164.576\\
 canj1 & 100160727 & 2015-10-23 16:38:10 & 2015-10-23 18:37:10 & 119 & 52.907\\
 canj1 & 100160728 & 2015-10-26 07:49:04 & 2015-10-26 10:52:04 & 183 & 104.085\\
 \bottomrule
-\end{longtable}
+\end{tabular}
+\end{table}
 
-\begin{longtable}{cccccc}
-\caption{\label{tab:tranform30interval}Transformed 30-minute intervals}\\
+\begin{table}[H]
+
+\caption{\label{tab:tranform30interval}Transformed 30-minute intervals}
+\centering
+\begin{tabular}{cccccc}
 \toprule
 driver & interval\_id & start\_time & end\_time & interval\_time & distance\\
 \midrule
@@ -808,7 +821,8 @@ canj1 & 197091 & 2015-10-23 09:34:24 & 2015-10-23 10:04:24 & 30 & 0.984\\
 canj1 & 197092 & 2015-10-23 10:04:24 & 2015-10-23 10:34:24 & 30 & 5.928\\
 canj1 & 197093 & 2015-10-23 10:34:24 & 2015-10-23 11:04:24 & 30 & 17.348\\
 \bottomrule
-\end{longtable}
+\end{tabular}
+\end{table}
 
 \begin{table}[H]
 
@@ -845,13 +859,12 @@ canj1 & 1 & 2015-10-23T08:09:26Z & 2015-10-23T18:37:56Z & 628 & 197093 & 0 & NA 
 \end{tabular}}
 \end{table}
 
-\begin{verbatim}
-## Warning in styling_latex_scale_down(out, table_info): Longtable cannot be
-## resized.
-\end{verbatim}
+\begin{table}[H]
 
-\begin{longtable}{ccccccc}
-\caption{\label{tab:analysisshift}shifts data for hierarchical non-homogeneous Poisson process}\\
+\caption{\label{tab:analysisshift}shifts data for hierarchical non-homogeneous Poisson process}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{ccccccc}
 \toprule
 driver & shift\_ID & n\_SCE & SCE\_time & SCE\_type & start\_time & end\_time\\
 \midrule
@@ -861,15 +874,15 @@ canj1 & 3 & 0 & NA & NA & 2015-10-27T01:59:48Z & 2015-10-27T07:58:56Z\\
 canj1 & 4 & 2 & 2015-10-28 11:58:24;2015-10-28 17:42:36 & HB;HB & 2015-10-28T08:05:08Z & 2015-10-28T20:20:32Z\\
 canj1 & 6 & 0 & NA & NA & 2015-10-30T09:27:12Z & 2015-10-30T21:18:22Z\\
 \bottomrule
-\end{longtable}
+\end{tabular}}
+\end{table}
 
-\begin{verbatim}
-## Warning in styling_latex_scale_down(out, table_info): Longtable cannot be
-## resized.
-\end{verbatim}
+\begin{table}[H]
 
-\begin{longtable}{cccccc}
-\caption{\label{tab:analysisshiftevent}SCEs data for hierarchical non-homogeneous Poisson process}\\
+\caption{\label{tab:analysisshiftevent}SCEs data for hierarchical non-homogeneous Poisson process}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{cccccc}
 \toprule
 driver & shift\_ID & start\_time & event\_time & shift\_length & time2event\\
 \midrule
@@ -879,7 +892,8 @@ canj1 & 4 & 2015-10-28T08:05:08Z & 2015-10-28T11:58:24Z & 12.250000 & 3.8833333\
 canj1 & 4 & 2015-10-28T08:05:08Z & 2015-10-28T17:42:36Z & 12.250000 & 9.6166667\\
 canj1 & 7 & 2015-11-02T06:26:48Z & 2015-11-02T07:13:56Z & 13.666667 & 0.7833333\\
 \bottomrule
-\end{longtable}
+\end{tabular}}
+\end{table}
 
 \hypertarget{analytical-plan-for-aim-1}{%
 \section{Analytical Plan for Aim 1}\label{analytical-plan-for-aim-1}}
