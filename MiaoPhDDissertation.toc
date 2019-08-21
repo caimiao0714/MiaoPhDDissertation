@@ -1,8 +1,8 @@
 \babel@toc {english}{}
 \contentsline {chapter}{Dedication}{v}{chapter*.1}
 \contentsline {chapter}{Acknowledgement}{vii}{chapter*.2}
-\contentsline {chapter}{List of Figures}{xi}{chapter*.4}
-\contentsline {chapter}{List of Tables}{xiii}{chapter*.5}
+\contentsline {chapter}{List of Figures}{xiii}{chapter*.4}
+\contentsline {chapter}{List of Tables}{xv}{chapter*.5}
 \contentsline {chapter}{\numberline {1}INTRODUCTION}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Transportation safety}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Truck safety}{3}{section.1.2}
@@ -35,18 +35,21 @@
 \contentsline {subsection}{\numberline {4.1.3}Driver demographics}{42}{subsection.4.1.3}
 \contentsline {subsection}{\numberline {4.1.4}Weather data from the \texttt {Dark\ Sky\ API}}{42}{subsection.4.1.4}
 \contentsline {subsection}{\numberline {4.1.5}Road geometry data from the \texttt {OpenStreetMap}}{43}{subsection.4.1.5}
-\contentsline {section}{\numberline {4.2}Data aggregation and merging}{44}{section.4.2}
-\contentsline {section}{\numberline {4.3}Analytical Plan for Aim 1}{46}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Data reduction}{46}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Outcome and predictor variables}{47}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Statistical models}{47}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Analytical Plan for Aim 2}{48}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Data aggregation}{49}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Logistic regression}{49}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Poisson regression}{50}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Non-homogeneous Poisson process (NHPP)}{51}{subsection.4.4.4}
-\contentsline {section}{\numberline {4.5}Analytical Plan for Aim 3}{54}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Alternative plans}{55}{subsection.4.5.1}
+\contentsline {section}{\numberline {4.2}Data aggregation}{44}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Trips}{44}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}30-minute intervals}{45}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Shifts}{45}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Data merging}{46}{section.4.3}
+\contentsline {section}{\numberline {4.4}Analytical Plan for Aim 1}{48}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Outcome and predictor variables}{48}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Statistical models}{48}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Analytical Plan for Aim 2}{49}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Data aggregation}{50}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Logistic regression}{50}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Poisson regression}{51}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Non-homogeneous Poisson process (NHPP)}{52}{subsection.4.5.4}
+\contentsline {section}{\numberline {4.6}Analytical Plan for Aim 3}{55}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Alternative plans}{56}{subsection.4.6.1}
 \contentsline {chapter}{\numberline {5}THE PROBABLE CONTENT}{57}{chapter.5}
 \contentsline {chapter}{APPENDIX}{59}{chapter*.6}
 \contentsline {section}{Query weather data}{59}{section*.7}

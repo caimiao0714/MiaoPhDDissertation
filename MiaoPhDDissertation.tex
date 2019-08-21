@@ -720,7 +720,7 @@ The \texttt{Dark\ Sky\ API} allows the users to query historic minute-by-minute 
 According to the official document, the \texttt{Dark\ Sky\ API} is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location (The Dark Sky API, \protect\hyperlink{ref-darkskyds}{2019}).
 Among several different weather data providers I tested, the \texttt{Dark\ Sky\ API} provides the most accurate and complete weather variables.
 
-To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package \texttt{darksky} to obtain weather variables for these reduced five million unique combinations (Rudis, \protect\hyperlink{ref-hrbrmstr}{2018}). The weather data for these combinations will then be merged back to the original ping data. A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \ref{weatherdat}.
+To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package \texttt{darksky} to obtain weather variables for these reduced five million unique combinations (Rudis, \protect\hyperlink{ref-hrbrmstr}{2018}). The weather data for these combinations will then be merged back to the original ping data. A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \ref{weatherdat}. A sample of the weather data is shown in Table \ref{tab:weather}
 
 \begin{table}[!h]
 
@@ -743,15 +743,9 @@ ping\_time & latitude & longitude & precip\_intensity & precip\_probability & wi
 \hypertarget{road-geometry-data-from-the-openstreetmap}{%
 \subsection{\texorpdfstring{Road geometry data from the \texttt{OpenStreetMap}}{Road geometry data from the OpenStreetMap}}\label{road-geometry-data-from-the-openstreetmap}}
 
-Two road geometry variables for the 496 regional truck drivers will be queried from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limits} and \emph{the number of lanes}.
-The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors, \protect\hyperlink{ref-wikiOSM}{2019}).
-The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
+Two road geometry variables for the 496 regional truck drivers will be queried from the \texttt{OpenStreetMap} (OSM) project: \emph{speed limits} and \emph{the number of lanes}. The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources (Wikipedia contributors, \protect\hyperlink{ref-wikiOSM}{2019}). The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License.
 
-We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger, \protect\hyperlink{ref-eugster2013osmar}{2013}).
-We will use real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables.
-If the \(100\times100\) meters box is too small to have any road geometry data, we will expand the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data.
-If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output.
-The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}.
+We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the \texttt{center\_bbox()} function available from the \texttt{osmar} R package (Eugster and Schlesinger, \protect\hyperlink{ref-eugster2013osmar}{2013}). We will use real-time longitudes and latitudes as the center point and defined a \(100\times100\) meters box to retrieve the two variables. If the \(100\times100\) meters box is too small to have any road geometry data, we will expand the box to \(500\times500\) and then \(1000\times1000\) to obtain geometry data. If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. The R code to retrieve road geometry data can be found in Appendix \ref{roadgeometry}. A sample of the road geometry data is shown in Table \ref{tab:road}.
 
 \begin{table}[H]
 
@@ -770,17 +764,15 @@ farj7 & 30.35165 & -91.68755 & 60 & 2\\
 \end{tabular}
 \end{table}
 
-\hypertarget{data-aggregation-and-merging}{%
-\section{Data aggregation and merging}\label{data-aggregation-and-merging}}
+\hypertarget{data-aggregation}{%
+\section{Data aggregation}\label{data-aggregation}}
 
-\begin{figure}[!ht]
+In order to make the MCMC estimation for Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to \emph{trips} and \emph{shifts}: a \emph{trip} is a continuous period of driving without stopping for more than 20 minutes; a \emph{shift} is a long period of driving without stopping for more than 8 hours.
 
-{\centering \includegraphics[width=\linewidth]{figs/Data_merging} 
+\hypertarget{trips}{%
+\subsection{Trips}\label{trips}}
 
-}
-
-\caption{Flow chart of data aggregation and merging}\label{fig:unnamed-chunk-1}
-\end{figure}
+For each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different trips. A sample of the trips data is shown in Table \ref{tab:transformtrip}.
 
 \begin{table}[H]
 
@@ -799,6 +791,11 @@ canj1 & 100160728 & 2015-10-26 07:49:04 & 2015-10-26 10:52:04 & 183 & 104.085\\
 \end{tabular}
 \end{table}
 
+\hypertarget{minute-intervals}{%
+\subsection{30-minute intervals}\label{minute-intervals}}
+
+As the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals. A sample of the 30-minute interval data is shown in Table \ref{tab:tranform30interval}.
+
 \begin{table}[H]
 
 \caption{\label{tab:tranform30interval}Transformed 30-minute intervals}
@@ -816,6 +813,11 @@ canj1 & 197093 & 2015-10-23 10:34:24 & 2015-10-23 11:04:24 & 30 & 17.348\\
 \end{tabular}
 \end{table}
 
+\hypertarget{shifts}{%
+\subsection{Shifts}\label{shifts}}
+
+the trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \ref{tab:transformshift}.
+
 \begin{table}[H]
 
 \caption{\label{tab:transformshift}Transformed shifts data}
@@ -832,6 +834,35 @@ canj1 & 6 & 2015-10-30 09:27:12 & 2015-10-30 21:18:22 & 711\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\hypertarget{data-merging}{%
+\section{Data merging}\label{data-merging}}
+
+\begin{figure}[!ht]
+
+{\centering \includegraphics[width=\linewidth]{figs/Data_merging} 
+
+}
+
+\caption{Flow chart of data aggregation and merging}\label{fig:datamerge}
+\end{figure}
+
+Figure \ref{fig:datamerge} demonstrates the data aggregation and merging workflow. The left part shows the data aggregation from the original ping data to trips, 30-minute intervals, and shifts, which have been demonstrated in Section \ref{data-aggregation}. The right part demonstrates the process of merging covariates table (SCEs, drivers, road geometry, and weather) back to the aggregated tables (trips, 30-minute intervals, and shifts tables). The specific details of the merging process.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{SCEs}: the SCEs are merged to the two aggregated tables by drivers and of the time of SCEs fall between the start and end time of the aggregated tables,
+\item
+  \emph{Drivers}: the age of drivers are merged to the two aggregated tables using driver unique ID,
+\item
+  \emph{Road geometry}: the road geometry variables will firstly be merged back to the original ping data by driver ID, latitude, and longitude. Then these road geometry variables will averaged by taking the mean for each 30-minute interval and shift to the aggregated levels,
+\item
+  \emph{Weather}: the weather variables will firstly also be merged back to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be averaged by taking the mean for each 30-minute interval and shift to the aggregated levels.
+\end{enumerate}
+
+The resulting 30-minute intervals and shifts tables are demonstrated in Table \ref{tab:analysis30int} and Table \ref{tab:analysisshift}. Table \ref{tab:analysisshiftevent} demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
 
 \begin{table}[H]
 
@@ -892,21 +923,6 @@ canj1 & 7 & 2015-11-02T06:26:48Z & 2015-11-02T07:13:56Z & 13.666667 & 0.7833333\
 
 The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
 
-\hypertarget{data-reduction}{%
-\subsection{Data reduction}\label{data-reduction}}
-
-In order to make the MCMC estimation for Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to \emph{trips} and \emph{shifts}:
-
-\begin{itemize}
-\tightlist
-\item
-  For each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different \emph{trips}.
-\item
-  These trips data will be further divided into different \emph{shifts} if the specific driver was not moving for eight hours.
-\end{itemize}
-
-Therefore, a \emph{trip} is defined as a continuous period of driving without stopping for more than 20 minutes. a \emph{shift} is defined as a long period of driving without stopping for more than 8 hours.
-
 \hypertarget{outcome-and-predictor-variables}{%
 \subsection{Outcome and predictor variables}\label{outcome-and-predictor-variables}}
 
@@ -951,8 +967,8 @@ All data reduction, cleaning, and statistical analysis will be done on the RStud
 
 The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers. Vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. Bayesian hierarchical logistic regression, Poisson regression, and NHPP that accounts for both driver-level variation and trip-level variation will be used.
 
-\hypertarget{data-aggregation}{%
-\subsection{Data aggregation}\label{data-aggregation}}
+\hypertarget{data-aggregation-1}{%
+\subsection{Data aggregation}\label{data-aggregation-1}}
 
 \hypertarget{logistic-regression}{%
 \subsection{Logistic regression}\label{logistic-regression}}

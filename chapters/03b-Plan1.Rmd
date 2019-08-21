@@ -3,15 +3,6 @@ Analytical Plan for Aim 1
 
 The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
 
-### Data reduction
-
-In order to make the MCMC estimation for Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to *trips* and *shifts*:
-
-- For each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different *trips*.
-- These trips data will be further divided into different *shifts* if the specific driver was not moving for eight hours. 
-
-Therefore, a *trip* is defined as a continuous period of driving without stopping for more than 20 minutes. a *shift* is defined as a long period of driving without stopping for more than 8 hours. 
-
 ### Outcome and predictor variables
 
 The outcome variable will be the number of crashes for each driver. The primary independent variable will be the number of SCEs per 10,000 miles. These SCEs will be further decomposed into the number of hard brakes, headways, and rolling stability per 10,000 miles in similar analysis. The covariates will be the total miles driven, the percent of night driving, and the age of the drivers.
