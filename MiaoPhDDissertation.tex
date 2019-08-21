@@ -586,7 +586,7 @@ With rapid development of automated data collection system, more tall and wide d
 
 The first well-known subsampling MCMC algorithm is the \emph{firefly MCMC} by Maclaurin and Adams (\protect\hyperlink{ref-maclaurin2015firefly}{2015}), which introduces an auxiliary variable for each observation that can be turned on or off to determine if the observation should be included in likelihood evaluation. Starting from this firefly MCMC algorithm, an increasing number of studies have been published on subsampling MCMC algorithms. Korattikara et al. (\protect\hyperlink{ref-korattikara2014austerity}{2014}) proposed to use a sequential hypothesis test to generate \emph{accept-reject samples} with high confidence on a fraction of data. Similar studies that use accept-reject samples include Bardenet et al. (\protect\hyperlink{ref-bardenet2014towards}{2014}) and Bardenet et al. (\protect\hyperlink{ref-bardenet2017markov}{2017}). Another category of widely discussed subsampling MCMC algorithm is Pseudo-Marginal MCMC (PMCMC), which replaces the likelihood or the natural logarithm of likelihood with an unbiased estimate from a subset of data based on control variates at each MCMC iteration (Quiroz et al., \protect\hyperlink{ref-quiroz2019speeding}{2019}; Quiroz, Villani, et al., \protect\hyperlink{ref-quiroz2018subsampling}{2018}). They proposed two types of bias-correction log-likelihood estimates: a) parameter expanded control variates via Taylor expansion around a reference value in parameter space, and b) data expanded control variate via Taylor expansion around the nearest centroid in data space. Other subsampling MCMC algorithms include Block-Poisson estimator (Quiroz et al., \protect\hyperlink{ref-quiroz2016block}{2016}), delayed acceptance (Quiroz, M.-N. Tran, et al., \protect\hyperlink{ref-quiroz2018speeding}{2018}), noisy MCMC (Alquier et al., \protect\hyperlink{ref-alquier2016noisy}{2016}), and zig-zag process MCMC (Bierkens et al., \protect\hyperlink{ref-bierkens2019zig}{2019}).
 
-Apart from the subsampling MCMC algorithms mentioned above, subsampling MCMC using the Hamiltonian mechanism deserves special attention as it more efficiently explores the posterior in high-dimensional parameter space. Chen et al. (\protect\hyperlink{ref-chen2014stochastic}{2014}) proposed a stochastic gradient HMC, which introduces a friction term that counteracts the effects of noisy gradient. In contrast, Betancourt (\protect\hyperlink{ref-betancourt2015fundamental}{2015}) argued that the stochastic gradient HMC proposed by Chen et al. (\protect\hyperlink{ref-chen2014stochastic}{2014}) compromised the scalability of the HMC with respect to the complexity of the target distribution. The paper claimed that subsampled data does not have sufficient information to efficiently explore the target distributions, and devastates the scalable performance of HMC. A recent paper by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) extended the PMCMC algorithm proposed by Quiroz et al. (\protect\hyperlink{ref-quiroz2019speeding}{2019}) to HMC via introducing a fictitious momentum vector \(\vec{p}\), which has the same dimension as the parameter vector \(\mathbf{\theta}\).
+Apart from the subsampling MCMC algorithms mentioned above, subsampling MCMC using the Hamiltonian mechanism deserves special attention as it more efficiently explores the posterior in high-dimensional parameter space. Chen et al. (\protect\hyperlink{ref-chen2014stochastic}{2014}) proposed a stochastic gradient HMC, which introduces a friction term that counteracts the effects of noisy gradient. In contrast, Betancourt (\protect\hyperlink{ref-betancourt2015fundamental}{2015}) argued that the stochastic gradient HMC proposed by Chen et al. (\protect\hyperlink{ref-chen2014stochastic}{2014}) compromised the scalability of the HMC with respect to the complexity of the target distribution. The paper claimed that subsampled data does not have sufficient information to efficiently explore the target distributions, and devastates the scalable performance of HMC. A algorithm called HMC with energy conserving subsampling (HMC-ECS) by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) extended the PMCMC algorithm proposed by Quiroz et al. (\protect\hyperlink{ref-quiroz2019speeding}{2019}) to HMC by introducing a fictitious momentum vector \(\vec{p}\), which has the same dimension as the parameter vector \(\mathbf{\theta}\).
 
 \hypertarget{conceptual-framework}{%
 \section{Conceptual framework}\label{conceptual-framework}}
@@ -862,7 +862,7 @@ Figure \ref{fig:datamerge} demonstrates the data aggregation and merging workflo
   \emph{Weather}: the weather variables will firstly also be merged back to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be averaged by taking the mean for each 30-minute interval and shift to the aggregated levels.
 \end{enumerate}
 
-The resulting 30-minute intervals and shifts tables are demonstrated in Table \ref{tab:analysis30int} and Table \ref{tab:analysisshift}. Table \ref{tab:analysisshiftevent} demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
+The resulting 30-minute intervals and shifts tables are demonstrated in Table \ref{tab:analysis30int} and Table \ref{tab:analysisshift}. The predictor variables such as cumulative driving time, driver's age, weather and road geometry variables are truncated and not shown to fit in the page. Table \ref{tab:analysisshiftevent} demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
 
 \begin{table}[H]
 
@@ -965,16 +965,15 @@ All data reduction, cleaning, and statistical analysis will be done on the RStud
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
 
-The purpose of aim 2 is to develop three hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers. Vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. Bayesian hierarchical logistic regression, Poisson regression, and NHPP that accounts for both driver-level variation and trip-level variation will be used.
+The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers. Bayesian hierarchical logistic regression, Poisson regression, and NHPP with the PLP intensity function will be used. All three models will account for both driver-level and trip-level variation. Hamiltonian Monte Carlo with energy conserving subsampling (HMC-ECS) proposed by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) will be used to scale the hierarchical model in a Bayesian setting.
 
-\hypertarget{data-aggregation-1}{%
-\subsection{Data aggregation}\label{data-aggregation-1}}
+In the three proposed models, vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. The details of the statistical models will be explained in the following sections.
 
-\hypertarget{logistic-regression}{%
-\subsection{Logistic regression}\label{logistic-regression}}
+\hypertarget{hierarchical-logit}{%
+\subsection{Bayesian hierarchical logistic regression}\label{hierarchical-logit}}
 
-Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression. I will categorize the number of safety events during a trip into a binary variable \(Y_{i, d}\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip.
-\[
+Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression, as shown in Equation \eqref{eq:hierarchicallogit}. I will categorize the number of safety events during a trip into a binary variable \(Y_{i, d}\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. The analysis will be based on the merged 30-minute interval data, as shown in Table \ref{tab:analysis30int}.
+\begin{equation}
 \begin{split}
 Y_{i} &\sim \text{Bernoulli}(p_{i})\\
 \log\frac{p_{i}}{1-p_{i}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
@@ -982,111 +981,84 @@ Y_{i} &\sim \text{Bernoulli}(p_{i})\\
 \beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
 \label{eq:hierarchicallogit}
 \end{split}
-\]
+\end{equation}
+Where \(\mu_0, \sigma_0\) are hyper-parameters for \(\beta_{0, d}\), \(\mu_1, \sigma_1\) are hyper-parameters for random slope \(\beta_{1, d}\), \(\beta_2, \beta_3, \cdots, \beta_J\) are fixed parameters for covariates \(x_{ij}\).
 
-We assume that the drivers are random effects, and we assume exchangeable priors of the form
-\[
-\beta_{0, d(1)}, \beta_{0, d(2)}, \ldots , \beta_{0, d(n)} \sim \text{i.i.d.} N(\mu_0,\sigma_0^2)
-\]
-and
-\[
-\beta_{1, d(1)}, \beta_{1, d(2)}, \ldots , \beta_{1, d(n)} \sim \text{i.i.d.} N(\mu_1,\sigma_1^2)
-\]
-The parameters \(\mu_0, \sigma_0, \mu_1\), and \(\sigma_1\) are hyperparameters with priors. Since we do not have much prior knowledge on the hyperparameters, we assigned diffuse priors for these hyperparameters.
-\[
+Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors (Gelman et al., \protect\hyperlink{ref-gelman2017prior}{2017}) for these parameters shown in Equation \eqref{eq:prior}.
+\begin{equation}
 \begin{split}
-Y_{i} &\sim \text{Bernoulli}(p_{i})\\
-\log\frac{p_{i}}{1-p_{i}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
-\beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
-\beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
-\label{eq:priors}
+        \mu_0 & \sim N(0, 5^2)\\
+        \mu_1 & \sim N(0, 5^2)\\
+        \sigma_0 & \sim \text{Gamma}(1, 1)\\
+        \sigma_1 & \sim \text{Gamma}(1, 1)\\
+        \beta_2, \beta_3, \cdots, \beta_J  & \sim N(0, 10^2)
+        \label{eq:prior}
 \end{split}
-\]
+\end{equation}
+
 Since \(\mu_0\) and \(\mu_1\) can be any real number, so we assigned two normal distributions with mean of 0 and standard deviation of 10 as the priors for these two hyperparameters. In comparison, \(\sigma_0\) and \(\sigma_1\) must be strictly positive, so we assigned GAMMA\((1, 1)\) with wide distribution on positive real numbers as their priors.
 
-\hypertarget{poisson-regression}{%
-\subsection{Poisson regression}\label{poisson-regression}}
+\hypertarget{bayesian-hierarchical-poisson-regression}{%
+\subsection{Bayesian hierarchical Poisson regression}\label{bayesian-hierarchical-poisson-regression}}
 
-Since logistic regression ignores the intensity of the critical events with any number greater than 0 categorized into 1, I adopt a Bayesian hierarchical Poisson regression to model the effect of cumulative driving time on the occurrence of critical events. Each driver has a random intercept and a random slope on cumulative driving time.
-\[
-\begin{split}
-Y_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
+The logistic regression considers whether SCEs occurred in a 30-minute fixed interval or not, but it ignores the intensity of the critical events. Here I present a Bayesian hierarchical Poisson regression to model the effect of cumulative driving time on the occurrence of critical events, as shown in Equation \eqref{eq:hierarchicalpoisson}. Each driver will have a different a random slope on cumulative driving time and a random intercept. The analysis will also be based on the merged 30-minute interval data, as shown in Table \ref{tab:analysis30int}.
+\begin{equation}
+\begin{aligned}
+N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
 \log\lambda_{i} & =\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
 \beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
 \beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
 \label{eq:hierarchicalpoisson}
-\end{split}
-\]
-Where N is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with parameter \(\lambda\). The other variables are identical as those described in Equation .
+\end{aligned}
+\end{equation}
+Where \(N\) is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with the mean and variance parameter \(\lambda\). \(T_i\) is the length of the time interval, with most of them are 30 minutes. The other variables are identical as those described in Equation . Compared to the hierarchical logistic regression in Section \ref{hierarchical-logit}, the predictor variables are identical with those in Equation \eqref{eq:hierarchicallogit} and the only thing that is changed here is the outcome distribution. Therefore, I will assign identical prior distributions as specified in Equation \eqref{eq:prior}.
 
 \hypertarget{non-homogeneous-poisson-process-nhpp}{%
 \subsection{Non-homogeneous Poisson process (NHPP)}\label{non-homogeneous-poisson-process-nhpp}}
 
+Despite Poisson regression consider the frequency of SCEs in a given interval, it assumes that the intensity of events is a constant, which may not be true in real-life transportation practice. Here I present a reliability model, a non-homogeneous Poisson process (NHPP) with a power law process (PLP) based on the merged shifts data set. The aim is to answer if SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
+
 \begin{figure}[!ht]
 
-{\centering \includegraphics[width=0.5\linewidth]{figs/NHPP_arrow_plot} 
+{\centering \includegraphics[width=0.8\linewidth]{figs/NHPP_arrow_plot} 
 
 }
 
 \caption{An arrow plot of time to SCEs in each shift}\label{fig:arrowplot}
 \end{figure}
 
-A point process is a stochastic model which describes the occurrence of events in a given period (Rigdon and Basu, \protect\hyperlink{ref-rigdon2000statistical}{2000}). The mean function of a point process is \(\Lambda(t) = E(N(t))\), where \(\Lambda(t)\) is the expected number of failures through time \(t\). Two notations that are important in reliability models are \emph{Rate of Occurence of Failures (ROCOF)} and \emph{Intensity function}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \emph{ROCOF}: When the mean function \(\Lambda(t)\) is differentiable, the ROCOF is:
-  \[\mu(t) = \frac{d}{dt}\Lambda(t)\]
-  The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
-\item
-  \emph{Intensity function}: The intensity function of a point process is
-  \[\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\]
-\end{enumerate}
-
-When there is no simultaneous events, ROCOF is the same as intensity function.
-
-\emph{Nonhomogeneous Poisson Process (NHPP)}: The NHPP is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
-\[\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}\],
-Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP).
-
-Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function:
-\[\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\].
-
-There are two forms of truncation in a NHPP:
+Figure \ref{fig:arrowplot} shows a sample of SCEs distributions in different shifts. Each arrow represents a shift while each red cross shows a SCE. This type of recurrent events data fit into the analysis framework of point process and reliability models. A point process is a stochastic model which describes the occurrence of events in a given period (Rigdon and Basu, \protect\hyperlink{ref-rigdon2000statistical}{2000}). The mean function of a point process is \(\Lambda(t) = E(N(t))\), where \(\Lambda(t)\) is the expected number of failures through time \(t\). Two notations that are important in reliability models are \emph{Rate of Occurence of Failures (ROCOF)} and \emph{Intensity function}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Failure truncation}: When testing stops after a predetermined number of failures, the data are said to be failure truncated.
+  \emph{ROCOF}: When the mean function \(\Lambda(t)\) is differentiable, the ROCOF is \(\mu(t) = \frac{d}{dt}\Lambda(t)\). The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
 \item
-  \textbf{Time truncation}: Data are said to be time truncated when testing stops at a predetermined time \(t\).
+  \emph{Intensity function}: The intensity function of a point process is
+  \(\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\). When there is no simultaneous events, ROCOF is the same as intensity function.
 \end{enumerate}
 
-In a time truncated case, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is (the prove can be found in the Appendix):
-\begin{equation}\label{pdftau}
+A commonly used reliability model is the \emph{Nonhomogeneous Poisson Process (NHPP)}. The NHPP is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+\begin{equation}
+\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1},
+\label{eq:plp}
+\end{equation}
+Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP), also called the Weibull intensity function. Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\).
+
+There are two forms of truncation in a NHPP: 1) \emph{Failure truncation} when testing stops after a predetermined number of failures, 2) \emph{Time truncation} when testing stops at a predetermined time \(t\). In a time truncated case, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is shown in Equation \eqref{eq:pdftau} (the prove can be found at page 54 in Rigdon and Basu (\protect\hyperlink{ref-rigdon2000statistical}{2000})).
+\begin{equation}
 \begin{aligned}
 f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
 & = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
 & = \Big(\prod_{i=1}^n\lambda(t_i) \Big)e^{-\int_0^\tau \lambda(u)du}\\
 & = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1} \Big)e^{-(\tau/\theta)^\beta},\\ 
 n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
+\label{eq:pdftau}
 \end{aligned}
 \end{equation}
 
-The log likelihood function \(l\) is then:
-\begin{equation}\label{logtau}
-\begin{aligned}
-l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big)e^{-(\tau/\theta)^\beta}\Bigg)\\
-& = \sum_{i=1}^n\log\Big(\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1}\Big) - (\frac{\tau}{\theta})^\beta\\
-& = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{\tau}{\theta}\Big)^\beta
-\end{aligned}
-\end{equation}
-
-Despite Poisson regression consider the frequency of SCEs in a given interval, it assumes that the intensity of events is a constant, which may not be true in real-life transportation practice. Here we presented a reliability model, a non-homogeneous Poisson process (NHPP) with a power law process (PLP) based on the merged shifts data set. we aim to answer if SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
-
-Let \(T_{d, s, i}\) denote the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
+With the joint likelihood function of a NHPP, we can specify our statistical models. Let \(T_{d, s, i}\) denote the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
 
 \begin{itemize}
 \tightlist
@@ -1098,8 +1070,8 @@ Let \(T_{d, s, i}\) denote the time to the \(d\)-th driver's \(s\)-th shift's \(
   \(d = 1, 2, \cdots, D\).
 \end{itemize}
 
-We assumes that the times of critical events within the \(d\)-th driver's \(s\)-th shift were generated from a PLP, with a fixed shape parameter \(\beta\) and varying scale parameters \(\theta_{d, s}\) across drivers \(d\) and shifts \(s\). In a PLP, the intensity function of the NHPP is \(\lambda(t) \frac{\beta}{\theta}(\frac{t}{\theta})^{\beta-1}\). The model is described in Equation\textasciitilde{}\ref{eq:nhpp}.
-\begin{equation}\label{eq:nhpp}
+We assumes that the times of critical events within the \(d\)-th driver's \(s\)-th shift were generated from a PLP, with a fixed shape parameter \(\beta\) and varying scale parameters \(\theta_{d, s}\) across drivers \(d\) and shifts \(s\). In a PLP, the intensity function of the NHPP is \(\lambda(t) = \frac{\beta}{\theta}(\frac{t}{\theta})^{\beta-1}\). The model is described in Equation \eqref{eq:nhpp}.
+\begin{equation}
 \begin{aligned}
   T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{PLP}(\beta, \theta_{d, s})\\
   \beta & \sim \text{Gamma}(1, 1)\\
@@ -1108,9 +1080,12 @@ We assumes that the times of critical events within the \(d\)-th driver's \(s\)-
   \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
   \mu_0 &\sim N(0, 10^2) \\
   \sigma_0 &\sim \text{Gamma}(1, 1)
+\label{eq:nhpp}
 \end{aligned}
 \end{equation}
 The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\beta > 1\), the intensity function \(\lambda(t)\) is increasing, the reliability of drivers is decreasing, and SCEs are becoming more frequent; when \(\beta < 1\), the intensity function \(\lambda(t)\) is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when \(\beta = 1\), the NHPP is simplified as a homogeneous Poisson process with the intensity of \(1/\theta\). The \(\theta_{d, s}\) is a scale parameter that does not reflect reliability changes.
+
+All data reduction, cleaning, statistical analysis, and visualization will be done on the RStudio Server and Jupyter Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers (Center, \protect\hyperlink{ref-OSC1987}{1987}). The scalable Bayesian statistical and reliability models using the HMC-ECS algorithm will be conducted using the \texttt{rstan} package in R 3.5.1 or self-write Python programs (Dang et al., \protect\hyperlink{ref-dang2019hamiltonian}{2019}; R Core Team, \protect\hyperlink{ref-Rcitation}{2018}; Stan Development Team, \protect\hyperlink{ref-rstancitation}{2018}).
 
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
@@ -1119,8 +1094,13 @@ Aim 3 seeks to innovate the NHPP proposed in Aim 2 by accounting for the rest ti
 
 This new model will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests (``as bad as old''), and a renewal process where the intensity function is fully recovered by between-trip rests (``as good as new'')
 
-\hypertarget{alternative-plans}{%
-\subsection{Alternative plans}\label{alternative-plans}}
+\hypertarget{jump-point-plp}{%
+\subsection{Jump-point PLP}\label{jump-point-plp}}
+
+\hl{Insert a plot on the intensity function of a jump-point PLP.}
+
+\hypertarget{modulate-plp}{%
+\subsection{Modulate PLP}\label{modulate-plp}}
 
 Black and Rigdon (\protect\hyperlink{ref-black1996statistical}{1996}) gives an alternative plan for achieving Aim 3.
 
@@ -1159,8 +1139,8 @@ Chapter 2: Literature review
   Predictive models
   a. Overview
   b. Bayesian models
-  c.~Hierarchical models
-  d.~Markov chain Monte Carlo (MCMC)
+  c. Hierarchical models
+  d. Markov chain Monte Carlo (MCMC)
 \item
   Scalable Bayesian models
   a. Hamiltonian Monte Carlo (HMC)
@@ -1182,7 +1162,7 @@ Chapter 3: Aim 1 - truck crashes and critical events
   Results
   a. A simulation study on Gamma-Poisson models
   b. Real-world application on all SCEs
-  c.~Real-world application on different types of SCEs
+  c. Real-world application on different types of SCEs
 \item
   Discussion
 \end{enumerate}
@@ -1200,12 +1180,12 @@ Chapter 4: Aim 2 - Bayesian hierarchical models for SCEs
   Methods
   a. Logistic regression
   b. Poisson regression
-  c.~Non-homogeneous Poisson process (NHPP)
+  c. Non-homogeneous Poisson process (NHPP)
 \item
   Results
   a. Logistic regression
   b. Poisson regression
-  c.~NHPP
+  c. NHPP
 
   \begin{enumerate}
   \def\labelenumii{\roman{enumii}.}
@@ -1234,7 +1214,7 @@ Chapter 5: Aim 3 - an innovation on NHPP to account for within shift rest time
   Results
   a. A simulation study on this new method
   b. Real-world application on this new method
-  c.~Real-world application on this new method stratified by SCE types
+  c. Real-world application on this new method stratified by SCE types
 \item
   Discussion
 \end{enumerate}
@@ -1665,6 +1645,9 @@ Gelfand, A.E., Smith, A.F., 1990. Sampling-based approaches to calculating margi
 
 \leavevmode\hypertarget{ref-gelman2006data}{}%
 Gelman, A., Hill, J., 2006. Data analysis using regression and multilevel/hierarchical models. Cambridge university press.
+
+\leavevmode\hypertarget{ref-gelman2017prior}{}%
+Gelman, A., Simpson, D., Betancourt, M., 2017. The prior can often only be understood in the context of the likelihood. Entropy 19 10, 555.
 
 \leavevmode\hypertarget{ref-gelman2013bayesian}{}%
 Gelman, A., Stern, H.S., Carlin, J.B., Dunson, D.B., Vehtari, A., Rubin, D.B., 2013. Bayesian data analysis. Chapman; Hall/CRC.

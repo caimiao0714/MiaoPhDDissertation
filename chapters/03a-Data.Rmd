@@ -178,7 +178,7 @@ Figure \@ref(fig:datamerge) demonstrates the data aggregation and merging workfl
 3. *Road geometry*: the road geometry variables will firstly be merged back to the original ping data by driver ID, latitude, and longitude. Then these road geometry variables will averaged by taking the mean for each 30-minute interval and shift to the aggregated levels,
 4. *Weather*: the weather variables will firstly also be merged back to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be averaged by taking the mean for each 30-minute interval and shift to the aggregated levels.
 
-The resulting 30-minute intervals and shifts tables are demonstrated in Table \@ref(tab:analysis30int) and Table \@ref(tab:analysisshift). Table \@ref(tab:analysisshiftevent) demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
+The resulting 30-minute intervals and shifts tables are demonstrated in Table \@ref(tab:analysis30int) and Table \@ref(tab:analysisshift). The predictor variables such as cumulative driving time, driver's age, weather and road geometry variables are truncated and not shown to fit in the page. Table \@ref(tab:analysisshiftevent) demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
 
 ```{r eval=TRUE, echo=FALSE}
 agg30 = fread("data/31-analyses_30_minute_intervals.csv")

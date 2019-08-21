@@ -5,6 +5,10 @@ Aim 3 seeks to innovate the NHPP proposed in Aim 2 by accounting for the rest ti
 
 This new model will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new")
 
-### Alternative plans
+### Jump-point PLP
 
-@black1996statistical gives an alternative plan for achieving Aim 3.
+\hl{Insert a plot on the intensity function of a jump-point PLP.}
+
+### Modulate PLP
+
+The modulated PLP by @black1996statistical gives an alternative plan for achieving Aim 3.
