@@ -4,10 +4,10 @@ To do list 2019-07-24:
 
 - [x] ~~Subsampling MCMC,~~
 - [x] ~~Conceptual framework,~~
-- [ ] Research aims
+- [x] ~~Research aims,~~
 - [x] ~~Simulation for random-effects Poisson regression: check perfect fit?~~
 - [ ] Figure out the math for jump point NHPP
-- [ ] Contact Fadel and Dr. Hong Xian for meeting time --> Done, waiting for replies
+- [ ] First group meeting Fadel and Dr. Hong Xian --> August 23th, 3 p.m. 2019
 - [x] ~~Follow-up on IRB updates by Dr. Shacham~~
 
 

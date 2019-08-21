@@ -6,7 +6,8 @@ Data sources
 
 ### Real-time ping
 
-The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provide me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings. A sample of the ping data is demonstrated in Table \@ref(tab:ping).
+<!--The J.B. Hunt Transport Services-->
+A commercial trucking and transportation company in the United States will provide me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings. A sample of the ping data is demonstrated in Table \@ref(tab:ping).
 
 ```{r ping, results='asis', eval=TRUE, echo=FALSE}
 pacman::p_load(data.table, knitr, ggplot2, kableExtra)

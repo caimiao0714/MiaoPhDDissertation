@@ -46,10 +46,11 @@
 \contentsline {subsection}{\numberline {4.4.3}Poisson regression}{50}{subsection.4.4.3}
 \contentsline {subsection}{\numberline {4.4.4}Non-homogeneous Poisson process (NHPP)}{51}{subsection.4.4.4}
 \contentsline {section}{\numberline {4.5}Analytical Plan for Aim 3}{54}{section.4.5}
-\contentsline {chapter}{\numberline {5}THE PROBABLE CONTENT}{55}{chapter.5}
-\contentsline {chapter}{APPENDIX}{57}{chapter*.6}
-\contentsline {section}{Query weather data}{57}{section*.7}
-\contentsline {section}{Query road geometry data}{58}{section*.7}
-\contentsline {section}{Likelihood function of a NHPP}{59}{section*.7}
-\contentsline {chapter}{Bibliography}{65}{chapter*.8}
-\contentsline {chapter}{Vita Auctoris}{81}{chapter*.9}
+\contentsline {subsection}{\numberline {4.5.1}Alternative plans}{55}{subsection.4.5.1}
+\contentsline {chapter}{\numberline {5}THE PROBABLE CONTENT}{57}{chapter.5}
+\contentsline {chapter}{APPENDIX}{59}{chapter*.6}
+\contentsline {section}{Query weather data}{59}{section*.7}
+\contentsline {section}{Query road geometry data}{60}{section*.7}
+\contentsline {section}{Likelihood function of a NHPP}{61}{section*.7}
+\contentsline {chapter}{Bibliography}{67}{chapter*.8}
+\contentsline {chapter}{Vita Auctoris}{83}{chapter*.9}

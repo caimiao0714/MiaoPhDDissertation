@@ -625,27 +625,21 @@ The overarching goal of this proposed dissertation is to contruct scalable Bayes
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Aim1}: Examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression. I hypothesize that
+  \textbf{Aim1: To examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression}. I hypothesize that the rate of crashes is positively associated with the rate of SCEs among the truck drivers controlling for the miles driven.
 \item
-  \textbf{Aim2}: Construct three scalable Bayesian hierarchical models for SCEs: logistic regression, Poisson regression, and non-homogeneous Poisson process with the power law process intensity function.
-\end{enumerate}
+  \textbf{Aim2: To construct three scalable Bayesian hierarchical models to identify potential risk factors for SCEs}. I hypothesis that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using risk factors including cumulative driving time, weather, road geometry, age, and others.
 
-\begin{itemize}
-\tightlist
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Sub-aim 1: to contruct a Bayesian hierarchical logistic regression to model whether SCEs will occur in 30-minute intervals}. I hypothesis that the probability of SCEs is positively associated with the cumulative driving time and risk factors, and it varies significantly from drivers to drivers.
+  \item
+    \textbf{Sub-aim 2: to contruct a Bayesian hierarchical Poisson regression to model whether SCEs will occur in 30-minute intervals}. I hypothesis that the rate of SCEs is positively associated with the cumulative driving time and risk factors, and it varies significantly from drivers to drivers.
+  \item
+    \textbf{Sub-aim 3: to contruct a Bayesian hierarchical non-homogeneous Poisson process with the power law process intensity function to model the intensity change of SCEs within each shift}. I hypothesis that the intensity of SCEs it increases in later stage of shifts, can be predicted by the risk factors, and it varies from drivers to drivers and is .
+  \end{itemize}
 \item
-  Sub-aim 1:
-\item
-  Sub-aim 2:
-\item
-  Sub-aim 3:
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  \textbf{Aim3}: Propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time.
+  \textbf{Aim3: To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time}. I hypothesis that between-trip rest time can recover the intensity function by some proportion or by a certain amount, and intensity function varies significantly from drivers to drivers.
 \end{enumerate}
 
 \hypertarget{methods}{%
@@ -657,7 +651,7 @@ The overarching goal of this proposed dissertation is to contruct scalable Bayes
 \hypertarget{real-time-ping}{%
 \subsection{Real-time ping}\label{real-time-ping}}
 
-The J.B. Hunt Transport Services, a commercial trucking and transportation company in the United States, will provide me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings. A sample of the ping data is demonstrated in Table \ref{tab:ping}.
+A commercial trucking and transportation company in the United States will provide me real-time ping data generated between April 1st, 2015 and March 29th, 2016. During this time, a small device was installed in each of their truck, which will ping irregularly (typically every 2-10 minutes). Each ping will collect real-time data on the vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second. The driver ID is de-identified and no real driver names will be involved. In total, there are 1,494,678,173 pings. A sample of the ping data is demonstrated in Table \ref{tab:ping}.
 
 \begin{table}[!h]
 
@@ -1106,6 +1100,11 @@ The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
 
 Aim 3 seeks to innovate the NHPP proposed in Aim 2 by accounting for the rest time within a shift. One more parameter, the percent of reliability recovery during a break within a shift, will be estimated for in this model.
+
+This new model will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests (``as bad as old''), and a renewal process where the intensity function is fully recovered by between-trip rests (``as good as new'')
+
+\hypertarget{alternative-plans}{%
+\subsection{Alternative plans}\label{alternative-plans}}
 
 Black and Rigdon (\protect\hyperlink{ref-black1996statistical}{1996}) gives an alternative plan for achieving Aim 3.
 
