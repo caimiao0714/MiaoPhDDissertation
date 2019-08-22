@@ -1,8 +1,6 @@
 \babel@toc {english}{}
-\contentsline {chapter}{Dedication}{v}{chapter*.1}
-\contentsline {chapter}{Acknowledgement}{vii}{chapter*.2}
-\contentsline {chapter}{List of Figures}{xi}{chapter*.4}
-\contentsline {chapter}{List of Tables}{xiii}{chapter*.5}
+\contentsline {chapter}{List of Figures}{vii}{chapter*.2}
+\contentsline {chapter}{List of Tables}{ix}{chapter*.3}
 \contentsline {chapter}{\numberline {1}INTRODUCTION}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Transportation safety}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Truck safety}{3}{section.1.2}
@@ -45,12 +43,12 @@
 \contentsline {subsection}{\numberline {4.5.1}Bayesian hierarchical logistic regression}{50}{subsection.4.5.1}
 \contentsline {subsection}{\numberline {4.5.2}Bayesian hierarchical Poisson regression}{51}{subsection.4.5.2}
 \contentsline {subsection}{\numberline {4.5.3}Non-homogeneous Poisson process (NHPP)}{52}{subsection.4.5.3}
-\contentsline {section}{\numberline {4.6}Analytical Plan for Aim 3}{57}{section.4.6}
+\contentsline {section}{\numberline {4.6}Analytical Plan for Aim 3}{56}{section.4.6}
 \contentsline {subsection}{\numberline {4.6.1}Jump-point PLP}{57}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Modulate PLP}{60}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.2}Modulate PLP}{59}{subsection.4.6.2}
 \contentsline {chapter}{\numberline {5}THE PROBABLE CONTENT}{61}{chapter.5}
-\contentsline {chapter}{APPENDIX}{65}{chapter*.6}
-\contentsline {section}{Query weather data}{65}{section*.7}
-\contentsline {section}{Query road geometry data}{66}{section*.7}
-\contentsline {chapter}{Bibliography}{69}{chapter*.8}
-\contentsline {chapter}{Vita Auctoris}{85}{chapter*.9}
+\contentsline {chapter}{APPENDIX}{65}{chapter*.4}
+\contentsline {section}{Query weather data}{65}{section*.5}
+\contentsline {section}{Query road geometry data}{66}{section*.5}
+\contentsline {chapter}{Bibliography}{69}{chapter*.6}
+\contentsline {chapter}{Vita Auctoris}{85}{chapter*.7}
