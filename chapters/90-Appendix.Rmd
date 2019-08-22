@@ -126,7 +126,7 @@ df = data.table::fread("data/20190605_ping_compressed_3digits.csv")
 dfcontainer12 = loop_data(start_index = 1)
 ```
 
-
+<!--
 \doublespacing
 
 Likelihood function of a NHPP {-}
@@ -213,3 +213,5 @@ l & = \log \Bigg(\Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\be
 & = n\log\beta - n\beta\log\theta + (\beta - 1)\bigg(\sum_{i=1}^n\log t_i\bigg) - \Big(\frac{\tau}{\theta}\Big)^\beta
 \end{aligned}
 \end{equation}
+
+-->

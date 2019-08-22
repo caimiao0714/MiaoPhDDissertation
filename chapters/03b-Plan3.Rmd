@@ -5,12 +5,12 @@ Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 
 
 ### Jump-point PLP
 
-Figure \@ref(fig:plpjumppoint) demonstrates the intensity function
-```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift in a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE, echo=FALSE}
+Figure \@ref(fig:plpjumppoint) demonstrates the complete intensity function of a PLP (the solid curve), simulated SCEs (red cross on x-axis), and between-trip rests (the green intervals) of a NHPP used in Aim 2. This figure demonstrates its limitation: when the driver takes a break, the intensity function  
+```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("figs/PLP_NHPP_intensity.pdf")
 ```
 
-```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE, echo=FALSE}
+```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("figs/PLP_jump_point_intensity.pdf")
 ```
 
@@ -82,8 +82,7 @@ p0 = ggplot() +
   geom_text(aes(x = c(4.5, 8.7), y = rep(max_int/2, 2), 
                 label = c("rest 1","rest 2"))) +
   theme_bw()+
-  theme(panel.grid = element_blank(), 
-        panel.border = element_blank())
+  theme(panel.grid = element_blank())
 p0
 ggsave("figs/PLP_NHPP_intensity.pdf", p0, width = 10, height = 6.18)
 ```
@@ -139,8 +138,7 @@ p1 = ggplot() +
   geom_text(aes(x = c(4.5, 8.7), y = rep(max_int/2, 2), 
                 label = c("rest 1","rest 2"))) +
   theme_bw()+
-  theme(panel.grid = element_blank(), 
-        panel.border = element_blank())
+  theme(panel.grid = element_blank())#panel.border = element_blank()
 p1
 ggsave("figs/PLP_jump_point_intensity.pdf", p1, width = 10, height = 6.18)
 ```

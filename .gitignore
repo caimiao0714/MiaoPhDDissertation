@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-MiaoPhDDissertation.lof
-MiaoPhDDissertation.lot
-MiaoPhDDissertation.toc
-MiaoPhDDissertation.tex
+*.lof
+*.lot
+*.toc
+*.tex

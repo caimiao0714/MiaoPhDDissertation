@@ -6,6 +6,6 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Flow chart of data aggregation and merging}}{46}{figure.4.1}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces An arrow plot of time to SCEs in each shift}}{53}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Intensity function, time to SCEs, and rest time within a shift in a PLP intensity function, $\beta = 1.2$, $\theta =2$}}{58}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP, $\beta = 1.2$, $\theta =2$}}{59}{figure.4.4}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\beta = 1.2$, $\theta =2$}}{58}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\beta = 1.2$, $\theta =2$}}{59}{figure.4.4}
 \addvspace {10\p@ }
