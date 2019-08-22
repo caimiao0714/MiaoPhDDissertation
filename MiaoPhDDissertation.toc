@@ -49,8 +49,8 @@
 \contentsline {subsection}{\numberline {4.6.1}Jump-point PLP}{57}{subsection.4.6.1}
 \contentsline {subsection}{\numberline {4.6.2}Modulate PLP}{60}{subsection.4.6.2}
 \contentsline {chapter}{\numberline {5}THE PROBABLE CONTENT}{61}{chapter.5}
-\contentsline {chapter}{APPENDIX}{63}{chapter*.6}
-\contentsline {section}{Query weather data}{63}{section*.7}
-\contentsline {section}{Query road geometry data}{64}{section*.7}
-\contentsline {chapter}{Bibliography}{67}{chapter*.8}
-\contentsline {chapter}{Vita Auctoris}{83}{chapter*.9}
+\contentsline {chapter}{APPENDIX}{65}{chapter*.6}
+\contentsline {section}{Query weather data}{65}{section*.7}
+\contentsline {section}{Query road geometry data}{66}{section*.7}
+\contentsline {chapter}{Bibliography}{69}{chapter*.8}
+\contentsline {chapter}{Vita Auctoris}{85}{chapter*.9}

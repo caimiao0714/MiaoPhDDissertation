@@ -1145,128 +1145,170 @@ All data reduction, cleaning, statistical analysis, and visualization will be do
 
 The contents will follow the standard format for a traditional dissertation, as per guidelines set by the College for Public Health and Social Justice and Saint Louis University's Office of Graduate Education.
 
-Chapter 1: Introduction: The problem
+\linespread{1}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
-  Transportation safety
-\item
-  Truck safety
-\item
-  Modern Truck Safety Studies
-\end{enumerate}
-
-Chapter 2: Literature review
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Naturalistic driving Study (NDS)
-\item
-  Safety-critical events (SCEs)
-\item
-  Crashes and SCEs
-\item
-  Risk factors for traffic safety
-\item
-  Predictive models
-  a. Overview
-  b. Bayesian models
-  c.~Hierarchical models
-  d.~Markov chain Monte Carlo (MCMC)
-\item
-  Scalable Bayesian models
-  a. Hamiltonian Monte Carlo (HMC)
-  b. Subsampling MCMC
-\end{enumerate}
-
-Chapter 3: Aim 1 - truck crashes and critical events
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Introduction
-\item
-  Data sources
-\item
-  Methods
-\item
-  Results
-  a. A simulation study on Gamma-Poisson models
-  b. Real-world application on all SCEs
-  c.~Real-world application on different types of SCEs
-\item
-  Discussion
-\end{enumerate}
-
-Chapter 4: Aim 2 - Bayesian hierarchical models for SCEs
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Introduction
-\item
-  Data sources
-\item
-  Methods
-  a. Logistic regression
-  b. Poisson regression
-  c.~Non-homogeneous Poisson process (NHPP)
-\item
-  Results
-  a. Logistic regression
-  b. Poisson regression
-  c.~NHPP
+  Chapter 1: Introduction: The problem
 
   \begin{enumerate}
-  \def\labelenumii{\roman{enumii}.}
+  \def\labelenumi{\arabic{enumi}.}
   \tightlist
   \item
-    A simulation study on NHPP
+    Transportation safety
   \item
-    Real-world application on NHPP
+    Truck safety
+  \item
+    Modern Truck Safety Studies
   \end{enumerate}
 \item
-  Discussion
-\end{enumerate}
+  Chapter 2: Literature review
 
-Chapter 5: Aim 3 - an innovation on NHPP to account for within shift rest time
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Naturalistic driving Study (NDS)
+  \item
+    Safety-critical events (SCEs)
+  \item
+    Crashes and SCEs
+  \item
+    Risk factors for traffic safety
+  \item
+    Predictive models
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Introduction
-\item
-  Data sources
-\item
-  Methods
-\item
-  Results
-  a. A simulation study on this new method
-  b. Real-world application on this new method
-  c.~Real-world application on this new method stratified by SCE types
-\item
-  Discussion
-\end{enumerate}
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      Overview
+    \item
+      Bayesian models
+    \item
+      Hierarchical models
+    \item
+      Markov chain Monte Carlo (MCMC)
+    \end{enumerate}
+  \item
+    Scalable Bayesian models
 
-Chapter 6: Discussion
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      Hamiltonian Monte Carlo (HMC)
+    \item
+      Subsampling MCMC
+    \end{enumerate}
+  \end{enumerate}
+\item
+  Chapter 3: Aim 1 - Truck crashes and critical events
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Introduction
+  \item
+    Data sources
+  \item
+    Methods
+  \item
+    Results
+
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      A simulation study on Gamma-Poisson models
+    \item
+      Real-world application on all SCEs
+    \item
+      Real-world application on different types of SCEs
+    \end{enumerate}
+  \item
+    Discussion\\
+  \end{enumerate}
 \item
-  Conclusion
+  Chapter 4: Aim 2 - Scalable Bayesian hierarchical models for SCEs using HMC-ECS
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Introduction
+  \item
+    Data sources
+  \item
+    Methods
+
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      Logistic regression
+    \item
+      Poisson regression
+    \item
+      Non-homogeneous Poisson process (NHPP)
+    \end{enumerate}
+  \item
+    Results
+
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      Logistic regression
+    \item
+      Poisson regression
+    \item
+      NHPP
+    \item
+      A simulation study on NHPP
+    \end{enumerate}
+
+    \begin{enumerate}
+    \def\labelenumii{\roman{enumii}.}
+    \setcounter{enumii}{1}
+    \tightlist
+    \item
+      Real-world application on NHPP
+    \end{enumerate}
+  \item
+    Discussion
+  \end{enumerate}
 \item
-  Strengths and limitation
-\item
-  Future research
-\end{enumerate}
+  Chapter 5: Aim 3 - a JPLP that accounts for between trip rest time
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Introduction
+  \item
+    Data sources
+  \item
+    Methods
+  \item
+    Results
+
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      A simulation study on this new method
+    \item
+      Real-world application on this new method
+    \end{enumerate}
+  \item
+    Discussion
+  \end{enumerate}
+\end{itemize}
+
+\linespread{2}
 
 \singlespacing
 

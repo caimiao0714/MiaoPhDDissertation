@@ -82,7 +82,7 @@ n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
 \end{aligned}
 \end{equation}
 
-After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let $T_{d, s, i}$ denote the time to the $d$-th driver's $s$-th shift's $i$-th critical event. The total number critical events of $d$-th driver's $s$-th shift is $n_{d,s}$. The ranges of these notations are: 
+After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let $T_{d, s, i}$ denote the time to the $d$-th driver's $s$-th shift's $i$-th critical event. The total number critical events of $d$-th driver's $s$-th shift is $n_{d,s}$. The ranges of these notations are:
 
 - $i = 1, 2, \cdots, n_{d, S_d}$,
 - $s = 1, 2, \cdots, S_d$,
