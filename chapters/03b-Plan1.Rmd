@@ -1,17 +1,13 @@
 Analytical Plan for Aim 1
 -------------------------
 
-The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. The cohort will be all drivers with at more than 100 pings. Drivers with less than 100 real-time pings will be recognized as potential outliers and excluded from analysis.
+The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. 
 
-### Outcome and predictor variables
+__*Data*__: this aim will use the original ping data table that has 1,494,678,173 pings in total, as demontrated in Table \@ref(tab:ping). Since drivers with less than 100 real-time pings will be recognized as potential outliers and only include  drivers with at more than 100 pings. The cleaned ping data will be aggregated to trips according to the procedure defined in Section \@ref(data-aggregation).
 
-The outcome variable will be the number of crashes for each driver. The primary independent variable will be the number of SCEs per 10,000 miles. These SCEs will be further decomposed into the number of hard brakes, headways, and rolling stability per 10,000 miles in similar analysis. The covariates will be the total miles driven, the percent of night driving, and the age of the drivers.
+__*Outcome and predictor variables*__: the outcome variable will be the number of crashes for each driver. The primary independent variable will be the number of SCEs per 10,000 miles. These SCEs will be further decomposed into the number of hard brakes, headways, and rolling stability per 10,000 miles in similar analysis. The covariates will be the total miles driven, the percent of night driving, and the age of the drivers.
 
-### Statistical models
-
-Since the outcome variable is a count variable, a Poisson model or a negative binomial model is a natural choice for this type of outcome variable [@lord2010statistical]. However, these two models are less likely to fully account for the variance across drivers. Therefore, I propose to use a Gamma-Poisson model to examine the association between crashes and SCEs. Here is how the proposed Gamma-Poisson model will be implemented:
-
-Let us assume that:
+__*Statistical models*__: since the outcome variable is a count variable, a Poisson model or a negative binomial model is a natural choice for this type of outcome variable [@lord2010statistical]. However, these two models are less likely to fully account for the variance across drivers. Therefore, I propose to use a Gamma-Poisson model to examine the association between crashes and SCEs. Here is how the proposed Gamma-Poisson model will be implemented. Let us assume that:
 $$
 \begin{aligned}
 \lambda & \sim \text{Gamma}(\alpha, \beta)\\
@@ -39,3 +35,5 @@ $$
 where $\mathbf{X}$ is the predictor variables matrix, including the percent of night driving and the age of the drivers, $\mathbf{\gamma}$ is the associated $2*1$ parameter vector, $m$ is the total miles driven as an offset term in the Poisson distribution, and $\alpha$ is a fixed overdispersion parameter that does not depend on any covariates.
 
 All data reduction, cleaning, and statistical analysis will be done on the RStudio Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers [@OSC1987]. The Bayesian statistical models will be conducted using the `rstan` package in R 3.5.1 [@rstancitation; @Rcitation].
+
+__*Potential problems and alternative plans*__: the sheer size of the original ping data may be a problem in this aim. The ping data has 1,494,678,173 rows and 9 columns, which takes up more than 140 gigabytes (GB) when stored as a single comma-separated values (csv) file. Although I will use the OSC server that has Random-Access Memory (RAM) of more than 500 GB, it may still be hard and slow to read and process this giant file. In that case, I will separate the single gaint csv file into several small csv files according to driver ID, then aggregate the pings to trips for each small csv file. After the ping data are aggregated to trips, it is unlikely that the log-linear Gamma-Poisson model fail. In that unlikely event, I can turn to negative binomial models or use traditional MLE estimates instead of Bayesian estimation.
