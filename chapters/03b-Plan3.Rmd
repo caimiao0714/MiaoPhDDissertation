@@ -1,21 +1,38 @@
 Analytical Plan for Aim 3
 -------------------------
 
-Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (jump-point PLP) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new"). The intensity function of the proposed jump-point PLP will be recovered for a certain percent $\kappa$ every time the driver took a short break (less than eight hours) between trips.
+Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (*jump-point PLP (JPLP)*) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new"). The intensity function of the proposed jump-point PLP will be recovered for a certain percent $\kappa$ every time the driver took a short break (less than eight hours) between trips.
 
 ### Jump-point PLP
 
-Figure \@ref(fig:plpjumppoint) demonstrates the complete intensity function of a PLP (the solid curve), simulated SCEs (red cross on x-axis), and between-trip rests (the green intervals) of a NHPP used in Aim 2. This figure demonstrates its limitation: when the driver takes a break, the intensity function  
+Figure \@ref(fig:plpjumppoint) demonstrates the complete intensity function of a PLP (the solid curve), simulated SCEs (red crosses on the x-axis), and between-trip rests (the green intervals) of a NHPP used in Aim 2. This figure demonstrates its limitation: when the driver takes a break, the intensity function does not change at all. However, when the driver takes a break, the fatigue level of the driver theoretically should be decreasing and the intensity of SCEs should therefore decrease.
+
+Therefore, the jump-point PLP I propose will account for the effect of taking a rest. Figure \@ref(fig:plpnhpp) shows the proposed complete intensity function (black solid curves), continuous PLP intensity function of a NHPP (the grey solid curve), simulated SCEs (red crosses on the x-axis), and rest times between trips (green intervals). Everytime the driver takes a rest, the complete intensity function will be moved down by a certain percent $\kappa$, here the $\kappa = 0.8$.
+
 ```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("figs/PLP_NHPP_intensity.pdf")
 ```
 
-```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE, echo=FALSE}
+```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$, $\\kappa=0.8$', echo=FALSE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("figs/PLP_jump_point_intensity.pdf")
 ```
 
-Figure \@ref(fig:plpnhpp)
 
+The data and notations $T_{d, s, i}, d, s, i$ will be identical as specified in Aim 2. Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$ and varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and a parameter $\kappa$. The model is described in Equation \@ref(eq:jplp).
+\begin{equation}
+\begin{aligned}
+  T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{JPLP}(\beta, \theta_{d, s}, \kappa)\\
+  \beta & \sim \text{Gamma}(1, 1)\\
+  \log\theta_{d, s} &= \gamma_{0d} + \gamma_{1}x_{d, s, 1} + \gamma_{2}x_{d, s, 2} + \cdots + \gamma_{k}x_{d, s, k}\\
+  \kappa & \sim \text{Uniform}(0, 1)\\
+  \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
+  \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
+  \mu_0 &\sim N(0, 10^2) \\
+  \sigma_0 &\sim \text{Gamma}(1, 1)
+(\#eq:jplp)
+\end{aligned}
+\end{equation}
+The shape parameter $\beta$ shows the reliability changes of drivers. When $\beta > 1$, the intensity function $\lambda(t)$ is increasing, the reliability of drivers is  decreasing, and SCEs are becoming more frequent; when $\beta < 1$, the intensity function $\lambda(t)$ is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when $\beta = 1$, the NHPP is simplified as a homogeneous Poisson process with the intensity of $1/\theta$. The $\theta_{d, s}$ is a scale parameter that does not reflect reliability changes. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
 
 
 <!--
@@ -89,7 +106,7 @@ ggsave("figs/PLP_NHPP_intensity.pdf", p0, width = 10, height = 6.18)
 
 ```{r plotjumpointPLP, eval=FALSE, echo=FALSE}
 set.seed(223)
-tau0 = 13; beta0 = 1.2; theta0 = 2; kappa = 0.5
+tau0 = 13; beta0 = 1.2; theta0 = 2; kappa = 0.8
 
 # SCE time
 t_SCE = sim_plp_tau(tau = tau0, beta = beta0, theta = theta0)
@@ -147,4 +164,6 @@ ggsave("figs/PLP_jump_point_intensity.pdf", p1, width = 10, height = 6.18)
 
 ### Modulate PLP
 
-The modulated PLP by @black1996statistical gives an alternative plan for achieving Aim 3.
+In the unlikely event that the JPLP fails to be models, I will use the modulated PLP proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood function. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, which this Aim 3 will be based on.
+
+All data reduction, cleaning, statistical analysis, and visualization will be done on the RStudio Server and Jupyter Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers [@OSC1987]. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 [@rstancitation; @Rcitation].
