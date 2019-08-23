@@ -1,0 +1,156 @@
+---
+title: Modeling Truck Safety Critical Events
+subtitle: Efficient Bayesian Hierarchical Statistical and Reliability Models
+author: Miao Cai
+institute: Department of Epidemiology and Biostatistics
+# date: "`r Sys.Date()`"
+titlegraphic: './logos/SLU-CPHSJ-left.png'
+fontsize: 10pt
+output:
+ beamer_presentation:
+    template: tex/Beamer_Miao_template.tex
+    keep_tex: false
+    latex_engine: xelatex # pdflatex also works here
+    dev: cairo_pdf # I typically comment this out  if latex_engine: pdflatex
+    slide_level: 3
+make149: true
+mainfont: "Open Sans" # Try out some font options if xelatex
+titlefont: "Titillium Web" # Try out some font options if xelatex
+---
+
+```{r setup, include=FALSE, cache=F, message=F, warning=F, results="hide"}
+knitr::opts_chunk$set(cache=FALSE,
+                      out.width='80%',
+                      out.height='80%',
+                      out.extra='keepaspectratio')
+#knitr::opts_chunk$set(fig.path='figs/')
+```
+
+### Dissertation committee
+
+- Chair:
+    + Steven E. Rigdon, PhD
+
+- Committee Members:
+    + Fadel Megahed, PhD
+    + Hong Xian, PhD
+
+- At-large Committee:
+    + AA, PhD
+    + BB, PhD
+    
+The problem
+============
+
+### Transportation safety
+
+Sheena Easton describes the following scenario for her baby:
+
+1. Takes the morning train
+2. Works from nine 'til five
+3. Takes another train home again
+4. Finds Sheena Easton waiting for him
+
+### Truck safety
+
+Rick Astley's campaign promises:
+
+- Never gonna give you up.
+- Never gonna let you down.
+- Never gonna run around and desert you.
+- Never gonna make you cry.
+- Never gonna say goodbye.
+- Never gonna tell a lie and hurt you.
+
+Are these promises (if credible) sufficient to secure re-election?
+
+
+### Truck crash studies
+
+Whereas these pledges conform to the preferences of the **median voter**, we expect Congressman Astley to secure re-election.
+
+### Naturalistic driving studies (NDS)
+
+
+
+Methods
+=======
+
+### The Good Day Hypothesis
+
+We know the following about Ice Cube's day.
+
+1. The Lakers beat the Supersonics.
+2. No helicopter looked for a murder.
+3. Consumed Fatburger at 2 a.m.
+4. Goodyear blimp: "Ice Cube's a pimp."
+
+### The Good Day Hypothesis
+
+This leads to two different hypotheses:
+
+- $H_0$: Ice Cube's day is statistically indistinguishable from a typical day.
+- $H_1$: Ice Cube is having a good (i.e. greater than average) day.
+
+These hypotheses are tested using archival data of Ice Cube's life.
+
+### LaTex Equations
+
+The likelihood function of a non-homogeneous Poisson process (NHPP) with a power law process (PLP) intensity function is:
+
+\begin{equation}\label{eq:pdftau}
+\begin{aligned}
+f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
+& = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
+& = \Big(\prod_{i=1}^n\lambda(t_i) \Big)e^{-\int_0^\tau \lambda(u)du}\\
+& = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1} \Big)e^{-(\tau/\theta)^\beta},\\ 
+n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
+\end{aligned}
+\end{equation}
+
+Results
+=======
+
+### Include figures
+
+```{r jplp, fig.cap='The intensity function, SCEs, and rests of a jump-point PLP',echo=FALSE}
+knitr::include_graphics("figs/PLP-jump-point-intensity.pdf")
+```
+
+### A Total Conflict Game Between Sheena Easton and Her Baby
+
+|                        | XX            | YY            |
+|------------------------|---------------|---------------|
+| **Baby Home Again**    |  -100, **100**| **100**, 0    |
+| **Baby Stays at Work** |   **50**, 0   | -100, **100** |
+
+Sheena Easton and her baby are playing a **zero-sum (total conflict) game**.
+
+- Akin to Holmes-Moriarty game (see: von Neumann and Morgenstern)
+- Solution: **mixed strategy**
+
+
+Conclusion
+==========
+
+### Python
+
+Wonderful Python packages are available:
+
+- `pandas`, 
+- `numpy`, 
+- `sci-kit`, 
+- $\cdots$
+- `keras`
+
+### R
+
+Wonderful R packages are available:
+
+- `tidyverse`
+- `data.table`
+- `caret`
+
+### The best language
+
+> PHP is the best language.
