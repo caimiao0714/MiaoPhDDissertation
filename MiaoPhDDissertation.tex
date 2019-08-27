@@ -562,7 +562,7 @@ Figure \ref{fig:conceptmodel} demonstrates the conceptual framework used in this
 \hypertarget{research-aims}{%
 \chapter{RESEARCH AIMS}\label{research-aims}}
 
-The overarching goal of this proposed dissertation is to contruct scalable Bayesian hierarchical models for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers. However, there are several gaps in traffic safety studies based on the previous literature review. First, an increasing number of studies are using SCEs as the outcome variable, but \emph{the association between crashes and SCEs has not been confirmed among truck drivers}. Second, SCEs are much more common and there can be multiple SCEs within a short period, but \emph{recurrent events models were not widely applied} to understand the risk factors for SCEs. Third, \emph{the high-resolutional and high-dimensional data collected by NDS poses a challenge to Bayesian estimation}. Considering these limitations, the aims of this research will focus on developing innovative and scalable Bayesian hierarchical statistical and reliability models to understand NDS data. Accordingly, the specific aims of this dissertation are as follows:
+The overarching goal of this proposed dissertation is to construct scalable Bayesian hierarchical models for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers. However, there are several gaps in traffic safety studies based on the previous literature review. First, an increasing number of studies are using SCEs as the outcome variable, but \emph{the association between crashes and SCEs has not been confirmed among truck drivers}. Second, SCEs are much more common and there can be multiple SCEs within a short period, but \emph{recurrent events models were not widely applied} to understand the risk factors for SCEs. Third, \emph{the high-resolutional and high-dimensional data collected by NDS poses a challenge to Bayesian estimation}. Considering these limitations, the aims of this research will focus on developing innovative and scalable Bayesian hierarchical statistical and reliability models to understand NDS data. Accordingly, the specific aims of this dissertation are as follows:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -578,7 +578,7 @@ The overarching goal of this proposed dissertation is to contruct scalable Bayes
   \item
     \textbf{Sub-aim 2: to contruct a Bayesian hierarchical Poisson regression to model the rate of SCEs in 30-minute intervals}. I hypothesize that the rate of SCEs is positively associated with the cumulative driving time and risk factors, and it varies significantly from drivers to drivers.
   \item
-    \textbf{Sub-aim 3: to contruct a Bayesian hierarchical non-homogeneous Poisson process with the power law process intensity function to model the intensity change of SCEs within each shift}. I hypothesize that the intensity of SCEs it increases in later stage of shifts, can be predicted by the risk factors, and it varies from drivers to drivers and is .
+    \textbf{Sub-aim 3: to contruct a Bayesian hierarchical non-homogeneous Poisson process with the power law process intensity function to model the intensity change of SCEs within each shift}. I hypothesize that the intensity of SCEs increases in later stage of shifts, can be predicted by the risk factors, and it varies from drivers to drivers.
   \end{itemize}
 \item
   \textbf{Aim3: To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time}. I hypothesize that between-trip rest time can recover the intensity function by some proportion or by a certain amount, and intensity function varies significantly from drivers to drivers.
@@ -778,7 +778,7 @@ canj1 & 197093 & 2015-10-23 10:34:24 & 2015-10-23 11:04:24 & 30 & 17.348\\
 \hypertarget{shifts}{%
 \subsection{Shifts}\label{shifts}}
 
-the trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \ref{tab:transformshift}.
+The trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \ref{tab:transformshift}.
 
 \begin{table}[H]
 
@@ -815,7 +815,7 @@ Figure \ref{fig:datamerge} demonstrates the data aggregation and merging workflo
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \emph{SCEs}: the SCEs are merged to the two aggregated tables by drivers and of the time of SCEs fall between the start and end time of the aggregated tables,
+  \emph{SCEs}: the SCEs will be merged to the two aggregated tables by drivers and if the time of SCEs fall between the start and end time of the aggregated tables,
 \item
   \emph{Drivers}: the age of drivers are merged to the two aggregated tables using driver unique ID,
 \item
@@ -969,7 +969,7 @@ N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
 \label{eq:hierarchicalpoisson}
 \end{aligned}
 \end{equation}
-Where \(N\) is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with the mean and variance parameter \(\lambda\). \(T_i\) is the length of the time interval, which serves as an offset term. Most of \(T_i\)s in the 30-minute interval table are 30 minutes. The other variables are identical as those described in Equation . Compared to the hierarchical logistic regression in Section \ref{hierarchical-logit}, the predictor variables are identical with those in Equation \eqref{eq:hierarchicallogit} and the only thing that is changed here is the outcome distribution. Therefore, I will assign identical prior distributions for these parameter as specified in Equation \eqref{eq:prior}.
+Where \(N\) is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with the mean and variance parameter \(\lambda\). \(T_i\) is the length of the time interval, which serves as an offset term. Most of \(T_i\)s in the 30-minute interval table are 30 minutes. The other variables are identical as those described in Equation \eqref{eq:hierarchicallogit}. Compared to the hierarchical logistic regression in Section \ref{hierarchical-logit}, the predictor variables are identical with those in Equation \eqref{eq:hierarchicallogit} and the only thing that is changed here is the outcome distribution. Therefore, I will assign identical prior distributions for these parameter as specified in Equation \eqref{eq:prior}.
 
 \hypertarget{non-homogeneous-poisson-process-nhpp}{%
 \subsection{Non-homogeneous Poisson process (NHPP)}\label{non-homogeneous-poisson-process-nhpp}}
@@ -1002,7 +1002,7 @@ A commonly used reliability model is the \emph{Nonhomogeneous Poisson Process (N
 \lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1},
 \label{eq:plp}
 \end{equation}
-Where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP), also called the Weibull intensity function. Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\).
+where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP), also called the Weibull intensity function. Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\).
 
 There are two forms of truncation in a NHPP: 1) \emph{Failure truncation} when testing stops after a predetermined number of failures, 2) \emph{Time truncation} when testing stops at a predetermined time \(t\). Since the drivers typically decide to stop working based on a certain amount of working time, not based on the number of SCEs they already have, time truncation is the case in this study. In a time truncated case, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is shown in Equation \eqref{eq:pdftau} (the prove can be found at page 54 in Rigdon and Basu (\protect\hyperlink{ref-rigdon2000statistical}{2000})).
 \begin{equation}
@@ -1016,7 +1016,7 @@ n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
 \end{aligned}
 \end{equation}
 
-After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let \(T_{d, s, i}\) denote the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
+After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let \(T_{d, s, i}\) denotes the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
 
 \begin{itemize}
 \tightlist
@@ -1045,15 +1045,12 @@ The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\
 
 All data reduction, cleaning, statistical analysis, and visualization will be done on the RStudio Server and Jupyter Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers (Center, \protect\hyperlink{ref-OSC1987}{1987}). The scalable Bayesian statistical and reliability models will be conducted using the HMC-ECS algorithm (self-defined functions in Python 3.6.0) or HMC (the \texttt{rstan} package in statistical computing environment R 3.5.1) (Dang et al., \protect\hyperlink{ref-dang2019hamiltonian}{2019}; R Core Team, \protect\hyperlink{ref-Rcitation}{2018}; Stan Development Team, \protect\hyperlink{ref-rstancitation}{2018}).
 
-\textbf{\emph{Potential problems and alternative plans}}: the sheer size of the 30-minute interval table and merged shifts table may be a problem in this aim. The 30-minute interval table has one million rows and 10 variables, and the merged shift table has more than 200,000 rows and 10 variables. In the meanwhile, each of the three model will have 496 random intercepts and slopes, which is extremely difficult to estimate in the Bayesian setting. Although I propose to use the HMC-ECS to estimate the random effect, there are still chances that the model does not work. In that case, I will sample 50 to 200 typical drivers, then conduct the analysis based on this smaller sample data. In the unlikely event that the models still fails based on this smaller data, I can restrict the hierarchical models to only have random intercepts or use traditional MLE instead of Bayesian estimation.
+\textbf{\emph{Potential problems and alternative plans}}: the sheer size of the 30-minute interval table and merged shifts table may be a problem in this aim. The 30-minute interval table has one million rows and 10 variables, and the merged shift table has more than 200,000 rows and 10 variables. In the meanwhile, each of the three models will have 496 random intercepts and slopes, which is extremely difficult to estimate in the Bayesian setting. Although I propose to use the HMC-ECS to estimate the random effect, there are still chances that the model does not work. In that case, I will sample 50 to 200 typical drivers, then conduct the analysis based on this smaller sample data. In the unlikely event that the models still fails based on this smaller data, I can restrict the hierarchical models to only have random intercepts or use traditional MLE instead of Bayesian estimation.
 
 \hypertarget{analytical-plan-for-aim-3}{%
 \section{Analytical Plan for Aim 3}\label{analytical-plan-for-aim-3}}
 
 Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. I propose to account for the rest time within a shift by adding one more parameter \(\kappa\), \emph{the percent of reliability recovery during a break within a shift}. This new reliability model (\emph{jump-point PLP (JPLP)}) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests (``as bad as old''), and a renewal process where the intensity function is fully recovered by between-trip rests (``as good as new''). The intensity function of the proposed jump-point PLP will be recovered for a certain percent \(\kappa\) every time the driver took a short break (less than eight hours) between trips.
-
-\hypertarget{jump-point-plp}{%
-\subsection{Jump-point PLP}\label{jump-point-plp}}
 
 Figure \ref{fig:plpjumppoint} demonstrates the complete intensity function of a PLP (the solid curve), simulated SCEs (red crosses on the x-axis), and between-trip rests (the green intervals) of a NHPP used in Aim 2. This figure demonstrates its limitation: when the driver takes a break, the intensity function does not change at all. However, when the driver takes a break, the fatigue level of the driver theoretically should be decreasing and the intensity of SCEs should therefore decrease.
 
@@ -1093,12 +1090,7 @@ The data and notations \(T_{d, s, i}, d, s, i\) will be identical as specified i
 \end{equation}
 The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\beta > 1\), the intensity function \(\lambda(t)\) is increasing, the reliability of drivers is decreasing, and SCEs are becoming more frequent; when \(\beta < 1\), the intensity function \(\lambda(t)\) is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when \(\beta = 1\), the NHPP is simplified as a homogeneous Poisson process with the intensity of \(1/\theta\). The \(\theta_{d, s}\) is a scale parameter that does not reflect reliability changes. \(\kappa\) is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
 
-\hypertarget{modulate-plp}{%
-\subsection{Modulate PLP}\label{modulate-plp}}
-
-In the unlikely event that the JPLP fails to be models, I will use the modulated PLP proposed by Black and Rigdon (\protect\hyperlink{ref-black1996statistical}{1996}). The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood function. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, which this Aim 3 will be based on.
-
-All data reduction, cleaning, statistical analysis, and visualization will be done on the RStudio Server and Jupyter Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers (Center, \protect\hyperlink{ref-OSC1987}{1987}). The hierarchical JPLP and hierarchical modulated PLP will be estimated using \texttt{Stan} programs by adding self-defined likelihood function, which can be accessed via the \texttt{rstan} package in statistical computing environment R 3.5.1 (R Core Team, \protect\hyperlink{ref-Rcitation}{2018}; Stan Development Team, \protect\hyperlink{ref-rstancitation}{2018}).
+\textbf{\emph{Potential problems and alternative plans}}: in the unlikely event that the JPLP fails to be models, I will use the \emph{modulated PLP} proposed by Black and Rigdon (\protect\hyperlink{ref-black1996statistical}{1996}). The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using \texttt{Stan} programs by adding self-defined likelihood function, which can be accessed via the \texttt{rstan} package in statistical computing environment R 3.5.1 on the OSC (Center, \protect\hyperlink{ref-OSC1987}{1987}; R Core Team, \protect\hyperlink{ref-Rcitation}{2018}; Stan Development Team, \protect\hyperlink{ref-rstancitation}{2018}).
 
 \hypertarget{the-probable-content}{%
 \chapter{THE PROBABLE CONTENT}\label{the-probable-content}}
@@ -1120,7 +1112,7 @@ The contents will follow the standard format for a traditional dissertation, as 
   \item
     Truck safety
   \item
-    Modern Truck Safety Studies
+    Modern truck safety studies
   \end{enumerate}
 \item
   Chapter 2: Literature review

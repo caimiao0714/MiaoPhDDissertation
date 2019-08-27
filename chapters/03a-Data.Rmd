@@ -162,7 +162,7 @@ kable(t2[1:5,], "latex", align = "c",
 
 ### Shifts
 
-the trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \@ref(tab:transformshift).
+The trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \@ref(tab:transformshift).
 
 ```{r transformshift, results='asis', eval=TRUE, echo=FALSE}
 kable(t3 %>% 
@@ -182,7 +182,7 @@ knitr::include_graphics("figs/Data_merging.png")
 
 Figure \@ref(fig:datamerge) demonstrates the data aggregation and merging workflow. The left part shows the data aggregation from the original ping data to trips, 30-minute intervals, and shifts, which have been demonstrated in Section \@ref(data-aggregation). The right part demonstrates the process of merging covariates table (SCEs, drivers, road geometry, and weather) back to the aggregated tables (trips, 30-minute intervals, and shifts tables). The specific details of the merging process. 
 
-1. *SCEs*: the SCEs are merged to the two aggregated tables by drivers and of the time of SCEs fall between the start and end time of the aggregated tables,
+1. *SCEs*: the SCEs will be merged to the two aggregated tables by drivers and if the time of SCEs fall between the start and end time of the aggregated tables,
 2. *Drivers*: the age of drivers are merged to the two aggregated tables using driver unique ID,
 3. *Road geometry*: the road geometry variables will firstly be merged back to the original ping data by driver ID, latitude, and longitude. Then these road geometry variables will averaged by taking the mean for each 30-minute interval and shift to the aggregated levels,
 4. *Weather*: the weather variables will firstly also be merged back to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be averaged by taking the mean for each 30-minute interval and shift to the aggregated levels.

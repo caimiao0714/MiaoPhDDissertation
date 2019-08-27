@@ -7,7 +7,7 @@ The contents will follow the standard format for a traditional dissertation, as 
 * Chapter 1: Introduction: The problem
     1. Transportation safety
     2. Truck safety
-    3. Modern Truck Safety Studies
+    3. Modern truck safety studies
 * Chapter 2: Literature review
     1. Naturalistic driving Study (NDS)
     2. Safety-critical events (SCEs)

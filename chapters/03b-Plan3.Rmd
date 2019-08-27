@@ -3,8 +3,6 @@ Analytical Plan for Aim 3
 
 Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (*jump-point PLP (JPLP)*) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new"). The intensity function of the proposed jump-point PLP will be recovered for a certain percent $\kappa$ every time the driver took a short break (less than eight hours) between trips.
 
-### Jump-point PLP
-
 Figure \@ref(fig:plpjumppoint) demonstrates the complete intensity function of a PLP (the solid curve), simulated SCEs (red crosses on the x-axis), and between-trip rests (the green intervals) of a NHPP used in Aim 2. This figure demonstrates its limitation: when the driver takes a break, the intensity function does not change at all. However, when the driver takes a break, the fatigue level of the driver theoretically should be decreasing and the intensity of SCEs should therefore decrease.
 
 Therefore, the jump-point PLP I propose will account for the effect of taking a rest. Figure \@ref(fig:plpnhpp) shows the proposed complete intensity function (black solid curves), continuous PLP intensity function of a NHPP (the grey solid curve), simulated SCEs (red crosses on the x-axis), and rest times between trips (green intervals). Everytime the driver takes a rest, the complete intensity function will be moved down by a certain percent $\kappa$, here the $\kappa = 0.8$.
@@ -160,9 +158,4 @@ ggsave("figs/PLP_jump_point_intensity.pdf", p1, width = 10, height = 6.18)
 ```
 -->
 
-
-### Modulate PLP
-
-In the unlikely event that the JPLP fails to be models, I will use the modulated PLP proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood function. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, which this Aim 3 will be based on.
-
-All data reduction, cleaning, statistical analysis, and visualization will be done on the RStudio Server and Jupyter Server on the Ohio Supercomputer Center (OSC). The OSC provides high performance computing resources and expertise to academic researchers [@OSC1987]. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 [@rstancitation; @Rcitation].
+__*Potential problems and alternative plans*__: in the unlikely event that the JPLP fails to be models, I will use the *modulated PLP* proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
