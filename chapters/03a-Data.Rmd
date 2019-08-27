@@ -46,7 +46,16 @@ canj1 & 2015-11-02 07:13:56 & HB\\
 \bottomrule
 \end{tabular}
 \end{wraptable}
-Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1)	Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data is demonstrated in Table \@ref(tab:SCE).
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1)	Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data and crashes are demonstrated in Table \@ref(tab:SCE) and Table \@ref(tab:crashes).
+
+```{r crashes, results='asis', eval=TRUE, echo=FALSE}
+fread("data/10_crashes.csv") %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "crashes") %>% 
+  kable_styling(latex_options = c("hold_position", "scale_down"))
+```
+
 
 <!-- There were 12,458 critical events created by the 496 truck drivers during the study period.-->
 
@@ -84,7 +93,7 @@ The `Dark Sky API` allows the users to query historic minute-by-minute weather d
 According to the official document, the `Dark Sky API` is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. 
 Among several different weather data providers I tested, the `Dark Sky API` provides the most accurate and complete weather variables.
 
-To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package `darksky` to obtain weather variables for these reduced five million unique combinations [@hrbrmstr]. The weather data for these combinations will then be merged back to the original ping data. A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat). A sample of the weather data is shown in Table \@ref(tab:weather)
+To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package `darksky` to obtain weather variables for these reduced five million unique combinations [@hrbrmstr]. The weather data for these combinations will then be merged back to the original ping data. <!--A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat).--> A sample of the weather data is shown in Table \@ref(tab:weather)
 ```{r weather, results='asis', eval=TRUE, echo=FALSE}
 fread("data/13_weather.csv") %>% 
   .[,ping_time := gsub("T|Z", " ", ping_time)] %>% 
@@ -99,7 +108,7 @@ fread("data/13_weather.csv") %>%
 
 Two road geometry variables for the 496 regional truck drivers will be queried from the `OpenStreetMap` (OSM) project: *speed limits* and *the number of lanes*. The OSM data are collaboratively collected by over two million registered users via manual survey, GPS devices, aerial photography, and other open-access sources [@wikiOSM]. The OpenStreetMap Foundation supports a website to make the data freely available to the public under the Open Database License. 
 
-We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. We will use real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. If the $100\times100$ meters box is too small to have any road geometry data, we will expand the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry). A sample of the road geometry data is shown in Table \@ref(tab:road).
+We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. We will use real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. If the $100\times100$ meters box is too small to have any road geometry data, we will expand the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. <!--The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).--> A sample of the road geometry data is shown in Table \@ref(tab:road).
 ```{r road, results='asis', eval=TRUE, echo=FALSE}
 fread("data/14_OpenStreetMap.csv") %>% 
   dplyr::slice(25:29) %>% 
@@ -142,7 +151,7 @@ kable(t1[driver == "canj1"][1:5,],
 
 ### 30-minute intervals
 
-As the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals. A sample of the 30-minute interval data is shown in Table \@ref(tab:tranform30interval).
+As the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals according to the starting and ending time of trips. The 30-minute interval data dissect unnecessarily lengthy trips into small chunks and enable statistical analyses based on these small-interval data.  A sample of the 30-minute interval data is shown in Table \@ref(tab:tranform30interval).
 
 ```{r tranform30interval, results='asis', eval=TRUE, echo=FALSE}
 kable(t2[1:5,], "latex", align = "c", 
@@ -189,7 +198,10 @@ event_tab = fread("data/33-analyses_events.csv")
 ```{r analysis30int, results='asis', eval=TRUE, echo=FALSE}
 kable(agg30 %>% 
         dplyr::slice(1:5) %>% 
-        dplyr::select(driver:SCE_type), "latex", align = "c", 
+        dplyr::select(driver:SCE_type) %>% 
+        dplyr::mutate(shift_start = gsub("T|Z", " ", shift_start),
+                      shift_end = gsub("T|Z", " ", shift_end)), 
+      "latex", align = "c", 
       booktab = TRUE, linesep = "", 
       caption = "30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
@@ -199,7 +211,8 @@ kable(agg30 %>%
 ```{r analysisshift, results='asis', eval=TRUE, echo=FALSE}
 kable(shif %>% 
         dplyr::slice(1:5) %>% 
-        dplyr::select(driver:end_time), "latex", align = "c", 
+        dplyr::select(driver:end_time), 
+      "latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "shifts data for hierarchical non-homogeneous Poisson process") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
@@ -208,7 +221,11 @@ kable(shif %>%
 
 ```{r analysisshiftevent, results='asis', eval=TRUE, echo=FALSE}
 kable(event_tab %>% 
-        dplyr::slice(1:5), 
+        dplyr::slice(1:5) %>% 
+        dplyr::mutate(start_time = gsub("T|Z", " ", start_time),
+                      event_time = gsub("T|Z", " ", event_time),
+                      shift_length = round(shift_length, 3),
+                      time2event = round(time2event, 3)), 
       "latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "SCEs data for hierarchical non-homogeneous Poisson process") %>% 

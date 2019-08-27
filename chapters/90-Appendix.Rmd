@@ -1,13 +1,16 @@
-\singlespacing
 <!--
+\singlespacing
+
 APPENDIX {#appendix .unnumbered}
 ========
--->
+
 ```{=latex}
 \chapter*{\markboth{APPENDIX}{APPENDIX}{APPENDIX}}
 \addcontentsline{toc}{chapter}{APPENDIX}
 ```
+-->
 
+<!--
 Query weather data {#weatherdat .unnumbered}
 ------------------
 
@@ -125,6 +128,15 @@ loop_data = function(start_index = 1, loop_length = 100000){
 df = data.table::fread("data/20190605_ping_compressed_3digits.csv")
 dfcontainer12 = loop_data(start_index = 1)
 ```
+
+-->
+
+
+
+
+
+
+
 
 <!--
 \doublespacing

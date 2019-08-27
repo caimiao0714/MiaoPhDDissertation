@@ -1,17 +1,18 @@
-\cleardoublepage
-\singlespacing
-
 <!--
 Bibliography {-}
 ============
 -->
 
+
 ```{=latex}
-\chapter*{\markboth{Bibliography}{Bibliography}{Bibliography}}
-\addcontentsline{toc}{chapter}{Bibliography}
+\singlespacing
+
+\chapter*{\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}{BIBLIOGRAPHY}}
+\addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
+
+\everypar{\hangafter=1 \setlength{\hangindent}{3em}}{\par}
+\setlength\parskip{0.3em}
+\setlength\parindent{0pt}
 ```
 
-\everypar{\hangafter=1 \setlength{\hangindent}{5em}}{\par}
-\setlength\parskip{0.8em}
-\setlength\parindent{0pt}
 <div id="refs"></div>

@@ -2,7 +2,7 @@
 
 The contents will follow the standard format for a traditional dissertation, as per guidelines set by the College for Public Health and Social Justice and Saint Louis University’s Office of Graduate Education.
 
-\linespread{1}
+\singlespacing
 
 * Chapter 1: Introduction: The problem
     1. Transportation safety
@@ -13,18 +13,11 @@ The contents will follow the standard format for a traditional dissertation, as 
     2. Safety-critical events (SCEs)
     3. Crashes and SCEs
     4. Risk factors for traffic safety
-    5. Predictive models
-        a. Overview
-        b. Bayesian models
-        c. Hierarchical models
-        d. Markov chain Monte Carlo (MCMC)
-    6. Scalable Bayesian models
-        a. Hamiltonian Monte Carlo (HMC)
-        b. Subsampling MCMC
-* Chapter 3: Aim 1 - Truck crashes and critical events
+    5. Predictive models: a) Bayesian models, b) Hierarchical models, c) Markov chain Monte Carlo (MCMC)
+    6. Scalable Bayesian models: a) Hamiltonian Monte Carlo (HMC), b) Subsampling MCMC
+* Chapter 3: Aim 1 - Truck crashes and SCEs
     1. Introduction
-    2. Data sources
-    3. Methods
+    2. Data sources and methods
     4. Results
         a. A simulation study on Gamma-Poisson models
         b. Real-world application on all SCEs
@@ -32,25 +25,16 @@ The contents will follow the standard format for a traditional dissertation, as 
     5. Discussion  
 * Chapter 4: Aim 2 - Scalable Bayesian hierarchical models for SCEs using HMC-ECS
     1. Introduction
-    2. Data sources
-    3. Methods
-        a. Logistic regression
-        b. Poisson regression
-        c. Non-homogeneous Poisson process (NHPP)
-    4. Results
-        a. Logistic regression
-        b. Poisson regression
-        c. NHPP
-          i. A simulation study on NHPP
-          ii. Real-world application on NHPP
-  5. Discussion
+    2. Data and methods
+    3. Results
+        a. Bayesian hierarchical logistic regression
+        b. Bayesian hierarchical Poisson regression
+        c. Bayesian hierarchical Non-homogeneous Poisson process (NHPP)
+    4. Discussion
 * Chapter 5: Aim 3 - a JPLP that accounts for between trip rest time
     1. Introduction
-    2. Data sources
-    3. Methods
+    2. Data sources and methods
     4. Results
         a. A simulation study on this new method
         b. Real-world application on this new method
     5. Discussion
-
-\linespread{2}
