@@ -13,8 +13,13 @@ The contents will follow the standard format for a traditional dissertation, as 
     2. Safety-critical events (SCEs)
     3. Crashes and SCEs
     4. Risk factors for traffic safety
-    5. Predictive models: a) Bayesian models, b) Hierarchical models, c) Markov chain Monte Carlo (MCMC)
-    6. Scalable Bayesian models: a) Hamiltonian Monte Carlo (HMC), b) Subsampling MCMC
+    5. Predictive models: 
+        a. Bayesian models, 
+        b. Hierarchical models, 
+        c. Markov chain Monte Carlo (MCMC)
+    6. Scalable Bayesian models: 
+        a. Hamiltonian Monte Carlo (HMC), 
+        b. Subsampling MCMC
 * Chapter 3: Aim 1 - Truck crashes and SCEs
     1. Introduction
     2. Data sources and methods

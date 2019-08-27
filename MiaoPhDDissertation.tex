@@ -550,7 +550,7 @@ Summarized from literature review and focus groups, the \emph{Truck Driver Fatig
 
 Figure \ref{fig:conceptmodel} demonstrates the conceptual framework used in this study. A two-level hierarchy structure is proposed in this study, driver level and trip level. Driver level factors include driver features and fatigue; trip level factors include traffic, road geometry, and weather. These factors are assumed to be directly associated with SCEs, which can be modeled by statistical and reliability models. Final, the SCEs are hypothesized to be directly associated with crashes.
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 
 {\centering \includegraphics[width=\linewidth]{figs/conceptual_model} 
 
@@ -656,6 +656,11 @@ I1432924 & 2014-10-23 & 07:00:00 & gres0 & L25 & 1 & 0 & 0\\
 \hypertarget{driver-demographics}{%
 \subsection{Driver demographics}\label{driver-demographics}}
 
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \ref{tab:drivers}.
+
+\hypertarget{weather-data-from-the-dark-sky-api}{%
+\subsection{\texorpdfstring{Weather data from the \texttt{Dark\ Sky\ API}}{Weather data from the Dark Sky API}}\label{weather-data-from-the-dark-sky-api}}
+
 \begin{wraptable}{r}{3.5cm}
 \caption{\label{tab:drivers}drivers}
 \centering
@@ -671,11 +676,6 @@ kell0 & 51\\
 \bottomrule
 \end{tabular}
 \end{wraptable}
-
-A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \ref{tab:drivers}.
-
-\hypertarget{weather-data-from-the-dark-sky-api}{%
-\subsection{\texorpdfstring{Weather data from the \texttt{Dark\ Sky\ API}}{Weather data from the Dark Sky API}}\label{weather-data-from-the-dark-sky-api}}
 
 Weather variables, including \emph{precipitation intensity}, \emph{precipitation probability}, \emph{wind speed}, and \emph{visibility}, will be retrieved from the \texttt{Dark\ Sky\ API}.
 The \texttt{Dark\ Sky\ API} allows the users to query historic minute-by-minute weather data anywhere on the globe (The Dark Sky Company, LLC, \protect\hyperlink{ref-darksky}{2019}).
@@ -800,7 +800,7 @@ canj1 & 6 & 2015-10-30 09:27:12 & 2015-10-30 21:18:22 & 711\\
 \hypertarget{data-merging}{%
 \section{Data merging}\label{data-merging}}
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 
 {\centering \includegraphics[width=\linewidth]{figs/Data_merging} 
 
@@ -974,16 +974,14 @@ Where \(N\) is the number of critical events for driver \(d(i)\) in time interva
 \hypertarget{non-homogeneous-poisson-process-nhpp}{%
 \subsection{Non-homogeneous Poisson process (NHPP)}\label{non-homogeneous-poisson-process-nhpp}}
 
+\begin{wrapfigure}{R}{.5\textwidth}  
+ \begin{center}
+    \includegraphics[width=.5\textwidth]{figs/NHPP_arrow_plot.png}  
+  \caption{An arrow plot of time to SCEs in each shift}\label{fig:arrowplot} 
+\end{center}
+\end{wrapfigure}
+
 Despite Poisson regression consider the frequency and intensity of SCEs in a given interval, it is a homogeneous Poisson process that assumes that the intensity of SCEs is a constant. This constant intensity assumption may not be true in real-life transportation practice. Based on the merged shifts data set shown in Table \ref{tab:transformshift}, I present a non-homogeneous Poisson process (NHPP) with a power law process (PLP) intensity function. This model will answer if SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=0.6\linewidth]{figs/NHPP_arrow_plot} 
-
-}
-
-\caption{An arrow plot of time to SCEs in each shift}\label{fig:arrowplot}
-\end{figure}
 
 Figure \ref{fig:arrowplot} shows a sample of SCEs distributions in different shifts. Each arrow represents a shift while each red cross shows a SCE. This type of recurrent events data fit into the analysis framework of point process and reliability models. A point process is a stochastic model which describes the occurrence of events in a given period (Rigdon and Basu, \protect\hyperlink{ref-rigdon2000statistical}{2000}). The mean function of a point process is \(\Lambda(t) = E(N(t))\), where \(\Lambda(t)\) is the expected number of failures through time \(t\). Two notations that are important in reliability models are \emph{Rate of Occurence of Failures (ROCOF)} and \emph{Intensity function}.
 
@@ -1061,7 +1059,7 @@ Figure \ref{fig:plpjumppoint} demonstrates the complete intensity function of a 
 
 Therefore, the jump-point PLP I propose will account for the effect of taking a rest. Figure \ref{fig:plpnhpp} shows the proposed complete intensity function (black solid curves), continuous PLP intensity function of a NHPP (the grey solid curve), simulated SCEs (red crosses on the x-axis), and rest times between trips (green intervals). Everytime the driver takes a rest, the complete intensity function will be moved down by a certain percent \(\kappa\), here the \(\kappa = 0.8\).
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 
 {\centering \includegraphics[width=\linewidth]{figs/PLP_NHPP_intensity} 
 
@@ -1070,7 +1068,7 @@ Therefore, the jump-point PLP I propose will account for the effect of taking a 
 \caption{Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\beta = 1.2$, $\theta=2$}\label{fig:plpjumppoint}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 
 {\centering \includegraphics[width=\linewidth]{figs/PLP_jump_point_intensity} 
 
@@ -1139,9 +1137,29 @@ The contents will follow the standard format for a traditional dissertation, as 
   \item
     Risk factors for traffic safety
   \item
-    Predictive models: a) Bayesian models, b) Hierarchical models, c) Markov chain Monte Carlo (MCMC)
+    Predictive models:
+
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      Bayesian models,
+    \item
+      Hierarchical models,
+    \item
+      Markov chain Monte Carlo (MCMC)
+    \end{enumerate}
   \item
-    Scalable Bayesian models: a) Hamiltonian Monte Carlo (HMC), b) Subsampling MCMC
+    Scalable Bayesian models:
+
+    \begin{enumerate}
+    \def\labelenumii{\alph{enumii}.}
+    \tightlist
+    \item
+      Hamiltonian Monte Carlo (HMC),
+    \item
+      Subsampling MCMC
+    \end{enumerate}
   \end{enumerate}
 \item
   Chapter 3: Aim 1 - Truck crashes and SCEs
@@ -1221,7 +1239,7 @@ The contents will follow the standard format for a traditional dissertation, as 
   \end{enumerate}
 \end{itemize}
 
-\singlespacing
+\linespread{0.5}
 
 \chapter*{\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}{BIBLIOGRAPHY}}
 \addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
@@ -1265,7 +1283,7 @@ Baker, C., Reynolds, S., 1992. Wind-induced accidents of road vehicles. Accident
 Bardenet, R., Doucet, A., Holmes, C., 2017. On markov chain monte carlo methods for tall data. The Journal of Machine Learning Research 18 1, 1515--1557.
 
 \leavevmode\hypertarget{ref-bardenet2014towards}{}%
-Bardenet, R., Doucet, A., Holmes, C., 2014. Towards scaling up markov chain monte carlo: An adaptive subsampling approach, in:.
+Bardenet, R., Doucet, A., Holmes, C., 2014. Towards scaling up Markov chain Monte Carlo: an adaptive subsampling approach, in: Xing, E.P., Jebara, T. (Eds.), Proceedings of the 31st International Conference on Machine Learning, Proceedings of Machine Learning Research. PMLR, Bejing, China, pp. 405--413.
 
 \leavevmode\hypertarget{ref-barnard2016study}{}%
 Barnard, Y., Utesch, F., Nes, N. van, Eenink, R., Baumann, M., 2016. The study design of udrive: The naturalistic driving study across europe for cars, trucks and scooters. European Transport Research Review 8 2, 14.

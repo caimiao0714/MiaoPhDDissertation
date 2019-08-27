@@ -43,8 +43,8 @@
 \contentsline {subsection}{\numberline {4.5.1}Bayesian hierarchical logistic regression}{49}{subsection.4.5.1}
 \contentsline {subsection}{\numberline {4.5.2}Bayesian hierarchical Poisson regression}{50}{subsection.4.5.2}
 \contentsline {subsection}{\numberline {4.5.3}Non-homogeneous Poisson process (NHPP)}{51}{subsection.4.5.3}
-\contentsline {section}{\numberline {4.6}Analytical Plan for Aim 3}{55}{section.4.6}
+\contentsline {section}{\numberline {4.6}Analytical Plan for Aim 3}{54}{section.4.6}
 \contentsline {subsection}{\numberline {4.6.1}Jump-point PLP}{55}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Modulate PLP}{58}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.2}Modulate PLP}{57}{subsection.4.6.2}
 \contentsline {chapter}{\numberline {5}THE PROBABLE CONTENT}{59}{chapter.5}
 \contentsline {chapter}{BIBLIOGRAPHY}{61}{chapter*.4}

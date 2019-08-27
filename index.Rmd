@@ -22,7 +22,7 @@ description: "This is Miao Cai's dissertation."
 knitr::opts_chunk$set(echo = TRUE, 
                       fig.align = "center", 
                       out.width="\\linewidth",
-                      fig.pos = '!ht',
+                      fig.pos = 'ht',
                       cache = FALSE)
 ```
 

@@ -61,6 +61,10 @@ fread("data/10_crashes.csv") %>%
 
 ### Driver demographics
 
+A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \@ref(tab:drivers).
+
+### Weather data from the `Dark Sky API`
+
 \begin{wraptable}{r}{3.5cm}
 \caption{\label{tab:drivers}drivers}
 \centering
@@ -84,10 +88,6 @@ fread("data/12_driver.csv") %>%
       caption = "drivers") %>% 
   kable_styling(position = "float_right")
 ```
-A table that includes the birth date of each driver will be provided by the J.B. Hunt Transport Services. The age of the driver can be calculated from this table and merged back to the trips, shifts, and crashes tables via a common unique driver ID. A sample of the driver data is demonstrated in Table \@ref(tab:drivers).
-
-### Weather data from the `Dark Sky API`
-
 Weather variables, including *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*, will be retrieved from the `Dark Sky API`. 
 The `Dark Sky API` allows the users to query historic minute-by-minute weather data anywhere on the globe [@darksky]. 
 According to the official document, the `Dark Sky API` is supported by a wide range of weather data sources, which are aggregated together to provide the most precise weather data possible for a given location [@darkskyds]. 

@@ -5,7 +5,7 @@ Bibliography {-}
 
 
 ```{=latex}
-\singlespacing
+\linespread{0.5}
 
 \chapter*{\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}{BIBLIOGRAPHY}}
 \addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
@@ -15,4 +15,6 @@ Bibliography {-}
 \setlength\parindent{0pt}
 ```
 
+
 <div id="refs"></div>
+
