@@ -1,0 +1,13 @@
+\frametitle{Aim 3 - potential problems and alternative plans}
+\protect\hypertarget{aim-3---potential-problems-and-alternative-plans}{}
+
+In the unlikely event that the JPLP fails to be models, I will use the
+\emph{modulated PLP} proposed by 27. The modulated PLP has well-defined
+data generating process, intensity function, and joint-likelihood
+functions. If the JPLP does not work, I will revise the modulated PLP
+into a hierarchical modulated PLP, on which this Aim 3 will be based.
+The hierarchical JPLP and hierarchical modulated PLP will be estimated
+using \texttt{Stan} programs by adding self-defined likelihood function,
+which can be accessed via the \texttt{rstan} package in statistical
+computing environment R 3.5.1 on the OSC\textsuperscript{28--30}.
+

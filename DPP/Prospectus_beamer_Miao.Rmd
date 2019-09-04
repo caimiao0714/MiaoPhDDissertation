@@ -9,7 +9,7 @@ fontsize: 10pt
 output:
  beamer_presentation:
     template: tex/Beamer_Miao_template.tex
-    keep_tex: false
+    keep_tex: true
     latex_engine: xelatex # pdflatex also works here
     dev: cairo_pdf # I typically comment this out  if latex_engine: pdflatex
     slide_level: 3
@@ -18,6 +18,8 @@ mainfont: "Open Sans" # Try out some font options if xelatex
 titlefont: "Titillium Web" # Try out some font options if xelatex
 bibliography: [../bib/bib.bib]
 csl: [../bib/numbered.csl]
+header-includes:
+   - \usepackage{booktabs}
 ---
 
 ```{r setup, include=FALSE, cache=F, message=F, warning=F, results="hide"}
@@ -81,7 +83,9 @@ Traditional studies almost exclusively use data that ultimately trace back to **
 
 ### Naturalistic driving studies (NDS)
 
-> NDS uses **unobtrusive** devices, sensors, and cameras installed on vehicles to **proactively** collect frequent naturalistic driving behavior and performance data under **real-world driving** conditions [@hickman2018synthetic; @guo2019statistical]
+NDS uses 
+
+> **unobtrusive** devices, sensors, and cameras installed on vehicles to **proactively** collect frequent naturalistic driving behavior and performance data under **real-world driving** conditions [@hickman2018synthetic; @guo2019statistical]
 
 1. driver-based data (compare rates),
 2. high-resolution driver behavior and performance data,
@@ -102,95 +106,397 @@ Examples of SCEs are:
 
 ### The problem
 
-NDSs are relatively new and less studied. Here are several problems remained in NDS.
+NDSs are relatively new and less studied. 
+
+Here are several problems remained in NDS.
 
 1. Are SCEs associated with real crashes among truck drivers?
 2. Can we predict SCEs?
 3. How can we innovate existing models to account for features of NDS?
 
+Literature review
+=================
+
+### Crashes and SCEs
+
+Examples of studies supporting SCEs:
+
+- hard braking events were significantly associated with collisions and near-crashes, [@dingus2006100]
+- a significant positive association between crashes, near crashes, and crash-relevant incidents, [@wu2014using]
+- $\cdots$
+
+Examples of studies that are against SCEs:
+
+- overspeed negatively associated with injury crashes, @gitelman2018exploring
+- no harm, no validity, [@knipling2015naturalistic]
+- no demontration on causal link between SCEs and injury crashes. [@knipling2017threats]
+
+Gaps:
+
+- The number of drivers are limited (< 100),
+- No studies specifically on truck drivers.
+
+### Fatigue
+
+The most important factor in transportation safety studies.
+
+> a multidimensional process that leads to diminished worker performance, which may be a result of prolonged work, psychological, socioeconomic, and environment factors
+
+- 16.5% of fatal traffic accidents, [@aaafoundation]
+- 12.5% of injuries-related collisions, [@aaafoundation],
+- 60% of fatal truck crashes. [@cavuoto2017understanding]
+
+However, fatigue is hard to measure in transportation safety studies.
+
+- ocular and physiological metrics,
+- sleep patterns,
+- *cumulative driving time*, 
+- *night driving*.
+
+### Other risk factors
+
+Four aspects of risk factors are included in previous studies:
+
+- Driver characteristics,
+- Weather
+- Traffic
+- Road features
+
+Gaps in literature:
+
+1. Lack of high-resolution weather and traffic data,
+2. No fusion of NDS and API data.
+
+### Statistical models
+
+- Logistic regression,
+- Poisson regression,
+- machine learning models.
+
+Gaps in literature:
+
+1. Road-centric models, not driver-centric models,
+2. Maximum likelihood estimation (MLE) limited in rare-event models,
+3. Lack of recurrent events models.
+
+### Bayesian models
+
+In the Bayesian perspective, parameters are viewed as random variables that have probability distributions: [@gelman2013bayesian]
+\begin{equation}
+\begin{split}
+p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \\
+ & = \frac{p(\theta)p(\mathbf{X}|\theta )}{\int p(\theta)p(\mathbf{X}|\theta)d\theta}
+\end{split}
+\end{equation}
+
+- $p(\theta)$: subjective priors,
+- $p(\mathbf{X}|\theta)$: the likelihood function,
+- $\int p(\theta)p(\mathbf{X}|\theta)d\theta$: the normalizing constant,
+- $p(\theta | \mathbf{X})$ is the posterior distribution.
+
+The posterior distribution is a balance between the prior beliefs and the data.
+
+### Challenges for Bayesian models in a big data setting
+
+Modern Bayesian inferences replies on Markov chain Monte Carlo (MCMC) to overcome the intractable denominator issue. However, MCMC is not scalable in the big data setting.
+
+- **Tall data** (a lot of observations),
+- Wide data (a lot of variables),
+- **Correlation between variables** (hierarchical models). [@kruschke2015bayesian]
+
+Potential solutions
+
+- Hamiltonian Monte Carlo, [@betancourt2017conceptual]
+- Subsampling MCMC such as energy conserving subsampling. [@dang2019hamiltonian]
+
+
+### Conceptual framework
+
+1. *Truck Driver Fatigue Model*, [@crum2002influence] 
+2. *$5 \times$ST-level hierarchy theory* in traffic safety,[@huang2010multilevel] 
+3. *Commercial motor vehicle driver fatigue framework*.[@stern2019data]
+
+```{r conceptmodel, fig.cap='Conceptual model. SCEs represent safety critical events.', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../figs/conceptual_model.png")
+```
+
+Research aims
+=============
+
+### Overall aim
+
+Gaps in previous literature:
+
+1. the association between crashes and SCEs has not been confirmed among truck drivers,
+2. recurrent events models were not widely applied in NDS data,
+3. difficulty in fusing high-resolution NDS and API data,
+4. Bayesian inference in tall and wide NDS data.
+
+The overarching goal of this proposed dissertation is to construct scalable Bayesian hierarchical models for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers.
+
+### Aim 1
+
+> To examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression.
+
+I hypothesize that the rate of crashes is positively associated with the rate of SCEs among the truck drivers controlling for the miles driven and other covariates.
+
+### Aim 2
+
+> To construct three scalable Bayesian hierarchical models to identify  potential risk factors for SCEs. 
+
+I hypothesize that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using risk factors including cumulative driving time, weather, road geometry, age, and others.
+
+- Bayesian hierarchical logistic regression,
+- Bayesian hierarchical Poisson regression,
+- Bayesian hierarchical non-homogeneous Poisson process (NHPP) with the power law process (PLP) intensity function.
+
+### Aim 3
+
+> To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time. 
+
+I hypothesize that between-trip rest time can recover the intensity function by some proportion or by a certain amount, and intensity function varies significantly from drivers to drivers.
+
+Data
+====
+
+### Data sources
+
+1. **Real-time ping**: vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second (every 2-10 minutes), ~1.4 billion pings (150 GB `.csv` file),
+2. **Truck crashes and SCEs**: hard brakes, headways, and rolling stability were collected if kinematic thresholds were met,
+3. **Driver demographics**: age,
+4. **Weather from the DarkSky API**: precipitation intensity, precipitation probability, wind speed, and visibility,
+5. **Road geometry from the OpenStreetMap**: speed limits and the number of lanes.
+
+### Data aggregation
+
+1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different trips, 
+2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals according to the starting and ending time of trips,
+2. **Shift**: the trips data will be further divided into different shifts if the specific driver was not moving for eight hours.
+
+### Data merging
+
+```{r datamerge, fig.cap='Flow chart of data aggregation and merging', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../figs/Data_merging.png")
+```
+
+### Data demonstration {.allowframebreaks}
+
+```{r eval=TRUE, echo=FALSE}
+pacman::p_load(dplyr, data.table, knitr, kableExtra)
+agg30 = fread("../data/31-analyses_30_minute_intervals.csv")
+shif = fread("../data/32-analyses_shifts.csv")
+event_tab = fread("../data/33-analyses_events.csv")
+```
+
+```{r analysis30int, results='asis', eval=TRUE, echo=FALSE}
+kable(agg30 %>% 
+        dplyr::slice(1:5) %>% 
+        dplyr::select(driver:SCE_type) %>% 
+        dplyr::mutate(shift_start = gsub("T|Z", " ", shift_start),
+                      shift_end = gsub("T|Z", " ", shift_end)), 
+      "latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+#  landscape()
+```
+
+```{r analysisshift, results='asis', eval=TRUE, echo=FALSE}
+kable(shif %>% 
+        dplyr::slice(1:5) %>% 
+        dplyr::select(driver:end_time), 
+      "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "shifts data for hierarchical non-homogeneous Poisson process") %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+#  landscape()
+```
+
+```{r analysisshiftevent, results='asis', eval=TRUE, echo=FALSE}
+kable(event_tab %>% 
+        dplyr::slice(1:5) %>% 
+        dplyr::mutate(start_time = gsub("T|Z", " ", start_time),
+                      event_time = gsub("T|Z", " ", event_time),
+                      shift_length = round(shift_length, 3),
+                      time2event = round(time2event, 3)), 
+      "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "SCEs data for hierarchical non-homogeneous Poisson process") %>% 
+  kable_styling(latex_options = c("HOLD_position", "scale_down"))
+```
 
 
 Methods
 =======
 
-### The Good Day Hypothesis
+### Aim 1 - Data and variables
 
-We know the following about Ice Cube's day.
+> The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. 
 
-1. The Lakers beat the Supersonics.
-2. No helicopter looked for a murder.
-3. Consumed Fatburger at 2 a.m.
-4. Goodyear blimp: "Ice Cube's a pimp."
+- **Data**: the original ping data table that has 1,494,678,173 pings in total and crashes. Only drivers with at more than 100 pings will be included. The cleaned ping data will be aggregated to trips.
 
-### The Good Day Hypothesis
+- **outcome variable**: the number of crashes for each driver. 
 
-This leads to two different hypotheses:
+- **The primary independent variable**: the number of SCEs per 10,000 miles. These SCEs will be further decomposed into the number of hard brakes, headways, and rolling stability per 10,000 miles in similar analysis. 
 
-- $H_0$: Ice Cube's day is statistically indistinguishable from a typical day.
-- $H_1$: Ice Cube is having a good (i.e. greater than average) day.
+- **The covariates**: the total miles driven, the percent of night driving, and the age of the drivers.
 
-These hypotheses are tested using archival data of Ice Cube's life.
+### Aim 1 - statistical model
 
-### LaTex Equations
-
-The likelihood function of a non-homogeneous Poisson process (NHPP) with a power law process (PLP) intensity function is:
-
-\begin{equation}\label{eq:pdftau}
+Here is how the proposed Gamma-Poisson model will be implemented. Let us assume that:
+$$
 \begin{aligned}
-f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
-& = \frac{e^{-\int_0^\tau \lambda(u)du}[\int_0^\tau \lambda(u)du]^n}{n!}n!\frac{\prod_{i=1}^n\lambda(t_i)}{[\Lambda(\tau)]^n}\\
-& = \Big(\prod_{i=1}^n\lambda(t_i) \Big)e^{-\int_0^\tau \lambda(u)du}\\
-& = \Big(\prod_{i=1}^n\frac{\beta}{\theta}(\frac{t_i}{\theta})^{\beta - 1} \Big)e^{-(\tau/\theta)^\beta},\\ 
-n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
+\lambda & \sim \text{Gamma}(\alpha, \beta)\\
+X|\lambda & \sim \text{Poisson}(\lambda)\\
+\end{aligned}
+$$
+Then we have:
+$$X \sim \text{Gamma-Poisson}(\alpha, \beta)$$
+The Gamma-Poisson distribution is a $\alpha$-parameter distribution, with the $\alpha$ as a measure of overdispersion. The Gamma-Poisson distribution  has the probability mass function of:
+$$f(x) = \frac{\Gamma(x + \beta)\alpha^x}{\Gamma(\beta)(1 + \alpha)^{\beta + x}x!}, \quad x = 0, 1, 2, \dots$$
+
+The log-linear Gamma-Poisson model will be specified as:
+$$
+\log\beta = \mathbf{X\gamma} - \log m,
+$$
+where $\mathbf{X}$ is the predictor variables matrix, including the percent of night driving and the age of the drivers, $\mathbf{\gamma}$ is the associated $2*1$ parameter vector, $m$ is the total miles driven as an offset term in the Poisson distribution, and $\alpha$ is a fixed overdispersion parameter that does not depend on any covariates.
+
+### Potential problems and alternative plans
+
+> The sheer size of the original ping data may be a problem in this aim. 
+
+The ping data has 1,494,678,173 rows and 9 columns, which takes up more than 140 gigabytes (GB) when stored as a single comma-separated values (csv) file. Although I will use the OSC server that has Random-Access Memory (RAM) of more than 500 GB, it may still be hard and slow to read and process this giant file. 
+
+1. In that case, I will separate the single gaint csv file into __several small csv files__ according to driver ID, then aggregate the pings to trips for each small csv file. 
+
+2. After the ping data are aggregated to trips, it is unlikely that the log-linear Gamma-Poisson model fail. In that unlikely event, I can turn to __negative binomial models__ or use __traditional MLE estimates__ instead of Bayesian estimation.
+
+### Aim 2
+
+> The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers and identify potential risk factors.
+
+In the three proposed models, vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.  The details of the statistical models will be explained in the following sections.
+
+### Aim 2 - Bayesian hierarchical logistic regression
+
+\begin{equation}
+\begin{split}
+Y_{i} &\sim \text{Bernoulli}(p_{i})\\
+\log\frac{p_{i}}{1-p_{i}} &= \beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
+\beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
+\beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
+\end{split}
+\end{equation}
+Where $\mu_0, \sigma_0$ are hyper-parameters for $\beta_{0, d}$, $\mu_1, \sigma_1$ are hyper-parameters for random slope $\beta_{1, d}$, $\beta_2, \beta_3, \cdots, \beta_J$ are fixed parameters for covariates $x_{ij}$.
+
+### Priors
+
+Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors [@gelman2017prior] for these parameters:
+\begin{equation}
+\begin{split}
+		\mu_0 & \sim N(0, 5^2)\\
+		\mu_1 & \sim N(0, 5^2)\\
+		\sigma_0 & \sim \text{Gamma}(1, 1)\\
+		\sigma_1 & \sim \text{Gamma}(1, 1)\\
+		\beta_2, \beta_3, \cdots, \beta_J  & \sim N(0, 10^2)
+\end{split}
+\end{equation}
+
+### Aim 2 - Bayesian hierarchical Poisson regression
+
+\begin{equation}
+\begin{aligned}
+N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
+\log\lambda_{i} & =\beta_{0, d(i)} + \beta_{1, d(i)} \cdot \text{CT}_i + \sum_{j=1}^{J} x_{ij}\beta_j\\
+\beta_{0, d} &\sim \text{i.i.d. } N(\mu_0, \sigma_0^2), \quad d = 1, 2, \cdots, D\\
+\beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
 \end{aligned}
 \end{equation}
 
-Results
-=======
+### Aim 2 - recurrent event models
 
-### Include figures
-
-```{r jplp, fig.cap='The intensity function, SCEs, and rests of a jump-point PLP',echo=FALSE}
-knitr::include_graphics("figs/PLP-jump-point-intensity.pdf")
+```{r arrowplot, fig.cap='An arrow plot of time to SCEs in each shift', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../figs/NHPP_arrow_plot.png")
 ```
 
-### A Total Conflict Game Between Sheena Easton and Her Baby
+### Aim 2 - theories on NHPP and PLP
 
-|                        | XX            | YY            |
-|------------------------|---------------|---------------|
-| **Baby Home Again**    |  -100, **100**| **100**, 0    |
-| **Baby Stays at Work** |   **50**, 0   | -100, **100** |
+A commonly used reliability model is the *Nonhomogeneous Poisson Process (NHPP)*. It is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+\begin{equation}
+\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1},
+\end{equation}
+where $\beta > 0$ and $\theta > 0$, the process is called the power law process (PLP), also called the Weibull intensity function.
 
-Sheena Easton and her baby are playing a **zero-sum (total conflict) game**.
+There are two forms of truncation in a NHPP: 
 
-- Akin to Holmes-Moriarty game (see: von Neumann and Morgenstern)
-- Solution: **mixed strategy**
+1. *Failure truncation* when testing stops after a predetermined number of failures, 
+2. *Time truncation* when testing stops at a predetermined time $t$.
 
+### Notations
 
-Conclusion
-==========
+After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let $T_{d, s, i}$ denotes the time to the $d$-th driver's $s$-th shift's $i$-th critical event. The total number critical events of $d$-th driver's $s$-th shift is $n_{d,s}$. The ranges of these notations are:
 
-### Python
+- $i = 1, 2, \cdots, n_{d, S_d}$,
+- $s = 1, 2, \cdots, S_d$,
+- $d = 1, 2, \cdots, D$.
 
-Wonderful Python packages are available:
+### Bayesian hierarchical NHPP with PLP intensity function
 
-- `pandas`, 
-- `numpy`, 
-- `sci-kit`, 
-- $\cdots$
-- `keras`
+I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a PLP, with a fixed shape parameter $\beta$ and varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$. In a PLP, the intensity function of the NHPP is $\lambda(t) = \frac{\beta}{\theta}(\frac{t}{\theta})^{\beta-1}$.
+\begin{equation}
+\begin{aligned}
+  T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{PLP}(\beta, \theta_{d, s})\\
+  \beta & \sim \text{Gamma}(1, 1)\\
+  \log\theta_{d, s} &= \gamma_{0d} + \gamma_{1}x_{d, s, 1} + \gamma_{2}x_{d, s, 2} + \cdots + \gamma_{k}x_{d, s, k}\\
+  \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
+  \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
+  \mu_0 &\sim N(0, 10^2) \\
+  \sigma_0 &\sim \text{Gamma}(1, 1)
+\end{aligned}
+\end{equation}
+The shape parameter $\beta$ shows the reliability changes of drivers.
 
-### R
+### Aim 2 - potential problems and alternative plans
 
-Wonderful R packages are available:
+The sheer size of the 30-minute interval table and merged shifts table may be a problem in this aim. The 30-minute interval table has one million rows and 10 variables, and the merged shift table has more than 200,000 rows and 10 variables. In the meanwhile, each of the three models will have 496 random intercepts and slopes, which is extremely difficult to estimate in the Bayesian setting. Although I propose to use the HMC-ECS to estimate the random effect, there are still chances that the model does not work. In that case, I will sample 50 to 200 typical drivers, then conduct the analysis based on this smaller sample data. In the unlikely event that the models still fails based on this smaller data, I can restrict the hierarchical models to only have random intercepts or use traditional MLE instead of Bayesian estimation.
 
-- `tidyverse`
-- `data.table`
-- `caret`
+### Aim 3
 
-### The best language
+> Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. 
 
-> PHP is the best language.
+I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (*jump-point PLP (JPLP)*) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new").
 
+### Aim 3 - intensity function of NHPP
 
-### References
+```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../figs/PLP_NHPP_intensity.pdf")
+```
+
+### Aim 3 - intensity function of proposed jump-point PLP (JPLP)
+
+```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$, $\\kappa=0.8$', echo=FALSE, eval=TRUE}
+knitr::include_graphics("../figs/PLP_jump_point_intensity.pdf")
+```
+
+### Aim 3 - JPLP
+
+Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$, varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and a parameter $\kappa$.
+\begin{equation}
+\begin{aligned}
+  T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{JPLP}(\beta, \theta_{d, s}, \kappa)\\
+  \beta & \sim \text{Gamma}(1, 1)\\
+  \log\theta_{d, s} &= \gamma_{0d} + \gamma_{1}x_{d, s, 1} + \gamma_{2}x_{d, s, 2} + \cdots + \gamma_{k}x_{d, s, k}\\
+  \kappa & \sim \text{Uniform}(0, 1)\\
+  \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
+  \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
+  \mu_0 &\sim N(0, 10^2) \\
+  \sigma_0 &\sim \text{Gamma}(1, 1)
+\end{aligned}
+\end{equation}
+The shape parameter $\beta$ shows the reliability changes of drivers. The $\theta_{d, s}$ is a scale parameter that does not reflect reliability changes. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
+
+### Aim 3 - potential problems and alternative plans
+
+In the unlikely event that the JPLP fails to be models, I will use the *modulated PLP* proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
+
+### References {.allowframebreaks}
