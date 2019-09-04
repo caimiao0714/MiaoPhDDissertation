@@ -57,24 +57,29 @@ pacman::p_load(ggplot2, dplyr)
 
 set.seed(223)
 tau0 = 13; beta0 = 1.2; theta0 = 2
+rest_time = c(4, 5, 8.2, 9.2)
 
 # SCE time
 t_SCE = sim_plp_tau(tau = tau0, beta = beta0, theta = theta0)
 shift_id= rep(0, length(t_SCE))
 SCE = data.frame(shift_id, t_SCE)
 
-# Rest
-rest_time = c(4, 5, 8.2, 9.2)
-REST1 = data.frame(xaxis = c(rest_time[1:2], rev(rest_time[1:2])),
-                   yaxis = rep(c(0,max(INTENS$intensity)), each = 2))
-REST2 = data.frame(xaxis = c(rest_time[3:4], rev(rest_time[3:4])),
-                   yaxis = rep(c(0,max(INTENS$intensity)), each = 2))
-
 # Intensity and limit
 INTENS = data.frame(t = seq(0, tau0, 0.001),
                     intensity = plp(seq(0, tau0, 0.001), beta0, theta0)) %>% 
   mutate(type = ifelse(((t >= rest_time[1] & t <= rest_time[2])|(t >= rest_time[3] & t <= rest_time[4])), 0.2, 1))
 
+# LIM data
+LIM = data.frame(start_time = 0, end_time = tau0, shift_id = shift_id)
+
+# maximum intensity
+max_int = round(max(INTENS$intensity), 2) + 0.01
+
+# Rest
+REST1 = data.frame(xaxis = c(rest_time[1:2], rev(rest_time[1:2])),
+                   yaxis = rep(c(0, max(INTENS$intensity)), each = 2))
+REST2 = data.frame(xaxis = c(rest_time[3:4], rev(rest_time[3:4])),
+                   yaxis = rep(c(0, max(INTENS$intensity)), each = 2))
 
 # plot
 p0 = ggplot() + 
@@ -156,6 +161,7 @@ p1 = ggplot() +
 p1
 ggsave("figs/PLP_jump_point_intensity.pdf", p1, width = 10, height = 6.18)
 ```
+
 -->
 
 __*Potential problems and alternative plans*__: in the unlikely event that the JPLP fails to be models, I will use the *modulated PLP* proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
