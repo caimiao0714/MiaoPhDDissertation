@@ -1,11 +1,11 @@
 # Modeling Truck Drivers' Critical Events: Efficient Bayesian Hierarchical Models
 
-To do list 2019-07-24:
+To do list 2019-09-03:
 
 - [ ] Figure out the math for jump point PLP.
-- [ ] First group meeting Fadel and Dr. Hong Xian --> August 23th, 3 p.m. 2019.
 - [ ] Need to have an IRB number --> ask Steve.
 - [ ] Can we account for real-time characteristics within a shift for a PLP.
+- [ ] Oral exam --> October 7th, 10 a.m. 2019.
 
 Style:
 
