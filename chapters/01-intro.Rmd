@@ -10,9 +10,9 @@ The global economic losses attributable to transportation safety were estimated 
 
 Specifically in the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40% of all fatal occupational injuries in 2017 [@bols]. The National Safety Council reported that the number of deaths attributable to car crashes was at least 40,000 in 2018, which was the third straight year that this number was over 40,000 [@nsc2018]. Despite large amounts of investments in roads, improved vehicle protection and traffic policy implementation, and advanced emergency and trauma care, the reduction in traffic associated fatality rates is nominal [@litman2013transportation]. If the change of traffic fatality rates in the US match those in other unremarkable countries, 20,000 traffic deaths could have been prevented each year [@evans2014traffic].
 
-
+<!--
 The impact of road injuries is even more impactful in developing countries than in developed countries [@goonewardene2010road]. Although low- and middle-income countries own only 48% of all the registered vehicles in the world, 90% of road traffic fatalities and injuries were estimated to occur in these countries, which continue to be escalating due to rapid urbanization and motorization [@dalal2013economics; @staton2016road]. Ten developing countries, including Brazil, Cambodia, China, Egypt, India, Kenya, Mexico, Russia, Turkey, and Vietnam, account for almost half of all the road traffic in the world [@hyder2012addressing]. For example, China has around 100,000 traffic-related fatalities each year [@zhang2010road], accounting for around 80% of all accidental deaths, with 87% of them caused by motor vehicles in 2015 [@jiang2017transport]. In comparison, 148,707 lives were claimed by road collisions in India in 2015, with the road fatality rate similar to the global average level of 17.4 deaths per 100,000 people [@india2015].
-
+-->
 
 Truck safety
 ------------

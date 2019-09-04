@@ -16,6 +16,8 @@ output:
 make149: true
 mainfont: "Open Sans" # Try out some font options if xelatex
 titlefont: "Titillium Web" # Try out some font options if xelatex
+bibliography: [../bib/bib.bib]
+csl: [../bib/numbered.csl]
 ---
 
 ```{r setup, include=FALSE, cache=F, message=F, warning=F, results="hide"}
@@ -42,34 +44,69 @@ knitr::opts_chunk$set(cache=FALSE,
 The problem
 ============
 
-### Transportation safety
+### Transportation
 
-Sheena Easton describes the following scenario for her baby:
+Transportation safety deserves attention:
 
-1. Takes the morning train
-2. Works from nine 'til five
-3. Takes another train home again
-4. Finds Sheena Easton waiting for him
+- The 8-th leading cause of death globally in 2016, [@who2018]
+- 1.4 million people killed, mostly aged 4 to 44 years old, [@who2018]
+- 518 billion dollars. [@dalal2013economics]
 
-### Truck safety
+Trucks are the backbone of the economy:
 
-Rick Astley's campaign promises:
+- 70% of freight delivered by trucks,
+- 73.1% of value and 71.3% of domestic goods, [@olson2016weight; @anderson2017exploratory]
 
-- Never gonna give you up.
-- Never gonna let you down.
-- Never gonna run around and desert you.
-- Never gonna make you cry.
-- Never gonna say goodbye.
-- Never gonna tell a lie and hurt you.
+### Challenges for trucking industry
 
-Are these promises (if credible) sufficient to secure re-election?
+Drivers:
 
+1. drive alone for long hours, 
+2. work under time demands, challenging weather and traffic conditions,
+2. sleep deprivation and disorder
+
+Trucks: 
+
+1. huge weights, 
+2. large physical dimensions,
+3. potentially carry hazardous cargoes.
 
 ### Truck crash studies
 
-Whereas these pledges conform to the preferences of the **median voter**, we expect Congressman Astley to secure re-election.
+Traditional studies almost exclusively use data that ultimately trace back to **post hoc** __vehicle inspection__, __interviews__ with survived drivers and witnesses, and __police reports__. [@hickman2018synthetic; @stern2019data]
+
+1. rare events $\rightarrow$ difficulty in estimation, [@theofilatos2018impact]
+2. retrospective studies $\rightarrow$ recall bias, [@girotto2016professional]
+3. crashes are underreported $\rightarrow$ selection bias. [@ye2011investigation; @savolainen2011statistical]
 
 ### Naturalistic driving studies (NDS)
+
+> NDS uses **unobtrusive** devices, sensors, and cameras installed on vehicles to **proactively** collect frequent naturalistic driving behavior and performance data under **real-world driving** conditions [@hickman2018synthetic; @guo2019statistical]
+
+1. driver-based data (compare rates),
+2. high-resolution driver behavior and performance data,
+3. less costly and difficult per observation.
+
+### Safety critical events (SCEs)
+
+SCEs are
+
+>  a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions. [@saleh2013accident]
+
+Examples of SCEs are: 
+
+1. hard brakes,
+2. headways,
+3. rolling stability,
+4. $\cdots$
+
+### The problem
+
+NDSs are relatively new and less studied. Here are several problems remained in NDS.
+
+1. Are SCEs associated with real crashes among truck drivers?
+2. Can we predict SCEs?
+3. How can we innovate existing models to account for features of NDS?
 
 
 
@@ -154,3 +191,6 @@ Wonderful R packages are available:
 ### The best language
 
 > PHP is the best language.
+
+
+### References
