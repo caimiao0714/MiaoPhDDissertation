@@ -40,8 +40,8 @@ knitr::opts_chunk$set(cache=FALSE,
     + Hong Xian, PhD
 
 - At-large Committee:
-    + AA, PhD
-    + BB, PhD
+    + TBD, PhD
+    + TBD, PhD
     
 The problem
 ============
@@ -397,7 +397,7 @@ Methods
 
 - **The covariates**: the total miles driven, the percent of night driving, and the age of the drivers.
 
-### Aim 1 - statistical model
+### Aim 1 - Gamma-Poisson model
 
 Here is how the proposed Gamma-Poisson model will be implemented. Let us assume that:
 $$
@@ -417,11 +417,11 @@ $$
 $$
 where $\mathbf{X}$ is the predictor variables matrix, including the percent of night driving and the age of the drivers, $\mathbf{\gamma}$ is the associated $2*1$ parameter vector, $m$ is the total miles driven as an offset term in the Poisson distribution, and $\alpha$ is a fixed overdispersion parameter that does not depend on any covariates.
 
-### Potential problems and alternative plans
+### Aim 1 - potential problems and alternative plans
 
 > The sheer size of the original ping data may be a problem in aim 1: the ping data has 1,494,678,173 rows and 9 columns, ( >140 gigabytes (GB) `.csv`). 
 
-Although I will use the OSC server that has Random-Access Memory (RAM) of more than 500 GB, it may still be hard and slow to read and process this giant file. 
+Although I will use the OSC server that has Random-Access Memory (RAM) of more than 500 GB, it may still be hard to read and process this giant file. 
 
 1. If the OSC server cannot handle the data correctly, I will separate the single gaint csv file into __several small csv files__ according to driver ID, then aggregate the pings to trips for each small csv file. 
 2. After the ping data are aggregated to trips, it is unlikely that the log-linear Gamma-Poisson model fail. In that unlikely event, I can turn to __negative binomial models__ or use __traditional MLE estimates__ instead of Bayesian estimation.
@@ -445,14 +445,15 @@ Y_{i} &\sim \text{Bernoulli}(p_{i})\\
 \end{split}
 \end{equation}
 
-- $\mu_0, \sigma_0$: hyper-parameters for random intercepts $\beta_{0, d}$, 
-- $\mu_1, \sigma_1$: hyper-parameters for random slopes $\beta_{1, d}$, 
+- $Y_{i}$: whether SCEs occurred in the 30-minute interval or not (binary),
+- $\beta_{0, d(i)}$: random intercepts for each driver, $\beta_{1, d(i)}$ is random slopes for cumulative driving time CT$_i$,
 - $\beta_2, \beta_3, \cdots, \beta_J$: fixed parameters for covariates $x_{ij}$.
+- $\mu_0, \sigma_0$: hyper-parameters for random intercepts $\beta_{0, d}$, 
+- $\mu_1, \sigma_1$: hyper-parameters for random slopes $\beta_{1, d}$.
 
 ### Priors
 
 Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors [@gelman2017prior] for these parameters:
-
 \begin{equation}
 \begin{split}
 		\mu_0 & \sim N(0, 5^2)\\
@@ -476,6 +477,12 @@ N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
 \end{aligned}
 \end{equation}
 
+- $Y_{i}$: the number of SCEs occurred in the 30-minute interval,
+- $T_i$: length of the 30-minute interval,
+- The other components are the same as those in hierarchical logistic regression.
+
+The scalable Bayesian statistical and reliability models will be conducted using the **HMC-ECS algorithm** (self-defined functions in `Python 3.6.0`) or **HMC** (the `rstan` package in statistical computing environment `R 3.5.1`) [@rstancitation; @Rcitation; @dang2019hamiltonian].
+
 ### Aim 2 - recurrent event models
 
 ```{r arrowplot, fig.cap='An arrow plot of time to SCEs in each shift', echo=FALSE, eval=TRUE}
@@ -484,28 +491,36 @@ knitr::include_graphics("../figs/NHPP_arrow_plot.png")
 
 ### Aim 2 - theories on NHPP and PLP
 
-A commonly used reliability model is the *Nonhomogeneous Poisson Process (NHPP)*. It is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+**Nonhomogeneous Poisson Process (NHPP)**:
+
+> a Poisson process whose intensity function is non-constant. 
+
+**Power law process (PLP)**: a NHPP with the intensity function of:
 \begin{equation}
-\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1},
+\lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1}, \quad \beta > 0, \theta > 0
 \end{equation}
-where $\beta > 0$ and $\theta > 0$, the process is called the power law process (PLP), also called the Weibull intensity function.
+
+- $\beta > 1$: intensity increasing $\rightarrow$ reliability deteriorating,
+- $\beta = 1$: constant intensity $\rightarrow$ reliability not changing,
+- $\beta < 1$: intensity decreasing $\rightarrow$ reliability improving,
+- $\theta$: scale parameter.
 
 There are two forms of truncation in a NHPP: 
 
-1. *Failure truncation* when testing stops after a predetermined number of failures, 
-2. *Time truncation* when testing stops at a predetermined time $t$.
+1. *Failure truncation*: when testing stops after a predetermined number of failures, 
+2. *Time truncation*: when testing stops at a predetermined time $t$.
 
 ### Notations
 
-After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let $T_{d, s, i}$ denotes the time to the $d$-th driver's $s$-th shift's $i$-th critical event. The total number critical events of $d$-th driver's $s$-th shift is $n_{d,s}$. The ranges of these notations are:
+Let $T_{d, s, i}$ denotes the time to the $d$-th driver's $s$-th shift's $i$-th critical event. The total number critical events of $d$-th driver's $s$-th shift is $n_{d,s}$. The ranges of these notations are:
 
-- $i = 1, 2, \cdots, n_{d, S_d}$,
-- $s = 1, 2, \cdots, S_d$,
-- $d = 1, 2, \cdots, D$.
+- $i = 1, 2, \cdots, n_{d, S_d}$: SCE ID,
+- $s = 1, 2, \cdots, S_d$: shift ID,
+- $d = 1, 2, \cdots, D$: driver ID.
 
 ### Bayesian hierarchical NHPP with PLP intensity function
 
-I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a PLP, with a fixed shape parameter $\beta$ and varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$. In a PLP, the intensity function of the NHPP is $\lambda(t) = \frac{\beta}{\theta}(\frac{t}{\theta})^{\beta-1}$.
+Assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a PLP, with a fixed shape parameter $\beta$ and varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$.
 \begin{equation}
 \begin{aligned}
   T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{PLP}(\beta, \theta_{d, s})\\
@@ -521,13 +536,21 @@ The shape parameter $\beta$ shows the reliability changes of drivers.
 
 ### Aim 2 - potential problems and alternative plans
 
-The sheer size of the 30-minute interval table and merged shifts table may be a problem in this aim. The 30-minute interval table has one million rows and 10 variables, and the merged shift table has more than 200,000 rows and 10 variables. In the meanwhile, each of the three models will have 496 random intercepts and slopes, which is extremely difficult to estimate in the Bayesian setting. Although I propose to use the HMC-ECS to estimate the random effect, there are still chances that the model does not work. In that case, I will sample 50 to 200 typical drivers, then conduct the analysis based on this smaller sample data. In the unlikely event that the models still fails based on this smaller data, I can restrict the hierarchical models to only have random intercepts or use traditional MLE instead of Bayesian estimation.
+> The sheer size of the 30-minute interval table and merged shifts table may be a problem in this aim. 
+
+- The 30-minute interval table: ~ one million rows and 10 variables, 
+- Merged shift table: ~200,000 rows and 10 variables. 
+- 496 random intercepts and slopes
+
+Although I propose to use the HMC-ECS to estimate the random effect, there are still chances that the model does not work. In that case, I will **sample 50 to 200 typical drivers**, then conduct the analysis based on this smaller sample data. In the unlikely event that the models still fails based on this smaller data, I can restrict the hierarchical models to **random intercepts only model** or use **traditional MLE** instead of Bayesian estimation.
 
 ### Aim 3
 
-> Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. 
+> Aim 3 seeks to innovate the NHPP with a PLP intensity function proposed in Aim 2 by adding one more parameter $\kappa$. 
 
-I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (*jump-point PLP (JPLP)*) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new").
+I propose to account for the rest time within a shift by adding one more parameter $\kappa$, **the percent of reliability recovery during a break within a shift**. 
+
+This new reliability model (**jump-point PLP (JPLP)**) will be between a *NHPP* where the intensity function is not influenced by between-trip rests ("as bad as old"), and a *renewal process* where the intensity function is fully recovered by between-trip rests ("as good as new").
 
 ### Aim 3 - intensity function of NHPP
 
@@ -543,7 +566,7 @@ knitr::include_graphics("../figs/PLP_jump_point_intensity.pdf")
 
 ### Aim 3 - JPLP
 
-Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$, varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and a parameter $\kappa$.
+Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$, varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and **an added parameter $\kappa$**.
 \begin{equation}
 \begin{aligned}
   T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{JPLP}(\beta, \theta_{d, s}, \kappa)\\
@@ -552,14 +575,21 @@ Here I assume that the times of critical events within the $d$-th driver's $s$-t
   \kappa & \sim \text{Uniform}(0, 1)\\
   \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
   \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
-  \mu_0 &\sim N(0, 10^2) \\
+  \mu_0 &\sim N(0, 5^2) \\
   \sigma_0 &\sim \text{Gamma}(1, 1)
 \end{aligned}
 \end{equation}
-The shape parameter $\beta$ shows the reliability changes of drivers. The $\theta_{d, s}$ is a scale parameter that does not reflect reliability changes. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
+
+- $\beta$: shape parameter that reflects the reliability changes of drivers,
+- $\theta_{d, s}$: a scale parameter,
+- $\kappa$: the percent of intensity function recovery once the driver takes a break.
 
 ### Aim 3 - potential problems and alternative plans
 
-In the unlikely event that the JPLP fails to be models, I will use the *modulated PLP* proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
+In the unlikely event that the JPLP fails to be models, I will use the **modulated PLP** proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into **a hierarchical modulated PLP**. 
+
+\vspace{20pt}
+
+The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
 
 ### References {.allowframebreaks}

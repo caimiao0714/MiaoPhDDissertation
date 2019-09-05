@@ -29,7 +29,7 @@ The data and notations $T_{d, s, i}, d, s, i$ will be identical as specified in 
 (\#eq:jplp)
 \end{aligned}
 \end{equation}
-The shape parameter $\beta$ shows the reliability changes of drivers. When $\beta > 1$, the intensity function $\lambda(t)$ is increasing, the reliability of drivers is  decreasing, and SCEs are becoming more frequent; when $\beta < 1$, the intensity function $\lambda(t)$ is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when $\beta = 1$, the NHPP is simplified as a homogeneous Poisson process with the intensity of $1/\theta$. The $\theta_{d, s}$ is a scale parameter that does not reflect reliability changes. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
+The shape parameter $\beta$ shows the reliability changes of drivers. When $\beta > 1$, the intensity function $\lambda(t)$ is increasing, the reliability of drivers is  decreasing, and SCEs are becoming more frequent; when $\beta < 1$, the intensity function $\lambda(t)$ is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when $\beta = 1$, the NHPP is simplified as a homogeneous Poisson process with the intensity of $1/\theta$. The $\theta_{d, s}$ is a scale parameter. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
 
 
 <!--
