@@ -7,11 +7,11 @@ Figure \@ref(fig:plpjumppoint) demonstrates the complete intensity function of a
 
 Therefore, the jump-point PLP I propose will account for the effect of taking a rest. Figure \@ref(fig:plpnhpp) shows the proposed complete intensity function (black solid curves), continuous PLP intensity function of a NHPP (the grey solid curve), simulated SCEs (red crosses on the x-axis), and rest times between trips (green intervals). Everytime the driver takes a rest, the complete intensity function will be moved down by a certain percent $\kappa$, here the $\kappa = 0.8$.
 
-```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE}
+```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE}
 knitr::include_graphics("figs/PLP_NHPP_intensity.pdf")
 ```
 
-```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$, $\\kappa=0.8$', echo=FALSE, eval=TRUE}
+```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$, $\\kappa=0.8$', echo=FALSE, eval=TRUE}
 knitr::include_graphics("figs/PLP_jump_point_intensity.pdf")
 ```
 

@@ -184,8 +184,6 @@ The global economic losses attributable to transportation safety were estimated 
 
 Specifically in the United States, transportation contributed to the highest number of fatal occupational injuries, leading to 2,077 deaths and accounting for over 40\% of all fatal occupational injuries in 2017 (The United States, Bureau of Labor Statistics, \protect\hyperlink{ref-bols}{2017}). The National Safety Council reported that the number of deaths attributable to car crashes was at least 40,000 in 2018, which was the third straight year that this number was over 40,000 (The National Safety Council, \protect\hyperlink{ref-nsc2018}{2018}). Despite large amounts of investments in roads, improved vehicle protection and traffic policy implementation, and advanced emergency and trauma care, the reduction in traffic associated fatality rates is nominal (Litman, \protect\hyperlink{ref-litman2013transportation}{2013}). If the change of traffic fatality rates in the US match those in other unremarkable countries, 20,000 traffic deaths could have been prevented each year (Evans, \protect\hyperlink{ref-evans2014traffic}{2014}).
 
-The impact of road injuries is even more impactful in developing countries than in developed countries (Goonewardene et al., \protect\hyperlink{ref-goonewardene2010road}{2010}). Although low- and middle-income countries own only 48\% of all the registered vehicles in the world, 90\% of road traffic fatalities and injuries were estimated to occur in these countries, which continue to be escalating due to rapid urbanization and motorization (Dalal et al., \protect\hyperlink{ref-dalal2013economics}{2013}; Staton et al., \protect\hyperlink{ref-staton2016road}{2016}). Ten developing countries, including Brazil, Cambodia, China, Egypt, India, Kenya, Mexico, Russia, Turkey, and Vietnam, account for almost half of all the road traffic in the world (Hyder et al., \protect\hyperlink{ref-hyder2012addressing}{2012}). For example, China has around 100,000 traffic-related fatalities each year (Zhang et al., \protect\hyperlink{ref-zhang2010road}{2010}), accounting for around 80\% of all accidental deaths, with 87\% of them caused by motor vehicles in 2015 (Jiang et al., \protect\hyperlink{ref-jiang2017transport}{2017}). In comparison, 148,707 lives were claimed by road collisions in India in 2015, with the road fatality rate similar to the global average level of 17.4 deaths per 100,000 people (National Crime Records Bureau, Government of India, \protect\hyperlink{ref-india2015}{2015}).
-
 \hypertarget{truck-safety}{%
 \section{Truck safety}\label{truck-safety}}
 
@@ -254,8 +252,6 @@ The 100-Car NDS continuously followed 102 recruited drivers for 12 months, resul
 Gordon et al. (\protect\hyperlink{ref-gordon2011analysis}{2011}) conducted a preliminary study to validate surrogates for road-departure crashes by spatially merging road geometry, average traffic, crashes, and naturalistic driving data. Bayesian seemingly unrelated Poisson models estimated with weighted least squares were used to examine if the same sets of predictor variables can have the same effects on crashes and surrogates respectively. They found that time to edge crossing and lane-departure warning were two useful surrogates for crashes on rural nonfreeway roads, while lane deviation was a poor surrogate for lane-departure crashes.
 
 Wu and Jovanis (\protect\hyperlink{ref-wu2012crashes}{2012}) proposed a conceptual framework to estimate the crash-to-surrogate ratio \(\pi\) using the 100-Car study. The study found that the conditional probability of a crash was increased by 24 times with a lateral acceleration more than 0.7 g, but the probability was decreased by other factors such as the event occurring in daylight and dry pavement. A later study by Wu and Jovanis (\protect\hyperlink{ref-wu2013defining}{2013}) developed diagnostic procedures to screen crashes and near-misses under the NDS settings. The study applied their proposed framework to the 100-Car NDS and identified three conditions to define surrogate events: 1) maximum lateral acceleration difference of no smaller than 0.4 g, 2) non-intersection related, and 3) maximum lateral acceleration difference no smaller than 0.9 per event or between 0.8 and 0.9 g during night time.
-
-Guo and Fang (\protect\hyperlink{ref-guo2013individual}{2013}) attempted to identify risk factors of driving at drivers' level and predict high-risk drivers based on the 100-Car study. The study used a negative binomial regression to examine the potential four risk factors of crashes and near-crashes. Besides, they used a K-mean clustering to classify the drivers into high-, moderate-, and low-risk groups based on crash and near-crash rates, and applied two logistic regressions to predict high- or moderate-risk drivers. The results confirmed that critical-incident event rates were significantly associated with individual driving risk. The two logistic regressions achieved AUC values of 0.938 and 0.93. They also highlighted that it was a first-step study and more studies with larger and representative data were needed to confirm the association. A similar study by Wu et al. (\protect\hyperlink{ref-wu2014using}{2014}) also used the 100-Car study. This study used a Bayesian multivariate Poisson log-normal model to simultaneously account for crash frequency and severity. They also found a significant positive association between crashes, near crashes, and crash-relevant incidents.
 
 Pande et al. (\protect\hyperlink{ref-pande2017preliminary}{2017}) used linear referencing to link Global Positioning System (GPS) data with roadway features on 39 segments of Highway 101 in California. A negative binomial model and a random-effects negative binomial model that account for segment-specific variance were used to investigate the relationship between historic crashes and hard braking. It was found that the freeway segments with high hard braking rates also had higher long-term crash rates, although the other three explanatory variables (average daily traffic, the presence of horizontal curvature, and auxiliary lanes) were not statistically significant.
 
@@ -597,7 +593,7 @@ A commercial trucking and transportation company in the United States will provi
 
 \begin{table}[!h]
 
-\caption{\label{tab:ping}ping data}
+\caption{\label{tab:ping}A demonstration of ping data}
 \centering
 \begin{tabular}{cccccc}
 \toprule
@@ -631,11 +627,11 @@ canj1 & 2015-11-02 07:13:56 & HB\\
 \end{tabular}
 \end{wraptable}
 
-Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1) Hard brake, 2) Headway, 3) Rolling stability. Once some thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data and crashes are demonstrated in Table \ref{tab:SCE} and Table \ref{tab:crashes}.
+Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1) Hard brake, 2) Headway, 3) Rolling stability. Once some kinematic thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data and crashes are demonstrated in Table \ref{tab:SCE} and Table \ref{tab:crashes}.
 
 \begin{table}[!h]
 
-\caption{\label{tab:crashes}crashes}
+\caption{\label{tab:crashes}A demonstration of crashes table}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}{cccccccc}
@@ -686,7 +682,7 @@ To reduce the cost of querying weather data, we will focus on 496 drivers conduc
 
 \begin{table}[!h]
 
-\caption{\label{tab:weather}weather from the DarkSky API}
+\caption{\label{tab:weather}A demonstration of weather data from the DarkSky API}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}{ccccccc}
@@ -711,7 +707,7 @@ We will query the speed limits and the number of lanes by specifying a bounding 
 
 \begin{table}[H]
 
-\caption{\label{tab:road}Road geometry from the OpenStreetMap API}
+\caption{\label{tab:road}A demonstration of road geometry data from the OpenStreetMap API}
 \centering
 \begin{tabular}{ccccc}
 \toprule
@@ -738,7 +734,7 @@ For each of the truck drivers, if the real-time ping data showed that the truck 
 
 \begin{table}[H]
 
-\caption{\label{tab:transformtrip}Transformed trips data}
+\caption{\label{tab:transformtrip}A demonstration of transformed trips data}
 \centering
 \begin{tabular}{cccccc}
 \toprule
@@ -760,7 +756,7 @@ As the length of a trip can vary significantly from 5 minutes to more than 8 hou
 
 \begin{table}[H]
 
-\caption{\label{tab:tranform30interval}Transformed 30-minute intervals}
+\caption{\label{tab:tranform30interval}A demonstration of transformed 30-minute intervals}
 \centering
 \begin{tabular}{cccccc}
 \toprule
@@ -782,7 +778,7 @@ The trips data will be further divided into different shifts if the specific dri
 
 \begin{table}[H]
 
-\caption{\label{tab:transformshift}Transformed shifts data}
+\caption{\label{tab:transformshift}A demonstration of transformed shifts data}
 \centering
 \begin{tabular}{ccccc}
 \toprule
@@ -828,7 +824,7 @@ The resulting 30-minute intervals and shifts tables are demonstrated in Table \r
 
 \begin{table}[H]
 
-\caption{\label{tab:analysis30int}30 minutes intervals data for hierarchical logistic and Poisson regression}
+\caption{\label{tab:analysis30int}A demonstration of 30 minutes intervals data for hierarchical logistic and Poisson regression}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}{ccccccccc}
@@ -846,7 +842,7 @@ canj1 & 1 & 2015-10-23 08:09:26 & 2015-10-23 18:37:56 & 628 & 197093 & 0 & NA & 
 
 \begin{table}[H]
 
-\caption{\label{tab:analysisshift}shifts data for hierarchical non-homogeneous Poisson process}
+\caption{\label{tab:analysisshift}A demonstration of shifts data for hierarchical non-homogeneous Poisson process}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}{ccccccc}
@@ -864,7 +860,7 @@ canj1 & 6 & 0 & NA & NA & 2015-10-30T09:27:12Z & 2015-10-30T21:18:22Z\\
 
 \begin{table}[H]
 
-\caption{\label{tab:analysisshiftevent}SCEs data for hierarchical non-homogeneous Poisson process}
+\caption{\label{tab:analysisshiftevent}A demonstration of SCEs data for hierarchical non-homogeneous Poisson process}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}{cccccc}
@@ -923,7 +919,7 @@ All data reduction, cleaning, and statistical analysis will be done on the RStud
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
 
-The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers and identify potential risk factors. Bayesian hierarchical logistic regression, Poisson regression, and NHPP with the PLP intensity function will be used. All three models will account for both driver-level and trip-level variation. Hamiltonian Monte Carlo with energy conserving subsampling (HMC-ECS) proposed by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) will be used to scale the hierarchical model for the 30-minute interval table (more than one million rows) in a Bayesian setting.
+The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers and identify potential risk factors. Bayesian hierarchical logistic regression, Poisson regression, and NHPP with the PLP intensity function will be used. All three models will account for both driver-level and trip-level variables. Hamiltonian Monte Carlo with energy conserving subsampling (HMC-ECS) proposed by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) will be used to scale the Bayesian hierarchical models for the 30-minute interval table (more than one million rows).
 
 In the three proposed models, vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. The details of the statistical models will be explained in the following sections.
 
@@ -940,7 +936,7 @@ Y_{i} &\sim \text{Bernoulli}(p_{i})\\
 \label{eq:hierarchicallogit}
 \end{split}
 \end{equation}
-Where \(\mu_0, \sigma_0\) are hyper-parameters for \(\beta_{0, d}\), \(\mu_1, \sigma_1\) are hyper-parameters for random slope \(\beta_{1, d}\), \(\beta_2, \beta_3, \cdots, \beta_J\) are fixed parameters for covariates \(x_{ij}\).
+Where \(\mu_0\) and \(\sigma_0\) are hyper-parameters for random intercepts \(\beta_{0, d}\), \(\mu_1\) and \(\sigma_1\) are hyper-parameters for random slopes \(\beta_{1, d}\), and \(\beta_2, \beta_3, \cdots, \beta_J\) are fixed parameters for covariates \(x_{ij}\).
 
 Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors (Gelman et al., \protect\hyperlink{ref-gelman2017prior}{2017}) for these parameters shown in Equation \eqref{eq:prior}.
 \begin{equation}
@@ -954,7 +950,7 @@ Since we do not have much prior knowledge on the parameters, I will assign weakl
 \end{split}
 \end{equation}
 
-Since \(\mu_0\) and \(\mu_1\) can be any real number, so I will assign two normal distributions with mean of 0 and standard deviation of 10 as the priors for these two hyperparameters. In comparison, \(\sigma_0\) and \(\sigma_1\) must be strictly positive, so I will Gamma\((1, 1)\) with wide distribution on positive real numbers as their priors.
+Since \(\mu_0\) and \(\mu_1\) can be any real number, so I will assign two normal distributions with mean of 0 and standard deviation of 5 as the priors for these two hyperparameters. The priors for the hyperpriors need to be relatively more restrictive than priors for fixed-effects parameters \(\beta_2, \beta_3, \cdots, \beta_J\) (Gelman et al., \protect\hyperlink{ref-gelman2013bayesian}{2013}). In comparison, \(\sigma_0\) and \(\sigma_1\) must be strictly positive, so I will Gamma\((1, 1)\) with wide distribution on positive real numbers as their priors.
 
 \hypertarget{bayesian-hierarchical-poisson-regression}{%
 \subsection{Bayesian hierarchical Poisson regression}\label{bayesian-hierarchical-poisson-regression}}
@@ -1002,7 +998,7 @@ A commonly used reliability model is the \emph{Nonhomogeneous Poisson Process (N
 \lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1},
 \label{eq:plp}
 \end{equation}
-where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP), also called the Weibull intensity function. Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1} = \bigg(\frac{t}{\theta}\bigg)^{\beta}\).
+where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP), also called the Weibull intensity function. Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\Big(\frac{t}{\theta}\Big)^{\beta-1} = \Big(\frac{t}{\theta}\Big)^{\beta}\).
 
 There are two forms of truncation in a NHPP: 1) \emph{Failure truncation} when testing stops after a predetermined number of failures, 2) \emph{Time truncation} when testing stops at a predetermined time \(t\). Since the drivers typically decide to stop working based on a certain amount of working time, not based on the number of SCEs they already have, time truncation is the case in this study. In a time truncated case, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is shown in Equation \eqref{eq:pdftau} (the prove can be found at page 54 in Rigdon and Basu (\protect\hyperlink{ref-rigdon2000statistical}{2000})).
 \begin{equation}
@@ -1062,7 +1058,7 @@ Therefore, the jump-point PLP I propose will account for the effect of taking a 
 
 }
 
-\caption{Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\beta = 1.2$, $\theta=2$}\label{fig:plpjumppoint}
+\caption{Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\beta = 1.2$, $\theta=2$}\label{fig:plpnhpp}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1071,7 +1067,7 @@ Therefore, the jump-point PLP I propose will account for the effect of taking a 
 
 }
 
-\caption{Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\beta = 1.2$, $\theta=2$, $\kappa=0.8$}\label{fig:plpnhpp}
+\caption{Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\beta = 1.2$, $\theta=2$, $\kappa=0.8$}\label{fig:plpjumppoint}
 \end{figure}
 
 The data and notations \(T_{d, s, i}, d, s, i\) will be identical as specified in Aim 2. Here I assume that the times of critical events within the \(d\)-th driver's \(s\)-th shift were generated from a JPLP, with a fixed shape parameter \(\beta\) and varying scale parameters \(\theta_{d, s}\) across drivers \(d\) and shifts \(s\), and a parameter \(\kappa\). The model is described in Equation \eqref{eq:jplp}.
@@ -1439,9 +1435,6 @@ Girotto, E., Andrade, S.M. de, González, A.D., Mesas, A.E., 2016. Professional 
 \leavevmode\hypertarget{ref-gitelman2018exploring}{}%
 Gitelman, V., Bekhor, S., Doveh, E., Pesahov, F., Carmel, R., Morik, S., 2018. Exploring relationships between driving events identified by in-vehicle data recorders, infrastructure characteristics and road crashes. Transportation research part C: emerging technologies 91, 156--175.
 
-\leavevmode\hypertarget{ref-goonewardene2010road}{}%
-Goonewardene, S.S., Baloch, K., Porter, K., Sargeant, I., Punchihewa, G., 2010. Road traffic collisions---case fatality rate, crash injury rate, and number of motor vehicles: Time trends between a developed and developing country. The American Surgeon 76 9, 977--981.
-
 \leavevmode\hypertarget{ref-gordon2011analysis}{}%
 Gordon, T.J., Kostyniuk, L.P., Green, P.E., Barnes, M.A., Blower, D., Blankespoor, A.D., Bogard, S.E., 2011. Analysis of crash rates and surrogate events: Unified approach. Transportation research record 2237 1, 1--9.
 
@@ -1453,9 +1446,6 @@ Grimes, D.A., Schulz, K.F., 2005. Compared to what? Finding controls for case-co
 
 \leavevmode\hypertarget{ref-guo2019statistical}{}%
 Guo, F., 2019. Statistical methods for naturalistic driving studies. Annual review of statistics and its application 6, 309--328.
-
-\leavevmode\hypertarget{ref-guo2013individual}{}%
-Guo, F., Fang, Y., 2013. Individual driver risk assessment using naturalistic driving data. Accident Analysis \& Prevention 61, 3--9.
 
 \leavevmode\hypertarget{ref-guo2015older}{}%
 Guo, F., Fang, Y., Antin, J.F., 2015. Older driver fitness-to-drive evaluation using naturalistic driving data. Journal of safety research 54, 49--e29.
@@ -1478,9 +1468,6 @@ Huang, H., Abdel-Aty, M., 2010. Multilevel data and bayesian analysis in traffic
 \leavevmode\hypertarget{ref-huang2013development}{}%
 Huang, Y.-h., Zohar, D., Robertson, M.M., Garabet, A., Lee, J., Murphy, L.A., 2013. Development and validation of safety climate scales for lone workers using truck drivers as exemplar. Transportation research part F: traffic psychology and behaviour 17, 5--19.
 
-\leavevmode\hypertarget{ref-hyder2012addressing}{}%
-Hyder, A.A., Allen, K.A., Di Pietro, G., Adriazola, C.A., Sobel, R., Larson, K., Peden, M., 2012. Addressing the implementation gap in global road safety: Exploring features of an effective response and introducing a 10-country program. American journal of public health 102 6, 1061--1067.
-
 \leavevmode\hypertarget{ref-islam2014comprehensive}{}%
 Islam, S., Jones, S.L., Dye, D., 2014. Comprehensive analysis of single-and multi-vehicle large truck at-fault crashes on rural and urban roadways in alabama. Accident Analysis \& Prevention 67, 148--158.
 
@@ -1489,9 +1476,6 @@ Janakiraman, V.M., Matthews, B., Oza, N., 2016. Discovery of precursors to adver
 
 \leavevmode\hypertarget{ref-jansen2018harsh}{}%
 Jansen, R.J., Simone Wesseling, S., 2018. Harsh braking by truck drivers: A comparison of thresholds and driving contexts using naturalistic driving data, in: Proceedings of the 6th Humanist Conference, Disponibile Al Link Https://Bit. Ly/2C2Bw3Z {[}Online.
-
-\leavevmode\hypertarget{ref-jiang2017transport}{}%
-Jiang, B., Liang, S., Peng, Z.-R., Cong, H., Levy, M., Cheng, Q., Wang, T., Remais, J.V., 2017. Transport and public health in china: The road to a healthy future. The Lancet 390 10104, 1781--1791.
 
 \leavevmode\hypertarget{ref-jovanis2012effects}{}%
 Jovanis, P.P., Wu, K.-F., Chen, C., 2012. Effects of hours of service and driving patterns on motor carrier crashes. Transportation research record 2281 1, 119--127.
@@ -1615,9 +1599,6 @@ Naik, B., Tung, L.-W., Zhao, S., Khattak, A.J., 2016. Weather impacts on single-
 
 \leavevmode\hypertarget{ref-nakayama2002trial}{}%
 Nakayama, H., 2002. TRIAL measurments of driver fatigue in extended driving condition, in: 9th World Congress on Intelligent Transport Systemsits America, Its Japan, Ertico (Intelligent Transport Systems and Services-Europe).
-
-\leavevmode\hypertarget{ref-india2015}{}%
-National Crime Records Bureau, Government of India, 2015. NCRB 2016 report, chapter 1A: Traffic accidents.
 
 \leavevmode\hypertarget{ref-nsleepf}{}%
 National Sleep Foundation, 2008. 2008 State of the States Report on Drowsy Driving.
@@ -1804,9 +1785,6 @@ Zaloshnja, E., Miller, T., 2007. Unit costs of medium and heavy trucks. Report N
 
 \leavevmode\hypertarget{ref-zaloshnja2008unit}{}%
 Zaloshnja, E., Miller, T., others, 2008. Unit costs of medium and heavy truck crashes. The United States. Federal Motor Carrier Safety Administration.
-
-\leavevmode\hypertarget{ref-zhang2010road}{}%
-Zhang, W., Tsimhoni, O., Sivak, M., Flannagan, M.J., 2010. Road safety in china: Analysis of current challenges. Journal of safety research 41 1, 25--30.
 
 \leavevmode\hypertarget{ref-zhang2014study}{}%
 Zhang, X., Zhao, X., Du, H., Rong, J., 2014. A study on the effects of fatigue driving and drunk driving on drivers' physical characteristics. Traffic injury prevention 15 8, 801--808.

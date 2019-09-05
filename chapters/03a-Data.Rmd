@@ -16,7 +16,7 @@ ping[,ping_time := gsub("\"", "", ping_time)]
 
 kable(ping[1:5,], "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "ping data") %>% 
+      caption = "A demonstration of ping data") %>% 
   kable_styling(latex_options = c("hold_position"))
 ```
 
@@ -28,7 +28,7 @@ fread("data/11_SCE.csv") %>%
   dplyr::slice(1:5) %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "safety critical events") %>% 
+      caption = "A demonstration of safety critical events") %>% 
   kable_styling(position = "float_right")
 ```
 \begin{wraptable}{r}{8cm}
@@ -52,7 +52,7 @@ Real-time time-stamped SCEs and associated GPS locations for all trucks were col
 fread("data/10_crashes.csv") %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "crashes") %>% 
+      caption = "A demonstration of crashes table") %>% 
   kable_styling(latex_options = c("hold_position", "scale_down"))
 ```
 
@@ -85,7 +85,7 @@ fread("data/12_driver.csv") %>%
   dplyr::slice(1:5) %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "drivers") %>% 
+      caption = "A demonstration of drivers table") %>% 
   kable_styling(position = "float_right")
 ```
 Weather variables, including *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*, will be retrieved from the `Dark Sky API`. 
@@ -100,7 +100,7 @@ fread("data/13_weather.csv") %>%
   dplyr::slice(1:5) %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "weather from the DarkSky API") %>% 
+      caption = "A demonstration of weather data from the DarkSky API") %>% 
   kable_styling(latex_options = c("hold_position", "scale_down"))
 ```
 
@@ -114,7 +114,7 @@ fread("data/14_OpenStreetMap.csv") %>%
   dplyr::slice(25:29) %>% 
   kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "Road geometry from the OpenStreetMap API")  %>% 
+      caption = "A demonstration of road geometry data from the OpenStreetMap API")  %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
@@ -145,7 +145,7 @@ t3[,`:=`(shift_start = gsub("T|Z", " ", shift_start),
 kable(t1[driver == "canj1"][1:5,], 
       "latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "Transformed trips data") %>% 
+      caption = "A demonstration of transformed trips data") %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
@@ -156,7 +156,7 @@ As the length of a trip can vary significantly from 5 minutes to more than 8 hou
 ```{r tranform30interval, results='asis', eval=TRUE, echo=FALSE}
 kable(t2[1:5,], "latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "Transformed 30-minute intervals") %>% 
+      caption = "A demonstration of transformed 30-minute intervals") %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
@@ -169,7 +169,7 @@ kable(t3 %>%
         dplyr::slice(1:5) , 
       "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "Transformed shifts data") %>% 
+      caption = "A demonstration of transformed shifts data") %>% 
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
@@ -203,7 +203,7 @@ kable(agg30 %>%
                       shift_end = gsub("T|Z", " ", shift_end)), 
       "latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
+      caption = "A demonstration of 30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 #  landscape()
 ```
@@ -214,7 +214,7 @@ kable(shif %>%
         dplyr::select(driver:end_time), 
       "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "shifts data for hierarchical non-homogeneous Poisson process") %>% 
+      caption = "A demonstration of shifts data for hierarchical non-homogeneous Poisson process") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 #  landscape()
 ```
@@ -228,7 +228,7 @@ kable(event_tab %>%
                       time2event = round(time2event, 3)), 
       "latex", align = "c", 
       booktab = TRUE, linesep = "",
-      caption = "SCEs data for hierarchical non-homogeneous Poisson process") %>% 
+      caption = "A demonstration of SCEs data for hierarchical non-homogeneous Poisson process") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 ```
 

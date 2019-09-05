@@ -106,9 +106,7 @@ Examples of SCEs are:
 
 ### The problem
 
-NDSs are relatively new and less studied. 
-
-Here are several problems remained in NDS.
+NDSs are relatively new and less studied. Here are several problems in NDS.
 
 1. Are SCEs associated with real crashes among truck drivers?
 2. Can we predict SCEs?
@@ -127,13 +125,13 @@ Examples of studies supporting SCEs:
 
 Examples of studies that are against SCEs:
 
-- overspeed negatively associated with injury crashes, @gitelman2018exploring
+- overspeed negatively associated with injury crashes, [@gitelman2018exploring]
 - no harm, no validity, [@knipling2015naturalistic]
 - no demontration on causal link between SCEs and injury crashes. [@knipling2017threats]
 
 Gaps:
 
-- The number of drivers are limited (< 100),
+- The number of drivers are limited and less convincing (<100),
 - No studies specifically on truck drivers.
 
 ### Fatigue
@@ -150,8 +148,8 @@ However, fatigue is hard to measure in transportation safety studies.
 
 - ocular and physiological metrics,
 - sleep patterns,
-- *cumulative driving time*, 
-- *night driving*.
+- **cumulative driving time**, 
+- **night driving**.
 
 ### Other risk factors
 
@@ -161,6 +159,7 @@ Four aspects of risk factors are included in previous studies:
 - Weather
 - Traffic
 - Road features
+- $\cdots$
 
 Gaps in literature:
 
@@ -171,7 +170,8 @@ Gaps in literature:
 
 - Logistic regression,
 - Poisson regression,
-- machine learning models.
+- machine learning models,
+- $\cdots$
 
 Gaps in literature:
 
@@ -191,20 +191,22 @@ p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \
 
 - $p(\theta)$: subjective priors,
 - $p(\mathbf{X}|\theta)$: the likelihood function,
-- $\int p(\theta)p(\mathbf{X}|\theta)d\theta$: the normalizing constant,
-- $p(\theta | \mathbf{X})$ is the posterior distribution.
+- $p(\mathbf{X}) = \int p(\theta)p(\mathbf{X}|\theta)d\theta$: the normalizing constant,
+- $p(\theta | \mathbf{X})$: the posterior distribution.
 
-The posterior distribution is a balance between the prior beliefs and the data.
+The posterior distribution is a balance between the **prior beliefs** and the **likelihood function**.
 
 ### Challenges for Bayesian models in a big data setting
 
-Modern Bayesian inferences replies on Markov chain Monte Carlo (MCMC) to overcome the intractable denominator issue. However, MCMC is not scalable in the big data setting.
+Modern Bayesian inferences replies on **Markov chain Monte Carlo (MCMC)** to overcome the intractable denominator issue. 
+
+However, MCMC is not scalable in the big data setting:
 
 - **Tall data** (a lot of observations),
 - Wide data (a lot of variables),
 - **Correlation between variables** (hierarchical models). [@kruschke2015bayesian]
 
-Potential solutions
+Potential solutions:
 
 - Hamiltonian Monte Carlo, [@betancourt2017conceptual]
 - Subsampling MCMC such as energy conserving subsampling. [@dang2019hamiltonian]
@@ -213,7 +215,7 @@ Potential solutions
 ### Conceptual framework
 
 1. *Truck Driver Fatigue Model*, [@crum2002influence] 
-2. *$5 \times$ST-level hierarchy theory* in traffic safety,[@huang2010multilevel] 
+2. *$5 \times$ ST-level hierarchy theory* in traffic safety,[@huang2010multilevel] 
 3. *Commercial motor vehicle driver fatigue framework*.[@stern2019data]
 
 ```{r conceptmodel, fig.cap='Conceptual model. SCEs represent safety critical events.', echo=FALSE, eval=TRUE}
@@ -228,38 +230,38 @@ Research aims
 Gaps in previous literature:
 
 1. the association between crashes and SCEs has not been confirmed among truck drivers,
-2. recurrent events models were not widely applied in NDS data,
 3. difficulty in fusing high-resolution NDS and API data,
-4. Bayesian inference in tall and wide NDS data.
+4. Bayesian inference is not scalable in tall and wide NDS data setting,
+2. recurrent events models were not widely applied in NDS data,
 
-The overarching goal of this proposed dissertation is to construct scalable Bayesian hierarchical models for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers.
+The overarching goal of this proposed dissertation is to construct **scalable Bayesian hierarchical models** for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers.
 
 ### Aim 1
 
 > To examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression.
 
-I hypothesize that the rate of crashes is positively associated with the rate of SCEs among the truck drivers controlling for the miles driven and other covariates.
+I hypothesize that the **rate of crashes** is positively associated with the **rate of SCEs** among the truck drivers controlling for the miles driven and other covariates.
 
 ### Aim 2
 
 > To construct three scalable Bayesian hierarchical models to identify  potential risk factors for SCEs. 
 
-I hypothesize that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using risk factors including cumulative driving time, weather, road geometry, age, and others.
+I hypothesize that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using cumulative driving time, weather, road geometry, driver's age, and other factors.
 
-- Bayesian hierarchical logistic regression,
-- Bayesian hierarchical Poisson regression,
-- Bayesian hierarchical non-homogeneous Poisson process (NHPP) with the power law process (PLP) intensity function.
+- Bayesian hierarchical **logistic** regression,
+- Bayesian hierarchical **Poisson** regression,
+- Bayesian hierarchical **non-homogeneous Poisson process (NHPP)** with the power law process (PLP) intensity function.
 
 ### Aim 3
 
 > To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time. 
 
-I hypothesize that between-trip rest time can recover the intensity function by some proportion or by a certain amount, and intensity function varies significantly from drivers to drivers.
+I hypothesize that **between-trip rest time** can recover the intensity function by some proportion, and intensity function varies significantly from drivers to drivers.
 
 Data
 ====
 
-### Data sources
+### Data sources {.allowframebreaks}
 
 1. **Real-time ping**: vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second (every 2-10 minutes), ~1.4 billion pings (150 GB `.csv` file),
 2. **Truck crashes and SCEs**: hard brakes, headways, and rolling stability were collected if kinematic thresholds were met,
@@ -267,15 +269,70 @@ Data
 4. **Weather from the DarkSky API**: precipitation intensity, precipitation probability, wind speed, and visibility,
 5. **Road geometry from the OpenStreetMap**: speed limits and the number of lanes.
 
+```{r ping, results='asis', eval=TRUE, echo=FALSE}
+pacman::p_load(data.table, knitr, ggplot2, kableExtra)
+ping = fread("../data/01_ping.csv")
+ping[,ping_time := gsub("\"", "", ping_time)]
+
+kable(ping[1:5,], "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "A demonstration of ping data")%>% 
+  kable_styling(latex_options = c("scale_down"))
+```
+
+```{r SCE, results='asis', eval=TRUE, echo=FALSE}
+fread("../data/11_SCE.csv") %>% 
+  .[,event_time := gsub("T|Z", " ", event_time)] %>% 
+  dplyr::slice(1:5) %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "A demonstration of safety critical events")
+```
+
+```{r crashes, results='asis', eval=TRUE, echo=FALSE}
+fread("../data/10_crashes.csv") %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "A demonstration of crashes table") %>% 
+  kable_styling(latex_options = c("hold_position", "scale_down"))
+```
+
+```{r drivers, results='asis', eval=TRUE, echo=FALSE}
+fread("../data/12_driver.csv") %>% 
+  dplyr::slice(1:5) %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "A demonstration of drivers table")
+```
+
+```{r weather, results='asis', eval=TRUE, echo=FALSE}
+fread("../data/13_weather.csv") %>% 
+  .[,ping_time := gsub("T|Z", " ", ping_time)] %>% 
+  dplyr::slice(1:5) %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "A demonstration of weather data from the DarkSky API") %>% 
+  kable_styling(latex_options = c("hold_position", "scale_down"))
+```
+
+```{r road, results='asis', eval=TRUE, echo=FALSE}
+fread("../data/14_OpenStreetMap.csv") %>% 
+  dplyr::slice(25:29) %>% 
+  kable("latex", align = "c", 
+      booktab = TRUE, linesep = "", 
+      caption = "A demonstration of road geometry data from the OpenStreetMap API")  %>% 
+  kable_styling(latex_options = c("HOLD_position"))
+```
+
 ### Data aggregation
 
-1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different trips, 
-2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals according to the starting and ending time of trips,
+1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different trips (~200,000 rows), 
+2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals according to the starting and ending time of trips (~1 million rows),
 2. **Shift**: the trips data will be further divided into different shifts if the specific driver was not moving for eight hours.
 
 ### Data merging
 
-```{r datamerge, fig.cap='Flow chart of data aggregation and merging', echo=FALSE, eval=TRUE}
+```{r datamerge, fig.cap='Flow chart of data aggregation and merging', echo=FALSE, eval=TRUE, out.width='100%', out.height='100%'}
 knitr::include_graphics("../figs/Data_merging.png")
 ```
 
@@ -325,7 +382,6 @@ kable(event_tab %>%
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 ```
 
-
 Methods
 =======
 
@@ -363,19 +419,20 @@ where $\mathbf{X}$ is the predictor variables matrix, including the percent of n
 
 ### Potential problems and alternative plans
 
-> The sheer size of the original ping data may be a problem in this aim. 
+> The sheer size of the original ping data may be a problem in aim 1: the ping data has 1,494,678,173 rows and 9 columns, ( >140 gigabytes (GB) `.csv`). 
 
-The ping data has 1,494,678,173 rows and 9 columns, which takes up more than 140 gigabytes (GB) when stored as a single comma-separated values (csv) file. Although I will use the OSC server that has Random-Access Memory (RAM) of more than 500 GB, it may still be hard and slow to read and process this giant file. 
+Although I will use the OSC server that has Random-Access Memory (RAM) of more than 500 GB, it may still be hard and slow to read and process this giant file. 
 
-1. In that case, I will separate the single gaint csv file into __several small csv files__ according to driver ID, then aggregate the pings to trips for each small csv file. 
-
+1. If the OSC server cannot handle the data correctly, I will separate the single gaint csv file into __several small csv files__ according to driver ID, then aggregate the pings to trips for each small csv file. 
 2. After the ping data are aggregated to trips, it is unlikely that the log-linear Gamma-Poisson model fail. In that unlikely event, I can turn to __negative binomial models__ or use __traditional MLE estimates__ instead of Bayesian estimation.
 
 ### Aim 2
 
-> The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers and identify potential risk factors.
+> The purpose of aim 2 is to develop three **scalable hierarchical Bayesian statistical and reliability models** for the SCEs of truck drivers and identify potential risk factors.
 
-In the three proposed models, vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events.  The details of the statistical models will be explained in the following sections.
+- **vehicle drivers** will be viewed as the sampling unit. 
+- **Outcome**: SCEs,
+- **Predictors**: driver-level random-effects, age, cumulative driving time, weather, road geometry, mean speed, and speed variation,
 
 ### Aim 2 - Bayesian hierarchical logistic regression
 
@@ -387,11 +444,15 @@ Y_{i} &\sim \text{Bernoulli}(p_{i})\\
 \beta_{1, d} &\sim \text{i.i.d. } N(\mu_1, \sigma_1^2), \quad d = 1, 2, \cdots, D
 \end{split}
 \end{equation}
-Where $\mu_0, \sigma_0$ are hyper-parameters for $\beta_{0, d}$, $\mu_1, \sigma_1$ are hyper-parameters for random slope $\beta_{1, d}$, $\beta_2, \beta_3, \cdots, \beta_J$ are fixed parameters for covariates $x_{ij}$.
+
+- $\mu_0, \sigma_0$: hyper-parameters for random intercepts $\beta_{0, d}$, 
+- $\mu_1, \sigma_1$: hyper-parameters for random slopes $\beta_{1, d}$, 
+- $\beta_2, \beta_3, \cdots, \beta_J$: fixed parameters for covariates $x_{ij}$.
 
 ### Priors
 
 Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors [@gelman2017prior] for these parameters:
+
 \begin{equation}
 \begin{split}
 		\mu_0 & \sim N(0, 5^2)\\
@@ -401,6 +462,8 @@ Since we do not have much prior knowledge on the parameters, I will assign weakl
 		\beta_2, \beta_3, \cdots, \beta_J  & \sim N(0, 10^2)
 \end{split}
 \end{equation}
+
+The priors for the hyperpriors need to be relatively more restrictive than priors for fixed-effects parameters $\beta_2, \beta_3, \cdots, \beta_J$ [@gelman2013bayesian].
 
 ### Aim 2 - Bayesian hierarchical Poisson regression
 

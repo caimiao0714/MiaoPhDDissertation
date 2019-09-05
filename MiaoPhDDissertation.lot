@@ -3,16 +3,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces ping data}}{39}{table.4.1}
+\contentsline {table}{\numberline {4.1}{\ignorespaces A demonstration of ping data}}{39}{table.4.1}
 \contentsline {table}{\numberline {4.2}{\ignorespaces safety critical events}}{40}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces crashes}}{40}{table.4.3}
+\contentsline {table}{\numberline {4.3}{\ignorespaces A demonstration of crashes table}}{40}{table.4.3}
 \contentsline {table}{\numberline {4.4}{\ignorespaces drivers}}{41}{table.4.4}
-\contentsline {table}{\numberline {4.5}{\ignorespaces weather from the DarkSky API}}{41}{table.4.5}
-\contentsline {table}{\numberline {4.6}{\ignorespaces Road geometry from the OpenStreetMap API}}{42}{table.4.6}
-\contentsline {table}{\numberline {4.7}{\ignorespaces Transformed trips data}}{43}{table.4.7}
-\contentsline {table}{\numberline {4.8}{\ignorespaces Transformed 30-minute intervals}}{43}{table.4.8}
-\contentsline {table}{\numberline {4.9}{\ignorespaces Transformed shifts data}}{44}{table.4.9}
-\contentsline {table}{\numberline {4.10}{\ignorespaces 30 minutes intervals data for hierarchical logistic and Poisson regression}}{45}{table.4.10}
-\contentsline {table}{\numberline {4.11}{\ignorespaces shifts data for hierarchical non-homogeneous Poisson process}}{46}{table.4.11}
-\contentsline {table}{\numberline {4.12}{\ignorespaces SCEs data for hierarchical non-homogeneous Poisson process}}{46}{table.4.12}
+\contentsline {table}{\numberline {4.5}{\ignorespaces A demonstration of weather data from the DarkSky API}}{41}{table.4.5}
+\contentsline {table}{\numberline {4.6}{\ignorespaces A demonstration of road geometry data from the OpenStreetMap API}}{42}{table.4.6}
+\contentsline {table}{\numberline {4.7}{\ignorespaces A demonstration of transformed trips data}}{43}{table.4.7}
+\contentsline {table}{\numberline {4.8}{\ignorespaces A demonstration of transformed 30-minute intervals}}{43}{table.4.8}
+\contentsline {table}{\numberline {4.9}{\ignorespaces A demonstration of transformed shifts data}}{44}{table.4.9}
+\contentsline {table}{\numberline {4.10}{\ignorespaces A demonstration of 30 minutes intervals data for hierarchical logistic and Poisson regression}}{45}{table.4.10}
+\contentsline {table}{\numberline {4.11}{\ignorespaces A demonstration of shifts data for hierarchical non-homogeneous Poisson process}}{46}{table.4.11}
+\contentsline {table}{\numberline {4.12}{\ignorespaces A demonstration of SCEs data for hierarchical non-homogeneous Poisson process}}{46}{table.4.12}
 \addvspace {10\p@ }

@@ -3,7 +3,6 @@ Bibliography {-}
 ============
 -->
 
-
 ```{=latex}
 \linespread{0.5}
 
