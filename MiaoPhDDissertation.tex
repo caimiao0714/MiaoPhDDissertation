@@ -563,9 +563,9 @@ The overarching goal of this proposed dissertation is to construct scalable Baye
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Aim1: To examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression}. I hypothesize that the rate of crashes is positively associated with the rate of SCEs among the truck drivers controlling for the miles driven and other covariates.
+  \textbf{Aim1: To examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression}. I hypothesize that the rate of crashes is positively associated with the rate of SCEs among truck drivers controlling for the miles driven and other covariates.
 \item
-  \textbf{Aim2: To construct three scalable Bayesian hierarchical models to identify potential risk factors for SCEs}. I hypothesize that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using risk factors including cumulative driving time, weather, road geometry, age, and others.
+  \textbf{Aim2: To construct three scalable Bayesian hierarchical models to identify potential risk factors for SCEs}. I hypothesize that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using risk factors including cumulative driving time, weather, road geometry, age, speed, speed variation, and others.
 
   \begin{itemize}
   \tightlist
@@ -574,10 +574,10 @@ The overarching goal of this proposed dissertation is to construct scalable Baye
   \item
     \textbf{Sub-aim 2: to contruct a Bayesian hierarchical Poisson regression to model the rate of SCEs in 30-minute intervals}. I hypothesize that the rate of SCEs is positively associated with the cumulative driving time and risk factors, and it varies significantly from drivers to drivers.
   \item
-    \textbf{Sub-aim 3: to contruct a Bayesian hierarchical non-homogeneous Poisson process with the power law process intensity function to model the intensity change of SCEs within each shift}. I hypothesize that the intensity of SCEs increases in later stage of shifts, can be predicted by the risk factors, and it varies from drivers to drivers.
+    \textbf{Sub-aim 3: to contruct a Bayesian hierarchical non-homogeneous Poisson process with the power law process intensity function to model the intensity change of SCEs within each shift}. I hypothesize that the intensity of SCEs increases in later stage of shifts, can be predicted by the risk factors, and varies from drivers to drivers.
   \end{itemize}
 \item
-  \textbf{Aim3: To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time}. I hypothesize that between-trip rest time can recover the intensity function by some proportion or by a certain amount, and intensity function varies significantly from drivers to drivers.
+  \textbf{Aim3: To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time}. I hypothesize that the intensity function can be recovered by some proportion or by some amounts during rests between trips, and intensity function varies significantly from drivers to drivers.
 \end{enumerate}
 
 \hypertarget{methods}{%
@@ -813,11 +813,11 @@ Figure \ref{fig:datamerge} demonstrates the data aggregation and merging workflo
 \item
   \emph{SCEs}: the SCEs will be merged to the two aggregated tables by drivers and if the time of SCEs fall between the start and end time of the aggregated tables,
 \item
-  \emph{Drivers}: the age of drivers are merged to the two aggregated tables using driver unique ID,
+  \emph{Drivers}: the age of drivers are merged to the two aggregated tables using driver ID,
 \item
-  \emph{Road geometry}: the road geometry variables will firstly be merged back to the original ping data by driver ID, latitude, and longitude. Then these road geometry variables will averaged by taking the mean for each 30-minute interval and shift to the aggregated levels,
+  \emph{Road geometry}: the road geometry variables will be merged to the original ping data by driver ID, latitude, and longitude. Then they variables will be aggregated by taking the mean for each 30-minute interval and shift,
 \item
-  \emph{Weather}: the weather variables will firstly also be merged back to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be averaged by taking the mean for each 30-minute interval and shift to the aggregated levels.
+  \emph{Weather}: the weather variables will be merged to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be aggregated by taking the mean for each 30-minute interval and shift.
 \end{enumerate}
 
 The resulting 30-minute intervals and shifts tables are demonstrated in Table \ref{tab:analysis30int} and Table \ref{tab:analysisshift}. The predictor variables such as cumulative driving time, driver's age, weather and road geometry variables are truncated and not shown to fit in the page. Table \ref{tab:analysisshiftevent} demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
@@ -919,14 +919,12 @@ All data reduction, cleaning, and statistical analysis will be done on the RStud
 \hypertarget{analytical-plan-for-aim-2}{%
 \section{Analytical Plan for Aim 2}\label{analytical-plan-for-aim-2}}
 
-The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers and identify potential risk factors. Bayesian hierarchical logistic regression, Poisson regression, and NHPP with the PLP intensity function will be used. All three models will account for both driver-level and trip-level variables. Hamiltonian Monte Carlo with energy conserving subsampling (HMC-ECS) proposed by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) will be used to scale the Bayesian hierarchical models for the 30-minute interval table (more than one million rows).
-
-In the three proposed models, vehicle drivers will be viewed as the sampling unit. The workflow is to sample a certain number of drivers from a population of drivers, observe their driving trips or shifts for a specific period, then compare the safety events with non-events, and make conclusions on risk factors associated with these safety events. The details of the statistical models will be explained in the following sections.
+The purpose of aim 2 is to develop three scalable hierarchical Bayesian statistical and reliability models for the SCEs of truck drivers and identify potential risk factors. Bayesian hierarchical logistic regression, Poisson regression, and NHPP with the PLP intensity function will be used. All three hierarchical models will account for both driver-level and trip-level variables. Hamiltonian Monte Carlo with energy conserving subsampling (HMC-ECS) proposed by Dang et al. (\protect\hyperlink{ref-dang2019hamiltonian}{2019}) will be used to scale the Bayesian hierarchical models for the 30-minute interval table (more than one million rows) with 496 random intercepts and slopes. The details of the statistical models will be explained in the following sections.
 
 \hypertarget{hierarchical-logit}{%
 \subsection{Bayesian hierarchical logistic regression}\label{hierarchical-logit}}
 
-Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression, as shown in Equation \eqref{eq:hierarchicallogit}. I will categorize the number of safety events during a trip into a binary variable \(Y_{i, d}\) of either 0 or 1, where 0 indicates that no critical event occurred during that trip while 1 indicates that at least 1 critical event occurred during the trip. The analysis will be based on the merged 30-minute interval data, as shown in Table \ref{tab:analysis30int}.
+Here the probability of a critical event occurred will be modeled using a Bayesian hierarchical logistic regression, as shown in Equation \eqref{eq:hierarchicallogit}. I will categorize the number of safety events during a 30-minute interval into a binary variable \(Y_{i, d}\) of either 0 or 1, where 0 indicates that no critical event occurred while 1 indicates that at least 1 critical event during that interval. The analysis will be based on the merged 30-minute interval data, as shown in Table \ref{tab:analysis30int}.
 \begin{equation}
 \begin{split}
 Y_{i} &\sim \text{Bernoulli}(p_{i})\\
@@ -936,9 +934,7 @@ Y_{i} &\sim \text{Bernoulli}(p_{i})\\
 \label{eq:hierarchicallogit}
 \end{split}
 \end{equation}
-Where \(\mu_0\) and \(\sigma_0\) are hyper-parameters for random intercepts \(\beta_{0, d}\), \(\mu_1\) and \(\sigma_1\) are hyper-parameters for random slopes \(\beta_{1, d}\), and \(\beta_2, \beta_3, \cdots, \beta_J\) are fixed parameters for covariates \(x_{ij}\).
-
-Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors (Gelman et al., \protect\hyperlink{ref-gelman2017prior}{2017}) for these parameters shown in Equation \eqref{eq:prior}.
+Where \(\mu_0\) and \(\sigma_0\) are hyper-parameters for random intercepts \(\beta_{0, d}\), \(\mu_1\) and \(\sigma_1\) are hyper-parameters for random slopes \(\beta_{1, d}\), and \(\beta_2, \beta_3, \cdots, \beta_J\) are fixed parameters for covariates \(x_{ij}\). Since we do not have much prior knowledge on the parameters, I will assign weakly informative priors (Gelman et al., \protect\hyperlink{ref-gelman2017prior}{2017}) for these parameters shown in Equation \eqref{eq:prior}.
 \begin{equation}
 \begin{split}
         \mu_0 & \sim N(0, 5^2)\\
@@ -950,12 +946,12 @@ Since we do not have much prior knowledge on the parameters, I will assign weakl
 \end{split}
 \end{equation}
 
-Since \(\mu_0\) and \(\mu_1\) can be any real number, so I will assign two normal distributions with mean of 0 and standard deviation of 5 as the priors for these two hyperparameters. The priors for the hyperpriors need to be relatively more restrictive than priors for fixed-effects parameters \(\beta_2, \beta_3, \cdots, \beta_J\) (Gelman et al., \protect\hyperlink{ref-gelman2013bayesian}{2013}). In comparison, \(\sigma_0\) and \(\sigma_1\) must be strictly positive, so I will Gamma\((1, 1)\) with wide distribution on positive real numbers as their priors.
+Since \(\mu_0\) and \(\mu_1\) can be any real number, I will assign two weakly informative normal distributions with mean of 0 and standard deviation of 5 as the priors for these two hyperparameters. The priors for the hyperpriors need to be relatively more restrictive than priors for fixed-effects parameters \(\beta_2, \beta_3, \cdots, \beta_J\) (Gelman et al., \protect\hyperlink{ref-gelman2013bayesian}{2013}). In comparison, \(\sigma_0\) and \(\sigma_1\) must be strictly positive, so I will Gamma\((1, 1)\) with wide distribution on positive real numbers as their priors.
 
 \hypertarget{bayesian-hierarchical-poisson-regression}{%
 \subsection{Bayesian hierarchical Poisson regression}\label{bayesian-hierarchical-poisson-regression}}
 
-The logistic regression considers whether SCEs occurred in a 30-minute fixed interval or not, but it ignores the intensity of SCEs. Here I present a Bayesian hierarchical Poisson regression to model the association between cumulative driving time and the intensity of SCEs, as shown in Equation \eqref{eq:hierarchicalpoisson}. Each driver will have a different a random slope on cumulative driving time and a random intercept. The analysis will also be based on the merged 30-minute interval data, as shown in Table \ref{tab:analysis30int}.
+The logistic regression considers whether SCEs occurred in a 30-minute fixed interval or not, but it ignores the intensity of SCEs. Therefore I further propose a Bayesian hierarchical Poisson regression to model the association between cumulative driving time and the rate of SCEs, as shown in Equation \eqref{eq:hierarchicalpoisson}. Each driver will have a different a random intercept and a random slope on cumulative driving time. The analysis will also be based on the merged 30-minute interval data, as shown in Table \ref{tab:analysis30int}.
 \begin{equation}
 \begin{aligned}
 N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
@@ -965,7 +961,7 @@ N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
 \label{eq:hierarchicalpoisson}
 \end{aligned}
 \end{equation}
-Where \(N\) is the number of critical events for driver \(d(i)\) in time interval \(j\), and it has a Poisson distribution with the mean and variance parameter \(\lambda\). \(T_i\) is the length of the time interval, which serves as an offset term. Most of \(T_i\)s in the 30-minute interval table are 30 minutes. The other variables are identical as those described in Equation \eqref{eq:hierarchicallogit}. Compared to the hierarchical logistic regression in Section \ref{hierarchical-logit}, the predictor variables are identical with those in Equation \eqref{eq:hierarchicallogit} and the only thing that is changed here is the outcome distribution. Therefore, I will assign identical prior distributions for these parameter as specified in Equation \eqref{eq:prior}.
+Where \(N\) is the number of SCEs for driver \(d(i)\) in time interval \(i\), and it has a Poisson distribution with the mean and variance parameter \(\lambda\). \(T_i\) is the length of the time interval, which serves as an offset term. Most of \(T_i\)s in the 30-minute interval table are 30 minutes. Other variables are identical as those described in Equation \eqref{eq:hierarchicallogit}; the only thing that is changed here is the outcome distribution and offset term \(T_i\). Therefore, I will assign identical prior distributions for these parameter as specified in Equation \eqref{eq:prior}.
 
 \hypertarget{non-homogeneous-poisson-process-nhpp}{%
 \subsection{Non-homogeneous Poisson process (NHPP)}\label{non-homogeneous-poisson-process-nhpp}}
@@ -977,30 +973,28 @@ Where \(N\) is the number of critical events for driver \(d(i)\) in time interva
 \end{center}
 \end{wrapfigure}
 
-Despite Poisson regression consider the frequency and intensity of SCEs in a given interval, it is a homogeneous Poisson process that assumes that the intensity of SCEs is a constant. This constant intensity assumption may not be true in real-life transportation practice. Based on the merged shifts data set shown in Table \ref{tab:transformshift}, I present a non-homogeneous Poisson process (NHPP) with a power law process (PLP) intensity function. This model will answer if SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
+Despite Poisson regression consider the frequency and rate of SCEs in a given interval, it assumes that the intensity of SCEs is a constant. This constant intensity assumption may not be true in real-life transportation practice. Based on the merged shifts data set shown in Table \ref{tab:transformshift}, I present a non-homogeneous Poisson process (NHPP) with a power law process (PLP) intensity function. This model will answer whether SCEs occurred more frequently at early stages of shifts, towards the end of shifts, or does not show significant patterns.
 
-Figure \ref{fig:arrowplot} shows a sample of SCEs distributions in different shifts. Each arrow represents a shift while each red cross shows a SCE. This type of recurrent events data fit into the analysis framework of point process and reliability models. A point process is a stochastic model which describes the occurrence of events in a given period (Rigdon and Basu, \protect\hyperlink{ref-rigdon2000statistical}{2000}). The mean function of a point process is \(\Lambda(t) = E(N(t))\), where \(\Lambda(t)\) is the expected number of failures through time \(t\). Two notations that are important in reliability models are \emph{Rate of Occurence of Failures (ROCOF)} and \emph{Intensity function}.
+Figure \ref{fig:arrowplot} shows a sample of SCEs distributions in different shifts. Each arrow represents a shift while each red cross shows a SCE. These recurrent events data fit into the analysis framework of point process and reliability models. A point process is a stochastic model that describes the occurrence of events in a given period (Rigdon and Basu, \protect\hyperlink{ref-rigdon2000statistical}{2000}). The mean function of a point process is \(\Lambda(t) = E(N(t))\), where \(\Lambda(t)\) is the expected number of failures through time \(t\). Two notations that are important in reliability models are \emph{Rate of Occurence of Failures (ROCOF)} and \emph{Intensity function}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \emph{ROCOF}: When the mean function \(\Lambda(t)\) is differentiable, the ROCOF is \(\mu(t) = \frac{d}{dt}\Lambda(t)\). The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures.
+  \emph{ROCOF}: When the mean function \(\Lambda(t)\) is differentiable, the ROCOF is \(\mu(t) = \frac{d}{dt}\Lambda(t)\). The ROCOF can be interpreted as the instantaneous rate of change in the expected number of failures,
 \item
   \emph{Intensity function}: The intensity function of a point process is
   \(\lambda(t) = \lim_{\Delta t \rightarrow 0}\frac{P(N(t, t+\Delta t] \geq 1)}{\Delta t}\).
 \end{enumerate}
 
-When there is no simultaneous events, ROCOF is the same as intensity function.
-
-A commonly used reliability model is the \emph{Nonhomogeneous Poisson Process (NHPP)}. It is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function of a NHPP is:
+When there is no simultaneous events, ROCOF is the same as the intensity function. A commonly used reliability model is the \emph{Nonhomogeneous Poisson Process (NHPP)}, which is a Poisson process whose intensity function is non-constant. The Power law process (PLP) is a special case of a NHPP when the intensity function is:
 \begin{equation}
 \lambda(t) = \frac{\beta}{\theta}\bigg(\frac{t}{\theta}\bigg)^{\beta-1},
 \label{eq:plp}
 \end{equation}
-where \(\beta > 0\) and \(\theta > 0\), the process is called the power law process (PLP), also called the Weibull intensity function. Therefore, the mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\Big(\frac{t}{\theta}\Big)^{\beta-1} = \Big(\frac{t}{\theta}\Big)^{\beta}\).
+where \(\beta > 0\) and \(\theta > 0\), also known the Weibull intensity function. The mean function \(\Lambda(t)\) is the integral of the intensity function: \(\Lambda(t) = \int_0^t \lambda(t)dt = \int_0^t \frac{\beta}{\theta}\Big(\frac{t}{\theta}\Big)^{\beta-1} = \Big(\frac{t}{\theta}\Big)^{\beta}\).
 
-There are two forms of truncation in a NHPP: 1) \emph{Failure truncation} when testing stops after a predetermined number of failures, 2) \emph{Time truncation} when testing stops at a predetermined time \(t\). Since the drivers typically decide to stop working based on a certain amount of working time, not based on the number of SCEs they already have, time truncation is the case in this study. In a time truncated case, the joint likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is shown in Equation \eqref{eq:pdftau} (the prove can be found at page 54 in Rigdon and Basu (\protect\hyperlink{ref-rigdon2000statistical}{2000})).
+There are two forms of truncation in a NHPP: 1) \emph{Failure truncation} when testing stops after a predetermined number of failures, 2) \emph{Time truncation} when testing stops at a predetermined time \(t\). Since the drivers typically decide to stop working based on a certain amount of working time, not based on the number of SCEs they already have, time truncation is the case in this study. In a time truncated case, the likelihood function for \(f(n, t_1, t_2, \cdots, t_n)\) is shown in Equation \eqref{eq:pdftau} (the prove can be found at page 54 in Rigdon and Basu (\protect\hyperlink{ref-rigdon2000statistical}{2000})).
 \begin{equation}
 \begin{aligned}
 f(n, t_1, t_2, \cdots, t_n) & = f(n)f(t_1, t_2, \cdots, t_n|n)\\
@@ -1012,7 +1006,7 @@ n & = 0, 1, 2, \cdots, \quad  0 < t_1 < t_2 < \cdots < t_n
 \end{aligned}
 \end{equation}
 
-After the joint likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let \(T_{d, s, i}\) denotes the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
+After the likelihood function of a NHPP is given, the NHPP with PLP can be specified. Let \(T_{d, s, i}\) denotes the time to the \(d\)-th driver's \(s\)-th shift's \(i\)-th critical event. The total number critical events of \(d\)-th driver's \(s\)-th shift is \(n_{d,s}\). The ranges of these notations are:
 
 \begin{itemize}
 \tightlist
@@ -1032,7 +1026,7 @@ I assume that the times of critical events within the \(d\)-th driver's \(s\)-th
   \log\theta_{d, s} &= \gamma_{0d} + \gamma_{1}x_{d, s, 1} + \gamma_{2}x_{d, s, 2} + \cdots + \gamma_{k}x_{d, s, k}\\
   \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
   \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
-  \mu_0 &\sim N(0, 10^2) \\
+  \mu_0 &\sim N(0, 5^2) \\
   \sigma_0 &\sim \text{Gamma}(1, 1)
 \label{eq:nhpp}
 \end{aligned}
@@ -1084,7 +1078,7 @@ The data and notations \(T_{d, s, i}, d, s, i\) will be identical as specified i
 \label{eq:jplp}
 \end{aligned}
 \end{equation}
-The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\beta > 1\), the intensity function \(\lambda(t)\) is increasing, the reliability of drivers is decreasing, and SCEs are becoming more frequent; when \(\beta < 1\), the intensity function \(\lambda(t)\) is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when \(\beta = 1\), the NHPP is simplified as a homogeneous Poisson process with the intensity of \(1/\theta\). The \(\theta_{d, s}\) is a scale parameter that does not reflect reliability changes. \(\kappa\) is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
+The shape parameter \(\beta\) shows the reliability changes of drivers. When \(\beta > 1\), the intensity function \(\lambda(t)\) is increasing, the reliability of drivers is decreasing, and SCEs are becoming more frequent; when \(\beta < 1\), the intensity function \(\lambda(t)\) is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when \(\beta = 1\), the NHPP is simplified as a homogeneous Poisson process with the intensity of \(1/\theta\). The \(\theta_{d, s}\) is a scale parameter. \(\kappa\) is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
 
 \textbf{\emph{Potential problems and alternative plans}}: in the unlikely event that the JPLP fails to be models, I will use the \emph{modulated PLP} proposed by Black and Rigdon (\protect\hyperlink{ref-black1996statistical}{1996}). The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using \texttt{Stan} programs by adding self-defined likelihood function, which can be accessed via the \texttt{rstan} package in statistical computing environment R 3.5.1 on the OSC (Center, \protect\hyperlink{ref-OSC1987}{1987}; R Core Team, \protect\hyperlink{ref-Rcitation}{2018}; Stan Development Team, \protect\hyperlink{ref-rstancitation}{2018}).
 

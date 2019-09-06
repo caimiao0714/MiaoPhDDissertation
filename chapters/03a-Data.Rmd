@@ -183,9 +183,9 @@ knitr::include_graphics("figs/Data_merging.png")
 Figure \@ref(fig:datamerge) demonstrates the data aggregation and merging workflow. The left part shows the data aggregation from the original ping data to trips, 30-minute intervals, and shifts, which have been demonstrated in Section \@ref(data-aggregation). The right part demonstrates the process of merging covariates table (SCEs, drivers, road geometry, and weather) back to the aggregated tables (trips, 30-minute intervals, and shifts tables). The specific details of the merging process. 
 
 1. *SCEs*: the SCEs will be merged to the two aggregated tables by drivers and if the time of SCEs fall between the start and end time of the aggregated tables,
-2. *Drivers*: the age of drivers are merged to the two aggregated tables using driver unique ID,
-3. *Road geometry*: the road geometry variables will firstly be merged back to the original ping data by driver ID, latitude, and longitude. Then these road geometry variables will averaged by taking the mean for each 30-minute interval and shift to the aggregated levels,
-4. *Weather*: the weather variables will firstly also be merged back to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be averaged by taking the mean for each 30-minute interval and shift to the aggregated levels.
+2. *Drivers*: the age of drivers are merged to the two aggregated tables using driver ID,
+3. *Road geometry*: the road geometry variables will be merged to the original ping data by driver ID, latitude, and longitude. Then they variables will be aggregated by taking the mean for each 30-minute interval and shift,
+4. *Weather*: the weather variables will be merged to the original ping data by driver ID, latitude, longitude, date, and time. These weather variables will then be aggregated by taking the mean for each 30-minute interval and shift.
 
 The resulting 30-minute intervals and shifts tables are demonstrated in Table \@ref(tab:analysis30int) and Table \@ref(tab:analysisshift). The predictor variables such as cumulative driving time, driver's age, weather and road geometry variables are truncated and not shown to fit in the page. Table \@ref(tab:analysisshiftevent) demonstrates the SCEs table, with time to events calculated as the time difference in hours between the time of the SCE and the starting time of the corresponding shift.
 
