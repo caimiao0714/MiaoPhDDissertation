@@ -1,21 +1,21 @@
 Analytical Plan for Aim 3
 -------------------------
 
-Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (*jump-point PLP (JPLP)*) will be between a non-homogeneous Poisson process where the intensity function is not influenced by between-trip rests ("as bad as old"), and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new"). The intensity function of the proposed jump-point PLP will be recovered for a certain percent $\kappa$ every time the driver took a short break (less than eight hours) between trips.
+Aim 3 seeks to innovate the NHPP using a PLP intensity function proposed in Aim 2. I propose to account for the rest time within a shift by adding one more parameter $\kappa$, *the percent of reliability recovery during a break within a shift*. This new reliability model (*jump-point PLP, JPLP*) will be between a NHPP where the intensity function is not influenced by between-trip rests ("as bad as old") and a renewal process where the intensity function is fully recovered by between-trip rests ("as good as new"). The intensity function of the proposed jump-point PLP will be recovered for a certain percent $\kappa$ every time the driver took a short break (less than eight hours) between trips.
 
 Figure \@ref(fig:plpjumppoint) demonstrates the complete intensity function of a PLP (the solid curve), simulated SCEs (red crosses on the x-axis), and between-trip rests (the green intervals) of a NHPP used in Aim 2. This figure demonstrates its limitation: when the driver takes a break, the intensity function does not change at all. However, when the driver takes a break, the fatigue level of the driver theoretically should be decreasing and the intensity of SCEs should therefore decrease.
 
 Therefore, the jump-point PLP I propose will account for the effect of taking a rest. Figure \@ref(fig:plpnhpp) shows the proposed complete intensity function (black solid curves), continuous PLP intensity function of a NHPP (the grey solid curve), simulated SCEs (red crosses on the x-axis), and rest times between trips (green intervals). Everytime the driver takes a rest, the complete intensity function will be moved down by a certain percent $\kappa$, here the $\kappa = 0.8$.
 
 ```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE}
-knitr::include_graphics("figs/PLP_NHPP_intensity.pdf")
+knitr::include_graphics("figs/PLP_NHPP_intensity_rev.pdf")
 ```
 
 ```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$, $\\kappa=0.8$', echo=FALSE, eval=TRUE}
-knitr::include_graphics("figs/PLP_jump_point_intensity.pdf")
+knitr::include_graphics("figs/PLP_jump_point_intensity_rev.pdf")
 ```
 
-The data and notations $T_{d, s, i}, d, s, i$ will be identical as specified in Aim 2. Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$ and varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and a parameter $\kappa$. The model is described in Equation \@ref(eq:jplp).
+The data and notations $T_{d, s, i}, d, s, i$ will be identical as the PLP specified in  Aim 2. Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$, varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and a parameter $\kappa$, as shown in Equation \@ref(eq:jplp).
 \begin{equation}
 \begin{aligned}
   T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{JPLP}(\beta, \theta_{d, s}, \kappa)\\
@@ -24,13 +24,14 @@ The data and notations $T_{d, s, i}, d, s, i$ will be identical as specified in 
   \kappa & \sim \text{Uniform}(0, 1)\\
   \gamma_{01}, \gamma_{02}, \cdots, \gamma_{0D} & \sim \text{i.i.d. }N(\mu_0, \sigma_0^2)\\
   \gamma_1, \gamma_2, \cdots, \gamma_k & \sim \text{i.i.d. }N(0, 10^2)\\
-  \mu_0 &\sim N(0, 10^2) \\
+  \mu_0 &\sim N(0, 5^2) \\
   \sigma_0 &\sim \text{Gamma}(1, 1)
 (\#eq:jplp)
 \end{aligned}
 \end{equation}
-The shape parameter $\beta$ shows the reliability changes of drivers. When $\beta > 1$, the intensity function $\lambda(t)$ is increasing, the reliability of drivers is  decreasing, and SCEs are becoming more frequent; when $\beta < 1$, the intensity function $\lambda(t)$ is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when $\beta = 1$, the NHPP is simplified as a homogeneous Poisson process with the intensity of $1/\theta$. The $\theta_{d, s}$ is a scale parameter. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
+The shape parameter $\beta$ shows the reliability changes of drivers. When $\beta > 1$, the intensity function $\lambda(t)$ is increasing, the reliability of drivers is  decreasing, and SCEs are becoming more frequent; when $\beta < 1$, the intensity function $\lambda(t)$ is decreasing, the reliability of drivers is increasing, and SCEs are becoming less frequent; when $\beta = 1$, the NHPP is simplified as a homogeneous Poisson process with the intensity of $1/\theta$. $\theta_{d, s}$ is a scale parameter. $\kappa$ is a parameter that reflects the percent of intensity function recovery once the driver takes a break.
 
+__*Potential problems and alternative plans*__: in the unlikely event that the JPLP fails to be models, I will use the *modulated PLP* proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
 
 <!--
 ```{r eval=FALSE, echo=FALSE}
@@ -164,4 +165,116 @@ ggsave("figs/PLP_jump_point_intensity.pdf", p1, width = 10, height = 6.18)
 
 -->
 
-__*Potential problems and alternative plans*__: in the unlikely event that the JPLP fails to be models, I will use the *modulated PLP* proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into a hierarchical modulated PLP, on which this Aim 3 will be based. The hierarchical JPLP and hierarchical modulated PLP will be estimated using `Stan` programs by adding self-defined likelihood function, which can be accessed via the `rstan` package in statistical computing environment R 3.5.1 on the OSC [@rstancitation; @Rcitation; @OSC1987].
+
+```{r REVregularplp, eval=FALSE, echo=FALSE}
+pacman::p_load(ggplot2, dplyr, extrafont)
+font_import(pattern = "lmroman*")
+loadfonts()
+
+plp = function(t, beta = 2, theta = 10) return(beta*theta^(-beta)*t^(beta-1))
+
+set.seed(223)
+tau0 = 13; beta0 = 1.2; theta0 = 2
+rest_time = c(4, 8)
+
+# SCE time
+t_SCE = c(1.5081062, 2.9090437, 3.821632, 
+          4.75131, 6.3752535, 7.2168730, 
+          10.5380954, 12.1135213)
+shift_id= rep(0, length(t_SCE))
+SCE = data.frame(shift_id, t_SCE)
+
+# Intensity and limit
+INTENS = data.frame(t = seq(0, tau0, 0.001),
+                    intensity = plp(seq(0, tau0, 0.001), beta0, theta0)) %>% 
+  mutate(type = ifelse(((t >= rest_time[1] & t <= rest_time[2])|(t >= rest_time[3] & t <= rest_time[4])), 0.2, 1))
+
+# LIM data
+LIM = data.frame(start_time = 0, end_time = tau0, shift_id = shift_id)
+
+# maximum intensity
+max_int = round(max(INTENS$intensity), 2) + 0.01
+
+# plot
+p0 = ggplot() + 
+  geom_line(data = INTENS, aes(x = t, y = intensity), size = 0.8) + 
+  geom_point(data = SCE, aes(x = t_SCE, y = shift_id), 
+             alpha = 1, shape = 4, color = 'red', size = 2, stroke = 1.5) + 
+  geom_segment(data = LIM, 
+               aes(x = start_time, xend = end_time, y = shift_id, yend = shift_id),
+               arrow = arrow(length = unit(0.2, "cm")), lineend = 'butt', size = 0.8) + 
+  scale_x_continuous(expand = c(0.001, 0))+
+  scale_y_continuous(labels = c(0, max_int), breaks = c(0, max_int), 
+                     expand = c(0.02, 0)) +
+  geom_vline(xintercept = rest_time[1], color="green", 
+             alpha = 0.7, size = 1.2, linetype = "dashed") + 
+  geom_vline(xintercept = rest_time[2], color="green", 
+             alpha = 0.7, size = 1.2, linetype = "dashed") +
+  labs(x = unname(latex2exp::TeX('Time to SCEs (hours), $t_1 \\rightarrow t_n$')), 
+       y = "intensity") + 
+  geom_text(aes(x = c(4.5, 8.5), y = rep(max_int/3, 2), 
+                label = c("rest 1","rest 2")), 
+            color = "darkgreen", size = 5, family="LM Roman 10") +
+  theme_bw()+
+  theme(panel.grid = element_blank(),
+        text = element_text(size=10, family="LM Roman 10"))
+p0
+ggsave("figs/PLP_NHPP_intensity_rev.pdf", p0, width = 10, height = 6.18)
+```
+
+
+```{r REVJPLP, eval=FALSE, echo=FALSE}
+set.seed(223)
+tau0 = 13; beta0 = 1.2; theta0 = 2; kappa = 0.8
+rest_time = c(4, 8)
+
+# SCE time
+t_SCE = c(1.5081062, 2.9090437, 3.821632, 
+          4.75131, 6.3752535, 7.2168730, 
+          10.5380954, 12.1135213)
+shift_id= rep(0, length(t_SCE))
+SCE = data.frame(shift_id, t_SCE)
+
+# Intensity and limit
+INTENS = data.frame(t = seq(0, tau0, 0.001),
+                    intensity = plp(seq(0, tau0, 0.001), beta0, theta0)) %>% 
+  mutate(intensity1 = case_when(
+    t >= rest_time[1] & t <= rest_time[2] ~ intensity*kappa^1,
+    t >= rest_time[2]  ~ intensity*kappa^2,
+     TRUE ~ intensity*kappa^0))
+
+# plot
+p1 = ggplot() + 
+  geom_line(data = INTENS[INTENS$t < rest_time[1],], 
+            aes(x = t, y = intensity1), size = 0.8) + 
+  geom_line(data = INTENS[INTENS$t > rest_time[1]&INTENS$t <= rest_time[2],], 
+            aes(x = t, y = intensity1), size = 0.8) + 
+  geom_line(data = INTENS[INTENS$t > rest_time[2],], 
+            aes(x = t, y = intensity1), size = 0.8) + 
+  geom_line(data = INTENS, 
+            aes(x = t, y = intensity), alpha = 0.3, size = 0.8)+
+  geom_point(data = SCE, aes(x = t_SCE, y = shift_id), 
+             alpha = 1, shape = 4, color = 'red', size = 2, stroke = 1.5) + 
+  geom_segment(data = LIM, 
+               aes(x = start_time, xend = end_time, y = shift_id, yend = shift_id),
+               arrow = arrow(length = unit(0.2, "cm")), lineend = 'butt', size = 0.8) + 
+  scale_x_continuous(expand = c(0.001, 0))+
+  scale_y_continuous(labels = c(0, max_int), breaks = c(0, max_int), 
+                     expand = c(0.02, 0)) +
+  geom_vline(xintercept = rest_time[1], color="green", 
+             alpha = 0.7, size = 1.2, linetype = "dashed") + 
+  geom_vline(xintercept = rest_time[2], color="green", 
+             alpha = 0.7, size = 1.2, linetype = "dashed")+
+  labs(x = unname(latex2exp::TeX('Time to SCEs (hours), $t_1 \\rightarrow t_n$')), 
+       y = "intensity") + 
+  geom_text(aes(x = c(4.5, 8.5), y = rep(max_int/3, 2), 
+                label = c("rest 1","rest 2")), 
+            color = "darkgreen", size = 5, family="LM Roman 10") +
+  theme_bw()+
+  theme(panel.grid = element_blank(),
+        text = element_text(size=10, family="LM Roman 10"))
+p1
+ggsave("figs/PLP_jump_point_intensity_rev.pdf", p1, width = 10, height = 6.18)
+```
+
+
