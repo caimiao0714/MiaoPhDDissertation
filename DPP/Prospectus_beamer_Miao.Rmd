@@ -3,7 +3,7 @@ title: Modeling Truck Safety Critical Events
 subtitle: Efficient Bayesian Hierarchical Statistical and Reliability Models
 author: Miao Cai
 institute: Department of Epidemiology and Biostatistics
-# date: "`r Sys.Date()`"
+date: "`r Sys.Date()`"
 titlegraphic: './logos/SLU-CPHSJ-left.png'
 fontsize: 10pt
 output:
@@ -40,24 +40,24 @@ knitr::opts_chunk$set(cache=FALSE,
     + Hong Xian, PhD
 
 - At-large Committee:
-    + TBD, PhD
-    + TBD, PhD
+    + Kenton Johnson, PhD
+    + Juliet Iwelunmor, PhD
     
 The problem
 ============
 
-### Transportation
+### Transportation and trucks
 
-Transportation safety deserves attention:
+**Transportation safety** deserves attention:
 
 - The 8-th leading cause of death globally in 2016, [@who2018]
-- 1.4 million people killed, mostly aged 4 to 44 years old, [@who2018]
-- 518 billion dollars. [@dalal2013economics]
+- 1.4 million people were killed, mostly aged 4 to 44 years old, [@who2018]
+- a loss of 518 billion dollars. [@dalal2013economics]
 
-Trucks are the backbone of the economy:
+**Trucks** are the backbone of the economy:
 
-- 70% of freight delivered by trucks,
-- 73.1% of value and 71.3% of domestic goods, [@olson2016weight; @anderson2017exploratory]
+- 70% of freights were delivered by trucks,
+- 71.3% of domestic goods and 73.1% of value, [@olson2016weight; @anderson2017exploratory]
 
 ### Challenges for trucking industry
 
@@ -65,7 +65,7 @@ Drivers:
 
 1. drive alone for long hours, 
 2. work under time demands, challenging weather and traffic conditions,
-2. sleep deprivation and disorder
+2. sleep deprivation and disorders
 
 Trucks: 
 
@@ -79,21 +79,21 @@ Traditional studies almost exclusively use data that ultimately trace back to **
 
 1. rare events $\rightarrow$ difficulty in estimation, [@theofilatos2018impact]
 2. retrospective studies $\rightarrow$ recall bias, [@girotto2016professional]
-3. crashes are underreported $\rightarrow$ selection bias. [@ye2011investigation; @savolainen2011statistical]
+3. crashes are under-reported $\rightarrow$ selection bias. [@ye2011investigation; @savolainen2011statistical]
 
 ### Naturalistic driving studies (NDS)
 
-NDS uses 
+**\textcolor{slublue}{NDS}** uses 
 
 > **unobtrusive** devices, sensors, and cameras installed on vehicles to **proactively** collect frequent naturalistic driving behavior and performance data under **real-world driving** conditions [@hickman2018synthetic; @guo2019statistical]
 
-1. driver-based data (compare rates),
+1. driver-based data, not road segment-based,
 2. high-resolution driver behavior and performance data,
 3. less costly and difficult per observation.
 
 ### Safety critical events (SCEs)
 
-SCEs are
+**\textcolor{slublue}{SCEs}** are
 
 >  a chain of adverse events following an initial off-nominal event, which can result in an accident if compounded with additional adverse conditions. [@saleh2013accident]
 
@@ -102,13 +102,13 @@ Examples of SCEs are:
 1. hard brakes,
 2. headways,
 3. rolling stability,
-4. $\cdots$
+4. collision mitigation
 
 ### The problem
 
-NDSs are relatively new and less studied. Here are several problems in NDS.
+NDSs are relatively new and less studied. Here are **several problems** in NDS.
 
-1. Are SCEs associated with real crashes among truck drivers?
+1. Are SCEs indicative of real crashes among truck drivers?
 2. Can we predict SCEs?
 3. How can we innovate existing models to account for features of NDS?
 
@@ -232,7 +232,7 @@ Gaps in previous literature:
 1. the association between crashes and SCEs has not been confirmed among truck drivers,
 3. difficulty in fusing high-resolution NDS and API data,
 4. Bayesian inference is not scalable in tall and wide NDS data setting,
-2. recurrent events models were not widely applied in NDS data,
+2. recurrent events models were not widely applied in NDS data.
 
 The overarching goal of this proposed dissertation is to construct **scalable Bayesian hierarchical models** for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers.
 
@@ -256,7 +256,7 @@ I hypothesize that the patterns of SCEs vary significantly from drivers to drive
 
 > To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time. 
 
-I hypothesize that **between-trip rest time** can recover the intensity function by some proportion, and intensity function varies significantly from drivers to drivers.
+I hypothesize that **between-trip rest time** can recover the intensity function by some proportion $\kappa$, and intensity function varies significantly from drivers to drivers.
 
 Data
 ====
