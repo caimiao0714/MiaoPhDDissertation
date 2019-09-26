@@ -2,10 +2,11 @@
 \protect\hypertarget{aim-3---potential-problems-and-alternative-plans}{}
 
 In the unlikely event that the JPLP fails to be models, I will use the
-\textbf{modulated PLP} proposed by 29. The modulated PLP has
-well-defined data generating process, intensity function, and
-joint-likelihood functions. If the JPLP does not work, I will revise the
-modulated PLP into \textbf{a hierarchical modulated PLP}.
+\textbf{modulated PLP} proposed by Black and Rigdon
+(1996)\textsuperscript{29}. The modulated PLP has well-defined data
+generating process, intensity function, and likelihood functions. If the
+JPLP does not work, I will revise the modulated PLP into \textbf{a
+hierarchical modulated PLP}.
 
 \vspace{20pt}
 

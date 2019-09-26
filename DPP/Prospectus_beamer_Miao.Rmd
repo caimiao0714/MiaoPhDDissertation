@@ -91,7 +91,7 @@ Traditional studies almost exclusively use data that ultimately trace back to **
 2. high-resolution driver behavior and performance data,
 3. less costly and difficult per observation.
 
-### Safety critical events (SCEs)
+### Safety Critical Events (SCEs)
 
 **\textcolor{slublue}{SCEs}** are
 
@@ -106,16 +106,16 @@ Examples of SCEs are:
 
 ### The problem
 
-NDSs are relatively new and less studied. Here are **several problems** in NDS.
+NDSs are relatively *new* and *less studied*. Here are **several problems** in NDS.
 
-1. Are SCEs indicative of real crashes among truck drivers?
-2. Can we predict SCEs?
-3. How can we innovate existing models to account for features of NDS?
+1. Are SCEs indicative of \textcolor{slublue}{real crashes} among truck drivers?
+2. Can we \textcolor{slublue}{predict} SCEs?
+3. How can we \textcolor{slublue}{innovate existing models} to account for features of NDS?
 
 Literature review
 =================
 
-### Crashes and SCEs
+### Association between crashes and SCEs
 
 Examples of studies supporting SCEs:
 
@@ -131,12 +131,12 @@ Examples of studies that are against SCEs:
 
 Gaps:
 
-- The number of drivers are limited and less convincing (<100),
-- No studies specifically on truck drivers.
+- \textcolor{slublue}{Limited number of drivers} $\rightarrow$ less convincing (< 100),
+- No studies specifically on \textcolor{slublue}{truck drivers}.
 
 ### Fatigue
 
-The most important factor in transportation safety studies.
+The **most important factor** in transportation safety studies. Fatigue is
 
 > a multidimensional process that leads to diminished worker performance, which may be a result of prolonged work, psychological, socioeconomic, and environment factors
 
@@ -148,8 +148,7 @@ However, fatigue is hard to measure in transportation safety studies.
 
 - ocular and physiological metrics,
 - sleep patterns,
-- **cumulative driving time**, 
-- **night driving**.
+- **cumulative driving time**.
 
 ### Other risk factors
 
@@ -163,8 +162,8 @@ Four aspects of risk factors are included in previous studies:
 
 Gaps in literature:
 
-1. Lack of high-resolution weather and traffic data,
-2. No fusion of NDS and API data.
+1. Lack of \textcolor{slublue}{high-resolution} weather and traffic data,
+2. No fusion of NDS and \textcolor{slublue}{API data}.
 
 ### Statistical models
 
@@ -175,13 +174,13 @@ Gaps in literature:
 
 Gaps in literature:
 
-1. Road-centric models, not driver-centric models,
-2. Maximum likelihood estimation (MLE) limited in rare-event models,
-3. Lack of recurrent events models.
+1. \textcolor{slublue}{Road-centric} models, not driver-centric models,
+2. Maximum likelihood estimation (MLE) limited in \textcolor{slublue}{rare-event models},
+3. Lack of \textcolor{slublue}{recurrent events} models.
 
 ### Bayesian models
 
-In the Bayesian perspective, parameters are viewed as random variables that have probability distributions: [@gelman2013bayesian]
+In the Bayesian perspective, parameters are viewed as **random variables** that have probability distributions: [@gelman2013bayesian]
 \begin{equation}
 \begin{split}
 p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \\
@@ -191,7 +190,7 @@ p(\theta | \mathbf{X}) & = \frac{p(\theta)p(\mathbf{X}|\theta)}{p(\mathbf{X})} \
 
 - $p(\theta)$: subjective priors,
 - $p(\mathbf{X}|\theta)$: the likelihood function,
-- $p(\mathbf{X}) = \int p(\theta)p(\mathbf{X}|\theta)d\theta$: the normalizing constant,
+- $p(\mathbf{X}) = \int p(\theta)p(\mathbf{X}|\theta)d\theta$: the normalizing constant, **\textcolor{slublue}{trickiest}** part,
 - $p(\theta | \mathbf{X})$: the posterior distribution.
 
 The posterior distribution is a balance between the **prior beliefs** and the **likelihood function**.
@@ -203,13 +202,13 @@ Modern Bayesian inferences replies on **Markov chain Monte Carlo (MCMC)** to ove
 However, MCMC is not scalable in the big data setting:
 
 - **Tall data** (a lot of observations),
-- Wide data (a lot of variables),
+- **Wide data** (a lot of variables),
 - **Correlation between variables** (hierarchical models). [@kruschke2015bayesian]
 
 Potential solutions:
 
-- Hamiltonian Monte Carlo, [@betancourt2017conceptual]
-- Subsampling MCMC such as energy conserving subsampling. [@dang2019hamiltonian]
+- \textcolor{slublue}{Hamiltonian Monte Carlo}, [@betancourt2017conceptual]
+- \textcolor{slublue}{Subsampling MCMC} such as energy conserving subsampling Hamiltonian Monte Carlo. [@dang2019hamiltonian]
 
 
 ### Conceptual framework
@@ -229,24 +228,24 @@ Research aims
 
 Gaps in previous literature:
 
-1. the association between crashes and SCEs has not been confirmed among truck drivers,
-3. difficulty in fusing high-resolution NDS and API data,
-4. Bayesian inference is not scalable in tall and wide NDS data setting,
-2. recurrent events models were not widely applied in NDS data.
+1. The association between \textcolor{slublue}{crashes and SCEs} has not been confirmed among truck drivers,
+3. Difficulty in \textcolor{slublue}{fusing high-resolution NDS and API data},
+4. Bayesian inference is not \textcolor{slublue}{scalable} in tall and wide NDS data setting,
+2. \textcolor{slublue}{Recurrent events models} were not widely applied in NDS data.
 
-The overarching goal of this proposed dissertation is to construct **scalable Bayesian hierarchical models** for NDS data and understand how cumulative driving time and other factors will impact the performance of truck drivers.
+The overarching goal of this proposed dissertation is to construct **scalable Bayesian hierarchical models** for NDS data and understand how **cumulative driving time** and other environmental factors will impact the performance of truck drivers.
 
 ### Aim 1
 
 > To examine the association between truck crashes and SCEs using a Bayesian Gamma-Poisson regression.
 
-I hypothesize that the **rate of crashes** is positively associated with the **rate of SCEs** among the truck drivers controlling for the miles driven and other covariates.
+I hypothesize that the \textcolor{slublue}{rate of crashes} is positively associated with the \textcolor{slublue}{rate of SCEs} among the truck drivers controlling for the miles driven and other covariates.
 
 ### Aim 2
 
 > To construct three scalable Bayesian hierarchical models to identify  potential risk factors for SCEs. 
 
-I hypothesize that the patterns of SCEs vary significantly from drivers to drivers and can be predicted using cumulative driving time, weather, road geometry, driver's age, and other factors.
+I hypothesize that the \textcolor{slublue}{patterns of SCEs} vary significantly from drivers to drivers and can be predicted using \textcolor{slublue}{cumulative driving time}, \textcolor{slublue}{weather}, \textcolor{slublue}{road geometry}, \textcolor{slublue}{driver's age}, and other factors}.
 
 - Bayesian hierarchical **logistic** regression,
 - Bayesian hierarchical **Poisson** regression,
@@ -256,18 +255,20 @@ I hypothesize that the patterns of SCEs vary significantly from drivers to drive
 
 > To propose an innovative reliability model that accounts for both within shift cumulative driving time and between-trip rest time. 
 
-I hypothesize that **between-trip rest time** can recover the intensity function by some proportion $\kappa$, and intensity function varies significantly from drivers to drivers.
+I hypothesize that **between-trip rest time** can **recover** the intensity function by \textcolor{slublue}{some proportion $\kappa$}, and intensity function varies significantly from drivers to drivers.
 
 Data
 ====
 
-### Data sources {.allowframebreaks}
+### Data sources
 
 1. **Real-time ping**: vehicle number, date and time, latitude, longitude, driver identification number (ID), and speed at that second (every 2-10 minutes), ~1.4 billion pings (150 GB `.csv` file),
 2. **Truck crashes and SCEs**: hard brakes, headways, and rolling stability were collected if kinematic thresholds were met,
 3. **Driver demographics**: age,
-4. **Weather from the DarkSky API**: precipitation intensity, precipitation probability, wind speed, and visibility,
-5. **Road geometry from the OpenStreetMap**: speed limits and the number of lanes.
+4. **Weather from the DarkSky API** (500 drivers): precipitation intensity, precipitation probability, wind speed, and visibility,
+5. **Road geometry from the OpenStreetMap** (500 drivers): speed limits and the number of lanes.
+
+### Demonstration of data {.allowframebreaks}
 
 ```{r ping, results='asis', eval=TRUE, echo=FALSE}
 pacman::p_load(data.table, knitr, ggplot2, kableExtra)
@@ -326,9 +327,9 @@ fread("../data/14_OpenStreetMap.csv") %>%
 
 ### Data aggregation
 
-1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 20 minutes, the ping data will be separated into two different trips (~200,000 rows), 
-2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into 30-minute fixed intervals according to the starting and ending time of trips (~1 million rows),
-2. **Shift**: the trips data will be further divided into different shifts if the specific driver was not moving for eight hours.
+1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was \textcolor{slublue}{not moving for more than 20 minutes}, the ping data will be separated into two different trips (~200,000 rows), 
+2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into \textcolor{slublue}{standardized 30-minute fixed intervals} according to the starting and ending time of trips (~1 million rows),
+2. **Shift**: the trips data will be further divided into different shifts if the specific driver was \textcolor{slublue}{not moving for eight hours}.
 
 ### Data merging
 
@@ -390,11 +391,8 @@ Methods
 > The first aim seeks to determine the association between the rate of crashes and the rate of SCEs at the level of drivers. 
 
 - **Data**: the original ping data table that has 1,494,678,173 pings in total and crashes. Only drivers with at more than 100 pings will be included. The cleaned ping data will be aggregated to trips.
-
 - **outcome variable**: the number of crashes for each driver. 
-
 - **The primary independent variable**: the number of SCEs per 10,000 miles. These SCEs will be further decomposed into the number of hard brakes, headways, and rolling stability per 10,000 miles in similar analysis. 
-
 - **The covariates**: the total miles driven, the percent of night driving, and the age of the drivers.
 
 ### Aim 1 - Gamma-Poisson model
@@ -430,12 +428,16 @@ Although I will use the OSC server that has Random-Access Memory (RAM) of more t
 
 > The purpose of aim 2 is to develop three **scalable hierarchical Bayesian statistical and reliability models** for the SCEs of truck drivers and identify potential risk factors.
 
-- **vehicle drivers** will be viewed as the sampling unit. 
-- **Outcome**: SCEs,
+- **Data**: 30-minute intervals for 496 drivers,
+- **Outcome**: 
+    + whether SCEs occurred or not (binary variable),
+    + the number of SCEs (count variable),
+    + the time to each SCE (in minutes),
 - **Predictors**: driver-level random-effects, age, cumulative driving time, weather, road geometry, mean speed, and speed variation,
 
-### Aim 2 - Bayesian hierarchical logistic regression
+### Aim 2 - Model 1: Bayesian hierarchical logistic regression
 
+Two-level model: 1) 30-minute interval level $i$, 2) driver level $d(i)$.
 \begin{equation}
 \begin{split}
 Y_{i} &\sim \text{Bernoulli}(p_{i})\\
@@ -466,8 +468,9 @@ Since we do not have much prior knowledge on the parameters, I will assign weakl
 
 The priors for the hyperpriors need to be relatively more restrictive than priors for fixed-effects parameters $\beta_2, \beta_3, \cdots, \beta_J$ [@gelman2013bayesian].
 
-### Aim 2 - Bayesian hierarchical Poisson regression
+### Aim 2 - Model 2: Bayesian hierarchical Poisson regression
 
+Two-level model: 1) 30-minute interval level $i$, 2) driver level $d(i)$.
 \begin{equation}
 \begin{aligned}
 N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
@@ -483,7 +486,7 @@ N_{i}  & \sim \text{Poisson}(T_i\cdot\lambda_i)\\
 
 The scalable Bayesian statistical and reliability models will be conducted using the **HMC-ECS algorithm** (self-defined functions in `Python 3.6.0`) or **HMC** (the `rstan` package in statistical computing environment `R 3.5.1`) [@rstancitation; @Rcitation; @dang2019hamiltonian].
 
-### Aim 2 - recurrent event models
+### Aim 2 - Model 3: motivation for recurrent event models
 
 ```{r arrowplot, fig.cap='An arrow plot of time to SCEs in each shift', echo=FALSE, eval=TRUE}
 knitr::include_graphics("../figs/NHPP_arrow_plot.png")
@@ -532,7 +535,11 @@ Assume that the times of critical events within the $d$-th driver's $s$-th shift
   \sigma_0 &\sim \text{Gamma}(1, 1)
 \end{aligned}
 \end{equation}
-The shape parameter $\beta$ shows the reliability changes of drivers.
+The shape parameter $\beta$ shows the reliability changes of drivers:
+
+- $\beta > 1$: intensity increasing $\rightarrow$ reliability deteriorating,
+- $\beta = 1$: constant intensity $\rightarrow$ reliability not changing,
+- $\beta < 1$: intensity decreasing $\rightarrow$ reliability improving,
 
 ### Aim 2 - potential problems and alternative plans
 
@@ -548,25 +555,27 @@ Although I propose to use the HMC-ECS to estimate the random effect, there are s
 
 > Aim 3 seeks to innovate the NHPP with a PLP intensity function proposed in Aim 2 by adding one more parameter $\kappa$. 
 
-I propose to account for the rest time within a shift by adding one more parameter $\kappa$, **the percent of reliability recovery during a break within a shift**. 
+I propose to account for the rest time within a shift by adding one \textcolor{slublue}{more parameter $\kappa$}, **\textcolor{slublue}{the percent of reliability recovery}** for each a break within a shift. 
+
+\bigskip
 
 This new reliability model (**jump-point PLP (JPLP)**) will be between a *NHPP* where the intensity function is not influenced by between-trip rests ("as bad as old"), and a *renewal process* where the intensity function is fully recovered by between-trip rests ("as good as new").
 
 ### Aim 3 - intensity function of NHPP
 
 ```{r plpjumppoint, fig.cap='Intensity function, time to SCEs, and rest time within a shift generated from a NHPP with a PLP intensity function, $\\beta = 1.2$, $\\theta=2$', echo=FALSE, eval=TRUE}
-knitr::include_graphics("../figs/PLP_NHPP_intensity.pdf")
+knitr::include_graphics("../figs/PLP_NHPP_intensity_rev.pdf")
 ```
 
 ### Aim 3 - intensity function of proposed jump-point PLP (JPLP)
 
 ```{r plpnhpp, fig.cap='Intensity function, time to SCEs, and rest time within a shift with a jump-point PLP intensity function, $\\beta = 1.2$, $\\theta=2$, $\\kappa=0.8$', echo=FALSE, eval=TRUE}
-knitr::include_graphics("../figs/PLP_jump_point_intensity.pdf")
+knitr::include_graphics("../figs/PLP_jump_point_intensity_rev.pdf")
 ```
 
 ### Aim 3 - JPLP
 
-Here I assume that the times of critical events within the $d$-th driver's $s$-th shift were generated from a JPLP, with a fixed shape parameter $\beta$, varying scale parameters $\theta_{d, s}$ across drivers $d$ and shifts $s$, and **an added parameter $\kappa$**.
+JPLP: **an added parameter $\kappa$** based on Bayesian hierarchical PLP.
 \begin{equation}
 \begin{aligned}
   T_{d, s, 1}, T_{d, s, 2}, \cdots , T_{d, s, n_{d, s}} & \sim \text{JPLP}(\beta, \theta_{d, s}, \kappa)\\
@@ -582,11 +591,11 @@ Here I assume that the times of critical events within the $d$-th driver's $s$-t
 
 - $\beta$: shape parameter that reflects the reliability changes of drivers,
 - $\theta_{d, s}$: a scale parameter,
-- $\kappa$: the percent of intensity function recovery once the driver takes a break.
+- $\kappa$: **\textcolor{slublue}{the percent of intensity function recovery}** once the driver takes a break.
 
 ### Aim 3 - potential problems and alternative plans
 
-In the unlikely event that the JPLP fails to be models, I will use the **modulated PLP** proposed by @black1996statistical. The modulated PLP has well-defined data generating process, intensity function, and joint-likelihood functions. If the JPLP does not work, I will revise the modulated PLP into **a hierarchical modulated PLP**. 
+In the unlikely event that the JPLP fails to be models, I will use the **modulated PLP** proposed by Black and Rigdon (1996)[@black1996statistical]. The modulated PLP has well-defined data generating process, intensity function, and likelihood functions. If the JPLP does not work, I will revise the modulated PLP into **a hierarchical modulated PLP**. 
 
 \vspace{20pt}
 
