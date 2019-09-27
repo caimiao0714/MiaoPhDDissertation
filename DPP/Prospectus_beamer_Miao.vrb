@@ -13,5 +13,5 @@ hierarchical modulated PLP}.
 The hierarchical JPLP and hierarchical modulated PLP will be estimated
 using \texttt{Stan} programs by adding self-defined likelihood function,
 which can be accessed via the \texttt{rstan} package in statistical
-computing environment R 3.5.1 on the OSC\textsuperscript{27,28,30}.
+computing environment R 3.6.0 on the OSC\textsuperscript{27,28,30}.
 
