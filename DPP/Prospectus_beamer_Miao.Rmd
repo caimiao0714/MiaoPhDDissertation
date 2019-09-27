@@ -335,7 +335,6 @@ fread("../data/14_OpenStreetMap.csv") %>%
 knitr::include_graphics("../figs/Data_merging.png")
 ```
 
-
 ### Data demonstration {.allowframebreaks}
 
 ```{r eval=TRUE, echo=FALSE}
@@ -357,8 +356,6 @@ kable(agg30 %>%
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 #  landscape()
 ```
-
-\pagebreak
 
 ```{r analysisshift, results='asis', eval=TRUE, echo=FALSE}
 kable(shif %>% 
