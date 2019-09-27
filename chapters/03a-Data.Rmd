@@ -198,12 +198,12 @@ event_tab = fread("data/33-analyses_events.csv")
 ```{r analysis30int, results='asis', eval=TRUE, echo=FALSE}
 kable(agg30 %>% 
         dplyr::slice(1:5) %>% 
-        dplyr::select(driver:SCE_type) %>% 
         dplyr::mutate(shift_start = gsub("T|Z", " ", shift_start),
-                      shift_end = gsub("T|Z", " ", shift_end)), 
+                      shift_end = gsub("T|Z", " ", shift_end)) %>% 
+        dplyr::select(driver, start_time, end_time, interval_time, distance), 
       "latex", align = "c", 
       booktab = TRUE, linesep = "", 
-      caption = "A demonstration of 30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
+      caption = "30 minutes intervals data for hierarchical logistic and Poisson regression") %>% 
   kable_styling(latex_options = c("HOLD_position", "scale_down"))
 #  landscape()
 ```
