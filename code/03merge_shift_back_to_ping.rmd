@@ -1,0 +1,65 @@
+---
+title: "03merge_shift_back_to_ping"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+pacman::p_load(data.table, magrittr, lubridate, ggplot2)
+s = fread("gen_data/2019-07-15_separated_shift.csv")
+trip = fread("gen_data/2019-07-09_nt_trip_has_CE.csv") %>% 
+  .[,`:=`(start_time = ymd_hms(start_time),
+          end_time = ymd_hms(end_time),
+          CE_num = ifelse(is.na(CE_num), 0, CE_num))] %>% 
+  setkey(driver, start_time, end_time)
+
+cb = s %>% 
+  .[,.(driver, shift_start = start_time, shift_end = end_time, 
+       shift_ID, shift_length)] %>% 
+  .[,`:=`(shift_start = ymd_hms(shift_start),
+          shift_end = ymd_hms(shift_end))] %>% 
+  setkey(driver, shift_start, shift_end) %>% 
+  foverlaps(trip, mult = "all", type = "any",
+            by.x = c("driver", "shift_start", "shift_end")) %>% 
+  .[shift_length <= 60*14,] %>% 
+  .[,cum_drive := cumsum(trip_time), .(driver, shift_ID)] %>% 
+  .[,rest_time := as.integer(difftime(start_time, 
+       shift(end_time, type = "lag", fill = NA), units = "mins")),
+    driver]
+
+
+```
+
+```{r}
+cumd = cb[,.(shift_drive = max(cum_drive)),.(driver, shift_ID)]
+fwrite(cb, "gen_data/2019-07-17_combined_data.csv")
+```
+
+
+
+```{r}
+z = cb %>% 
+  .[,.(CE_num, cum_drive)] %>% 
+  .[,cum_hour := ceiling(cum_drive/30)/2] %>% 
+  .[,.(N = .N, nCE = sum(CE_num)),cum_hour] %>% 
+  .[cum_hour <= 12.5, ] %>% 
+  .[,CE_rate := nCE/N] %>% 
+  .[,se := sqrt(CE_rate*(1 - CE_rate)/N)]
+
+p = z %>% 
+  ggplot(aes(x = cum_hour, y = CE_rate)) + 
+    geom_point() + geom_line() + 
+    geom_errorbar(aes(ymin = CE_rate - 1.96*se, 
+                      ymax = CE_rate + 1.96*se), 
+                  size = 0.2, width = 0.1, linetype = "dashed") + 
+  theme_minimal() + 
+  xlab("cumulative hours of driving") + 
+  ylab("Rate of critical events")
+
+ggsave(plot = p, filename = "figs/cum_drive_CE_rate_5h.png", 
+       width = 10, height = 6.18, dpi = 300)
+```
+

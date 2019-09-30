@@ -1,0 +1,284 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Separate ping to shifts
+
+```{r}
+pacman::p_load(data.table, lubridate, geosphere, magrittr, dplyr)
+setDTthreads(parallel::detectCores())
+df = fread("data/20190626_ping_with_weather.csv") 
+```
+
+```{r}
+ping_df = df %>% 
+  .[,`:=`(driver1 = gsub("\"", "", driver1),
+          DATIME  = ymd_hms(DATIME))] %>% 
+  setkey(driver1, DATIME) %>% 
+  .[, .(ping_id, trip_id, driver = driver1, ping_time = DATIME, 
+        lon = LONGITUDE, lat = LATITUDE, speed = SPEED,
+        PRECIP_INTENSITY, PRECIP_PROBABILITY, WIND_SPEED, 
+        VISIBILITY, SUNRISE_TIME, SUNSET_TIME)]
+```
+
+```{r}
+s = ping_df %>% 
+  .[,.(ping_id, driver, ping_time)] %>% 
+  .[,diff := as.integer(difftime(ping_time, 
+      shift(ping_time, type = "lag", fill = 0), units = "mins")),
+  driver] %>% 
+  .[,hr8 := as.integer(diff >= 5*60), driver] %>% 
+  .[,shift_ID := cumsum(hr8), driver] %>% 
+  .[,.SD[c(1, .N)], .(driver, shift_ID)] %>% 
+  .[,time_type := rep(c("start_time", "end_time"), .N/2)] %>% 
+  .[,time_type := factor(time_type, levels = c("start_time", "end_time"))] %>% 
+  dcast(driver + shift_ID ~ time_type, value.var = "ping_time") %>% 
+  .[,shift_length := as.integer(difftime(end_time, start_time, units = "mins"))]
+```
+
+```{r}
+fwrite(s, paste0("gen_data/", today(), "_separated_shift.csv"))
+```
+
+
+# Merge tables
+## Merge shift back to pings
+
+```{r}
+CE = fread("gen_data/2019-07-09_nt_CE_alone.csv")
+
+# PART 1: ping and shifts
+# Primary key for ping
+p_sub = ping_df %>% 
+  .[,.(ping_id, trip_id, driver, ping_time, lon, lat, speed,
+       PRECIP_INTENSITY, PRECIP_PROBABILITY, WIND_SPEED, VISIBILITY)] %>% 
+  .[,dummy := ping_time] %>%
+  setkey(driver, ping_time, dummy)
+
+# Add shift back to ping data
+ping_shift = s %>% 
+  setkey(driver, start_time, end_time) %>% 
+  foverlaps(p_sub, mult = "all", type = "any",
+            by.x = c("driver", "start_time", "end_time")) %>% 
+  .[, dummy := NULL]
+
+# Get shift level characteristics
+shift_char = ping_shift[,.(ave_ping_speed = mean(speed, na.rm = TRUE),
+       PRECIP_INTENSITY = mean(PRECIP_INTENSITY, na.rm = TRUE),
+       PRECIP_PROBABILITY = mean(PRECIP_PROBABILITY, na.rm = TRUE),
+       WIND_SPEED = mean(WIND_SPEED, na.rm = TRUE),
+       VISIBILITY = mean(VISIBILITY, na.rm = TRUE),
+       shift_length = mean(shift_length, na.rm = TRUE)),
+       .(driver, shift_ID)]
+```
+
+## Merge shift back to CEs
+
+```{r}
+# PART 2: CE and shifts
+CE = CE %>% 
+  .[,.(driver, event_time, EVT_TYP)] %>% 
+  .[,event_time := ymd_hms(event_time)] %>% 
+  .[,dummy := event_time] %>%
+  setkey(driver, event_time, dummy)
+
+CE_ping = s %>% 
+  setkey(driver, start_time, end_time) %>% 
+  foverlaps(CE, mult = "all", type = "any",
+            by.x = c("driver", "start_time", "end_time")) %>% 
+  .[, `:=`(dummy = NULL,
+           t2event = as.integer(difftime(event_time, start_time, 
+                                          units = "mins")))] %>% 
+  .[!is.na(event_time),] %>% 
+  setkey(driver, shift_ID)
+```
+
+
+## Age
+
+```{r}
+# critical events
+ce = fread("data/CRITICAL_EVENT_QUERY2016-09-30 10-58-28.csv") %>% 
+  .[,`:=`(EMPLID = stringr::str_replace_all(EMPLID, " ", ""),
+          EVT_TYP = stringr::str_replace_all(EVT_TYP, " ", ""))] %>%
+  .[,event_time := ymd_hms(paste(EVENT_DATE, EVENT_HOUR, sep = " "))]
+
+# driver information
+alldr = fread("data/ALL_DRIVERS_DATA2016-09-30 10-53-42.csv") %>% 
+  .[,EMPLID := stringr::str_replace_all(EMPLID, " ", "")]
+
+# alpha to employee ID
+alpha = fread("data/ALPHA_TO_EMPLID2016-10-21 14-00-24.csv") %>% 
+  .[,driver := tolower(ALPHA)] %>% 
+  .[,`:=`(driver = stringr::str_replace_all(driver, " ", ""),
+          EMPLID = stringr::str_replace_all(EMPLID, " ", ""))] %>% 
+  .[,.(driver, EMPLID)] %>% 
+  setkey(driver)
+
+d500 = ping_df %>% 
+  .[,.N, driver] %>% 
+  setkey(driver)
+
+d = alpha %>% 
+  .[d500, on = "driver"] %>% 
+  setkey(EMPLID)# there are duplicated EMPLID
+
+d_age = alldr %>% 
+  .[d, on = "EMPLID"] %>% 
+  .[,BIRTHDATE := ymd(BIRTHDATE)] %>% 
+  .[!is.na(BIRTHDATE),] %>% 
+  setkey(driver) %>% 
+  .[,n_missing := rowSums(is.na(.))] %>% 
+  .[order(driver, -n_missing)] %>% 
+  .[,head(.SD, 1), by = driver] %>% 
+  .[, age := 2015 - year(BIRTHDATE)] %>% 
+  .[!(driver %in% c("kisi", "codc"))] %>% 
+  .[,.(driver, age)]
+```
+
+
+## Merge shift_char and age back to shifts
+
+```{r}
+CE_shift_char = shift_char %>% 
+  semi_join(CE_ping, by = c("driver", "shift_ID")) %>% 
+  left_join(d_age, by = "driver") %>% 
+  as.data.table() %>% 
+  setkey(driver, shift_ID)
+```
+
+
+
+# Stan estimation
+
+
+```{r}
+pacman::p_load(rstan, broom)
+
+est_NHPP= function(driver_index = 1:50){
+  driver_l = CE_ping[,.N, driver][,driver][driver_index]
+  CE_ping_sub = CE_ping %>% 
+    .[driver %in% driver_l,]
+
+  CE_shift_char_sub = CE_shift_char %>% 
+    .[driver %in% driver_l,] %>% 
+    .[,driver_ID := as.integer(as.factor(driver))]
+  
+  df_stan = list(N = nrow(CE_ping_sub),
+               K = 6,
+               S = nrow(CE_shift_char_sub),
+               D = CE_shift_char_sub[,length(unique(driver))],
+               id = CE_shift_char_sub[,driver_ID],
+               tau = CE_shift_char_sub[,shift_length],
+               event_time = CE_ping_sub[,t2event],
+               group_size = CE_ping_sub %>% 
+                 count(driver, shift_ID) %>% 
+                 arrange(driver, shift_ID) %>% 
+                 pull(n),
+                 X_predictors = as.matrix(CE_shift_char_sub[,c(3:7, 9)]))
+  
+  f = stan("stan/hierarchical_NHPP.stan",
+         chains = 1, iter = 1000, data = df_stan)
+  
+  return(broom::tidy(f))
+}
+
+
+
+
+f_1_50 = est_NHPP(1:50)
+f_51_100 = est_NHPP(51:100)
+f_101_150 = est_NHPP(101:150)
+f_151_200 = est_NHPP(151:200)
+f_201_250 = est_NHPP(201:250)
+f_251_300 = est_NHPP(251:300)
+f_301_350 = est_NHPP(301:350)
+f_351_400 = est_NHPP(351:400)
+f_401_439 = est_NHPP(401:439)
+
+saveRDS(f_1_50, "fit/f_1_50.rds")
+saveRDS(f_101_150, "fit/f_101_150.rds")
+saveRDS(f_151_200, "fit/f_151_200.rds")
+saveRDS(f_251_300, "fit/f_251_300.rds")
+```
+
+
+
+# Plot SCE with arrows
+
+```{r}
+pacman::p_load(ggplot2)
+
+newshiftID = CE_shift_char %>% 
+  mutate(bind_driver_shift = paste0(driver, shift_ID)) %>% 
+  mutate(new_shift_ID = as.integer(as.factor(bind_driver_shift))) %>% 
+  select(driver, shift_ID, new_shift_ID)
+
+dat = CE_ping %>% 
+  left_join(newshiftID, by = c("driver", "shift_ID")) %>% 
+  select(driver, new_shift_ID, t2event)
+
+dat_lim = CE_shift_char %>% 
+  mutate(start_time = 0) %>% 
+  left_join(newshiftID, by = c("driver", "shift_ID")) %>% 
+  select(driver, new_shift_ID, start_time, end_time = shift_length)
+
+p = dat %>% 
+    ggplot(aes(x = t2event, y = new_shift_ID)) + 
+    xlab('Time to event') + 
+    geom_segment(data = dat_lim, 
+                 aes(x = start_time, xend = end_time, 
+                     y = new_shift_ID, yend = new_shift_ID), alpha = 0.1,
+                 arrow = arrow(length = unit(0.2, "cm")),
+                 lineend = 'butt') + 
+  scale_y_continuous(limits = c(0, 8183), expand = c(0, 0))+
+  geom_point(alpha = 1, shape = 4, color = 'red', 
+               size = 0.5) + 
+  theme_bw() +
+  scale_x_continuous(limits = c(0, 840))+ 
+  theme(legend.position = "none")
+
+p
+
+ggsave(filename = "figs/p.png", plot = p, 
+       height = 49, width = 8, dpi = 300)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

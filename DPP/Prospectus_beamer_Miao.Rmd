@@ -266,6 +266,7 @@ Data
 4. **Weather from the DarkSky API** (500 drivers): precipitation intensity, precipitation probability, wind speed, and visibility,
 5. **Road geometry from the OpenStreetMap** (500 drivers): speed limits and the number of lanes.
 
+
 ### Demonstration of data {.allowframebreaks}
 
 ```{r ping, results='asis', eval=TRUE, echo=FALSE}
@@ -323,11 +324,32 @@ fread("../data/14_OpenStreetMap.csv") %>%
   kable_styling(latex_options = c("HOLD_position"))
 ```
 
+### {.fullslide}
+
+```{r activeping, echo=FALSE, eval=TRUE, out.width='100%', out.height='100%'}
+knitr::include_graphics("../figs/map_active_grey_50.png")
+```
+
+
+### {.fullslide}
+
+```{r stopping, echo=FALSE, eval=TRUE, out.width='100%', out.height='100%'}
+knitr::include_graphics("../figs/map_stop_grey_50.png")
+```
+
+
 ### Data aggregation
 
 1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was \textcolor{slublue}{not moving for more than 20 minutes}, the ping data will be separated into two different trips (~200,000 rows), 
 2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into \textcolor{slublue}{standardized 30-minute fixed intervals} according to the starting and ending time of trips (~1 million rows),
 2. **Shift**: the trips data will be further divided into different shifts if the specific driver was \textcolor{slublue}{not moving for eight hours}.
+
+### {.fullslide}
+
+```{r pingtripshift, echo=FALSE, eval=TRUE, out.width='100%', out.height='100%'}
+knitr::include_graphics("../figs/ping_trip_shift_aggregation.pdf")
+```
+
 
 ### {.fullslide}
 
