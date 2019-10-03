@@ -243,7 +243,7 @@ I hypothesize that the \textcolor{slublue}{rate of crashes} is positively associ
 
 > To construct three scalable Bayesian hierarchical models to identify  potential risk factors for SCEs. 
 
-I hypothesize that the \textcolor{slublue}{patterns of SCEs} vary significantly from drivers to drivers and can be predicted using \textcolor{slublue}{cumulative driving time}, \textcolor{slublue}{weather}, \textcolor{slublue}{road geometry}, \textcolor{slublue}{driver's age}, and other factors}.
+I hypothesize that the \textcolor{slublue}{patterns of SCEs} vary significantly from drivers to drivers and can be predicted using \textcolor{slublue}{cumulative driving time}, \textcolor{slublue}{weather}, \textcolor{slublue}{road geometry}, \textcolor{slublue}{driver's age}, and other factors.
 
 - 2a) Bayesian hierarchical **logistic** regression,
 - 2b) Bayesian hierarchical **Poisson** regression,
@@ -340,14 +340,14 @@ knitr::include_graphics("../figs/map_stop_grey_50.png")
 
 ### Data aggregation
 
-1. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was \textcolor{slublue}{not moving for more than 20 minutes}, the ping data will be separated into two different trips (~200,000 rows), 
-2. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into \textcolor{slublue}{standardized 30-minute fixed intervals} according to the starting and ending time of trips (~1 million rows),
-2. **Shift**: the trips data will be further divided into different shifts if the specific driver was \textcolor{slublue}{not moving for eight hours}.
+1. **Shift**: the trips data will be further divided into different shifts if the specific driver was \textcolor{slublue}{not moving for eight hours},
+2. **Trip**: for each of the truck drivers, if the real-time ping data showed that the truck was \textcolor{slublue}{not moving for more than 30 minutes}, the ping data will be separated into two different trips (~200,000 rows), 
+3. **30-minute intervals**: as the length of a trip can vary significantly from 5 minutes to more than 8 hours, I will transform the trips data into \textcolor{slublue}{standardized 30-minute fixed intervals} according to the starting and ending time of trips (~1 million rows).
 
 ### {.fullslide}
 
 ```{r pingtripshift, echo=FALSE, eval=TRUE, out.width='100%', out.height='100%'}
-knitr::include_graphics("../figs/ping_trip_shift_aggregation.pdf")
+knitr::include_graphics("../figs/fig_ping_shift_trip_30int_real.pdf")
 ```
 
 
