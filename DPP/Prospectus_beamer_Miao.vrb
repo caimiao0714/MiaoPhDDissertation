@@ -1,17 +1,24 @@
-\frametitle{Aim 3 - potential problems and alternative plans}
-\protect\hypertarget{aim-3---potential-problems-and-alternative-plans}{}
+\frametitle{Conclusion and implications}
+\protect\hypertarget{conclusion-and-implications}{}
 
-In the unlikely event that the JPLP fails to be models, I will use the
-\textbf{modulated PLP} proposed by Black and Rigdon
-(1996)\textsuperscript{29}. The modulated PLP has well-defined data
-generating process, intensity function, and likelihood functions. If the
-JPLP does not work, I will revise the modulated PLP into \textbf{a
-hierarchical modulated PLP}.
-
-\vspace{20pt}
-
-The hierarchical JPLP and hierarchical modulated PLP will be estimated
-using \texttt{Stan} programs by adding self-defined likelihood function,
-which can be accessed via the \texttt{rstan} package in statistical
-computing environment R 3.6.0 on the OSC\textsuperscript{27,28,30}.
+\begin{itemize}
+\item
+  This work will illustrate the relationship between crashes and SCEs
+  among truck drivers.
+\item
+  The fusion of high-resolutional API and NDS data sets is an exciting
+  opportunity.
+\item
+  An R package \texttt{NDS} will be developed and help researchers to
+  analyze large-scale NDS data sets.
+\item
+  Self-written subsampling MCMC algorithms can be a useful solution for
+  wide and long NDS datasets.
+\item
+  The work will provide estimates of cumulative driving time on the risk
+  of SCEs.
+\item
+  The proposed JPLP will be an innovative reliability model for NDS
+  datasets.
+\end{itemize}
 

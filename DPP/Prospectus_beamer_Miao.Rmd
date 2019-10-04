@@ -379,6 +379,8 @@ kable(agg30 %>%
 #  landscape()
 ```
 
+\pagebreak
+
 ```{r analysisshift, results='asis', eval=TRUE, echo=FALSE}
 kable(shif %>% 
         dplyr::slice(1:5) %>% 
@@ -641,17 +643,17 @@ The hierarchical JPLP and hierarchical modulated PLP will be estimated using `St
 
 ### Conclusion and implications
 
-- This work will illustrate the relationship between crashes and SCEs,
+- This work will illustrate the relationship between crashes and SCEs among truck drivers.
 
-- The work will provide estimates of cumulative driving time on the risk of SCEs,
+- The fusion of high-resolutional API and NDS data sets is an exciting opportunity.
 
-- The proposed JPLP will be an innovative reliability model for NDS datasets,
+- An R package `NDS` will be developed and help researchers to analyze large-scale NDS data sets.
 
-- The fusion of high-resolutional API and NDS data sets is an exciting opportunity,
+- Self-written subsampling MCMC algorithms can be a useful solution for wide and long NDS datasets.
 
-- The subsampling MCMC can be a useful solution for wide and long NDS datasets.
+- The work will provide estimates of cumulative driving time on the risk of SCEs.
 
-
+- The proposed JPLP will be an innovative reliability model for NDS datasets.
 
 
 ### References {.allowframebreaks}
