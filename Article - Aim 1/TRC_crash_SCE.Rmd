@@ -1,0 +1,570 @@
+---
+title: |
+  | The association between crashes and safety-critical events: 
+  | synthesized evidence from crash reports and naturalistic driving data among commercial truck drivers
+author:
+  - name: Miao Cai
+    email: miao.cai@slu.edu
+    affiliation: SLU
+  - name: Mohammad Ali Alamdar Yazdi
+    email: mza0052@auburn.edu
+    affiliation: JHU
+  - name: \mbox{Amir Mehdizadeh}
+    email: azm0127@auburn.edu
+    affiliation: AU
+  - name: Qiong Hu
+    email: qzh0011@auburn.edu
+    affiliation: AU
+  - name: \mbox{Alexander Vinel}
+    email: alexander.vinel@auburn.edu
+    affiliation: AU
+  - name: \mbox{Karen Davis}
+    email: davisk4@miamioh.edu
+    affiliation: MU
+  - name: \mbox{Fadel Megahed}
+    email: fmegahed@miamioh.edu
+    affiliation: MU
+  - name: \mbox{Hong Xian}
+    email: hong.xian@slu.edu
+    affiliation: SLU
+  - name: \mbox{Steven E. Rigdon}
+    email: steve.rigdon@slu.edu
+    affiliation: SLU
+    footnote: Corresponding Author
+address:
+  - code: SLU
+    address: Saint Louis University, Saint Louis, MO, 63108
+  - code: JHU
+    address: Johns Hopkins University, Baltimore, MD, 21218
+  - code: AU
+    address: Auburn University, Auburn, AL, 36849
+  - code: MU
+    address: Miami University, Oxford, OH, 45056
+abstract: |
+  The past decade has witnessed a continuous growth of naturalistic driving studies (NDSs). In NDSs, safety-critical events (SCEs) are commonly used since real crashes are very rare. However, the association between SCEs and crashes is not consistent in previous studies and has not been verified among commercial truck drivers. Based on routinely collected kinematic data from 31,881 truck drivers in a large commercial trucking company, this paper investigates the association between four types of SCEs (headways, hard brakes, collision mitigation, and rolling stability) and crashes, as well as injuries and fatalities. Bayesian negative binomial models were performed to examine the association among all drivers and drivers in different business units and driver types. It was found that a unit increase in the number of any type of SCEs per 10,000 miles was associated with 8.4% (95% credible interval CI: 8-8.8%) increase in SCEs per mile and 8.7% (95% CI: 4.8%-13.6%) increase in the number of injuries per mile. The increase was different in different types of SCEs: 3.3% (95% CI: 2.6-4%) for headways, 8.1% (95% CI: 7.5-8.7%) for hard brakes, 50.4% (95% CI: 41.4-60%) for rolling stability, and 22.2% (95% CI: 19.8-24.5%) for collision mitigation. The results are consistent when stratified by different business units and driver types. This study provides statistically strong and robust evidence that SCEs are positively associated with crashes and injuries among commercial truck drivers. Kinematic and NDS data routinely collected by trucking or insurance companies provide an opportunity for data analytics research. 
+keywords: truck, naturalistic driving studies, safety critical events, crashes, injuries, fatalities
+journal: "Transportation Research Part C: Emerging Technologies"
+date: "`r Sys.Date()`"
+bibliography: mybibfile.bib
+csl: TRC.csl
+output:
+  bookdown::pdf_book:
+    base_format: rticles::elsevier_article
+    number_sections: true
+link-citations: true
+linkcolor: blue
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+fig_caption: yes
+header-includes:
+  - \usepackage{soulutf8}
+  - \usepackage{color}
+  - \usepackage{float}
+  - \usepackage{subcaption}
+  - \usepackage{booktabs}
+  - \usepackage{lscape}
+  - \usepackage{setspace}
+  - \usepackage{dcolumn}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage{array}
+  - \usepackage{makecell}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE, message=FALSE, fig.align = "center")
+```
+
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+\doublespacing
+
+Introduction
+============
+According to the World Health Organization (WHO), road injuries were the eighth leading cause of death globally in 2018 [@who2018]. They claimed a total of 1.35 million lives every year worldwide, with 74% of them being men and boys [@who2018]. Among children and young adults aged five to 29 years old, road traffic injuries are the leading cause of death [@world2018global]. Besides life losses, road injuries also cause up to 50 million non-fatal injuries and around 75.5 million disability-adjusted life years [@staton2016road; @world2018global]. Among different types of vehicles on the road, trucks are often associated with catastrophic consequences, which can be attributable to long routes, intensive schedule, massive size and weight, and potentially hazardous cargoes [@hanowski2005driver; @chen2014impacts; @chen2016influence; @zheng2018commercial]. Since costs of truck crashes are dramatic and a public concern, truck crash prediction has been a widely studied topic in traffic safety research.
+
+A substantial amount of road crash studies focused on using driver characteristics, traffic, weather, and others to predict the likelihood, frequency, or severity of crashes based on retrospective police report data [@lord2010statistical; @wang2013effect; @savolainen2011statistical; @wang2013effect; @roshandel2015impact]. However, truck crash data used in these studies ultimately trace back to retrospective reports, and therefore are subject to several limitations [@stern2019data]. First, post-hoc truck crash data reported by drivers and police are subject to recall and information bias. The reports cannot accurately record the information including real-time traffic and weather variables prior to the accidents. Second, truck crash data are extremely sparse compared to non-crashes. @fmcsareport2017 estimated that fatalities associated with large trucks and buses in 2017 were 0.156 per million traveled miles. In this sense, it is difficult to make statistically valid conclusions on the risk factors of crashes [@guo2010near; @theofilatos2018impact]. Third, drivers at fault tend not to report or underreport critical factors such as distraction or cell phone use, in order to avoid associated penalties [@dingus2011estimating; @stern2019data]. For the same purpose, those crashes with no human injuries and little financial losses also tend to be underreported.
+
+In view of the limitations in truck crashes data, naturalistic driving studies (NDSs) have been proposed to collect high-resolution objective data and enhance traffic safety. Compared with traditional retrospective and aggregated crash data, NDSs use sensors and devices to proactively and unobtrusively collect high-frequency kinematic and Global Positioning System (GPS) data in a real-world driving setting [@neale2005overview; @guo2013individual; @guo2019statistical]. Compared to traditional truck crash studies that are roadway-based or intersection-based case-control studies, NDS data are vehicle-based and are superior in estimating the rate or risk of safety events. More importantly, NDS has the power of providing precise real-time data on kinematic events, such as acceleration or deceleration over a pre-specified threshold, which provide the opportunity to investigate the short period prior to crashes or safety events without information bias or reporting bias [@guo2010near].  As NDS data are typically collected every 30 seconds to 5 minutes, the amount of NDS data are generally enormous, which provides both an opportunity and a challenge for data analytics.
+
+The number of NDSs worldwide has been actively increasing in the past 10 years, for example, the 100-Car NDS [@dingus2006100], the second Strategic Highway Research Program [@guo2019statistical], and the Europe’s UDRIVE NDS [@eenink2014udrive]. These NDSs are sponsored by government departments or research organizations, and the number of participated drivers are typically limited considering the budget of the programs. However, in the recent five years, it is noticeable that an increasing number of vehicle and insurance companies have been routinely collecting real-time kinematic data, and these data have been applied in safety surveillance, insurance pricing, and performance evaluation. If these routinely collected large-scale real-time kinematic data are sufficiently valuable to give insights into transportation safety, they hold huge potential for follow-up data analytics research.
+
+This study was done in collaboration with a leading freight shipping truck company in the United States. The name of the company cannot be revealed for confidentiality reasons and we will name it as Company A hereafter. The company provides transportation, delivery, and logistics services to customers and consumers in North America. It has three business units (dedicated, intermodal, and final-mile) and three driver types (local, regional, and over-the-road). Dedicated drivers serve a single customer with familiar routes, task and work duties. Intermodal drivers work with major rail providers and transport freight container from rail yards to customer locations, which are traditional driving duties. Final-mile drivers receive task from their managers every day and make deliveries to customer locations. Regarding driver types, local drivers transport freight within a 200-mile radius and return home the same day, regional drivers move freights in a region that may include surrounding states, and over-the-road drivers pick up and delivery freights throughout the country, and they are required to on duty for at least two weeks and then take off.
+
+The primary objective of this paper is to investigate the association between truck crashes and safety-critical events (SCEs) among commercial truck drivers. Detected from dynamic kinematic events, SCEs are special types of accident precursors that have all features of accidents, except that potentially catastrophic outcomes were avoided by last-second evasive maneuver [@dingus2011estimating; @saleh2013accident]. These SCEs are around 10 to 15 times as frequent as crashes, and past studies suggested that they were indicative of crashes [@guo2010near]. SCEs provide an alternative measure of transportation safety, without having to observe for a prohibitively long time to have a sufficiently large amount of crashes [@guo2019statistical]. However, previous studies that quantify this association are limited in the number of drivers and no studies has examined this relationship among commercial truck drivers.
+
+This paper contributes to the following aspects. First, NDS data from more than 30,000 commercial truck drivers were collected, and the data cover most areas in the United States and are representative of the trucking industry. The large sample size can yield statistically significant results and convincing conclusions. Second, four types of SCEs are considered in this study: headways, hard brakes, collision mitigation, and rolling stability. We show that the magnitude of association between crashes and the four types of SCEs are different. Third, since most of the crashes has no human injuries or fatalities, previous studies that have smaller sample size do not have sufficient cases of injury or fatality. As the number of drivers and miles driven is relatively large, the association between injuries, fatalities, and SCEs is examined, which is a more important topic than non-injury crashes.
+
+Literature review
+=================
+There has been a considerable number of studies evaluating the association between crashes and surrogate measures since the 1980s, with the general approach being estimating the conversion factor between the two types of events [@evans1982accident; @evans1983risky; @cooper1984experience; @risser1985behavior; @hyden1987development]. This topic has become a crucial issue as more naturalistic driving data sets are available to researchers in the recent decade. The first large-scale NDS was the 100-Car Naturalistic Driving study, including 102 drivers in North Virginia, the United States [@neale2005overview]. The study continuously and naturalistically recorded driving data for 102 participating drivers for one year, resulting in around two million vehicle miles and over 40,000 hours of driving data. Over the study period, 69 crashes, 761 near-crashes, and 8,295 incidents were collected. Based on this 100-Car study, @dingus2006100 found that hard braking events were significantly associated with collisions and near-crashes. Since the number of near-crashes and incidents were significantly larger than crashes, they proposed using near-crashes and incidents as surrogates of crashes. 
+
+```{=latex}
+\begin{table}[ht]
+\centering
+\caption{Differences between our study and exisiting literature regarding sample size, driver type, crash surrogates, region, time frame, and statistical mdoels.}
+\label{tab:lit}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{  m{1.2cm}  m{1.5cm}  m{1.5cm}   m{3cm}  m{3cm}  m{1cm}  m{3cm} }
+\toprule
+Authors  & sample size & Driver type & Crash surrogates & Country or region & Time frame & Statistical models \\ 
+\midrule
+Dingus 2006 & 100 cars  & general & braking, steering, accelerating  & Northern Virginia/ Washington, DC, USA & 1 year     & 95\% confidence limits modeled as a Poisson distribution \\
+Guo 2010  & 100 cars & general & near crashes & Northern Virginia/ Washington, DC, USA & 1 year     & Sequential Factor Analysis, Poisson regression  \\
+Gorden 2011  & 78 drivers & general & lateral deviation, lane-departure warning, time to edge crossing & Southeastern Michigan, USA & 10 months & seemingly unrelated regression, Poisson regression \\
+Simons-Morton 2012 & 42 drivers & newly licensed teenagers & elevated gravitational-force & Virginia & 18 months & logistic regression using generalized estimating equations \\
+Wu 2012 & 100 cars & general & Lateral and longitudinal acceleration, Event button, Yaw rate,Forward amd rear time-to-collision & Northern Virginia/ Washington, DC, USA & 1 year & logistic regression \\
+Guo 2013 & 100 cars & general & critical-incident events & Northern Virginia/ Washington, DC, USA & 1 year & negative binomial regression \\
+Wu 2014 & 100 cars & general & safety-related events & Northern Virginia/ Washington, DC, USA & 1 year & Poisson regression \\
+Pande 2017 & 33 drivers & general & high magnitude jerks while decelerating & San Luis Obispo, California, USA & 10 days & negative binomial regression \\
+Gitelman 2018 & 64 vehicles & general & braking, speed alerts & Israel & 1 year & negative binomial regression \\
+\textbf{This paper} & \textbf{31881 drivers} & \textbf{commercial truck drivers} & \textbf{headways, hard brakes, collision mitigation, rolling stability} & \textbf{National data, USA} & \textbf{1 year} & \textbf{Bayesian negative binomial regression} \\ 
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+```
+
+
+The rationale for using near-crashes and SCEs as surrogates for crashes is the Heinrich's Triangle, which assumes that less severe events are more frequent than severe events, and the frequency of severe events can diminish as the frequency of less severe events decreases [@guo2019statistical]. The former assumption is commonly seen in most NDSs and is generally considered to be reasonable. Although the causal mechanism in the latter assumption is not clear and hard to test, the association can be quantitatively tested based on crash and SCEs data in large-scale NDSs [@guo2010near]. The validity of SCEs varies significantly from studies to studies, and researchers are advised to be cautious when applying SCEs as the outcome [@guo2019statistical]. When the assumptions of Heinrich's Triangle are met, using SCEs can provide insights to crash risk and transportation safety issues when the number of crashes is limited. However, the crucial question prior to using SCEs as a measure of real crashes is whether they are good surrogates of traffic crashes.
+
+@guo2010near proposed two critical principles for using near-crashes as surrogates for crashes: 1) similar or the same causal mechanisms between crashes and surrogates, 2) a strong association between the frequency of surrogates and crashes. Based on the 100-Car study, they investigated the two principles using a sequential factor analysis, a Poisson regression, and sensitivity analyses. The study concluded that using near-crashes as surrogates for crashes will lead to conservative risk estimates but significantly reduce the variance of estimation. They suggested that using near-crashes as surrogates in small-scale studies will be informative for evaluating the risk of crashes.
+
+@gordon2011analysis conducted a preliminary study to validate surrogates for road-departure crashes by spatially merging road geometry, average traffic, crashes, and NDS data. Bayesian seemingly unrelated Poisson models estimated with weighted least squares were used to examine whether the same sets of predictor variables have the same effects on crashes and surrogates. The found that time to edge crossing and lane-departure warning were two useful surrogates for crashes on rural nonfreeway roads, but lane deviation was a poor surrogate for lane-departure crashes.
+
+@simons2012elevated examined whether elevated gravitational-force predicts crashes and near-crashes among 42 newly licensed teenage drivers in Virginia. The study used the Naturalistic Teenage Driving Study that followed the recruited drivers for 18 months. A logistic regression estimated with generalized estimating equations to account for the within-subject correlation among different months was applied. The study found that the rate of elevated gravitational-force events was positively associated with the rate of crashes and near-crashes (odds ratio: 1.07, 95% confidence interval: 1.02-1.12), with the area under curve (AUC) value of 0.76.
+
+@wu2012crashes proposed a conceptual framework to estimate the crash-to-surrogate ratio $\pi$ and used the 100-Car study to test the framework. The study found that the conditional probability of a crash was increased by 24 times with a lateral acceleration more than 0.7 g, but the probability was decreased by other factors such as the event occurring in daylight and dry pavement. A later study by @wu2013defining developed diagnostic procedures to screen crashes and near misses under NDS settings. The study applied the 100-Car Natural Driving Study on the proposed framework and identified three conditions to define surrogate events: 1) a maximum lateral acceleration difference of no smaller than 0.4 g, 2) non-intersection related, and 3) maximum lateral acceleration difference no smaller than 0.9 per event or between 0.8 and 0.9 g during night time.
+
+@guo2013individual attempted to identify risk factors of driving at driver's level and predict high-risk drivers based on the 100-Car study. The study used a negative binomial (NB) regression to examine the potential four risk factors of crashes and near-crashes. They used a K-mean clustering to classify the drivers into high-, moderate-, and low-risk groups based on crash and near-crash rates, and applied two logistic regressions to predict high- or moderate-risk drivers. The results confirmed that critical-incident event rates were significantly associated with individual driving risk. The two logistic regressions achieved AUC values of 0.938 and 0.93. They also highlighted that it was a first-step study and more studies with larger and representative data were needed to confirm the association. A similar study by @wu2014using also used the 100-Car study. This study used a Bayesian multivariate Poisson log-normal model to simultaneously account for crash frequency and severity. They also found a significant positive association between crashes, near-crashes, and crash-relevant incidents.
+
+@pande2017preliminary used linear referencing to link Global Positioning System (GPS) data with roadway features on 39 segments of Highway 101 in California. NB models and random-effects NB models that account for segment-specific variance were used to investigate the relationship between historic crashes and hard braking events. It was found that the freeway segments with high hard braking rates also had higher long-term crash rates, although the other three explanatory variables, average daily traffic, the presence of horizontal curvature and auxiliary lanes were not statistically significant. 
+
+@gitelman2018exploring used data collected by in-vehicle data recorders on 3500 segments of interurban roads in Israel to examine the association between two types of safety-related events (braking and speed alert) and crashes on different road types. NB models were used to account for the over-dispersion in the data, and the covariates included several road infrastructure characteristics. The number of braking events was found to be positively associated with injury crashes on single- and dual-carriageway roads, but the association was not significant on freeways. In contrast, they yield counterintuitive results that speed alert events (overspeed) were consistently and negatively associated with injury crashes on all road types. They suggested that speed alert events were not a good surrogate for crashes, possibly due to its rough definition.
+
+Some researchers have been skeptical of NDS. For example, @knipling2015naturalistic challenged the validity of using NDS data and SCEs by arguing that the purpose of traffic safety studies is to identify causes of crash harm and develop interventions. Crash harm is defined as property damage, injury, income lost, and all other consequences of different severities [@zaloshnja2007unit]. However, NDS often use SCEs as surrogates of crashes, but very few or no crashes are involved, let alone human harm. Therefore, it is argued that SCEs are not an appropriate part of the Heinrich's Triangle and researchers generally cannot derive valid quantitative conclusions on causations of harm based on NDS datasets. Another study by @knipling2017threats specifically targeted Hour-of-Service (HOS) rule research, such as @blanco2011impact and @hanowski2008analysis, and relevant policy revisions among commercial truck drivers. He argued that HOS studies with a quasi-experiment design were subject to confounding variables, so these studies are limited in demonstrating a causal relationship between HOS and safety outcomes. The paper also argued that NDS lacked external validity since no large truck NDS had examined the causal link between crashes and SCEs. Lastly, the construct validity was doubted as the relationship between driver fatigue, HOS, and SCEs had not been validated.
+
+In summary, no consistent conclusion has been reached on the association between the number of crashes and surrogates in NDS [@guo2019statistical]. There are three gaps in previous NDS studies on the association between crashes and SCEs: 1) the number of drivers involved are limited to 50 to 3,400, which makes it difficult to reach statistically significant conclusions on crashes, injuries, and fatalities, 2) although two separate NDS data sets have been sponsored by the Federal Motor Carrier Safety Administration: the Drowsy Driver Warning System Field Operation Test and the Naturalistic Truck Driving Study [@hickman2018synthetic], the number of studies that examine this association specifically among commercial truck drivers is limited.
+
+
+Methodology
+===========
+Data description
+----------------
+The data used in this study were initially collected by Company A for routine driver performance monitoring, not for research purpose similar to the 100-Car study. From April 1st, 2015 to March 31st, 2016, Company A installed data acquisition systems (DASs) to their trucks in all three business units. These DASs intermittently collected real-time driving ping data every a couple of seconds to 5 minutes. The collected ping data include the exact date and time of the record (year, month, day, hour, minute, and second), latitude and longitude (specific to five decimal places), speed, and drivers' anonymized unique ID. The research team excluded drivers who 1) had less than 1,000 pings, 2) cannot be matched in driver demographics table, and 3) were identified as obvious outliers regarding the rates of SCEs. In total, $1,494,678,173$ pings collected from 31,881 commercial truck drivers were included in the current study. Geographical distributions of these included pings are shown in the results below.
+
+Apart from the ping data, $480,331$ SCEs from the included drivers were recorded when pre-specified kinematic thresholds were triggered while driving. The collected SCEs data include the exact date and time, latitude and longitude (specific to five decimal places), driver, and type of SCEs. This SCEs data included 184,773 headways, 231,101 hard brakes, 55,345 collision mitigation, and 9,112 rolling stability. Although the detailed kinematic definitions or thresholds were not provided to the research team, non-kinematic definitions of the four types of SCEs are:
+
+- *Headway*: the headway to a lead vehicle is closer than a preset threshold value.
+- *Hard brake*: the speed decrease within a unit time is more than a preset threshold value.
+- *Collision mitigation*: an imminent collision with a forward slower moving or standing vehicle or object.
+- *Rolling stability*: potential roll-over or loss-of-control situations in various road or weather conditions (dry, wet, snow and ice-covered pavement).
+
+<!--
+- headway: https://link.springer.com/book/10.1007%2F978-0-387-44409-3
+- Collision mitigation: Provides audible and visual alerts to the driver and applies the brakes when the system determines a collision with forward vehicle is imminent,
+- Rolling stability: https://www.bendix.com/media/documents/products_1/acb_1/wingmanadvanced/bw2855bxwingmanadvancedbrochurefinal32411.pdf
+-->
+
+A crash data set that included driver ID, state, city, report time, the number fatalities, and the number of injuries, were collected by retrospective reports from Company A. In total, 35,008 crashes, 241 injuries, and 22 fatalities were collected for included drivers in this table. The company also provided a driver demographics table that includes the age, gender, race, business units, and driver types associated with the driver ID. All data were de-identified prior to the research team had access. The study protocol was approved by the Institutional Review Board of Saint Louis University.
+
+```{r pingshifttrip, out.width='\\textwidth', fig.cap='Data aggregation from ping data to trips for a sample of a commercial NDS data set.', fig.pos='H'}
+knitr::include_graphics("figs/fig_ping_trip_real.pdf")
+```
+
+Data aggregation
+----------------
+
+Since the original ping data were gigantic and difficult to interpret regarding the routing, we aggregated them to trips using the approach adopted in @pande2017preliminary.
+A trip is defined as a continuous period of driving with no more than 30 minutes' stop. In practice, we sorted the original ping data according to date and time for each driver. Then, if the ping speed data showed that the truck was not moving (the speed of the ping equals zero) for more than 30 minutes, the ping data were separated into two different trips. 
+
+This data aggregation process is demonstrated in Figure \@ref(fig:pingshifttrip), where the x-axis shows the data and time of pings, and the y-axis presents the speed of the ping (miles per hour, MPH). Each point represented a ping at that date and time, with different colors indicating the real-time speed category. Whenever the truck stopped (the grey points) for at least 30 minutes, the pings were separated into different trips, indicated by the purple arrows in the bottom (Trip 1, Trip 2, $\ldots$, Trip 6). The trip time was then calculated by taking the difference between the trip end time and start time. 
+
+The traveled distance within a trip was calculated in three steps: 1) sort the ping data according to driver, date, and time, 2) compute the distance between each temporally nearest two ping locations for each driver using the haversine method, which assumes a spherical earth and ignore ellipsoidal effects [@sinnott1984virtues], 3) sum up all the distance travelled within a trip for each driver. This algorithm aggregated the original ping data into $18,759,300$ trips, with a total of $2,323,007,042$ miles travelled in $65,706,497$ hours. The median distance of a trip is 2.61 hours and the median of miles per trip was $77.06$ miles.
+
+Statistical models
+------------------
+Since the outcome variable (the number of crashes for each driver) is a count variable, which is strictly a non-negative integer, Bayesian NB models are used in this study. Compared with Poisson model commonly used for modeling count outcomes, NB model can adjust for the variance independently from its mean, which handles potential overdispersion or underdispersion issues in the data. Let $Y_i$ denote the number of the outcome variables (crashes, injuries, and fatalities) over a distance of $T_i$ miles for the $i$th driver. We assume that $Y_i$ has a NB distribution with the mean parameter $\mu_i$ and auxiliary parameter $\phi$. The corresponding probability mass function of $Y_i$ is:
+
+$$P(Y_i|\mu, \phi) = \binom{y + \phi - 1}{y}\bigg(\frac{\mu}{\mu + \phi}\bigg)^y\bigg(\frac{\phi}{\mu + \phi}\bigg)^\phi$$
+
+The mean and variance of $Y_i$ are $E[Y_i] = \mu$ and $V(Y_i) = \mu + \frac{\mu^2}{\phi}$. The inverse of $\phi$ controls the overdispersion, which is scaled by $\mu^2$. By assuming that the number of SCEs per 10,000 miles has a mathematically multiplicative effect on the logarithm of rate of crashes $\mu_i$, we have the following log-linear Bayesian NB regression
+
+$$
+\begin{aligned}
+Y_i & \sim \text{NB}(T_i\times\mu_i, \; \phi)\\
+\log\mu_i & = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_Kx_{iK}\\
+\beta_0 , \beta_1, \cdots, \beta_K & \sim \text{Normal}(0, 10^2)\\
+\phi & \sim \text{Exponential}(1),
+\end{aligned}
+$$
+
+where $\beta_0$ is the intercept, $\beta_k, k = 1, 2, \cdots, K$ is the coefficient of the $k$-th predictor variable $x_k$. The total miles driven $T_i$ is considered as an offset variable to account for the mileage difference among the included drivers. The variables of interest were the rates of all SCEs (the number of SCEs per 10,000 miles) and the rates of four different types of SCEs, including headways, hard brakes, collision mitigation, and rolling stability. The covariates were average speed, driver's age and gender, business units, and driver types. Business units included dedicated (DED), intermodal (INT), and final-mile (FIM), with DED being the reference group. Driver types included local (LOC), regional (REG), and over-the-road (OTR), with LOC being the reference group.
+
+As we did not have much prior knowledge on the parameters, weakly informative priors $N(0, 10^2)$ were given to the intercept $\beta_0$ and slopes $\beta_1, \beta_2, \cdots, \beta_K$, and an exponential prior with mean parameter 1 was given to the overdispersion parameter $\phi$ since it was restricted to be positive. To make sure the Markov chain Monte Carlo converged, we set 4,000 iterations for each of the four chains, with the first 2,000 being warm-up iterations. The Markov chains were considered as converged when the Gelman-Rubin diagnostic $\hat{R}$ was less than 1.1 for each variable [@gelman1992inference]. The posterior mean and 95% credible intervals (CIs) of the incidence rate ratios (IRRs) were reported, which is $\exp(\beta)$. The interpretation of this Bayesian NB model is: as the number of SCEs per 10,000 miles increases by one unit, the number of crashes per mile will be multiplied by $\exp(\beta)$ times. 
+
+We used Pareto smoothed importance-sampling leave-one-out (PSIS-LOO) cross-validation (CV) to check the goodness-of-fit of and compare different models [@vehtari2017practical; @vehtari2015pareto]. Instead of exact CV that refits the model with different subsamples, the PSIS-LOO uses fast, efficient, and stable importance sampling weights to approximate leave-one-out CV [@gelfand1992model; @gelfand1996model]. It estimates the expected log predicted density (ELPD), estimate number of parameters, and the LOO Information Criterion (LOOIC) for a new dataset. Compared with other statistics such as Widely Applicable Information Criterion (WAIC), Deviance information criterion (DIC), and other variants [@spiegelhalter2002bayesian; @watanabe2010asymptotic], PSIS-LOO has the advantage of fast and stable computation. Apart from PSIS-LOO, we also used posterior predictive checks to examine the prediction accuracy [@gelman2013bayesian]. The interpretation of these goodness-of-fit and model comparison statistics will be explained in results section.
+
+All data cleaning, statistical modeling, and visualization were performed in the statistical computing environment `R 3.6.0` [@Rcoreteam]. The haversine method distance was computed using the `distHaversine()` function in `geosphere` package [@geospherepackage]. The Bayesian NB model was conducted using the `stan_glm()` function in `rstanarm` package [@rstanarmpackage]. The PSIS-LOO statistics were computed using the `loo()` function in `loo` package [@loopackage]. A demonstration of the original ping data, R code for data aggregation, data and R code for Bayesian NB regression models, model comparison, and diagnostic statistics can be found in supplementary materials.
+
+
+Results
+=======
+Sample description
+------------------
+Since plotting the original gigantic ping data may overwhelm the entire map, we rounded all latitudes and longitudes to two decimal places, which are approximately as large as normal-size parking lot, and then displayed only locations with more than 50 pings. Figure \@ref(fig:pointpattern) shows the geographical point patterns of active pings that have a speed of more than 0 MPH (Figure \@ref(fig:pointpatternA)) and inactive pings that have a speed of 0 MPH (Figure \@ref(fig:pointpatternB)). The red points are the locations with at least 50 actively moving pings and blue dots are the locations with at least 50 stopping pings. The points with darker colors (dark red and dark blue) indicate higher number of pings. The background grey lines are the major roads in the United States [@usgs] and the solid black lines are state boundaries. The geographical point patterns suggest that most of the trucking transportation is in middle and eastern parts, as well as California and Seattle. The active and inactive pings are generally consistent, but active pings are much more concentrated than inactive pings on the major Midwest major roads.
+
+Among all the included 31,881 drivers, 29,296 (91.89%) were male, 1,585 (4.97%) were female, and 1,000 (3.14%) were unspecified. The mean age of the drivers were 44.48 years with a standard deviation of 11.72 years. The range of the ages were from 20 to 82 years. Regarding business units, 16,182 (50.76%) drivers served in the DED unit, in which the drivers work for a single customer and drive on familiar routes. 9,780 (30.68%) drivers were in ITM, where the drivers conduct traditional truck driving duties and transport freight containers from rail yards to local locations. 5,919 (18.57%) drivers were in FIM and made deliveries to customer locations. As for driver types, 13,399 (42.03%) were LOC drivers who transport freight within 200 miles and return home on the same day. 15,729 (49.34%) were REG drivers who move freight within a region or interstate and return home on a weekly or bi-weekly basis. Only 2,753 (8.64%) were OTR drivers who deliver and pick up freight throughout the country, and they are required to be on the road for at least two weeks and then consider taking days off or continue working.
+
+```{r table1, eval=FALSE}
+pacman::p_load(summarytools)
+d = data.table::fread("data/Aim1_crash_SCE.csv")
+d[,freq(gender)] # gender
+d[,descr(age)]
+d[,freq(bus_unit)]
+d[,freq(d_type)]
+```
+
+```{=latex}
+\begin{figure}%[htb]
+    \centering
+    \begin{subfigure}[a]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/map_active_grey_50.png}%
+        \caption{Active pings}
+        \label{fig:pointpatternA}
+    \end{subfigure}
+    \vskip\baselineskip
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/map_stop_grey_50.png}%
+        \caption{Inactive pings}
+        \label{fig:pointpatternB}
+    \end{subfigure}
+    \caption{Geographical point patterns of active and inactive pings in a large commercial NDS data set.}
+    \label{fig:pointpattern}
+\end{figure}
+```
+
+Bayesian NB models for all included drivers
+------------------------
+Table \@ref(tab:pooled) shows the estimates of posterior IRRs and their CIs in the Bayesian NB models for all the included drivers. We conducted the model for all SCEs combined (Pooled model), four types of SCEs as four variables in one model (Four SCEs), and four SCEs separately in four models (columns 4-7). All the IRRs of SCEs in the six models were greater than one and none of the associated CIs did not include one, indicating statistically strong evidence that the rates of SCEs were positive associated with the rate of crashes. As the number of any type of SCEs increase by one unit per 10,000 miles, the number of crashes per mile will increase by 8.4% (95% CI: 8-8.8%). Specifically, as the number of headways, hard brakes, rolling stability, and collision mitigation per 10,000 miles increased by one unit, the number of crashes per mile increase by 3.3% (95% CI: 2.6-4%), 8.1% (95% CI: 7.5-8.7%), 50.4% (95% CI: 41.4-60%), and 22.2% (95% CI: 19.8-24.5%), controlling for other covariates.
+
+Bayesian NB models stratified by business units and driver types
+--------------------------------------------------------------
+Since the driving behaviors and routing patterns vary significantly among different business units and driver types, we also conducted Bayesian NB models for drivers in different business units and types, and the results are shown in Table \@ref(tab:stratified). The posterior IRRs and CIs of four SCEs are consistent with those in Table \@ref(tab:pooled). All four type of SCEs were positively associated with the number of crashes per mile. None of the CIs included one except for headways in the DED-OTR unit, indicating strong evidence that SCEs were positively associated with crashes in different business units and driver types. Among the four types of SCEs, rolling stability had the highest IRRs, followed by collision mitigation, hard brake, and headway.
+
+\blandscape
+```{r message=FALSE}
+pacman::p_load(huxtable, broom, dplyr, stringr)
+
+z = readRDS("fit/a0_pooled_fit.rds")
+
+pad_est = function(x, digits = 3, exponentiate = TRUE){
+  if(exponentiate){
+    z = round(x, digits)
+    z = ifelse(z == 0, "0.000", str_pad(z, digits + 2, "right", "0"))
+  }else{
+    z = ifelse(x < 0,
+             round(x, digits) %>% 
+               str_pad(digits + 3, "right", "0"),
+             round(x, digits) %>% 
+               str_pad(digits + 2, "right", "0") %>% 
+               str_pad(digits + 3, "left", ' '))
+  }
+  return(z)
+}
+
+getfit = function(fit, model_name = "model_estimate", digits = 3, exponentiate = TRUE){
+  z = tidy(fit, intervals = TRUE, prob = 0.95) %>% 
+    {if(exponentiate == TRUE){
+      mutate(.,
+             estimate = exp(estimate),
+             lower = exp(lower),
+             upper = exp(upper))
+      }else{
+        .
+      }} %>% 
+    mutate(estimate = pad_est(estimate),
+           ci = paste0("(", pad_est(lower), ", ", 
+                       pad_est(upper), ")")) %>% 
+    mutate(zz = paste0(estimate, " ", ci)) %>% 
+    select(term, zz) %>% 
+    magrittr::set_colnames(c("variables", model_name))
+  return(z)
+}
+
+getloo = function(fit){
+  d = fit$estimates %>% 
+    as.data.frame() %>% 
+    mutate(Estimate = round(Estimate, 1),
+           SE = round(SE, 1)) %>% 
+    mutate(values = paste0(Estimate, " (", SE, ")")) %>% 
+    select(values)
+  return(rbind(length(fit$diagnostics$pareto_k), 
+               d))
+}
+
+tab_fit = getfit(z[[1]], "Pooled model") %>% 
+  full_join(getfit(z[[2]], "Four SCEs")) %>% 
+  full_join(getfit(z[[3]], "Headways")) %>% 
+  full_join(getfit(z[[4]], "Hard brakes")) %>% 
+  full_join(getfit(z[[5]], "Rolling stability")) %>% 
+  full_join(getfit(z[[6]], "Collision mitigation")) %>% 
+  arrange(match(variables, 
+                c("sce_N", "sce_HW", "sce_HB", "sce_RS", "sce_CM",
+                  "age", "ping_speed", "genderM", "genderU", "(Intercept)"))) %>% 
+  mutate(variables = 
+           recode(variables,
+                  "sce_N" = "All SCEs",
+                  "sce_HW" = "Headways", 
+                  "sce_HB" = "Hard brakes", 
+                  "sce_RS" = "Rolling stability", 
+                  "sce_CM" = "Collision mitigation",
+                  "age" = "Age",
+                  "ping_speed" = "Mean speed",
+                  "genderM" = "Gender: male",
+                  "genderU" = "Gender: unknown",
+                  "bus_unitJBI00" = "Business unit: ITM", 
+                  "bus_unitVAN00" = "Businees unit: FIM", 
+                  "d_typeOTR" = "Type: OTR", 
+                  "d_typeREG" = "Type: REG", 
+                  " Intercept " = "(Intercept)")) %>% 
+  add_row(variables = "Fit statistics: ")
+
+tab_loo = data.frame(c("sample size", "elpd_loo", "p_loo", "looic")) %>% 
+  cbind(getloo(z[[7]])) %>% 
+  cbind(getloo(z[[8]])) %>% 
+  cbind(getloo(z[[9]])) %>% 
+  cbind(getloo(z[[10]])) %>% 
+  cbind(getloo(z[[11]])) %>% 
+  cbind(getloo(z[[12]])) %>% 
+  magrittr::set_colnames(names(tab_fit))
+```
+
+```{r results='asis', eval=T}
+capture.output({
+  stargazer::stargazer(rbind(tab_fit, tab_loo), 
+                       summary=FALSE, rownames=FALSE,
+                       align=TRUE, float = TRUE, table.placement = '!htbp',
+                       title = "Bayesian NB regressions with the rate of SCEs predicting crashes, non-stratified models",
+                       font.size = "small",
+                       single.row=FALSE, header=FALSE,
+                       notes="The SCEs were measured as the number of events per 10,000 miles driven. IRRs and associated 95\\% credible intervals were reported.",
+                       label="tab:pooled")
+  }) %>% 
+  gsub("\\begin{tabular}","\\resizebox{0.8\\paperheight}{!}{\\begin{tabular}", ., fixed=T) %>% 
+  gsub("\\end{tabular}","\\end{tabular}}", ., fixed=T) %>% 
+  cat()
+```
+
+```{r}
+pacman::p_load(purrr)
+sub_files = list.files("fit", full.names = TRUE, pattern = ".{3}00.{3}.rds")
+driver_comb = list.files("fit", pattern = ".{3}00.{3}.rds") %>% 
+  gsub(".rds", "", .) %>% 
+  gsub("00", "-", .)
+
+fit_list = list()
+for (i in seq_along(sub_files)) {
+  fit_list[[i]] = readRDS(sub_files[i]) %>% 
+  .[[2]] %>% 
+  getfit()
+}
+
+tab_fit1 = fit_list %>% 
+  purrr::reduce(full_join, by = "variables") %>% 
+  magrittr::set_colnames(c("variables", driver_comb)) %>%
+  arrange(match(variables, 
+                c("sce_N", "sce_HW", "sce_HB", "sce_RS", "sce_CM",
+                  "age", "ping_speed", "genderM", "genderU",
+                  "(Intercept)"))) %>% 
+  mutate(variables = 
+           recode(variables,
+                  "sce_HW" = "Headways", 
+                  "sce_HB" = "Hard brakes", 
+                  "sce_RS" = "Rolling stability", 
+                  "sce_CM" = "Collision mitigation",
+                  "age" = "Age",
+                  "ping_speed" = "Mean speed",
+                  "genderM" = "Gender: male",
+                  "genderU" = "Gender: unknown",
+                  "bus_unitJBI00" = "Business unit: ITM", 
+                  "bus_unitVAN00" = "Businees unit: FIM", 
+                  "d_typeOTR" = "Type: OTR", 
+                  "d_typeREG" = "Type: REG", 
+                  " Intercept " = "(Intercept)")) %>% 
+  add_row(variables = "Fit statistics: ") 
+names(tab_fit1) %<>% 
+  stringr::str_replace_all(., "JBI", "ITM") %>%
+  stringr::str_replace_all(., "VAN", "FIM")
+
+loo_list = list()
+for (i in seq_along(sub_files)) {
+  loo_list[[i]] = readRDS(sub_files[i]) %>% 
+  .[[8]] %>% 
+  getloo()
+}
+
+tab_loo1 = data.frame(c("sample size", "elpd_loo", "p_loo", "looic")) %>% 
+  cbind(loo_list[[1]]) %>% 
+  cbind(loo_list[[2]]) %>%
+  cbind(loo_list[[3]]) %>%
+  cbind(loo_list[[4]]) %>%
+  cbind(loo_list[[5]]) %>%
+  cbind(loo_list[[6]]) %>%
+  cbind(loo_list[[7]]) %>%
+  magrittr::set_colnames(names(tab_fit1))
+```
+
+```{r results='asis', eval=TRUE}
+  capture.output({
+    stargazer::stargazer(rbind(tab_fit1, tab_loo1), 
+                       summary=FALSE, rownames=FALSE,
+                       align=TRUE, float = TRUE, table.placement = '!htbp',
+                       title = "Bayesian NB regressions with the rate of SCEs predicting crashes, stratified by business units and driver types",
+                       font.size = "small",
+                       single.row=FALSE, 
+                       header=FALSE,
+                       notes="The SCEs were measured as the number of events per 10,000 miles driven. IRR and associated 95\\% credible intervals were reported.",
+                       label="tab:stratified")
+  }) %>% 
+  gsub("\\begin{tabular}","\\resizebox{0.8\\paperheight}{!}{\\begin{tabular}", ., fixed=T) %>% 
+  gsub("\\end{tabular}","\\end{tabular}}", ., fixed=T) %>% 
+  cat()
+```
+\elandscape
+
+Bayesian NB models for injuries and fatalities
+----------------------------------------------
+Table \@ref(tab:injuries) presents the results of Bayesian NB models predicting the number of injuries and the number of fatalities. Compared with the models for crashes, the result for injuries and fatalities are less conclusive. A unit increase in the number of any type of SCEs per 10,000 miles was associated with 8.7% (95% CI: 4.8%-13.6%) increase in the number of injuries per mile. When stratified into four different types of SCEs, all 95% CIs of IRRs included one, which indicated weak evidence for modeling injuries or fatalities, although the posterior means were all positive. In the two models using the number of fatalities as the outcome variable, all 95% CIs of IRRs included one and the CIs were very wide, which suggested insufficient sample size in the number of injuries and fatalities to make statistically significant inference.
+
+
+```{r}
+inj = readRDS("fit/injury_fatality_fit.rds")
+inj = readRDS("fit/injury_fatality_fit.rds")
+
+tab_fit = getfit(inj[[1]], "Injuries: pooled") %>% 
+  full_join(getfit(inj[[2]], "Injuries: four SCEs")) %>% 
+  full_join(getfit(inj[[3]], "Fatalities: pooled")) %>% 
+  full_join(getfit(inj[[4]], "Fatalities: four SCEs")) %>% 
+  mutate(variables = gsub("^b_", "", variables)) %>% 
+  filter(!(variables %in% c("shape", "lp__"))) %>% 
+  arrange(match(variables, 
+                c("sce_N", "sce_HW", "sce_HB", "sce_RS", "sce_CM",
+                  "age", "ping_speed", "genderM", "genderU", 
+                  "bus_unitJBI00", "bus_unitVAN00", 
+                  "d_typeOTR", "d_typeREG", " Intercept "))) %>% 
+  mutate(variables = 
+           recode(variables,
+                  "sce_N" = "All SCEs",
+                  "sce_HW" = "Headways", 
+                  "sce_HB" = "Hard brakes", 
+                  "sce_RS" = "Rolling stability", 
+                  "sce_CM" = "Collision mitigation",
+                  "age" = "Age",
+                  "ping_speed" = "Mean speed",
+                  "genderM" = "Gender: male",
+                  "genderU" = "Gender: unknown",
+                  "bus_unitJBI00" = "Business unit: ITM", 
+                  "bus_unitVAN00" = "Businees unit: FIM", 
+                  "d_typeOTR" = "Type: OTR", 
+                  "d_typeREG" = "Type: REG", 
+                  " Intercept " = "(Intercept)")) %>% 
+  add_row(variables = "Fit statistics: ")
+
+tab_loo = data.frame(c("sample size", "elpd_loo", "p_loo", "looic")) %>% 
+  cbind(getloo(inj[[5]])) %>% 
+  cbind(getloo(inj[[6]])) %>% 
+  cbind(getloo(inj[[7]])) %>% 
+  cbind(getloo(inj[[8]])) %>% 
+  magrittr::set_colnames(names(tab_fit))
+```
+
+```{r results='asis', eval=TRUE}
+capture.output({
+  stargazer::stargazer(rbind(tab_fit, tab_loo), 
+                       summary=FALSE, rownames=FALSE,
+                       align=TRUE,  float = TRUE, table.placement = '!htbp',
+                       title = "Bayesian NB regressions with the rate of SCEs predicting crashes",
+                       font.size = "small",
+                       single.row=FALSE, header=FALSE,
+                       notes="The SCEs were measured as the number of events per 10,000 miles driven. IRR and associated 95\\% credible intervals were reported.",
+                       label="tab:injuries")
+  }) %>% 
+  gsub("\\begin{tabular}","\\resizebox{\\textwidth}{!}{\\begin{tabular}", ., fixed=T) %>% 
+  gsub("\\end{tabular}","\\end{tabular}}", ., fixed=T) %>% 
+  cat()
+```
+
+```{r plotcrashSCE, eval=F, out.width='\\textwidth', fig.cap='crude rates of crashes and SCEs'}
+knitr::include_graphics("figs/crash_SCE.jpeg")
+```
+
+```{r plotcrashCOV, eval=F, out.width='\\textwidth', fig.cap='crude rates of crashes and other variables'}
+knitr::include_graphics("figs/other_covariate.jpeg")
+```
+
+Diagnostics statistics and model selection
+------------------------------------------
+All the models have Pareto $k$ diagnostic statistics of less than 0.7 and the estimated effective number of parameters (`p_loo` in Tables \@ref(tab:pooled), \@ref(tab:stratified), \@ref(tab:injuries)), which were similar to the total number of parameters in the models. This suggest reasonably specified models given the large number of observations in this study [@vehtari2017practical; @vehtari2015pareto]. The LOOIC in the tables can be used to compare different models, with lower values indicating better models. In Table \@ref(tab:pooled), the "Four SCEs" model has the lowest LOOIC (79,540.5) among the six models, although the standard errors in the bracket suggested that the "Four SCEs" model was not significantly better than the "Pooled" model.
+
+In addition, we also checked the model fit by comparing the observed data to 100 replicated datasets generated from the posterior parameters distributions [@gelman2006data]. For each simulated dataset, we computed the proportion of zero crashes and compared them to the observed proportion in the original data. Figure \@ref(fig:loopooled) and \@ref(fig:loostratified) present the posterior predictive check for models in Table \@ref(tab:pooled) and \@ref(tab:stratified). The black solid vertical lines are the observed proportion of zero crashes in observed data, while the light blue histograms show the distribution of proportion of zero crashes in the 100 simulated data sets, which were generated from the posterior parameters distributions. Although the observed proportion was away from the distribution of proportions in simulated datasets in Figure \@ref(fig:loopooled), the difference between the observed proportion and the center of simulated distribution was less than 1.5%. By contrast, the observed proportion of zero crashes located almost at the center of simulated distributions when stratified by different business units and driver types in Figure \@ref(fig:loostratified), which suggested that stratified models in Table \@ref(tab:stratified) have better prediction accuracy and model fit than non-stratified model in Table \@ref(tab:pooled).
+  
+
+```{r loopooled, out.width='\\textwidth', fig.cap='PPC with zero count test statistic for Bayesian negative binomial models for all drivers'}
+knitr::include_graphics("figs/loo_pooled.pdf")
+```
+
+```{r loostratified, out.width='\\textwidth', fig.cap='PPC with zero count test statistic for Bayesian negative binomial models, stratified by business unit and driver types'}
+knitr::include_graphics("figs/loo_stratified.pdf")
+```
+
+Discussion
+==========
+In line with previous studies on the association between crashes and SCE in NDS [@guo2010near; @gordon2011analysis; @simons2012elevated; @wu2012crashes; @guo2013individual; @pande2017preliminary; @gitelman2018exploring], this study provides statistically significant and robust evidence that there is positive association between SCEs and crashes among commercial truck drivers in the United States.
+
+The current study contributes to the existing literature in three aspects. First, this paper overcome the small sample size issues in previous crashes and crash surrogates papers, which typically include 50 to 3,400 drivers [@guo2010near; @gitelman2018exploring]. Our study included 31,881 commercial truck drivers, and the large sample size allows us to investigate the association between four different types of SCEs and crashes, as well as stratification analyses across business units and driver types. Second, this study targets commercial trucks, which are major causes of catastrophic accidents and transportation risk, but evidence on the association between crashes and crash surrogates among truck drivers is scare. Third, this paper explored the association between SCEs and human injuries, which has not been investigated in previous papers. We found that as the number of SCEs per 10,000 miles increase by one unit, the number of injuries per mile will increase by 8.7% (95% CI: 4.8%-13.6%).
+
+Among the four types of SCEs studies in this paper, the most frequent one is hard brakes (n = 231,101), followed by headways (n = 184,773), collision mitigation (n = 55,345), and rolling stability (n = 9,112). The number of hard brakes is around 25 times higher than that of rolling stability. Although the number of hard brakes and headways are much more than collision mitigation and rolling stability. In statistical analyses, we did not find that hard brakes and headways were over-defined. One unit increase in the number of hard brakes or headways per 10,000 miles were consistently associated with increase in crashes, and this association still hold when stratified by business units and driver types. The IRRs of hard brakes and headways were smaller than those of collision mitigation and rolling stability, which could be explained by the frequency of the SCEs.
+
+Although our study shows a positive association between SCEs and crashes, as well as injuries, we cannot conclude that the second assumption in Heinrich's Triangle is true, i.e., the frequency of severe events can diminish as the frequency of less severe events decreases [@guo2010near]. This study used a cross-sectional observatory design and no experiments were involved. Therefore, we should not make any causal statements on the association. Exploring the causal relationship between SCEs and crashes requires well-designed experiments or state-of-start causal inference models for observatory data, which could be a direction that future studies can focus on.
+
+Our results are based on truck driving data from a single trucking company, but we argue that the generalizability of the results to other trucking companies is high. First, Company A is a leading trucking and transportation company in the United States, and their business divisions, routing, and scheduling are not particularly special compared to other trucking companies. Second, the commercial trucking industry has a high turn-over rate [@johnson2010long], which means the truck drivers actively switches between companies and different trucking companies share a fair amount of drivers. Third, a substantial number of drivers in each of the three business units and three driver types have been included in our study. The number of truck drivers involved is at least 10 times as high as that in other relevant studies, and the traveling pings cover the entire country and most of the major roads. Nonetheless, we still suggest the researchers always investigate the relationship between SCEs and crashes or injuries prior to applying SCEs as surrogates of crashes.
+
+This study has several limitations. First, since the exact time of the crashes were not recorded, we are not able to find out what and how many SCEs directly cause crashes, which is a crucial question in Heinrich's Triangle. Second, although we have a relatively large number of drivers and high mileage driven, the number of injuries or fatalities is not sufficiently large for this study. The statistical evidence on injuries is strong only when we combine four types of SCEs, while the evidence on fatalities is not convincing given the small number of fatalities. Third, we do not have data on traffic or weather variables, which are important predictors of crashes. Fourth, since the crash data in this study were reported by the drivers, it is likely that the drivers were underreporting crashes, especially for non-injury or non-fatality injuries.
+
+<!--
+- The drivers may switch between business units and driver types.
+- The number of crashes may be underreported.
+-->
+
+Summary and conclusion
+======================
+Based on routinely collected NDS and kinematic data from 31,881 truck drivers in a large commercial trucking company, this study investigated the association between SCEs (headways, hard brakes, collision mitigation, and rolling stability) and crashes, injuries, and fatalities using Bayesian negative binomial regression models. We found that a unit increase in the number of any type of SCEs per 10,000 miles was associated with 8.4% (95% CI: 8-8.8%) increase in SCEs per mile and 8.7% (95% CI: 4.8%-13.6%) increase in the number of injuries per mile. The increase was different in different types of SCEs: 3.3% (95% CI: 2.6-4%) for headways, 8.1% (95% CI: 7.5-8.7%) for hard brakes, 50.4% (95% CI: 41.4-60%) for rolling stability, and 22.2% (95% CI: 19.8-24.5%) for collision mitigation. The results are consistent when stratified by different business units and driver types. This work provides statistically strong and robust evidence that SCEs are positively associated with crashes and injuries among commercial truck drivers.
+
+Supplementary materials
+=======================
+In an effort to promote open and reproducible research, we have released our source code and aggregated data at a website hosted by GitHub Pages. Interested reader can visit it at [https://caimiao0714.github.io/Github-SCE-crash/](https://caimiao0714.github.io/Github-SCE-crash/). The original ping data include sensitive latitude and longitude information and cannot be made open. The website contains the following information:
+
+A) Ping data and trip aggregation
+    - Ping data demonstration
+    - Aggregating ping data into trips
+    - Ping and trip data visualization
+B) Statistical modeling
+    - Aggregated driver-level data
+    - Bayesian Negative binomial regression using `rstanarm`
+    - Model comparison and diagnostics using `loo`
+
+
+Acknowledgment {-}
+===============
+This work was supported in part by: the National Science Foundation (CMMI-1635927 and CMMI-1634992); the Ohio Supercomputer Center (PMIU0138 and PMIU0162); the American Society of Safety Professionals (ASSP) Foundation; the University of Cincinnati Education and Research Center Pilot Research Project Training Program; the Transportation Informatics Tier I University Transportation Center (TransInfo); a Google Cloud Platform research grant for data management; and a Dark Sky grant for extended API access (i.e., they increased the number of possible queries per day).
+
+References {#references .unnumbered}
+==========
+
+\everypar{\hangafter=1 \setlength{\hangindent}{3em}}{\par}
+\setlength\parskip{0.3em}
+\setlength\parindent{0pt}
+
+
+
