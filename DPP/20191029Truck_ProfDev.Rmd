@@ -1,0 +1,51 @@
+---
+title: Is the U.S. labor market for truck drivers broken?
+subtitle: PHS6900 Journal club
+author: Miao Cai
+institute: Department of Epidemiology and Biostatistics
+# date: "`r Sys.Date()`"
+titlegraphic: './logos/SLU-CPHSJ-left.png'
+fontsize: 12pt
+output:
+ beamer_presentation:
+    template: tex/20191029TruckProfDev.tex
+    keep_tex: false
+    latex_engine: xelatex # pdflatex also works here
+    dev: cairo_pdf # I typically comment this out  if latex_engine: pdflatex
+    slide_level: 3
+make149: true
+mainfont: "Open Sans" # Try out some font options if xelatex
+titlefont: "Titillium Web" # Try out some font options if xelatex
+---
+
+```{r setup, include=FALSE, cache=F, message=F, warning=F, results="hide"}
+knitr::opts_chunk$set(cache=FALSE,
+                      out.width='80%',
+                      out.height='80%',
+                      out.extra='keepaspectratio')
+#knitr::opts_chunk$set(fig.path='figs/')
+```
+
+
+### Overview of study
+
+### Study setting
+
+### Purpose
+
+### Population studied
+
+### Study protocol
+
+### Results
+
+### Implications
+
+
+### Limitations
+
+### Questions
+
+1. How accurately did news article report these findings?
+
+2. Practice tweet of the findings
