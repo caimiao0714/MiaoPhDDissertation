@@ -9,7 +9,7 @@ fontsize: 12pt
 output:
  beamer_presentation:
     template: ./tex/20191029TruckProfDevTemplate.tex
-    keep_tex: true
+    keep_tex: no
     latex_engine: xelatex # pdflatex also works here
     dev: cairo_pdf # I typically comment this out  if latex_engine: pdflatex
     slide_level: 3
@@ -128,7 +128,7 @@ Standardized usual hours (period 1) & 0.779$^{***}$ (-5.52) &  — & 0.908** (-2
 Standardized weekly earnings (period 1) &  0.844$^{***}$ (-1.67) & — & 0.747$^{***}$ (-2.58) & — \\
 Expected earnings increase &  — & 1.17 (1.34) & — & 1.41$^{***}$ (3.71)\\
 Expected earnings decrease & — & 1.01 (0.06) &  — & 0.981 (-0.18) \\
-Expected difference in hours (expected $–$ current) &  — &  1.03$^{***}$ (5.84) & — & 1.009$^{*}$ (1.93)\\
+Expected difference in hours (expected $-$ current) &  — &  1.03$^{***}$ (5.84) & — & 1.009$^{*}$ (1.93)\\
 Standardized percentage of heavy trucks & — & — & 0.267 (-18.09) & 0.267$^{***}$ (-18.32)  \\
 Observations &  5,465 & 5,465 & 6,202 & 6,202\\
 \bottomrule
@@ -163,8 +163,7 @@ Observations &  85,977 & 85,977 & 86,298 & 86,298\\
 
 
 Results 3: Perceived shortage
-==============
-
+=============================
 ### Explanation of perceived persistent truck driver shortage
 
 Long-distance truckload (TL) motor freight, is a "secondary market".
@@ -184,9 +183,9 @@ Although long-distance truck drivers has
 
 This is not a "broken market". Overall the trucking industry is "healthy".
 
+
 Implications
 ============
-
 ### Summary and implications
 
 1. employment in the occupation has been resilient,
@@ -194,7 +193,7 @@ Implications
 3. the occupations from which drivers come and to which they go are similar,
 4. truck drivers have lower occupational migration than other workers with similar education levels.
 
-Overall, the labor market for truck drivers works about as well as the labor markets for other blue-collar occupations
+Overall, the labor market for truck drivers works about as well as the labor markets for other blue-collar occupations.
 
 ### Questions
 
