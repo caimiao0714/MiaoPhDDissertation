@@ -7,7 +7,7 @@ author:
     email: miao.cai@slu.edu
     affiliation: SLU
   - name: Mohammad Ali Alamdar Yazdi
-    email: mza0052@auburn.edu
+    email: yazdi@jhu.edu
     affiliation: JHU
   - name: \mbox{Amir Mehdizadeh}
     email: azm0127@auburn.edu
@@ -20,10 +20,10 @@ author:
     affiliation: AU
   - name: \mbox{Karen Davis}
     email: davisk4@miamioh.edu
-    affiliation: MU
+    affiliation: MUCS
   - name: \mbox{Fadel Megahed}
     email: fmegahed@miamioh.edu
-    affiliation: MU
+    affiliation: MUFSB
   - name: \mbox{Hong Xian}
     email: hong.xian@slu.edu
     affiliation: SLU
@@ -33,15 +33,17 @@ author:
     footnote: Corresponding Author
 address:
   - code: SLU
-    address: Saint Louis University, Saint Louis, MO, 63108
+    address: Department of Epidemiology and Biostatistics, Saint Louis University, Saint Louis, MO, 63108, United States
   - code: JHU
-    address: Johns Hopkins University, Baltimore, MD, 21218
+    address: Carey Business School, Johns Hopkins University, Baltimore, MD, 21218, United States
   - code: AU
-    address: Auburn University, Auburn, AL, 36849
-  - code: MU
-    address: Miami University, Oxford, OH, 45056
+    address: Department of Industrial and Systems Engineering, Auburn University, Auburn, AL, 36849, United States
+  - code: MUCS
+    address: Department of Computer Science and Software Engineering, Miami University, Oxford, OH, 45056, United States
+  - code: MUFSB
+    address: Department of Information Systems and Analytics, Miami University, Oxford, OH, 45056, United States
 abstract: |
-  The past decade has witnessed a continuous growth of naturalistic driving studies (NDSs). In NDSs, safety-critical events (SCEs) are commonly used as the outcome since crashes are very rare. However, the association between SCEs and crashes is not consistent in previous studies and has not been verified among commercial truck drivers. Based on routinely collected kinematic data from 31,690 truck drivers in a large commercial trucking company, this paper examines the association between four types of SCEs (headways, hard brakes, collision mitigation, and rolling stability) and crashes, as well as injuries and fatalities. Bayesian negative binomial models were applied to examine this association among drivers in different business units and driver types, as well as all drivers combined. It was found that a unit increase in the number of any type of SCEs per 10,000 miles was associated with 8.4% (95% credible interval CI: 8-8.8%) increase in crashes per mile and 8.7% (95% CI: 4.8%-13.6%) increase in the number of injuries per mile. The increase was different in different types of SCEs: 3.3% (95% CI: 2.6-4%) for headways, 8.1% (95% CI: 7.5-8.7%) for hard brakes, 50.4% (95% CI: 41.4-60%) for rolling stability, and 22.2% (95% CI: 19.8-24.5%) for collision mitigation. The results are consistent when stratified by different business units and driver types. This study provides statistically strong and robust evidence that SCEs are positively associated with crashes and injuries among commercial truck drivers. NDS and kinematic data routinely collected by trucking or insurance companies provide a promising opportunity for future data analytics research. 
+  The past decade has witnessed continuous growth of naturalistic driving studies (NDSs). In NDSs, safety-critical events (SCEs) are commonly used as the outcome since crashes are very rare. However, the association between SCEs and crashes is not consistent in previous studies and has not been verified among commercial truck drivers. Based on routinely collected kinematic data from 31,690 truck drivers in a large commercial trucking company, this paper examines the association between four types of SCEs (headways, hard brakes, collision mitigation, and rolling stability) and crashes, as well as injuries and fatalities. Bayesian negative binomial models were applied to examine this association among drivers in different business units and driver types, as well as all drivers combined. It was found that a unit increase in the number of any type of SCEs per 10,000 miles was associated with 8.4% (95% credible interval CI: 8-8.8%) increase in crashes per mile and 8.7% (95% CI: 4.8%-13.6%) increase in the number of injuries per mile. The increase was different in different types of SCEs: 3.3% (95% CI: 2.6-4%) for headways, 8.1% (95% CI: 7.5-8.7%) for hard brakes, 50.4% (95% CI: 41.4-60%) for rolling stability, and 22.2% (95% CI: 19.8-24.5%) for collision mitigation. The results are consistent when stratified by different business units and driver types. This study provides statistically strong and robust evidence that SCEs are positively associated with crashes and injuries among commercial truck drivers. NDS and kinematic data routinely collected by trucking or insurance companies provide a promising opportunity for future data analytics research. 
 keywords: truck, naturalistic driving studies, safety-critical events, crashes, injuries, fatalities
 journal: "Transportation Research Part C: Emerging Technologies"
 date: "`r Sys.Date()`"
@@ -68,6 +70,7 @@ header-includes:
   - \usepackage[utf8]{inputenc}
   - \usepackage{array}
   - \usepackage{makecell}
+  - \usepackage[bottom]{footmisc}
 ---
 
 ```{r setup, include=FALSE}
