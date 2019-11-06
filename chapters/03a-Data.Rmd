@@ -49,11 +49,12 @@ canj1 & 2015-11-02 07:13:56 & HB\\
 Real-time time-stamped SCEs and associated GPS locations for all trucks were collected by the truck company and accessible to me as outcome variables. Three types of critical events were recorded: 1)	Hard brake, 2) Headway, 3) Rolling stability. Once some kinematic thresholds regarding the driving behavior were met, the sensor will be automatically triggered and the information of these SCEs (latitude, longitude, speed, driver ID) will be recorded. A sample of the SCEs data and crashes are demonstrated in Table \@ref(tab:SCE) and Table \@ref(tab:crashes).
 
 ```{r crashes, results='asis', eval=TRUE, echo=FALSE}
-fread("data/10_crashes.csv") %>% 
-  kable("latex", align = "c", 
+pacman::p_load(dplyr)
+data.table::fread("data/10_crashes.csv") %>% 
+  knitr::kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "A demonstration of crashes table") %>% 
-  kable_styling(latex_options = c("hold_position", "scale_down"))
+  kableExtra::kable_styling(latex_options = c("hold_position", "scale_down"))
 ```
 
 
@@ -81,12 +82,12 @@ kell0 & 51\\
 \end{tabular}
 \end{wraptable}
 ```{r drivers, results='asis', eval=FALSE, echo=FALSE}
-fread("data/12_driver.csv") %>% 
+data.table::fread("data/12_driver.csv") %>% 
   dplyr::slice(1:5) %>% 
-  kable("latex", align = "c", 
+  knitr::kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
       caption = "A demonstration of drivers table") %>% 
-  kable_styling(position = "float_right")
+  kableExtra::kable_styling(position = "float_right")
 ```
 Weather variables, including *precipitation intensity*, *precipitation probability*, *wind speed*, and *visibility*, will be retrieved from the `Dark Sky API`. 
 The `Dark Sky API` allows the users to query historic minute-by-minute weather data anywhere on the globe [@darksky]. 
@@ -95,13 +96,13 @@ Among several different weather data providers I tested, the `Dark Sky API` prov
 
 To reduce the cost of querying weather data, we will focus on 496 drivers conducting regional work, which generated around the 13 million real-time ping data. These latitude and longitude coordinates will be rounded to two decimal places, which are worth up to 1.1 kilometers. We will also round the time to the nearest hour and ignore those stopping pings. This reduction algorithm will scale the original 13 million real-time ping data down to around five million unique latitude-longitude-date-time combinations. We will use the R package `darksky` to obtain weather variables for these reduced five million unique combinations [@hrbrmstr]. The weather data for these combinations will then be merged back to the original ping data. <!--A minimal example of R code to retrieve weather data from the DarkSky API can be found in Appendix \@ref(weatherdat).--> A sample of the weather data is shown in Table \@ref(tab:weather)
 ```{r weather, results='asis', eval=TRUE, echo=FALSE}
-fread("data/13_weather.csv") %>% 
+data.table::fread("data/13_weather.csv") %>% 
   .[,ping_time := gsub("T|Z", " ", ping_time)] %>% 
   dplyr::slice(1:5) %>% 
-  kable("latex", align = "c", 
+  knitr::kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "A demonstration of weather data from the DarkSky API") %>% 
-  kable_styling(latex_options = c("hold_position", "scale_down"))
+  kableExtra::kable_styling(latex_options = c("hold_position", "scale_down"))
 ```
 
 ### Road geometry data from the `OpenStreetMap`
@@ -110,12 +111,12 @@ Two road geometry variables for the 496 regional truck drivers will be queried f
 
 We will query the speed limits and the number of lanes by specifying a bounding box by defining a center point, as well as the width and height in meters in the `center_bbox()` function available from the `osmar` R package [@eugster2013osmar]. We will use real-time longitudes and latitudes as the center point and defined a $100\times100$ meters box to retrieve the two variables. If the $100\times100$ meters box is too small to have any road geometry data, we will expand the box to $500\times500$ and then $1000\times1000$ to obtain geometry data. If the OSM API returned data from multiple geometry structures, we will take the mean of the returned values as the output. <!--The R code to retrieve road geometry data can be found in Appendix \@ref(roadgeometry).--> A sample of the road geometry data is shown in Table \@ref(tab:road).
 ```{r road, results='asis', eval=TRUE, echo=FALSE}
-fread("data/14_OpenStreetMap.csv") %>% 
+data.table::fread("data/14_OpenStreetMap.csv") %>% 
   dplyr::slice(25:29) %>% 
-  kable("latex", align = "c", 
+  knitr::kable("latex", align = "c", 
       booktab = TRUE, linesep = "", 
       caption = "A demonstration of road geometry data from the OpenStreetMap API")  %>% 
-  kable_styling(latex_options = c("HOLD_position"))
+  kableExtra::kable_styling(latex_options = c("HOLD_position"))
 ```
 
 
@@ -130,12 +131,12 @@ In order to make the MCMC estimation for Bayesian models tractable, I will use t
 The trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \@ref(tab:transformshift).
 
 ```{r transformshift, results='asis', eval=TRUE, echo=FALSE}
-kable(t3 %>% 
-        dplyr::slice(1:5) , 
-      "latex", align = "c", 
+data.table::fread("data/13_weather.csv") %>% 
+  dplyr::slice(1:5)
+  kable("latex", align = "c", 
       booktab = TRUE, linesep = "",
       caption = "A demonstration of transformed shifts data") %>% 
-  kable_styling(latex_options = c("HOLD_position"))
+  kableExtra::kable_styling(latex_options = c("HOLD_position"))
 ```
 
 ### Trips

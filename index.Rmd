@@ -6,12 +6,11 @@ output:
   bookdown::pdf_book:
     template: tex/template_yihui_demo.tex
     latex_engine: xelatex
-    citation_package: none
+    #citation_package: natbib
     keep_tex: yes
-#    pandoc_args: [ "--csl", "AAP.csl" ]
-bibliography: [bib/bib.bib]
+    #pandoc_args: [ "--csl", "AAP.csl" ]
+bibliography: [bib/sortedbib.bib]
 csl: [bib/AAP.csl]
-#csl: nature.csl
 link-citations: yes
 site: bookdown::bookdown_site
 github-repo: caimiao0714/MiaoPhDDissertation

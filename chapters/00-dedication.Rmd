@@ -1,4 +1,3 @@
-<!--
 Dedication {-}
 ==========
 
@@ -7,8 +6,8 @@ I dedicate this dissertation to my parents, Zhimin Cai (蔡致民) and Guizhen X
 Acknowledgement {-}
 ===============
 
-I want to thank my PhD mentor and committee chair Dr. Steven E. Rigdon, committee members Dr. Hong Xian and Dr. Fadel Megahed.
--->
+I want to thank my mentor and committee chair Dr. Steven E. Rigdon, committee members Dr. Hong Xian and Dr. Fadel Megahed.
+
 
 \linespread{1}
 \cleardoublepage
