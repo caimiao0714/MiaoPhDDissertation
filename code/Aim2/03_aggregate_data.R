@@ -69,3 +69,12 @@ ce_int60 = agg_int60 %>%
 
 fst::write_fst(ce_int30, "data/cleaned/31interval30_CE.fst", compress = 100)
 fst::write_fst(ce_int60, "data/cleaned/32interval60_CE.fst", compress = 100)
+
+
+
+ce_int30 = fst::read_fst("data/cleaned/31interval30_CE.fst")
+ce_int60 = fst::read_fst("data/cleaned/32interval60_CE.fst")
+
+
+data.table::fwrite(ce_int30, "data/cleaned/31interval30_CE.csv")
+data.table::fwrite(ce_int60, "data/cleaned/31interval60_CE.csv")
