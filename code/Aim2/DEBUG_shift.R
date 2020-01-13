@@ -51,33 +51,3 @@ s1[,sum(shift_id == 0)/.N] # percent of stopping pings: 26.93%
 s2[,.N] # 9,349,312
 round(s2[,.N]*100/s1[,.N], 2) # 70.9%
 
-
-
-
-threshold_trip = 30
-t1 = s2 %>% 
-  setkey(driver, ping_time) %>% 
-  .[,diff := as.integer(difftime(ping_time, shift(ping_time, 
-                                                  type = "lag",fill = 0), units = "mins")), driver] %>%
-  .[,diff := {diff[1] = 0L; diff}, driver] %>% 
-  .[diff >= threshold_trip, speed := 0] %>% 
-  .[,rleid := rleid(speed != 0), driver] %>%
-  .[,`:=`(rleid1 = rleid, speed1 = speed)] %>%
-  .[,`:=`(sum_speed = sum(speed), sum_time = sum(diff)), .(driver, rleid)] %>%
-  .[sum_speed == 0 & sum_time < threshold_trip, speed1 := 3] %>% 
-  .[,`:=`(sum_speed = sum(speed1)), .(driver, rleid)] %>%
-  .[,trip_id := data.table::fifelse(sum_speed == 0, 0, 
-                                    rleid(speed1 != 0)), driver] %>% 
-  .[trip_id != 0,trip_length := sum(diff), .(driver, trip_id)] %>% 
-  .[,.(driver, ping_time, speed, lat, lon, diff, shift_id, trip_id)]
-
-t2 = t1 %>% 
-  .[,`:=`(lon1 = shift(lon, type = "lag", fill = NA),
-          lat1 = shift(lat, type = "lag", fill = NA)),
-    by = .(driver, shift_id, trip_id)] %>%
-  .[,distance := geosphere::distHaversine(cbind(lon, lat), cbind(lon1, lat1))] %>%
-  .[,distance := round(distance/1609.344, 3)] %>%
-  .[,distance := {distance[1] = 0; distance}, .(driver, shift_id, trip_id)] %>%
-  .[,c("lon1", "lat1") := NULL] %>%
-  setkey(driver, ping_time)
-
