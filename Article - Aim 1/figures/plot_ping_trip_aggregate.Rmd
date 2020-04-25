@@ -229,11 +229,11 @@ p1
 
 ```{r eval=TRUE}
 ggsave("../figs/fig_ping_shift_trip_30int_real.pdf", p1, 
-       width = 10, height = 6.18)
+       width = 10*0.7, height = 6.18*0.7)
 ggsave("../figs/fig_ping_shift_trip_30int_real.svg", p1, 
        width = 10, height = 6.18)
 ggsave("../figs/fig_ping_shift_trip_30int_real.png", p1, 
-       width = 10, height = 6.18, dpi = 320)
+       width = 10, height = 6.18, dpi = 600)
 ```
 
 
@@ -242,6 +242,7 @@ ggsave("../figs/fig_ping_shift_trip_30int_real.png", p1,
 This figure should only include ping and trips, not including shifts or 30-minute intervals.
 
 ```{r}
+windowsFonts(Times = windowsFont("Times New Roman"))
 p2 = d %>% 
   .[,point_color := case_when(speed >= 50 ~ ">= 50 MPH", 
                              speed >= 25 & speed < 50 ~ "(25, 50] MPH", 
@@ -250,7 +251,7 @@ p2 = d %>%
   .[,point_color := factor(point_color, levels = 
           c("0 MPH", "(0, 25] MPH", "(25, 50] MPH", ">= 50 MPH"))] %>% 
   ggplot(aes(ping_time, speed)) + 
-  geom_point(aes(color = point_color)) + 
+  geom_point(aes(color = point_color), size = 1.5) + 
   scale_colour_manual(name = "speed category", 
                       values = c("#636363", "#31a354", "#fb6a4a", "#a50f15")) + 
   geom_line() + 
@@ -285,15 +286,21 @@ p2 = d %>%
   #           color = "#008837", size = 3) + 
   labs(x = "date and time of ping", y = "speed (MPH)") + 
   scale_y_continuous(breaks = c(0, 25, 50), limits = c(-5, 70)) + 
-  theme(legend.justification = c(1, 1), legend.position = c(0.97, 1),
+  theme(legend.title = element_text(size = 16),
+        legend.justification = c(1, 1), legend.position = c(0.97, 1),
+        legend.text = element_text(size = 13),
         legend.background = element_rect(fill=alpha('white', 0.1)),
         legend.direction="horizontal", text=element_text(family="Times"),
-        panel.grid.major.x = element_blank(), panel.grid.minor = element_blank())
+        panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(),
+        axis.text=element_text(size=13, family="Times"),
+        axis.title=element_text(size=16, family="Times"))
 p2
 ```
 
 ```{r}
-ggsave("../figs/fig_ping_trip_real.pdf", p2, 
-       width = 10, height = 6.18)
+ggsave("figs/fig_ping_trip_real.pdf", p2, 
+       width = 10*.8, height = 6.18*.8)
+ggsave("figs/fig_ping_trip_real.png", p2, 
+       width = 10*.8, height = 6.18*.8, dpi = 600)
 ```
 

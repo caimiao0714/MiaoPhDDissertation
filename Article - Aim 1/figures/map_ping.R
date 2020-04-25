@@ -8,6 +8,7 @@ windowsFonts(LMRoman = windowsFont("LM Roman 10")) # For windows computer
 default_font_family = "LMRoman"
 
 crs_use = "+proj=laea +lat_0=35 +lon_0=-100"
+crs_NAD83 = 102003
 
 d = data.table::fread("data/plot_ping_all.csv") # read ping
 us_road = sf::st_read("map_data/roadtrl010g.shp_nt00920/roadtrl010g.shp") %>%
@@ -65,11 +66,11 @@ plot_stop = function(n_ping_threshold = 100){
     labs(x = NULL, y = NULL,
          title = "Geographical distribution of stopped pings",
          subtitle = "A large commercial truck NDS data set in USA, 2015-2016",
-         caption = paste("The grey line are major highways in the USA. Only locations with at least", n_ping_threshold, "pings were shown."))
+         caption = paste("The grey line are major highways in the USA.\n Only locations with at least", n_ping_threshold, "pings were shown."))
   return(p)
 }
-p = plot_stop(1)
-ggsave("figs/projected_map_stop_1.png", p, width = 10, height = 6.18, dpi = 600)
+#p = plot_stop(1)
+#ggsave("figs/projected_map_stop_1.png", p, width = 10, height = 6.18, dpi = 600)
 
 p = plot_stop(10)
 ggsave("figs/projected_map_stop_10.png", p, width = 10, height = 6.18, dpi = 600)
@@ -130,12 +131,12 @@ plot_active = function(n_ping_threshold = 100){
     labs(x = NULL, y = NULL,
          title = "Geographical distribution of active moving pings",
          subtitle = "A large commercial truck NDS data set in USA, 2015-2016",
-         caption = paste("The grey line are major highways in the USA. Only locations with at least", n_ping_threshold, "pings were shown."))
+         caption = paste("The grey line are major highways in the USA.\n Only locations with at least", n_ping_threshold, "pings were shown."))
   return(p)
 }
 
-p = plot_active(1)
-ggsave("figs/projected_map_active_1.png", p, width = 10, height = 6.18, dpi = 600)
+# p = plot_active(1)
+# ggsave("figs/projected_map_active_1.png", p, width = 10, height = 6.18, dpi = 600)
 
 p = plot_active(10)
 ggsave("figs/projected_map_active_10.png", p, width = 10, height = 6.18, dpi = 600)
