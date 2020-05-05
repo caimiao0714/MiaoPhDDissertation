@@ -6,7 +6,7 @@ output:
   bookdown::pdf_book:
     template: tex/template_yihui_demo.tex
     latex_engine: xelatex
-    #citation_package: natbib
+    citation_package: natbib
     keep_tex: yes
     #pandoc_args: [ "--csl", "AAP.csl" ]
 bibliography: [bib/sortedbib.bib]
