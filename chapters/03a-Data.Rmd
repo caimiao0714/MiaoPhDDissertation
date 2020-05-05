@@ -126,24 +126,8 @@ Data aggregation {#data-aggregation}
 
 In order to make the MCMC estimation for Bayesian models tractable, I will use the following data reduction algorithms to aggregate real-time ping data to *trips* and *shifts*: a *trip* is a continuous period of driving without stopping for more than 30 minutes; a *shift* is a long period of driving without stopping for more than 8 hours.
 
-### Shifts
-
-The trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \@ref(tab:transformshift).
-
-```{r transformshift, results='asis', eval=TRUE, echo=FALSE}
-data.table::fread("data/13_weather.csv") %>% 
-  dplyr::slice(1:5)
-  kable("latex", align = "c", 
-      booktab = TRUE, linesep = "",
-      caption = "A demonstration of transformed shifts data") %>% 
-  kableExtra::kable_styling(latex_options = c("HOLD_position"))
-```
-
-### Trips
-
-For each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 30 minutes, the ping data will be separated into two different trips. A sample of the trips data is shown in Table \@ref(tab:transformtrip).
-
 ```{r eval=TRUE, echo=FALSE}
+pacman::p_load(data.table, magrittr)
 t1 = fread("data/21_Transformed_trips.csv")
 t1[,`:=`(start_time = gsub("T|Z", " ", start_time),
          end_time = gsub("T|Z", " ", end_time)) ]
@@ -154,6 +138,25 @@ t3 = fread("data/23_Transformed_shifts.csv")
 t3[,`:=`(shift_start = gsub("T|Z", " ", shift_start),
          shift_end = gsub("T|Z", " ", shift_end)) ]
 ```
+
+### Shifts
+
+The trips data will be further divided into different shifts if the specific driver was not moving for eight hours. A sample of the shifts data is shown in Table \@ref(tab:transformshift).
+
+```{r transformshift, results='asis', eval=TRUE, echo=FALSE}
+t3 %>% 
+  dplyr::slice(1:5) %>% 
+  knitr::kable(format = "latex", align = "c", 
+      booktab = TRUE, linesep = "",
+      caption = "A demonstration of transformed shifts data") %>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position"))
+```
+
+### Trips
+
+For each of the truck drivers, if the real-time ping data showed that the truck was not moving for more than 30 minutes, the ping data will be separated into two different trips. A sample of the trips data is shown in Table \@ref(tab:transformtrip).
+
+
 
 ```{r transformtrip, results='asis', eval=TRUE, echo=FALSE}
 kable(t1[driver == "canj1"][1:5,], 
