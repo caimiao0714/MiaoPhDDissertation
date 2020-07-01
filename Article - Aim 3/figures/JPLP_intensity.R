@@ -60,7 +60,7 @@ sim_jplp = function(tau0 = 12,
 ############   Simulate data   ############
 set.seed(666)
 
-tauX = 12
+tauX = 11
 kappaX = 0.8
 t_tripX = c(3.5, 6.2, 9)
 betaX = 1.5
@@ -79,7 +79,7 @@ lambda_jplp = function(t, beta, theta, kappa = 0.8, t_trip){
 }
 
 
-x = seq(0.01, 12, 0.01)
+x = seq(0.00, tauX, 0.001)
 y_plp = lambda_plp(x, beta = betaX, theta = thetaX)
 y_jplp = rep(NA_real_, length(lambda_plp))
 
@@ -127,10 +127,12 @@ ggplot() +
                         "last.points", cex = 1.2, fontfamily = 'Times')) +
   scale_color_manual(values = c(PLP = "#0082c8", JPLP = "#4b0082")) +
   # Points that suggest non-overlapping intensity function at jump points
-  geom_point(data = filter(dlambda, Type == 'JPLP', x %in% (t_tripX + 0.01)),
-             aes(x = x, y = y), color = '#4b0082', size = 2, shape = 1) +
+  geom_point(data = filter(dlambda, Type == 'JPLP', x %in% (t_tripX + 0.001)),
+             aes(x = x, y = y), color = '#4b0082', size = 5, shape = 1) +
+  geom_point(data = data.frame(x = 0, y = 0), aes(x = x, y = y), 
+             color = '#4b0082', size = 5, shape = 1) +
   labs(x = unname(TeX('Time to SCEs (hours)')),
-       y = unname(TeX('Intensity function $\\lambda(t)$'))) +
+       y = unname(TeX('Intensity $\\lambda(t)$'))) +
   theme_minimal() +
   guides(color = FALSE) +
   geom_point(data = d_event, aes(x = t_events, y = y),
@@ -140,8 +142,12 @@ ggplot() +
                    y = start_y, yend = end_y),
                lineend = 'butt',
                arrow = arrow(length = unit(0.2, "cm"))) +
-  scale_x_continuous(expand = c(0, 0), breaks = seq(0, 12, 3)) +
-  theme(axis.text = element_text(size = 12, family = 'Times'),
-        axis.title = element_text(size = 14, family = 'Times'),
+  scale_x_continuous(expand = c(0., 0.15), breaks = c(0, 3, 6, 9, 11)) +
+  theme(axis.text = element_text(size = 16, family = 'Times'),
+        axis.title = element_text(size = 18, family = 'Times'),
+        axis.ticks.x = element_line(size = 0.9),
+        axis.ticks.length = unit(0.2, 'cm'),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
         text = element_text(family = 'Times'))
-ggsave('figs/JPLP_intensity.pdf', width = 10*.8, height = 6.18*.8)
+ggsave('Figures/JPLP_intensity.pdf', width = 10*.8, height = 6.18*.8)
