@@ -124,7 +124,7 @@ ggplot() +
   # direct labels of PLP and JPLP
   geom_dl(data = dlambda, aes(x = x, y = y, label = Type, color = Type),
           method = list(dl.trans(x = x - 1.3, y = y - 0.6),
-                        "last.points", cex = 1.2, fontfamily = 'Times')) +
+                        "last.points", cex = 1.4, fontfamily = 'Times')) +
   scale_color_manual(values = c(PLP = "#0082c8", JPLP = "#4b0082")) +
   # Points that suggest non-overlapping intensity function at jump points
   geom_point(data = filter(dlambda, Type == 'JPLP', x %in% (t_tripX + 0.001)),
@@ -144,10 +144,10 @@ ggplot() +
                arrow = arrow(length = unit(0.2, "cm"))) +
   scale_x_continuous(expand = c(0., 0.15), breaks = c(0, 3, 6, 9, 11)) +
   theme(axis.text = element_text(size = 16, family = 'Times'),
-        axis.title = element_text(size = 18, family = 'Times'),
+        axis.title = element_text(size = 16, family = 'Times'),
         axis.ticks.x = element_line(size = 0.9),
         axis.ticks.length = unit(0.2, 'cm'),
         panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(),
         text = element_text(family = 'Times'))
-ggsave('Figures/JPLP_intensity.pdf', width = 10*.8, height = 6.18*.8)
+ggsave('Figures/JPLP_intensity.pdf', width = 10*.75, height = 6.18*.75)
