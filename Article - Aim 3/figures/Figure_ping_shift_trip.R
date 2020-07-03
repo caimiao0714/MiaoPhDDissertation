@@ -74,12 +74,13 @@ p1 = d %>%
                               speed >   0 & speed < 25 ~ "(0, 25] MPH", 
                               speed == 0 ~ "0 MPH")] %>% 
   .[,point_color := factor(point_color, levels = 
-                             c("0 MPH", "(0, 25] MPH", "(25, 50] MPH", ">= 50 MPH"))] %>% 
+          c("0 MPH", "(0, 25] MPH", "(25, 50] MPH", ">= 50 MPH"))] %>% 
   ggplot(aes(ping_time, speed)) + 
-  geom_point(aes(color = point_color), size = 4) + 
-  scale_colour_manual(name = "speed category", 
-                      values = c("#636363", "#31a354", "#fb6a4a", "#a50f15")) + 
-  geom_line() + 
+  geom_point(shape = 21, size = 4, alpha = 0.8, aes(fill = point_color)) + 
+  #scale_fill_grey(start = 0.3, end = 0.7) +
+  scale_fill_manual(name = "speed category", 
+                     values = c("#636363", "#31a354", "#fb6a4a", "#a50f15")) + 
+  geom_line(size = 0.1) + 
   theme_bw()  + 
   # shift
   geom_segment(data = d_shift, aes(x = start_time, xend = end_time,
@@ -88,7 +89,7 @@ p1 = d %>%
                lineend = 'butt', size = 0.8, color = "#0571b0") + 
   geom_text(data = d_shift, aes(x = shift_median, y = -4.8,
                                 label = paste0("Shift ", 1:2)), 
-            color = "#0571b0", size = 4, family="Times") +
+            color = "#0571b0", size = 4.5, family="Times") +
   # trip
   geom_segment(data = d_trip, aes(x = start_time, xend = end_time,
                                   y = -8, yend = -8),
@@ -97,7 +98,7 @@ p1 = d %>%
   geom_text(data = d_trip, aes(x = trip_median,
                                y = rep(-10, nrow(d_trip)),
                                label = paste0("Trip ", c(1:2, 1:4))),
-            color = "#7b3294", size = 4, family="Times") + 
+            color = "#7b3294", size = 4.5, family="Times") + 
   labs(x = NULL, y = "ping speed (MPH)") + 
   scale_x_datetime(labels = label_time('%b %d, %H:%M')) +
   scale_y_continuous(breaks = c(0, 20, 40, 60), limits = c(-10.5, 70)) + 
