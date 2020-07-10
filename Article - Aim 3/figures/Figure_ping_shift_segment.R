@@ -87,26 +87,26 @@ p1 = d %>%
                                    y = -3.2, yend = -3.2),
                arrow = arrow(length = unit(0.2, "cm")),
                lineend = 'butt', size = 0.8, color = "#0571b0") + 
-  geom_text(data = d_shift, aes(x = shift_median, y = -4.8,
+  geom_text(data = d_shift, aes(x = shift_median, y = -5.2,
                                 label = paste0("Shift ", 1:2)), 
-            color = "#0571b0", size = 4.5, family="Times") +
+            color = "#0571b0", size = 5, family="Times") +
   # trip
   geom_segment(data = d_trip, aes(x = start_time, xend = end_time,
-                                  y = -8, yend = -8),
+                                  y = -8.5, yend = -8.5),
                arrow = arrow(length = unit(0.2, "cm")),
                lineend = 'butt', size = 0.8, color = "#7b3294") + 
   geom_text(data = d_trip, aes(x = trip_median,
-                               y = rep(-10, nrow(d_trip)),
+                               y = rep(-10.7, nrow(d_trip)),
                                label = paste0("Segment ", c(1:2, 1:3))),
-            color = "#7b3294", size = 4.5, family="Times") + 
+            color = "#7b3294", size = 5, family="Times") + 
   labs(x = NULL, y = "ping speed (MPH)") + 
   scale_x_datetime(labels = label_time('%b %d, %H:%M')) +
-  scale_y_continuous(breaks = c(0, 20, 40, 60), limits = c(-10.5, 70)) + 
-  guides(color=guide_legend(override.aes = list(alpha = 1, size = 5))) +
+  scale_y_continuous(breaks = c(0, 20, 40, 60), limits = c(-10.7, 72)) +
   theme(legend.justification = c(1, 1), 
-        legend.position = 'none',
-        legend.background = element_rect(fill = alpha('white', 0.1)),
+        legend.position = c(0.95, 1),#'none',
+        legend.background = element_rect(fill = NA),
         legend.direction = "horizontal", 
+        legend.box = "horizontal", 
         legend.text=element_text(size = 13),
         text = element_text(family = "Times", size = 13),
         axis.text=element_text(size = 15),
