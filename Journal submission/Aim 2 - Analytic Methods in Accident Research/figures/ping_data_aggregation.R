@@ -1,5 +1,6 @@
 pacman::p_load(data.table, dplyr, ggplot2, lubridate)
-d = fread("data/plot_ping_trip_agg.csv") %>% # path specify: ./data/
+windowsFonts(Times=windowsFont("Times New Roman"))
+d = fread("data/plot_ping_trip_agg1.csv") %>% # path specify: ./data/
   .[,ping_time := ymd_hms(ping_time)]
 
 segment_0 = function(speed, threshold, time_diff) {
@@ -72,10 +73,10 @@ p1 = d %>%
   .[,point_color := factor(point_color, levels =
                              c("0 MPH", "(0, 25] MPH", "(25, 50] MPH", ">= 50 MPH"))] %>%
   ggplot(aes(ping_time, speed)) +
-  geom_point(aes(color = point_color), size = 2) +
+  geom_point(aes(color = point_color), size = 4) +
   scale_colour_manual(name = "speed category",
                       values = c("#636363", "#31a354", "#fb6a4a", "#a50f15")) +
-  geom_line() +
+  geom_line(size = 0.1) +
   theme_bw()  +
   # shift
   geom_segment(data = d_shift, aes(x = start_time, xend = end_time,
@@ -91,7 +92,7 @@ p1 = d %>%
                lineend = 'butt', size = 1, color = "#7b3294") +
   geom_text(data = d_trip, aes(x = trip_median,
                                y = rep(-10.8, nrow(d_trip)),
-                               label = paste(c("Trip", "Trip", "Trip", "Trip", "Trip", "Trip"),
+                               label = paste(rep('Segment', nrow(d_trip)),
                                              1:nrow(d_trip), " ")),
             color = "#7b3294", size = 4.5) +
   # 30 minute intervals

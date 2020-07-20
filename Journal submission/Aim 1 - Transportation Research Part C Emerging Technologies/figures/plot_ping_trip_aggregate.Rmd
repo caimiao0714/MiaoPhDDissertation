@@ -110,7 +110,7 @@ ggsave("../figs/fig_ping_trip_simulated.pdf", p0,
 
 ```{r}
 pacman::p_load(data.table, dplyr, ggplot2, lubridate)
-d = fread("../data/plot_ping_trip_agg.csv") %>% # path specify: ./data/
+d = fread("../data/plot_ping_trip_agg1.csv") %>% # path specify: ./data/
   .[,ping_time := ymd_hms(ping_time)]
 
 segment_0 = function(speed, threshold, time_diff) {
@@ -177,6 +177,7 @@ d_plot_int30 = d_30int %>%
 ```
 
 ```{r}
+windowsFonts(Times=windowsFont("Times New Roman"))
 p1 = d %>% 
   .[,point_color := case_when(speed >= 50 ~ ">= 50 MPH", 
                              speed >= 25 & speed < 50 ~ "(25, 50] MPH", 
@@ -185,7 +186,7 @@ p1 = d %>%
   .[,point_color := factor(point_color, levels = 
           c("0 MPH", "(0, 25] MPH", "(25, 50] MPH", ">= 50 MPH"))] %>% 
   ggplot(aes(ping_time, speed)) + 
-  geom_point(aes(color = point_color)) + 
+  geom_point(aes(color = point_color), size = 4) + 
   scale_colour_manual(name = "speed category", 
                       values = c("#636363", "#31a354", "#fb6a4a", "#a50f15")) + 
   geom_line() + 
@@ -204,7 +205,7 @@ p1 = d %>%
                lineend = 'butt', size = 0.8, color = "#7b3294") + 
   geom_text(data = d_trip, aes(x = trip_median,
                              y = rep(-10.8, nrow(d_trip)),
-                             label = paste(c("Trip", "Trip", "Trip", "Trip", "Trip", "Trip"), 
+                             label = paste(rep('Segment', nrow(d_trip)), 
                                            1:nrow(d_trip), " ")),
             color = "#7b3294", size = 3) + 
   # 30 minute intervals
@@ -251,39 +252,20 @@ p2 = d %>%
   .[,point_color := factor(point_color, levels = 
           c("0 MPH", "(0, 25] MPH", "(25, 50] MPH", ">= 50 MPH"))] %>% 
   ggplot(aes(ping_time, speed)) + 
-  geom_point(aes(color = point_color), size = 1.5) + 
+  geom_point(aes(color = point_color), size = 4) + 
   scale_colour_manual(name = "speed category", 
                       values = c("#636363", "#31a354", "#fb6a4a", "#a50f15")) + 
-  geom_line() + 
+  geom_line(size = 0.1) + 
   theme_bw()  + 
-  # shift
-  # geom_segment(data = d_shift, aes(x = start_time, xend = end_time,
-  #                                  y = -3.2, yend = -3.2),
-  #              arrow = arrow(length = unit(0.2, "cm")),
-  #              lineend = 'butt', size = 0.8, color = "#0571b0") + 
-  # geom_text(data = d_shift, aes(x = shift_median, y = -4.8,
-  #               label = "Shift"), color = "#0571b0", size = 3.3) +
-  # trip
   geom_segment(data = d_trip, aes(x = start_time, xend = end_time,
                              y = -3, yend = -3),
                arrow = arrow(length = unit(0.2, "cm")),
                lineend = 'butt', size = 0.8, color = "#7b3294") + 
   geom_text(data = d_trip, aes(x = trip_median,
                              y = rep(-4.8, nrow(d_trip)),
-                             label = paste(c("Trip", "Trip", "Trip", "Trip", "Trip", "Trip"), 
+                             label = paste(rep('Segment', nrow(d_trip)), 
                                            1:nrow(d_trip), " ")),
-            color = "#7b3294", size = 3) + 
-  # 30 minute intervals
-  # geom_segment(data = d_trip, aes(x = start_time, xend = end_time,
-  #                                 y = -15, yend = -15),
-  #              arrow = arrow(length = unit(0.2, "cm")),
-  #              lineend = 'butt', size = 0.8, color = "#008837", alpha = 0.4) + 
-  # geom_point(data = d_plot_int30, aes(x = trip_time, y = -15),
-  #            size = 2, color = "#008837", shape = 124) + 
-  # geom_text(data = d_trip, aes(x = trip_median[1],
-  #                              y = -18,
-  #                              label = "30-minute intervals ..."),
-  #           color = "#008837", size = 3) + 
+            color = "#7b3294", size = 4) + 
   labs(x = "date and time of ping", y = "speed (MPH)") + 
   scale_y_continuous(breaks = c(0, 25, 50), limits = c(-5, 70)) + 
   theme(legend.title = element_text(size = 16),
